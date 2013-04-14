@@ -46,15 +46,11 @@ Please note that the version of my Curricula Vitae posted here is missing some c
 - *Ease and Toil: Analyzing Sudoku*, with Seth Chadwick and Rachel Krieg.
     > [PDF](papers/ease-and-toil.pdf)
 
-### Presentations and Posters ###
-Note: Information about talks and posters is organized by year, starting in 2011.
-2011 | 2012 | …
-
 ### Academic Projects ###
 
 I contribute to the following academic projects:
 
 - Complexity Zoo
-- QuaEC
-- Qinfer
+- [QuaEC](http://github.com/cgranade/python-quaec)
+- [Qinfer](http://github.com/csferrie/python-qinfer)
 
