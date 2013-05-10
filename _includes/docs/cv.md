@@ -4,9 +4,15 @@
 
 ### Research Interests in Quantum Computation and Information ###
 
-- Statistical inference for quantum information applications
-- Control and simulation of noisy quantum systems
-- Applications of error correction and prevention
+- Statistical inference for quantum information applications.
+- Control and simulation of noisy quantum systems.
+- Applications of error correction and prevention.
+
+## Academic History ##
+- Master of Science, Physics. Perimeter Scholars International. 2010.
+- Bachelor of Science (Honors cum laude), Physics. University of Alaska Fairbanks. 2009.
+- Bachelor of Science (Honors cum laude), Mathematics and Computer Science. University of
+  Alaska Fairbanks. 2009.
 
 ## Academic Contributions ##
 ### Papers, Essays and Publications ###
@@ -44,7 +50,8 @@
 
 ### Academic Projects ###
 
-I contribute to the following academic projects:
+I have contributed or am an active contributor to the following academic
+projects:
 
 - Complexity Zoo
 - [QuaEC](http://github.com/cgranade/python-quaec)
