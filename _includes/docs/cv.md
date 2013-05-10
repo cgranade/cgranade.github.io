@@ -1,6 +1,6 @@
 # Curricula Vitae #
 
-> Download CV: [PDF](downloads/cv.pdf) | [ODT](downloads/cv.odt)
+<!-- > Download CV: [PDF](downloads/cv.pdf) | [ODT](downloads/cv.odt) -->
 
 ### Research Interests in Quantum Computation and Information ###
 
