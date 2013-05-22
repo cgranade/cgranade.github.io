@@ -2,8 +2,6 @@
 layout: page
 title: "Robust Online Hamiltonian Learning"
 description: ""
-redirects:
-- /research/rohl
 ---
 {% include JB/setup %}
 
@@ -13,7 +11,7 @@ redirects:
  > [arXiv:1207.1655](http://arxiv.org/abs/1207.1655) | [doi:10.1088/1367-2630/14/10/103013](http://dx.doi.org/10.1088/1367-2630/14/10/103013) 
  
 Presented as a poster at [TQC 2013](http://www.uoguelph.ca/quigs/tqc2013/) ([PDF](rohl/tqc-poster.pdf)).
-To be presented at [DAMOP 2013](http://www.aps.org/units/damop/meetings/annual/).
+To be presented at [DAMOP 2013](http://www.aps.org/units/damop/meetings/annual/) (slides forthcoming).
 
 ## Abstract ##
 
@@ -27,14 +25,14 @@ implementation of the algorithm presented in this work, is
 
 ## Bibliography ##
 
-1. M. Paris and J. Rehacek, eds., Quantum State Estimation, vol. 649 of Lecture Notes in Physics (Springer, 2004), ISBN 978-3-540-22329-0, URL http://www.springer.com/physics/quantum+physics/book/978-3-540-22329-0.
-2. B. P. Lanyon, C. Hempel, D. Nigg, M. Müller, R. Gerritsma, F. Zhringer, P. Schindler, J. T. Barreiro, M. Rambach, G. Kirchmair, et al., Science 334, 57 (2011), http://www.sciencemag.org/content/334/6052/57.full.pdf, URL http://www.sciencemag.org/content/334/6052/57.abstract.
-3. R. Gerritsma, B. P. Lanyon, G. Kirchmair, F. Zähringer, C. Hempel, J. Casanova, J. J. Garcia-Ripoll, E. Solano, R. Blatt, and C. F. Roos, Phys. Rev. Lett. 106, 060503 (2011), URL http://link.aps.org/doi/10.1103/PhysRevLett.106.060503. 
+1. M. Paris and J. Rehacek, eds., [Quantum State Estimation](http://www.springer.com/physics/quantum+physics/book/978-3-540-22329-0), vol. 649 of Lecture Notes in Physics (Springer, 2004), ISBN 978-3-540-22329-0.
+2. B. P. Lanyon et al., [Universal Digital Quantum Simulation with Trapped Ions](http://www.sciencemag.org/content/334/6052/57.abstract), Science 334, 57 (2011).
+3. R. Gerritsma et al., [Quantum Simulation of the Klein Paradox with Trapped Ions](http://link.aps.org/doi/10.1103/PhysRevLett.106.060503), Phys. Rev. Lett. 106, 060503 (2011), URL http://link.aps.org/doi/10.1103/PhysRevLett.106.060503. 
 4. K. Kim, M.-S. Chang, S. Korenblit, R. Islam, E. E. Edwards, J. K. Freericks, G.-D. Lin, L.-M. Duan, and C. Monroe, Nature (London) 465, 590 (2010).
 5. A. Bendersky, F. Pastawski, and J. P. Paz, Phys. Rev. Lett. 100, 190403 (2008), URL http://link.aps.org/doi/10.1103/PhysRevLett.100.190403.
 6. A. Bendersky, F. Pastawski, and J. P. Paz, Phys. Rev. A 80, 032116 (2009), URL http://link.aps.org/doi/10.1103/PhysRevA.80.032116.
 7. M. Mohseni and A. T. Rezakhani, Phys. Rev. A 80, 010101 (2009), URL http://link.aps.org/doi/10.1103/PhysRevA.80.010101.
-8. M. P. A. Branderhorst, J. Nunn, I. A. Walmsley, and R. L. Kosut, New Journal of Physics 11, 115010 (2009), URLhttp://stacks.iop.org/1367-2630/11/i=11/a=115010.
+8. M. P. A. Branderhorst, J. Nunn, I. A. Walmsley, and R. L. Kosut, New Journal of Physics 11, 115010 (2009), URL http://stacks.iop.org/1367-2630/11/i=11/a=115010.
 9. S. T. Flammia and Y. K. Liu, Physical Review Letters 106, 230501+ (2011), URL http://dx.doi.org/10.1103/PhysRevLett.106.230501.
 10. M. P. da Silva, O. L. Cardinal, and D. Poulin, Physical Review Letters 107, 210404+ (2011), URL http://dx.doi.org/10.1103/PhysRevLett.107.210404.
 11. D. Oi and S. Schirmer (2012), 1202.5779, URL http://arxiv.org/abs/1202.5779.
@@ -49,7 +47,7 @@ implementation of the algorithm presented in this work, is
 20. E. Bagan, M. A. Ballester, R. D. Gill, M. noz Tapia, and O. R. Isart, Physical Review Letters 97, 130501+ (2006), URL http://dx.doi.org/10.1103/PhysRevLett.97.130501.
 21. R. A. Servedio and S. J. Gortler, SIAM Journal on Computing 33, 1067 (2004), ISSN 0097-5397, URL http://dx.doi.org/10.1137/S0097539704412910.
 22. E. A.meur, G. Brassard, and S. Gambs (Springer Berlin / Heidelberg, Berlin, Heidelberg, 2006), vol. 4013 of Lecture Notes in Computer Science, chap. 37, pp. 431{442, ISBN 978-3-540-34628-9, URL http://dx.doi.org/10.1007/11766247_37.
-23. S. Aaronson, Proceedings of the Royal Society A: Mathematical, Physical and Engineering Science 463, 3089{3114 (2007), ISSN 1471-2946, URL http://dx.doi.org/10.1098/rspa.2007.0113.
+23. S. Aaronson, Proceedings of the Royal Society A: Mathematical, Physical and Engineering Science 463, 3089-3114 (2007), ISSN 1471-2946, URL http://dx.doi.org/10.1098/rspa.2007.0113.
 24. A. Hentschel and B. C. Sanders, Physical Review Letters 104, 063603+ (2010), URL http://dx.doi.org/10.1103/ PhysRevLett.104.063603.
 25. K. L. Pudenz and D. A. Lidar (2011), 1109.0325, URL http://arxiv.org/abs/1109.0325.
 26. A. Hentschel and B. C. Sanders, Physical Review Letters 107, 233601 (2011), URL http://dx.doi.org/10.1103/PhysRevLett.107.233601.
@@ -59,18 +57,18 @@ implementation of the algorithm presented in this work, is
 30. T. A. Wheatley, D. W. Berry, H. Yonezawa, D. Nakane, H. Arao, D. T. Pope, T. C. Ralph, H. M. Wiseman, A. Furusawa, and E. H. Huntington, Physical Review Letters 104, 093601+ (2010), URL http://dx.doi.org/10.1103/PhysRevLett.104.093601.
 31. D. V. Lindley, The Annals of Mathematical Statistics 27, 986 (1956), ISSN 0003-4851, URL http://dx.doi.org/10.1214/aoms/1177728069.
 32. R. S. Said, D. W. Berry, and J. Twamley, Phys. Rev. B 83, 125410 (2011), URL http://link.aps.org/doi/10.1103/PhysRevB.83.125410.
-33. E. L. Lehmann and G. Casella, Theory of Point Estimation (Springer, 1998), 2nd ed., ISBN 0387985026, URL http://www.amazon.com/exec/obidos/redirect?tag=citeulike07-20&path=ASIN/0387985026.
-34. J. O. Berger, Statistical Decision Theory and Bayesian Analysis (Springer, 1985), 2nd ed., ISBN 0387960988, URL http://www.amazon.com/exec/obidos/redirect?tag=citeulike07-20&path=ASIN/0387960988.
+33. E. L. Lehmann and G. Casella, [Theory of Point Estimation](http://www.amazon.com/exec/obidos/redirect?tag=citeulike07-20&path=ASIN/0387985026) (Springer, 1998), 2nd ed., ISBN 0387985026.
+34. J. O. Berger, [Statistical Decision Theory and Bayesian Analysis](http://www.amazon.com/exec/obidos/redirect?tag=citeulike07-20&path=ASIN/0387960988) (Springer, 1985), 2nd ed., ISBN 0387960988.
 35. R. Blume-Kohout and P. Hayden (2006), quant-ph/0603116, URL http://arxiv.org/abs/quant-ph/0603116.
 36. R. D. Gill and B. Y. Levit, Bernoulli 1 59 (1995), ISSN 13507265, URL http://dx.doi.org/10.2307/3318681.
 37. P. Tichavsky, C. H. Muravchik, and A. Nehorai, Signal Processing, IEEE Transactions on 46, 1386 (1998), ISSN 1053-587X, URL http://dx.doi.org/10.1109/78.668800.
 38. N. J. Gordon, D. J. Salmond, and A. F. M. Smith, Radar and Signal Processing, IEE Proceedings F 140, 107{113 (1993),ISSN 0956-375X, URL http://dx.doi.org/10.1049/ip-f-2.1993.0015.
-39. J. Liu and M. West, Combined parameter and state estimation in simulation-based .ltering (Springer-Verlag, 2000).
+39. J. Liu and M. West, Combined parameter and state estimation in simulation-based filtering (Springer-Verlag, 2000).
 40. W. Edwards, H. Lindman, and L. J. Savage, Psychological Review 70, 193 (1963), ISSN 1939-1471(Electronic);0033-295X(Print).
 41. J. Bernardo, TEST 14, 317 (2005), ISSN 1133-0686, URL http://www.springerlink.com/content/u823757117165122/abstract/.
 42. D. Wackerly, W. Mendenhall, and R. L. Schea.er, Mathematical Statistics with Applications (Mathematical Statistics(Duxbury Press, 2001), 6th ed., ISBN 0534377416.
 43. E. M. L. Beale, Journal of the Royal Statistical Society. Series B (Methodological) 22, 41 (1960), ISSN 0035-9246, ArticleType: research-article / Full publication date: 1960 / Copyright 1960 Royal Statistical Society, URL http://www.jstor.org/stable/2983877.
-44. R. Blume-Kohout, Robust error bars for quantum tomography (2012), 1202.5270, URL http://arxiv.org/abs/1202.5270.
+44. R. Blume-Kohout, [Robust error bars for quantum tomography](http://arxiv.org/abs/1202.5270) (2012), 1202.5270.
 45. M. Christandl and R. Renner (2011), 1108.5329, URL http://arxiv.org/abs/1108.5329.
 46. M. J. Todd and E. A. Yldrm, Discrete Applied Mathematics 155, 1731 (2007), ISSN 0166-218X, URL http://www.sciencedirect.com/science/article/pii/S0166218X07000716.
 47. C. B. Barber, D. P. Dobkin, and H. Huhdanpaa, ACM Trans. Math. Softw. 22, 469483 (1996), ISSN 0098-3500, URL http://doi.acm.org/10.1145/235815.235821.
@@ -83,7 +81,7 @@ implementation of the algorithm presented in this work, is
 54. N. Boulant, J. Emerson, T. Havel, D. Cory, and S. Furuta, The Journal of Chemical Physics 121, 2955 (2004), URL http://dx.doi.org/10.1063/1.1773161.
 55. E. Gutierrez, S. Romero, M. Trenas, and E. Zapata, in Computational Science ICCS 2008, edited by M. Bubak, G. van Albada, J. Dongarra, and P. Sloot (Springer Berlin / Heidelberg, 2008), vol. 5101 of Lecture Notes in Computer Science, pp. 700{709, ISBN 978-3-540-69383-3, URL http://dx.doi.org/10.1007/978-3-540-69384-0_75.
 56. A. Khalid, Z. Zilic, and K. Radecka, in Computer Design: VLSI in Computers and Processors, 2004. ICCD 2004. Proceedings. IEEE International Conference on (2004), pp. 310-315, URL http://dx.doi.org/10.1109/ICCD.2004.1347938.
-57. E. Jones, T. Oliphant, P. Peterson, et al., SciPy: Open source scientific tools for Python (2001), URL http://www.scipy.org/.
+57. E. Jones, T. Oliphant, P. Peterson, et al., [SciPy: Open source scientific tools for Python](http://www.scipy.org/) (2001).
 
 ## Affiliations ##
 
