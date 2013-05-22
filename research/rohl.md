@@ -25,29 +25,31 @@ implementation of the algorithm presented in this work, is
 
 ## Bibliography ##
 
+ > View on [Zotero](https://www.zotero.org/cgranade/items/collectionKey/T8KG53T9) | [citeulike](http://www.citeulike.org/user/cgranade/tag/publication-rohl)
+
 1. M. Paris and J. Rehacek, eds., [Quantum State Estimation](http://www.springer.com/physics/quantum+physics/book/978-3-540-22329-0), vol. 649 of Lecture Notes in Physics (Springer, 2004), ISBN 978-3-540-22329-0.
 2. B. P. Lanyon et al., [Universal Digital Quantum Simulation with Trapped Ions](http://www.sciencemag.org/content/334/6052/57.abstract), Science 334, 57 (2011).
-3. R. Gerritsma et al., [Quantum Simulation of the Klein Paradox with Trapped Ions](http://link.aps.org/doi/10.1103/PhysRevLett.106.060503), Phys. Rev. Lett. 106, 060503 (2011), URL http://link.aps.org/doi/10.1103/PhysRevLett.106.060503. 
-4. K. Kim, M.-S. Chang, S. Korenblit, R. Islam, E. E. Edwards, J. K. Freericks, G.-D. Lin, L.-M. Duan, and C. Monroe, Nature (London) 465, 590 (2010).
-5. A. Bendersky, F. Pastawski, and J. P. Paz, Phys. Rev. Lett. 100, 190403 (2008), URL http://link.aps.org/doi/10.1103/PhysRevLett.100.190403.
-6. A. Bendersky, F. Pastawski, and J. P. Paz, Phys. Rev. A 80, 032116 (2009), URL http://link.aps.org/doi/10.1103/PhysRevA.80.032116.
-7. M. Mohseni and A. T. Rezakhani, Phys. Rev. A 80, 010101 (2009), URL http://link.aps.org/doi/10.1103/PhysRevA.80.010101.
-8. M. P. A. Branderhorst, J. Nunn, I. A. Walmsley, and R. L. Kosut, New Journal of Physics 11, 115010 (2009), URL http://stacks.iop.org/1367-2630/11/i=11/a=115010.
-9. S. T. Flammia and Y. K. Liu, Physical Review Letters 106, 230501+ (2011), URL http://dx.doi.org/10.1103/PhysRevLett.106.230501.
-10. M. P. da Silva, O. L. Cardinal, and D. Poulin, Physical Review Letters 107, 210404+ (2011), URL http://dx.doi.org/10.1103/PhysRevLett.107.210404.
-11. D. Oi and S. Schirmer (2012), 1202.5779, URL http://arxiv.org/abs/1202.5779.
-12. A. Doucet and A. M. Johansen, A Tutorial on Particle Filtering and Smoothing: Fifteen Years Later (Oxford University Press, 2009), URL http://www.cs.ubc.ca/~arnaud/doucet_johansen_tutorialPF.pdf.
-13. T. J. Loredo, AIP Conference Proceedings 707, 330 (2004), URL http://dx.doi.org/10.1063/1.1751377.
-14. H. Kuck, N. de Freitas, and A. Doucet, in Nonlinear Statistical Signal Processing Workshop, 2006 IEEE (IEEE, 2006), pp. 99{102, ISBN 978-1-4244-0581-7, URL http://dx.doi.org/10.1109/NSSPW.2006.4378829.
-15. B. Scarpa and D. B. Dunson, Statist. Med. 26, 1920 (2007), URL http://dx.doi.org/10.1002/sim.2846.
-16. D. R. Cavagnaro, M. A. Pitt, and J. I. Myung, Advances in Neural Information Processing Systems 22, 234{242 (2010).
-17. N. Kantas, A. Lecchini-Visintini, and J. M. Maciejowski, Int. J. Adapt. Control Signal Process. 24, 882 (2010), URL http://dx.doi.org/10.1002/acs.1204.
-18. X. Huan and Y. M. Marzouk (2011), 1108.4146, URL http://arxiv.org/abs/1108.4146.22
-19. F. Husz.ar and N. M. T. Houlsby, Physical Review A 85 052120 (2012), ISSN 1094-1622, 1107.0895, URL http://dx.doi.org/10.1103/PhysRevA.85.052120.
-20. E. Bagan, M. A. Ballester, R. D. Gill, M. noz Tapia, and O. R. Isart, Physical Review Letters 97, 130501+ (2006), URL http://dx.doi.org/10.1103/PhysRevLett.97.130501.
-21. R. A. Servedio and S. J. Gortler, SIAM Journal on Computing 33, 1067 (2004), ISSN 0097-5397, URL http://dx.doi.org/10.1137/S0097539704412910.
-22. E. A.meur, G. Brassard, and S. Gambs (Springer Berlin / Heidelberg, Berlin, Heidelberg, 2006), vol. 4013 of Lecture Notes in Computer Science, chap. 37, pp. 431{442, ISBN 978-3-540-34628-9, URL http://dx.doi.org/10.1007/11766247_37.
-23. S. Aaronson, Proceedings of the Royal Society A: Mathematical, Physical and Engineering Science 463, 3089-3114 (2007), ISSN 1471-2946, URL http://dx.doi.org/10.1098/rspa.2007.0113.
+3. R. Gerritsma et al., [Quantum Simulation of the Klein Paradox with Trapped Ions](http://link.aps.org/doi/10.1103/PhysRevLett.106.060503), Phys. Rev. Lett. 106, 060503 (2011). 
+4. K. Kim et al., [Universal Digital Quantum Simulation with Trapped Ions](http://www.sciencemag.org/content/334/6052/57), Nature (London) 465, 590 (2010).
+5. A. Bendersky, F. Pastawski, and J. P. Paz, [Selective and Efficient Estimation of Parameters for Quantum Process Tomography](http://prl.aps.org/abstract/PRL/v100/i19/e190403), Phys. Rev. Lett. 100, 190403 (2008).
+6. A. Bendersky, F. Pastawski, and J. P. Paz, [Selective and efficient quantum process tomography](http://link.aps.org/doi/10.1103/PhysRevA.80.032116), Phys. Rev. A 80, 032116 (2009).
+7. M. Mohseni and A. T. Rezakhani, [Equation of motion for the process matrix: Hamiltonian identification and dynamical control of open quantum systems](http://link.aps.org/doi/10.1103/PhysRevA.80.010101), Phys. Rev. A 80, 010101 (2009).
+8. M. P. A. Branderhorst et al., [Simplified quantum process tomography](http://stacks.iop.org/1367-2630/11/i=11/a=115010), New Journal of Physics 11, 115010 (2009).
+9. S. T. Flammia and Y. K. Liu, [Direct Fidelity Estimation from Few Pauli Measurements](http://dx.doi.org/10.1103/PhysRevLett.106.230501), Physical Review Letters 106, 230501+ (2011).
+10. M. P. da Silva, O. L. Cardinal, and D. Poulin, [Practical Characterization of Quantum Devices without Tomography](http://dx.doi.org/10.1103/PhysRevLett.107.210404), Physical Review Letters 107, 210404+ (2011).
+11. D. Oi and S. Schirmer, [Quantum system characterization with limited resources](http://arxiv.org/abs/1202.5779) (2012), 1202.5779.
+12. A. Doucet and A. M. Johansen, [A Tutorial on Particle Filtering and Smoothing: Fifteen Years Later](http://www.cs.ubc.ca/~arnaud/doucet_johansen_tutorialPF.pdf) (Oxford University Press, 2009).
+13. T. J. Loredo, [Bayesian Adaptive Exploration](http://dx.doi.org/10.1063/1.1751377), AIP Conference Proceedings 707, 330 (2004).
+14. H. Kuck, N. de Freitas, and A. Doucet, [SMC Samplers for Bayesian Optimal Nonlinear Design](http://dx.doi.org/10.1109/NSSPW.2006.4378829), in Nonlinear Statistical Signal Processing Workshop, 2006 IEEE (IEEE, 2006), pp. 99-102, ISBN 978-1-4244-0581-7.
+15. B. Scarpa and D. B. Dunson, [Bayesian methods for searching for optimal rules for timing intercourse to achieve pregnancy](http://dx.doi.org/10.1002/sim.2846), Statist. Med. 26, 1920 (2007).
+16. D. R. Cavagnaro, M. A. Pitt, and J. I. Myung, [Adaptive Design Optimization in Experiments with People](oks.nips.cc/nips22.html), Advances in Neural Information Processing Systems 22, 234-242 (2010).
+17. N. Kantas, A. Lecchini-Visintini, and J. M. Maciejowski, [Simulation-based Bayesian optimal design of aircraft trajectories for air traffic management](http://dx.doi.org/10.1002/acs.1204), Int. J. Adapt. Control Signal Process. 24, 882 (2010).
+18. X. Huan and Y. M. Marzouk, [Simulation-based optimal Bayesian experimental design for nonlinear systems](http://arxiv.org/abs/1108.4146) (2011), 1108.4146.
+19. F. Huszár and N. M. T. Houlsby, [Adaptive Bayesian quantum tomography](http://dx.doi.org/10.1103/PhysRevA.85.052120), Physical Review A 85 052120 (2012), ISSN 1094-1622, 1107.0895.
+20. E. Bagan, M. A. Ballester, R. D. Gill, M. noz Tapia, and O. R. Isart, [Separable Measurement Estimation of Density Matrices and its Fidelity Gap with Collective Protocols](http://dx.doi.org/10.1103/PhysRevLett.97.130501), Physical Review Letters 97, 130501+ (2006).
+21. R. A. Servedio and S. J. Gortler, [Equivalences and Separations Between Quantum and Classical Learnability](http://dx.doi.org/10.1137/S0097539704412910), SIAM Journal on Computing 33, 1067 (2004), ISSN 0097-5397.
+22. E. Aïmeur, G. Brassard, and S. Gambs, [Machine Learning in a Quantum World](http://dx.doi.org/10.1007/11766247_37), (Springer Berlin / Heidelberg, Berlin, Heidelberg, 2006), vol. 4013 of Lecture Notes in Computer Science, chap. 37, pp. 431-442, ISBN 978-3-540-34628-9.
+23. S. Aaronson, [The learnability of quantum states](http://dx.doi.org/10.1098/rspa.2007.0113), Proceedings of the Royal Society A: Mathematical, Physical and Engineering Science 463, 3089-3114 (2007), ISSN 1471-2946.
 24. A. Hentschel and B. C. Sanders, Physical Review Letters 104, 063603+ (2010), URL http://dx.doi.org/10.1103/ PhysRevLett.104.063603.
 25. K. L. Pudenz and D. A. Lidar (2011), 1109.0325, URL http://arxiv.org/abs/1109.0325.
 26. A. Hentschel and B. C. Sanders, Physical Review Letters 107, 233601 (2011), URL http://dx.doi.org/10.1103/PhysRevLett.107.233601.
@@ -85,9 +87,9 @@ implementation of the algorithm presented in this work, is
 
 ## Affiliations ##
 
-1. <a id="affil1"></a>Institute for Quantum Computing, University of Waterloo.
-2. <a id="affil2"></a>Department of Physics, University of Waterloo.
-3. <a id="affil3"></a>Department of Applied Mathematics, University of Waterloo.
-4. <a id="affil4"></a>Department of Combinatorics and Optimization, University of Waterloo.
-5. <a id="affil5"></a>Department of Chemistry, University of Waterloo.
-6. <a id="affil6"></a>Perimeter Institute for Theoretical Physics.
+1. <a id="affil1"></a>[Institute for Quantum Computing, University of Waterloo](http://iqc.uwaterloo.ca).
+2. <a id="affil2"></a>[Department of Physics, University of Waterloo](https://uwaterloo.ca/physics-astronomy/).
+3. <a id="affil3"></a>[Department of Applied Mathematics, University of Waterloo](http://math.uwaterloo.ca/applied-mathematics/).
+4. <a id="affil4"></a>[Department of Combinatorics and Optimization, University of Waterloo](http://math.uwaterloo.ca/combinatorics-and-optimization/).
+5. <a id="affil5"></a>[Department of Chemistry, University of Waterloo](https://uwaterloo.ca/chemistry/).
+6. <a id="affil6"></a>[Perimeter Institute for Theoretical Physics](http://www.perimeterinstitute.ca/).
