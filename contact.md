@@ -24,9 +24,8 @@ General Contact Info
 <a href="mailto:cgranade@uwaterloo.ca">cgranade@uwaterloo.ca</a></td>
 </tr>
 <tr>
-<td>OpenPGP Public Key (<a href="http://www.cgranade.com/faq#email-sig">?</a>)</td>
-<td><a href="http://www.cgranade.com/home/public-key">0x9AF4D09E / cgranade@gmail.com
-</a></td>
+<td>OpenPGP Public Key (<a href="faq#email-sig">?</a>)</td>
+<td><a href="public-key.html">0x06775403 / cgranade@cgranade.com</a> or 0x9AF4D09E / cgranade@gmail.com (old)</td>
 </tr>
 <tr>
 <th colspan="2">
