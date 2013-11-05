@@ -19,6 +19,12 @@
 
 #### 2013 ####
 
+- *Tractable Simulation of Quantum Error Correction with Honest Approximations to Realistic Fault Models*, Daniel Puzzuoli, **Christopher E. Granade**, Holger Haas, Ben Criger, Easwar Magesan, D. G. Cory.
+    > [arXiv:1309.4717](http://arxiv.org/abs/1309.4717)
+
+- *Hamiltonian Learning and Certification Using Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
+    > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876)
+
 - *Likelihood-free quantum inference: tomography without the Born Rule*, Christopher Ferrie, **Christopher E. Granade**.
     > [arXiv:1304.5828](http://arxiv.org/abs/1304.5828)
 
