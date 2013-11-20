@@ -13,6 +13,12 @@
 - Bachelor of Science (Honors cum laude), Physics. University of Alaska Fairbanks. 2009.
 - Bachelor of Science (Honors cum laude), Mathematics and Computer Science. University of
   Alaska Fairbanks. 2009.
+  
+## Recent Work History ##
+- Research Assistant, Institute for Quantum Computing. May 2010 to current.
+- Teaching Assistant, Physics Department, University of Alaska Fairbanks. September 2008 to May 2009.
+- Research Assistant, Computer Science and Artifical Intelligence Laboratory, Massachusetts Institute of Technology. June 2008 to August 2008.
+- Student Researcher, Infrasound Group, University of Alaska Fairbanks. September 2006 to June 2008.
 
 ## Academic Contributions ##
 ### Papers, Essays and Publications ###
@@ -48,11 +54,11 @@
 
 #### 2009 ####
 - *Why Complexity Matters* (senior undergraduate Honors thesis).
-    > [PDF](papers/why-complexity-matters.pdf)
+    > [PDF](http://www.cgranade.com/research/papers/why-complexity-matters.pdf)
 
 #### 2008 ####
 - *Ease and Toil: Analyzing Sudoku*, with Seth Chadwick and Rachel Krieg.
-    > [PDF](papers/ease-and-toil.pdf)
+    > [PDF](http://www.cgranade.com/research/papers/ease-and-toil.pdf)
 
 ### Academic Projects ###
 
@@ -62,4 +68,11 @@ projects:
 - Complexity Zoo
 - [QuaEC](http://github.com/cgranade/python-quaec)
 - [Qinfer](http://github.com/csferrie/python-qinfer)
+
+## Awards and Honors ##
+
+- Oustanding Submission and INFORMS Prize Winner, Mathematical Contest in Modeling, 2008.
+- University of Alaska Fairbanks Physics Department Scholarship Recipient, 2006 and 2007.
+- Usibelli Honors Scholarship Recipient, 2006.
+- University of Alaska Scholar, 2001-2006.
 
