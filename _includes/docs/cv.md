@@ -1,4 +1,3 @@
-# Curricula Vitae #
 
 <!-- > Download CV: [PDF](downloads/cv.pdf) | [ODT](downloads/cv.odt) -->
 
@@ -24,6 +23,9 @@
 ### Papers, Essays and Publications ###
 
 #### 2013 ####
+
+- * Quantum Hamiltonian Learning Using Imperfect Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
+    > [arXiv:1311.5269](http://arxiv.org/abs/1311.5269)
 
 - *Tractable Simulation of Quantum Error Correction with Honest Approximations to Realistic Fault Models*, Daniel Puzzuoli, **Christopher E. Granade**, Holger Haas, Ben Criger, Easwar Magesan, D. G. Cory.
     > [arXiv:1309.4717](http://arxiv.org/abs/1309.4717)
