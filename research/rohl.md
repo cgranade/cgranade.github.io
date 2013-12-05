@@ -10,8 +10,8 @@ description: ""
  > 2012 New Journal of Physics **14** 103013 |
  > [arXiv:1207.1655](http://arxiv.org/abs/1207.1655) | [doi:10.1088/1367-2630/14/10/103013](http://dx.doi.org/10.1088/1367-2630/14/10/103013) 
  
-Presented as a poster at [TQC 2013](http://www.uoguelph.ca/quigs/tqc2013/) ([PDF](rohl/tqc-poster.pdf)).
-Presented as a contributed talk [DAMOP 2013](http://www.aps.org/units/damop/meetings/annual/) ([PDF](rohl/damop-slides.pdf)).
+Presented as a poster at [TQC 2013](http://www.uoguelph.ca/quigs/tqc2013/) ([Poster PDF](rohl/tqc-poster.pdf), [Proceedings](http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=4318)).
+Presented as a contributed talk at [DAMOP 2013](http://www.aps.org/units/damop/meetings/annual/) ([Slides PDF](rohl/damop-slides.pdf)).
 
 ## Abstract ##
 
