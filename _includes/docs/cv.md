@@ -1,6 +1,4 @@
 
-> Download CV: [PDF](downloads/cv.pdf)
-
 ### Research Interests in Quantum Computation and Information ###
 
 - Statistical inference for quantum information applications.
