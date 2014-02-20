@@ -9,7 +9,7 @@ description: ""
 
  > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876), [arxiv:1311.5269](http://arxiv.org/abs/1311.5269)
  
-Presented as a contributed talk at [LFQIS 2013](http://137.229.52.100/LFQIS/index.html).
+Presented as a poster at [Q100 2013](http://researcher.watson.ibm.com/researcher/view_project.php?id=4847) and [SQuInT 2014](http://panda.unm.edu/SQuInT/).
 
 ## Abstract ##
 
