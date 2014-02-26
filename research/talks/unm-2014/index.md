@@ -11,6 +11,8 @@ description: ""
  
 Presented 26 February, 2014 as a [seminar](https://panda.unm.edu/pandaweb/events/index.php?display=event&event_id=5014) at [CQuIC](http://physics.unm.edu/CQuIC/).
 
+ > Slides: [HTML](slides.html) | [IPython Notebook](slides.ipynb)
+
 ## Abstract ##
 
 Several challenges stand in the way of developing useful computation at the 100-qubit scale. Current methods for the characterization of large quantum devices, for instance, demand exponentially large resource costs with the number of qubits. Moreover, once a candidate for such small-scale quantum processors is developed, verifying and certifying its dynamics is beyond the scale of what can be achieved using purely classical resources. In this talk, I will argue that both of these problems can be addressed by using classical statistical inference techniques to reduce them to problems of quantum simulation. In particular, I will introduce the classical methods that we build upon, show how quantum simulation and communication can be applied as resources, and will describe experiments in progress that demonstrate the utility of these techniques. 
