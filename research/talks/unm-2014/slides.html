@@ -1795,7 +1795,7 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[1]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
@@ -1816,7 +1816,7 @@ In&nbsp;[2]:
 [NbConvertApp] Converting notebook slides.ipynb to slides
 [NbConvertApp] Support files will be in slides_files/
 [NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 255060 bytes to slides.slides.html
+[NbConvertApp] Writing 254656 bytes to slides.slides.html
 
 </pre>
 </div>
@@ -1882,7 +1882,7 @@ In&nbsp;[7]:
 
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>In order for quantum computing to be useful, we need to be able to <strong>build</strong>, <strong>characterize</strong> and <strong>verify</strong> quantum devices at scales well past current techniques.</p>
-<p>In this talk, I will focus on learning the Hamiltonian dynamics large quantum systems, at scales approaching 100 qubits.</p>
+<p>In this talk, I will focus on learning the Hamiltonian dynamics of large quantum systems, at scales approaching 100 qubits.</p>
 </div><div class="fragment">
     
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -2113,7 +2113,7 @@ In&nbsp;[7]:
 <li><span class="math">\(T_2\)</span></li>
 <li>Visibility of measurements</li>
 <li>Polarization of initial states</li>
-<li>Uncertianty in applied control</li>
+<li>Uncertainty in applied control</li>
 </ul>
 </div></section><section>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -2268,7 +2268,7 @@ In&nbsp;[8]:
     \Pr(0 | \vec{x}; t) = \left|\left\langle\psi | e^{-i H(\vec{x}) t} | \psi \right\rangle\right|^2
 \]</span> for some state <span class="math">\(\ket{\psi}\)</span>.</p>
 <ul>
-<li>The initial state need not be chosen intelligently. Depending on <span class="math">\(H\)</span>, pseudorandom seperable states will do.</li>
+<li>The initial state need not be chosen intelligently. Depending on <span class="math">\(H\)</span>, pseudorandom separable states will do.</li>
 </ul>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -2327,7 +2327,7 @@ In&nbsp;[8]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Using a quantum simulator reduces the simulation cost, but</li>
-<li>For random Hamiltonians, there exists equilibriation time <span class="math">\(t_{\text{eq}}\)</span> such that for <span class="math">\(t \ge t_{\text{eq}}\)</span>, <span class="math">\(\Pr(0 | \vec{x}; t) \approx 1 / \dim \mathcal{H}\)</span>.</li>
+<li>For random Hamiltonians, there exists equilibration time <span class="math">\(t_{\text{eq}}\)</span> such that for <span class="math">\(t \ge t_{\text{eq}}\)</span>, <span class="math">\(\Pr(0 | \vec{x}; t) \approx 1 / \dim \mathcal{H}\)</span>.</li>
 <li>Thus, must choose <span class="math">\(t \le t_{\text{eq}}\)</span> to be informative.</li>
 </ul>
 </div><div class="fragment">
@@ -2382,7 +2382,7 @@ In&nbsp;[8]:
 <li>Let <span class="math">\(\vec{x}_- = \vec{x}\)</span>.</li>
 <li>Let <span class="math">\(t = 1 / \|H(\vec{x}) - H(\vec{x}_-)\|\)</span>.</li>
 </ul>
-<p>This heuristic requires <strong>no</strong> simulation, but adapts to the current uncertianty about <span class="math">\(H\)</span>.</p>
+<p>This heuristic requires <strong>no</strong> simulation, but adapts to the current uncertainty about <span class="math">\(H\)</span>.</p>
 </div></section><section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Scaling-of-IQLE">Scaling of IQLE<a class="anchor-link" href="#Scaling-of-IQLE">&#182;</a></h2>
@@ -2560,7 +2560,7 @@ In&nbsp;[8]:
 <p>Consider the translationally-invariant two-parameter Hamiltonian <span class="math">\[
     H(\vec{x}) = \vec{x}_1\sum_{k=1}^n \sigma_x^{(k)} + \vec{x}_2\sum_{k=1}^{n-1}  \sigma_z^{(k)} \otimes \sigma_z^{(k+1)}.
 \]</span></p>
-<p>With IQLE, we can still get exponential learning by choosing pseudorandom seperable input states:</p>
+<p>With IQLE, we can still get exponential learning by choosing pseudorandom separable input states:</p>
 <div class="figure">
 <img src="figures/noncommute2d.svg" />
 </div>
@@ -2641,7 +2641,7 @@ In&nbsp;[8]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
 <li>Crotonic acid experiments in NMR fit naturally into the SMC and IQLE frameworks.</li>
-<li>Useful testbed for efficiacy of quantum Hamiltonian learning with experimentally-accessible resources.</li>
+<li>Useful testbed for efficacy of quantum Hamiltonian learning with experimentally-accessible resources.</li>
 </ul>
 </div></section>
     </section><section>
