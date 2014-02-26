@@ -1795,7 +1795,7 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[1]:
+In&nbsp;[2]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
@@ -1816,7 +1816,7 @@ In&nbsp;[1]:
 [NbConvertApp] Converting notebook slides.ipynb to slides
 [NbConvertApp] Support files will be in slides_files/
 [NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 254656 bytes to slides.slides.html
+[NbConvertApp] Writing 254657 bytes to slides.slides.html
 
 </pre>
 </div>
@@ -2297,7 +2297,7 @@ In&nbsp;[8]:
     \hat{p}_{i, \text{MLE}} = p_i + \eta
 \]</span></p>
 <ul>
-<li>Insisting <span class="math">\(\eta \approx 0\)</span> is exponentially expensive, so we must be able to tolerate error.</li>
+<li>Accuracy of <span class="math">\(\eta\)</span> requires <span class="math">\(O(\eta^{-2})\)</span> samples, such that we can't efficiently resolve exponentially small gaps.</li>
 </ul>
 </div></section><section>
 <div class="text_cell_render border-box-sizing rendered_html">
