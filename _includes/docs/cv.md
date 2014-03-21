@@ -22,24 +22,25 @@
 
 #### 2014 ####
 
+- *Quantum Hamiltonian Learning Using Imperfect Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
+    > [arXiv:1311.5269](http://arxiv.org/abs/1311.5269) | to appear in Physical Review A
+
+- *Likelihood-free quantum inference: tomography without the Born Rule*, Christopher Ferrie, **Christopher E. Granade**.
+    > [arXiv:1304.5828](http://arxiv.org/abs/1304.5828) | to appear in Physical Review Letters
+
 - *Tractable Simulation of Quantum Error Correction with Honest Approximations to Realistic Fault Models*, Daniel Puzzuoli, **Christopher E. Granade**, Holger Haas, Ben Criger, Easwar Magesan, D. G. Cory. Physical Review A 89, 022306.
     > [arXiv:1309.4717](http://arxiv.org/abs/1309.4717) | [doi:10.1103/PhysRevA.89.022306](http://dx.doi.org/10.1103/PhysRevA.89.022306)
 
 #### 2013 ####
 
-- *Quantum Hamiltonian Learning Using Imperfect Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
-    > [arXiv:1311.5269](http://arxiv.org/abs/1311.5269)
-
 - *Hamiltonian Learning and Certification Using Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
     > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876)
-
-- *Likelihood-free quantum inference: tomography without the Born Rule*, Christopher Ferrie, **Christopher E. Granade**.
-    > [arXiv:1304.5828](http://arxiv.org/abs/1304.5828)
 
 #### 2012 ####
 
 - *Robust Online Hamiltonian Learning*, **Christopher E. Granade**, Christopher Ferrie, Nathan Wiebe, David G. Cory.
     > [doi:10.1088/1367-2630/14/10/103013](http://dx.doi.org/10.1088/1367-2630/14/10/103013) | [arXiv:1207.1655](http://arxiv.org/abs/1207.1655)
+    
 - *Modeling quantum noise for efficient testing of fault-tolerant circuits*, Easwar Magesan, Daniel Puzzuoli, **Christopher E. Granade**, David G. Cory.
   Physical Review A 87, 012324.
     > [doi:10.1103/PhysRevA.87.012324](http://dx.doi.org/10.1103/PhysRevA.87.012324) | [arXiv:1206.5407](http://arxiv.org/abs/1206.5407)
