@@ -1762,7 +1762,10 @@ $(document).ready(function(){
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Christopher-Granade--Institute-for-Quantum-Computing">Christopher Granade <br /> Institute for Quantum Computing<a class="anchor-link" href="#Christopher-Granade--Institute-for-Quantum-Computing">&#182;</a></h2>
 </div>
-<div style=display:none>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Joint Work with</strong> Christopher Ferrie and D. G. Cory</p>
+</div><div style=display:none>
     
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Abstract">Abstract<a class="anchor-link" href="#Abstract">&#182;</a></h3>
@@ -1776,10 +1779,7 @@ $(document).ready(function(){
 </div>
     </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><a href="http://www.cgranade.com/research/talks/iqc/student-seminar-2014/">http://www.cgranade.com/research/talks/iqc/student-seminar-2014/</a> <span class="math">\(\renewcommand{\vec}[1]{\boldsymbol{#1}}\)</span> <span class="math">\(\newcommand{\ket}[1]{\left|#1\right\rangle}\)</span> <span class="math">\(\newcommand{\dd}{\mathrm{d}}\)</span> <span class="math">\(\newcommand{\expect}{\mathbb{E}}\)</span> <span class="math">\(\newcommand{\matr}[1]{\mathbf{#1}}\)</span> <span class="math">\(\newcommand{\T}{\mathrm{T}}\)</span></p>
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Joint Work with</strong> Christopher Ferrie and D. G. Cory</p>
+<p>Slides and references available at <a href="http://www.cgranade.com/research/talks/iqc/student-seminar-2014/">http://www.cgranade.com/research/talks/iqc/student-seminar-2014/</a>. <span class="math">\(\renewcommand{\vec}[1]{\boldsymbol{#1}}\)</span> <span class="math">\(\newcommand{\ket}[1]{\left|#1\right\rangle}\)</span> <span class="math">\(\newcommand{\dd}{\mathrm{d}}\)</span> <span class="math">\(\newcommand{\expect}{\mathbb{E}}\)</span> <span class="math">\(\newcommand{\matr}[1]{\mathbf{#1}}\)</span> <span class="math">\(\newcommand{\T}{\mathrm{T}}\)</span></p>
 </div><div style=display:none>
     
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -1796,7 +1796,7 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[56]:
+In&nbsp;[62]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
@@ -1817,7 +1817,7 @@ In&nbsp;[56]:
 [NbConvertApp] Converting notebook slides.ipynb to slides
 [NbConvertApp] Support files will be in slides_files/
 [NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 220891 bytes to slides.slides.html
+[NbConvertApp] Writing 221889 bytes to slides.slides.html
 
 </pre>
 </div>
@@ -2006,7 +2006,7 @@ In&nbsp;[3]:
 <ul>
 <li>Using Fisher information, we can choose most informative <span class="math">\(m\)</span> for hypotheses about <span class="math">\(A\)</span> and <span class="math">\(B\)</span>.</li>
 </ul>
-<p><img src="figures/best-m-vs-A.png" /> <img src="figures/best-m-vs-B.png" /></p>
+<p><img src="figures/best-m-vs-A.svg" /> <img src="figures/best-m-vs-B.svg" /></p>
 </div></section>
     </section><section>
     <section>
@@ -2082,13 +2082,50 @@ In&nbsp;[47]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Our algorithm, accelerated by SMC, dramatically outperforms least-squares fitting, <em>especially</em> with small amounts of data.</p>
 <p><img src="figures/risk-tr-comparison.svg" style="height: 380px;"></p>
+<p>TODO: add legend</p>
 </div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Testing-with-Physical-Gates">Testing with Physical Gates<a class="anchor-link" href="#Testing-with-Physical-Gates">&#182;</a></h1>
+<h1 id="Performance-Results">Performance Results<a class="anchor-link" href="#Performance-Results">&#182;</a></h1>
 </div>
-</section>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This advantage persists for changing the maximum sequence length as well.</p>
+<p><img src="figures/risk-tr-comparison-vs-m-max.svg" style="height: 380px;"></p>
+<p>TODO: add legend</p>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Testing-with-Bad-Prior-and-Physical-Gates">Testing with Bad Prior and Physical Gates<a class="anchor-link" href="#Testing-with-Bad-Prior-and-Physical-Gates">&#182;</a></h1>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To show that SMC acceleration is experimentally useful, we use a prior that is approximately 7 standard deviations away from the correct values for a cumulant-simulated gateset.</p>
+<p><img src="figures/phys-gate-final-data.svg" style="height: 300px;"></p>
+<p>The data was simulated using the methods of Puzzuoli et al, PRA TODO.</p>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Results">Results<a class="anchor-link" href="#Results">&#182;</a></h2>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Even with a significantly bad prior, SMC does quite well.</p>
+<p><span class="math">\[\begin{array}{l|cccc}
+    &amp; \tilde{p} &amp; p_{\text{ref}} &amp; A &amp; B \\
+    \hline
+    \text{True} &amp; 0.9983 &amp; 0.9957 &amp; 0.3185 &amp; 0.5012 \\
+    \text{SMC Estimate} &amp; 0.9939 &amp; 0.9969 &amp; 0.3156 &amp; 0.5081 \\
+    \text{LSF Estimate} &amp; 0.9954 &amp; 0.9957 &amp; 0.2753 &amp; 0.5449 \\
+    \hline
+    \text{SMC Error}    &amp; 0.0044 &amp; 0.0012 &amp; 0.0028 &amp; 0.0069 \\
+    \text{LSF Error} &amp; 0.0029 &amp; 0.0000 &amp; 0.0432 &amp; 0.0437
+\end{array}\]</span></p>
+<p>Due to the bad prior, it doesn't outperform least-squares fitting in this case for <span class="math">\(\tilde{p}\)</span> or <span class="math">\(p_{\text{ref}}\)</span>, but it does very well at <span class="math">\(A\)</span> and <span class="math">\(B\)</span>, lending credibility to the estimate.</p>
+</div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -2101,10 +2138,10 @@ In&nbsp;[47]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[9]:
+In&nbsp;[59]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">iframe</span><span class="p">(</span><span class="s">&quot;http://python-qinfer.readthedocs.org/en/latest&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">iframe</span><span class="p">(</span><span class="s">&quot;http://python-qinfer.readthedocs.org/en/latest/guide/rb.html&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2115,11 +2152,11 @@ In&nbsp;[9]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[9]:</div>
+    Out[59]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 <div class="output_html rendered_html">
-<iframe src="http://python-qinfer.readthedocs.org/en/latest" width=1000 height=400></iframe>
+<iframe src="http://python-qinfer.readthedocs.org/en/latest/guide/rb.html" width=1000 height=400></iframe>
 </div>
 
 </div>
@@ -2132,20 +2169,33 @@ In&nbsp;[9]:
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h1>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Randomized benchmarking allows for efficiently extracting useful information about a channel.</li>
+<li>Bayesian inference dramatically reduces the data required for randomized benchmarking.</li>
+<li>SMC produces nearly optimal estimates.</li>
+<li>Our method is robust to bad priors, and works on physically-reasonable models.</li>
+</ul>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="References">References<a class="anchor-link" href="#References">&#182;</a></h1>
 </div>
-</section><section>
+
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>These references are also available on <a href="https://www.zotero.org/cgranade/items/collectionKey/UWFT2XAI">Zotero</a>.</p>
+<p>Full reference information is available on <a href="https://www.zotero.org/cgranade/items/collectionKey/2NQVPRK9">Zotero</a>.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[10]:
+In&nbsp;[63]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># TODO</span>
-<span class="n">iframe</span><span class="p">(</span><span class="s">&#39;https://www.zotero.org/cgranade/items/collectionKey/UWFT2XAI&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">iframe</span><span class="p">(</span><span class="s">&#39;https://www.zotero.org/cgranade/items/collectionKey/2NQVPRK9&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2156,11 +2206,11 @@ In&nbsp;[10]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[10]:</div>
+    Out[63]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 <div class="output_html rendered_html">
-<iframe src="https://www.zotero.org/cgranade/items/collectionKey/UWFT2XAI" width=1000 height=400></iframe>
+<iframe src="https://www.zotero.org/cgranade/items/collectionKey/2NQVPRK9" width=1000 height=400></iframe>
 </div>
 
 </div>
