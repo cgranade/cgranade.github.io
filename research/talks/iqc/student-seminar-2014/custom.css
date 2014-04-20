@@ -1,0 +1,11 @@
+iframe {
+    width: 100%;
+}
+
+.reveal {
+	font-size: 180%;
+}
+
+div.MathJax_Display {
+	text-align: center !important
+}

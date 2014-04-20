@@ -1756,7 +1756,7 @@ $(document).ready(function(){
 <section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Accelerate-Random-Benchmarking">Accelerate Random Benchmarking<a class="anchor-link" href="#Accelerate-Random-Benchmarking">&#182;</a></h1>
+<h1 id="Accelerated-Random-Benchmarking">Accelerated Random Benchmarking<a class="anchor-link" href="#Accelerated-Random-Benchmarking">&#182;</a></h1>
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -1796,7 +1796,7 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[8]:
+In&nbsp;[56]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
@@ -1817,7 +1817,7 @@ In&nbsp;[8]:
 [NbConvertApp] Converting notebook slides.ipynb to slides
 [NbConvertApp] Support files will be in slides_files/
 [NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 214701 bytes to slides.slides.html
+[NbConvertApp] Writing 220891 bytes to slides.slides.html
 
 </pre>
 </div>
@@ -1921,8 +1921,22 @@ In&nbsp;[3]:
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We don't have a perfect Clifford group to twirl by, but the <em>decay</em> of fidelity with the length <span class="math">\(m\)</span> of twirling sequences gives information.</p>
-<p>Zeroth-order model: <span class="math">\[
+<ul>
+<li>Don't have a perfect Clifford group to twirl by, but the <em>decay</em> of fidelity with the length <span class="math">\(m\)</span> of sequences gives info.</li>
+<li>Choose each sequence such that ideal action is identity.</li>
+</ul>
+<div class="figure">
+<img src="figures/ex-signal-noninterleaved.svg" />
+</div>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Zeroth-Order-Model">Zeroth-Order Model<a class="anchor-link" href="#Zeroth-Order-Model">&#182;</a></h1>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><span class="math">\[
     F_g(m) = A p^m + B.
 \]</span></p>
 <ul>
@@ -1930,7 +1944,6 @@ In&nbsp;[3]:
 <li><span class="math">\(p\)</span> is then the depolarizing strength of <span class="math">\[
     W[\Lambda] = W\left[\expect_{C \sim \mathcal{C}} [\Lambda_C] \right],
 \]</span> taken over the implementation of each Clifford gate <span class="math">\(C\)</span>.</li>
-<li>Use Gottesman-Knill simulation such that each sequence is an implementation of the identity.</li>
 </ul>
 <blockquote>
 <p>Knill et al, PRA <strong>77</strong> 012307 (2008). Magesan, Gambetta and Emerson, PRA <strong>85</strong> 042311 (2012).</p>
@@ -1950,7 +1963,7 @@ In&nbsp;[3]:
 <li><span class="math">\(p_{\text{ref}}\)</span>: expected depolarizing probability, taken over gateset.</li>
 </ul>
 <div class="figure">
-<img src="figures/ex-signal-interleaved.png" />
+<img src="figures/ex-signal-interleaved.svg" />
 </div>
 </div></section>
     </section><section>
@@ -2000,7 +2013,76 @@ In&nbsp;[3]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Bayesian-Approach">Bayesian Approach<a class="anchor-link" href="#Bayesian-Approach">&#182;</a></h1>
 </div>
-</section>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In practice, we often have prior information. Demanding <em>unbiased</em> estimators is too strong.</p>
+<p>Let's take a Bayesian approach instead. After observing a datum <span class="math">\(d\)</span> taken from a sequence of length <span class="math">\(m\)</span>: <span class="math">\[
+    \Pr(\vec{x} | d; m) = \frac{\Pr(d | \vec{x}; m)}{\Pr(d | m)} \Pr(\vec{x}).
+\]</span></p>
+<p>We can implement this on a computer using sequential Monte Carlo (SMC). For example:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[42]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">qinfer.smc</span> <span class="kn">import</span> <span class="n">SMCUpdater</span>
+<span class="kn">from</span> <span class="nn">qinfer.rb</span> <span class="kn">import</span> <span class="n">RandomizedBenchmarkingModel</span>
+<span class="kn">from</span> <span class="nn">qinfer.distributions</span> <span class="kn">import</span> <span class="n">UniformDistribution</span>
+
+<span class="n">prior</span> <span class="o">=</span> <span class="n">UniformDistribution</span><span class="p">([[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]])</span>
+<span class="n">updater</span> <span class="o">=</span> <span class="n">SMCUpdater</span><span class="p">(</span><span class="n">RandomizedBenchmarkingModel</span><span class="p">(),</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">prior</span><span class="p">)</span>
+
+<span class="c"># As data arrives:</span>
+<span class="c"># updater.update(datum, experiment)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Bayesian-Cramer-Rao-Bound">Bayesian Cramer-Rao Bound<a class="anchor-link" href="#Bayesian-Cramer-Rao-Bound">&#182;</a></h1>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>With prior information, we need the <em>Bayesian</em> Cramer-Rao Bound, <span class="math">\[
+    \expect_{\vec{x}} [\matr{E}(\vec{x})] \ge \matr{J}^{-1},
+\]</span> where <span class="math">\[
+    \matr{J} := \expect_{\vec{x}} [\matr{I}(\vec{x})]
+\]</span> is the Bayesian information matrix.</p>
+<p>This again can also be computed by using SMC.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[47]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">qinfer.smc</span> <span class="kn">import</span> <span class="n">SMCUpdaterBCRB</span>
+<span class="n">updater</span> <span class="o">=</span> <span class="n">SMCUpdaterBCRB</span><span class="p">(</span><span class="n">RandomizedBenchmarkingModel</span><span class="p">(),</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">adaptive</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">initial_bim</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+<span class="c"># As data arrives, the BCRB is given by:</span>
+<span class="c"># updater.current_bim</span>
+</pre></div>
+
+</div>
+</div>
+
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Performance-Results">Performance Results<a class="anchor-link" href="#Performance-Results">&#182;</a></h1>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Our algorithm, accelerated by SMC, dramatically outperforms least-squares fitting, <em>especially</em> with small amounts of data.</p>
+<p><img src="figures/risk-tr-comparison.svg" style="height: 380px;"></p>
+</div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -2200,7 +2282,7 @@ Reveal.initialize({
     //overview: true,
 
     // Vertical centering of slides
-    //center: true,
+    center: false,
 
     // Loop the presentation
     //loop: false,
@@ -2226,7 +2308,12 @@ Reveal.initialize({
     //backgroundTransition: 'default', // default/linear/none
 
     // Theme
-    theme: 'serif' // available themes are in /css/theme
+    //theme: 'serif', // available themes are in /css/theme,
+
+    // Bounds for smallest/largest possible scale to apply to content
+    margin: 0.1,
+    minScale: 1.0,
+    maxScale: 1.0
 
 });
 
