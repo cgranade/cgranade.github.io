@@ -1796,7 +1796,7 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[62]:
+In&nbsp;[71]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
@@ -1817,7 +1817,7 @@ In&nbsp;[62]:
 [NbConvertApp] Converting notebook slides.ipynb to slides
 [NbConvertApp] Support files will be in slides_files/
 [NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 221889 bytes to slides.slides.html
+[NbConvertApp] Writing 224611 bytes to slides.slides.html
 
 </pre>
 </div>
@@ -1893,7 +1893,7 @@ In&nbsp;[3]:
 <li>Comparison to adversarial thresholds.</li>
 <li>Feedback for refining control.</li>
 </ul>
-<p>Fidelity isn't the full story, though (Puzzuoli TODO).</p>
+<p>Fidelity isn't the full story, though (Puzzuoli et al, PRA <strong>89</strong> 022306), so some care is needed.</p>
 </div></section>
     </section><section>
     <section>
@@ -1922,9 +1922,21 @@ In&nbsp;[3]:
 
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Don't have a perfect Clifford group to twirl by, but the <em>decay</em> of fidelity with the length <span class="math">\(m\)</span> of sequences gives info.</li>
+<li>The <em>decay</em> of fidelity with sequence length gives info, even w/ SPAM, imperfect gates.</li>
 <li>Choose each sequence such that ideal action is identity.</li>
 </ul>
+<p><img src="figures/benchmarking-overview.svg" height="350px"></p>
+<ul>
+<li>Used in a wide range of experiments to characterize gatesets.</li>
+</ul>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Example-of-Randomized-Benchmarking-Data">Example of Randomized Benchmarking Data<a class="anchor-link" href="#Example-of-Randomized-Benchmarking-Data">&#182;</a></h1>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="figure">
 <img src="figures/ex-signal-noninterleaved.svg" />
 </div>
@@ -1962,6 +1974,19 @@ In&nbsp;[3]:
 <li><span class="math">\(\tilde{p}\)</span>: depolarizing probability for the gate of interest.</li>
 <li><span class="math">\(p_{\text{ref}}\)</span>: expected depolarizing probability, taken over gateset.</li>
 </ul>
+<p>For example, to measure the fidelity of <span class="math">\(S_C\)</span>:</p>
+<p><img src="figures/interleaved-overview.svg" height="360px"></p>
+<blockquote>
+<p>Magesan et al, PRL <strong>109</strong> 080505 (2012).</p>
+</blockquote>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Example-of-Interleaved-Model">Example of Interleaved Model<a class="anchor-link" href="#Example-of-Interleaved-Model">&#182;</a></h1>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
 <div class="figure">
 <img src="figures/ex-signal-interleaved.svg" />
 </div>
@@ -1995,6 +2020,9 @@ In&nbsp;[3]:
 \]</span> is the Fisher information at <span class="math">\(\vec{x}\)</span>.</p></li>
 <li><p>Here, <span class="math">\(\vec{x} = (p, A, B)\)</span> or <span class="math">\((\tilde{p}, p_{\text{ref}}, A, B)\)</span> are the unknown parameters being estimated.</p></li>
 </ul>
+<blockquote>
+<p>Ferrie and Granade, QIP <strong>12</strong> 611 (2012).</p>
+</blockquote>
 </div></section>
     </section><section>
     <section>
@@ -2041,6 +2069,11 @@ In&nbsp;[42]:
 </div>
 </div>
 
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>Granade et al, NJP <strong>14</strong> 103013 (2012).</p>
+</blockquote>
 </div></section>
     </section><section>
     <section>
@@ -2072,6 +2105,11 @@ In&nbsp;[47]:
 </div>
 </div>
 
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote>
+<p>Ferrie and Granade, QIP <strong>12</strong> 611 (2012). Granade et al, NJP <strong>14</strong> 103013 (2012).</p>
+</blockquote>
 </div></section>
     </section><section>
     <section>
@@ -2104,7 +2142,7 @@ In&nbsp;[47]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To show that SMC acceleration is experimentally useful, we use a prior that is approximately 7 standard deviations away from the correct values for a cumulant-simulated gateset.</p>
 <p><img src="figures/phys-gate-final-data.svg" style="height: 300px;"></p>
-<p>The data was simulated using the methods of Puzzuoli et al, PRA TODO.</p>
+<p>The data was simulated using the methods of Puzzuoli et al, PRA <strong>89</strong> 022306.</p>
 </div></section>
     </section><section>
     <section>
