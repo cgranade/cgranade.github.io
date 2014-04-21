@@ -1796,32 +1796,12 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[81]:
+In&nbsp;[*]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
 <span class="o">!</span>mv slides.slides.html slides.html
 </pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-[NbConvertApp] Using existing profile dir: u&apos;/home/cgranade/.config/ipython/profile_default&apos;
-[NbConvertApp] Converting notebook slides.ipynb to slides
-[NbConvertApp] Support files will be in slides_files/
-[NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 225444 bytes to slides.slides.html
-
-</pre>
-</div>
-</div>
 
 </div>
 </div>
@@ -2057,7 +2037,7 @@ In&nbsp;[3]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[42]:
+In&nbsp;[4]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">qinfer.smc</span> <span class="kn">import</span> <span class="n">SMCUpdater</span>
@@ -2097,7 +2077,7 @@ In&nbsp;[42]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[47]:
+In&nbsp;[5]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">qinfer.smc</span> <span class="kn">import</span> <span class="n">SMCUpdaterBCRB</span>
@@ -2156,16 +2136,16 @@ In&nbsp;[47]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Even with a significantly bad prior, SMC does quite well.</p>
 <p><span class="math">\[\begin{array}{l|cccc}
-    &amp; \tilde{p} &amp; p_{\text{ref}} &amp; A &amp; B \\
-    \hline
-    \text{True} &amp; 0.9983 &amp; 0.9957 &amp; 0.3185 &amp; 0.5012 \\
-    \text{SMC Estimate} &amp; 0.9939 &amp; 0.9969 &amp; 0.3156 &amp; 0.5081 \\
-    \text{LSF Estimate} &amp; 0.9954 &amp; 0.9957 &amp; 0.2753 &amp; 0.5449 \\
-    \hline
-    \text{SMC Error}    &amp; 0.0044 &amp; 0.0012 &amp; 0.0028 &amp; 0.0069 \\
-    \text{LSF Error} &amp; 0.0029 &amp; 0.0000 &amp; 0.0432 &amp; 0.0437
+        &amp; \tilde{p} &amp; p_{\text{ref}} &amp; A_0 &amp; B_0 \\
+        \hline
+        \text{True} &amp; 0.9983 &amp; 0.9957 &amp; 0.3185 &amp; 0.5012 \\
+        \text{SMC Estimate} &amp; 0.9940 &amp; 0.9968 &amp; 0.3071 &amp; 0.5134 \\
+        \text{LSF Estimate} &amp; 0.9947 &amp; 0.9972 &amp; 0.3369 &amp; 0.4820 \\
+        \hline
+        \text{SMC Error}    &amp; 0.0043 &amp; 0.0011 &amp; 0.0113 &amp; 0.0122 \\
+        \text{LSF Error} &amp; 0.0036 &amp; 0.0015 &amp; 0.0184 &amp; 0.0192
 \end{array}\]</span></p>
-<p>Due to the bad prior, it doesn't outperform least-squares fitting in this case for <span class="math">\(\tilde{p}\)</span> or <span class="math">\(p_{\text{ref}}\)</span>, but it does very well at <span class="math">\(A\)</span> and <span class="math">\(B\)</span>, lending credibility to the estimate.</p>
+<p>Due to the bad prior, it doesn't outperform least-squares fitting in this case for <span class="math">\(\tilde{p}\)</span>, but it does very well at <span class="math">\(p_{\text{ref}}\)</span>, <span class="math">\(A\)</span> and <span class="math">\(B\)</span>, lending credibility to the estimate.</p>
 </div></section>
     </section><section>
     <section>
@@ -2179,7 +2159,7 @@ In&nbsp;[47]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[59]:
+In&nbsp;[6]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">iframe</span><span class="p">(</span><span class="s">&quot;http://python-qinfer.readthedocs.org/en/latest/guide/rb.html&quot;</span><span class="p">)</span>
@@ -2193,7 +2173,7 @@ In&nbsp;[59]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[59]:</div>
+    Out[6]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 <div class="output_html rendered_html">
@@ -2233,7 +2213,7 @@ In&nbsp;[59]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[63]:
+In&nbsp;[7]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">iframe</span><span class="p">(</span><span class="s">&#39;https://www.zotero.org/cgranade/items/collectionKey/2NQVPRK9&#39;</span><span class="p">)</span>
@@ -2247,7 +2227,7 @@ In&nbsp;[63]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[63]:</div>
+    Out[7]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 <div class="output_html rendered_html">
