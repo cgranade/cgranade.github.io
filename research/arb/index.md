@@ -11,7 +11,7 @@ description: ""
 
 Presented 23 April, 2014 as a student seminar at [IQC](https://uwaterloo.ca/institute-for-quantum-computing/).
 
- > Slides: [HTML](slides.html) | IPython Notebook: [download](slides.ipynb), [view online](http://nbviewer.ipython.org/github/cgranade/cgranade.github.io/blob/master/research/talks/iqc/student-seminar-2014/slides.ipynb)
+ > Slides: [HTML](slides.html) | IPython Notebook: [download](slides.ipynb), [view online](http://nbviewer.ipython.org/github/cgranade/cgranade.github.io/blob/master/research/arb/slides.ipynb)
 
 ## Abstract ##
 
