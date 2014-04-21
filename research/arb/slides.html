@@ -1796,12 +1796,32 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[*]:
+In&nbsp;[8]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
 <span class="o">!</span>mv slides.slides.html slides.html
 </pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+[NbConvertApp] Using existing profile dir: u&apos;/home/cgranade/.config/ipython/profile_default&apos;
+[NbConvertApp] Converting notebook slides.ipynb to slides
+[NbConvertApp] Support files will be in slides_files/
+[NbConvertApp] Loaded template slides.tpl
+[NbConvertApp] Writing 224921 bytes to slides.slides.html
+
+</pre>
+</div>
+</div>
 
 </div>
 </div>
@@ -1970,6 +1990,7 @@ In&nbsp;[3]:
 <div class="figure">
 <img src="figures/ex-signal-interleaved.svg" />
 </div>
+<p><span class="math">\(\tilde{p} = 0.99994\)</span>, <span class="math">\(p_{\text{ref}} = 0.99999\)</span></p>
 </div></section>
     </section><section>
     <section>
@@ -1979,7 +2000,7 @@ In&nbsp;[3]:
 
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Randomized benchmarking data is 0/1 data: was the initial state preserved by a random sequence of length <span class="math">\(m\)</span>?</li>
+<li>Randomized benchmarking data is 0/1 data: was the initial state preserved by a random sequence of length <span class="math">\(m\)</span> or not?</li>
 <li>Conventional approach: estimate <span class="math">\(\hat{F}_g(m)\)</span> using <span class="math">\(K\)</span> sequences for each of many <span class="math">\(m\)</span>.</li>
 <li>Epstein et al (1308.2928) investigate error bounds due to finite sampling.</li>
 </ul>
@@ -2032,12 +2053,12 @@ In&nbsp;[3]:
 <p>Let's take a Bayesian approach instead. After observing a datum <span class="math">\(d\)</span> taken from a sequence of length <span class="math">\(m\)</span>: <span class="math">\[
     \Pr(\vec{x} | d; m) = \frac{\Pr(d | \vec{x}; m)}{\Pr(d | m)} \Pr(\vec{x}).
 \]</span></p>
-<p>We can implement this on a computer using sequential Monte Carlo (SMC). For example:</p>
+<p>We can implement this on a computer using sequential Monte Carlo (SMC). For example, to incorporate a uniform prior:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[9]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">qinfer.smc</span> <span class="kn">import</span> <span class="n">SMCUpdater</span>
