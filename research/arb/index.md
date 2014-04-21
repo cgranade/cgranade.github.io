@@ -7,6 +7,8 @@ description: ""
 
 **[Christopher Granade](/)<sup>[1](#affil-iqc), [2](#affil-uwphys)</sup>**, joint work with [Christopher Ferrie](http://csferrie.com/)<sup>[3](#affil-cquic)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[1](#affil-iqc),[4](#affil-uwchem),[5](#affil-pi)</sup>**
 
+ > arXiv (**coming soon**)
+
 Presented 23 April, 2014 as a student seminar at [IQC](https://uwaterloo.ca/institute-for-quantum-computing/).
 
  > Slides: [HTML](slides.html) | IPython Notebook: [download](slides.ipynb), [view online](http://nbviewer.ipython.org/github/cgranade/cgranade.github.io/blob/master/research/talks/iqc/student-seminar-2014/slides.ipynb)
@@ -25,6 +27,10 @@ We reach these accuracies with near-optimal resources, improving dramatically
 on curve fitting.
 Finally, we show that our approach is useful for physical devices
 by comparing to simulations. 
+
+## Supplemental Material ##
+
+ > [view online](http://nbviewer.ipython.org/github/cgranade/accelerated-randomized-benchmarking/blob/master/src/model_testing.ipynb) | [download source](https://github.com/cgranade/accelerated-randomized-benchmarking)
 
 ## Software Resources ##
 
