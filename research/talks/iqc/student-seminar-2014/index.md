@@ -9,7 +9,7 @@ description: ""
 
 Presented 23 April, 2014 as a student seminar at [IQC](https://uwaterloo.ca/institute-for-quantum-computing/).
 
- > Slides: [HTML](slides.html) | [IPython Notebook](slides.ipynb)
+ > Slides: [HTML](slides.html) | IPython Notebook: [download](slides.ipynb), [view online](http://nbviewer.ipython.org/github/cgranade/cgranade.github.io/blob/master/research/talks/iqc/student-seminar-2014/slides.ipynb)
 
 ## Abstract ##
 
@@ -34,16 +34,12 @@ implementation the algorithms presented in this work, is
 
 ## Bibliography ##
 
-<!-- > [View on Zotero](https://www.zotero.org/cgranade/items/collectionKey/UWFT2XAI) -->
-
- > Biblography coming soon.
+> [Bibliography hosted on Zotero](https://www.zotero.org/cgranade/items/collectionKey/2NQVPRK9)
 
 ## Affiliations ##
-
 
 1. <a id="affil-iqc"></a>[Institute for Quantum Computing, University of Waterloo](http://iqc.uwaterloo.ca).
 2. <a id="affil-uwphys"></a>[Department of Physics, University of Waterloo](https://uwaterloo.ca/physics-astronomy/).
 3. <a id="affil-cquic"></a>[Center for Quantum Information and Control, University of New Mexico](http://physics.unm.edu/CQuIC/).
 4. <a id="affil-uwchem"></a>[Department of Chemistry, University of Waterloo](https://uwaterloo.ca/chemistry/).
 5. <a id="affil-pi"></a>[Perimeter Institute for Theoretical Physics](http://www.perimeterinstitute.ca/).
-
