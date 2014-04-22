@@ -22,8 +22,12 @@
 
 #### 2014 ####
 
-- *Quantum Hamiltonian Learning Using Imperfect Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
-    > [arXiv:1311.5269](http://arxiv.org/abs/1311.5269) | to appear in Physical Review A
+- *Accelerated Randomized Benchmarking*, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
+
+    > [arXiv:1404.5275](http://arxiv.org/abs/1404.5275)
+
+- *Quantum Hamiltonian Learning Using Imperfect Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory. Physical Review A **89** 042314.
+    > [arXiv:1311.5269](http://arxiv.org/abs/1311.5269) | [doi:10.1103/PhysRevA.89.042314](http://dx.doi.org/10.1103/PhysRevA.89.042314)
 
 - *Likelihood-free quantum inference: tomography without the Born Rule*, Christopher Ferrie, **Christopher E. Granade**.
     > [arXiv:1304.5828](http://arxiv.org/abs/1304.5828) | to appear in Physical Review Letters
@@ -34,7 +38,7 @@
 #### 2013 ####
 
 - *Hamiltonian Learning and Certification Using Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
-    > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876)
+    > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876) | to appear in Physical Review Letters
 
 #### 2012 ####
 
