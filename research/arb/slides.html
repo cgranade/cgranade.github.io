@@ -1796,7 +1796,7 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[10]:
+In&nbsp;[1]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
@@ -1813,11 +1813,11 @@ In&nbsp;[10]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-[NbConvertApp] Using existing profile dir: u&apos;/home/cgranade/.config/ipython/profile_default&apos;
+[NbConvertApp] Using existing profile dir: u&apos;/home/cgranade/.ipython/profile_default&apos;
 [NbConvertApp] Converting notebook slides.ipynb to slides
 [NbConvertApp] Support files will be in slides_files/
 [NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 225623 bytes to slides.slides.html
+[NbConvertApp] Writing 225718 bytes to slides.slides.html
 
 </pre>
 </div>
@@ -2320,7 +2320,7 @@ MathJax.Hub.Config({
         inlineMath: [ ['$','$'], ["\\(","\\)"] ],
         displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
     },
-    displayAlign: 'left', // Change this to 'center' to center equations.
+    displayAlign: 'center', // Change this to 'center' to center equations.
     "HTML-CSS": {
         styles: {'.MathJax_Display': {"margin": 0}}
     }
@@ -2329,18 +2329,13 @@ MathJax.Hub.Config({
 <!-- End of mathjax configuration -->
 
 <script>
-//  We wait for the onload function to load MathJax after the page is completely loaded.
-//  MathJax is loaded 1 unit of time after the page is ready.
-//  This hack prevent problems when you load multiple js files (i.e. social button from addthis).
-//
-window.onload = function () {
-  setTimeout(function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  },1)
-}
+// Because there is an <iframe> in the slides, loading that blocks
+// window.onload, so we don't use the timeout hack that's in the official
+// IPython templates, but just create the script directly.
+var script = document.createElement("script");
+script.type = "text/javascript";
+script.src  = "https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML";
+document.getElementsByTagName("head")[0].appendChild(script);/
 </script>
 
 <script>
