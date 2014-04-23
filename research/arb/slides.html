@@ -1796,7 +1796,7 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[3]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
@@ -1817,7 +1817,7 @@ In&nbsp;[2]:
 [NbConvertApp] Converting notebook slides.ipynb to slides
 [NbConvertApp] Support files will be in slides_files/
 [NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 225570 bytes to slides.slides.html
+[NbConvertApp] Writing 225569 bytes to slides.slides.html
 
 </pre>
 </div>
@@ -2103,7 +2103,7 @@ In&nbsp;[5]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">qinfer.smc</span> <span class="kn">import</span> <span class="n">SMCUpdaterBCRB</span>
-<span class="n">updater</span> <span class="o">=</span> <span class="n">SMCUpdaterBCRB</span><span class="p">(</span><span class="n">RandomizedBenchmarkingModel</span><span class="p">(),</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">prior</span><span class="p">,</span> <span class="n">adaptive</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">initial_bim</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">updater</span> <span class="o">=</span> <span class="n">SMCUpdaterBCRB</span><span class="p">(</span><span class="n">RandomizedBenchmarkingModel</span><span class="p">(),</span> <span class="mi">10000</span><span class="p">,</span> <span class="n">prior</span><span class="p">)</span>
 
 <span class="c"># As data arrives, the BCRB is given by:</span>
 <span class="c"># updater.current_bim</span>
