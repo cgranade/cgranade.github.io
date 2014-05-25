@@ -23,22 +23,19 @@
 #### 2014 ####
 
 - *Accelerated Randomized Benchmarking*, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
-
     > [arXiv:1404.5275](http://arxiv.org/abs/1404.5275)
 
 - *Quantum Hamiltonian Learning Using Imperfect Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory. Physical Review A **89** 042314.
     > [arXiv:1311.5269](http://arxiv.org/abs/1311.5269) | [doi:10.1103/PhysRevA.89.042314](http://dx.doi.org/10.1103/PhysRevA.89.042314)
 
-- *Likelihood-free quantum inference: tomography without the Born Rule*, Christopher Ferrie, **Christopher E. Granade**.
-    > [arXiv:1304.5828](http://arxiv.org/abs/1304.5828) | to appear in Physical Review Letters
+- *Likelihood-Free Methods for Quantum Parameter Estimation*, Christopher Ferrie, **Christopher E. Granade**.
+    > [arXiv:1304.5828](http://arxiv.org/abs/1304.5828) | [doi:10.1103/PhysRevLett.112.130402](http://dx.doi.org/10.1103/PhysRevLett.112.130402)
 
 - *Tractable Simulation of Quantum Error Correction with Honest Approximations to Realistic Fault Models*, Daniel Puzzuoli, **Christopher E. Granade**, Holger Haas, Ben Criger, Easwar Magesan, D. G. Cory. Physical Review A 89, 022306.
     > [arXiv:1309.4717](http://arxiv.org/abs/1309.4717) | [doi:10.1103/PhysRevA.89.022306](http://dx.doi.org/10.1103/PhysRevA.89.022306)
 
-#### 2013 ####
-
 - *Hamiltonian Learning and Certification Using Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
-    > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876) | to appear in Physical Review Letters
+    > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876) | [doi:10.1103/PhysRevA.89.042314](http://dx.doi.org/10.1103/PhysRevA.89.042314)
 
 #### 2012 ####
 
