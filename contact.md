@@ -65,6 +65,10 @@ Biographical Information and Affiliations<br>
 <th colspan="2">Publication Records</th>
 </tr>
 <tr>
+<td>SciRate</td>
+<td><a href="http://scirate.com/cgranade">cgranade</a></td>
+</tr>
+<tr>
 <td>arXiv</td>
 <td><a href="http://arxiv.org/a/granade_c_1">granade_c_1</a></td>
 </tr>
