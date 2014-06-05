@@ -77,14 +77,11 @@ Biographical Information and Affiliations<br>
 <td><a href="http://scholar.google.ca/citations?user=ykKj9uoAAAAJ">public profile</a></td>
 </tr>
 <tr>
+<td>ORCID</td>
+<td><a href="http://orcid.org/0000-0001-6233-3132">0000-0001-6233-3132</a></td>
+</tr>
+<tr>
 <th colspan="2">Microblogging Services</th>
-</tr>
-<tr>
-<td>identi.ca (preferred)
-</td>
-<td><a href="http://identi.ca/cgranade">cgranade</a></td>
-</tr>
-<tr>
 </tr>
 <tr>
 <td>Twitter
@@ -134,11 +131,6 @@ Other Profiles
 <tr>
 <td>Hacker News</td>
 <td><a href="http://news.ycombinator.com/user?id=cgranade">cgranade</a></td>
-</tr>
-<tr>
-<td>PlayStation Network<br>
-</td>
-<td>BrokenMirror</td>
 </tr>
 </tbody>
 </table>
