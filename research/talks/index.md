@@ -7,15 +7,15 @@ description: ""
 
 # Upcoming Talks #
 
-- **14-18 July 2014**: TBA, [LFQIS 2014](http://lfqis.net/).
-- **June 2014**: TBA, seminar at [Sandia National Laboratories](http://www.sandia.gov/).
-- **June 2014**: TBA, seminar at [Microsoft Research](http://research.microsoft.com/en-us/).
+- **14-18 July 2014**: [TBA](lfqis-2014/), [LFQIS 2014](http://lfqis.net/).
+- **June 2014**: [TBA](sandia-2014/), seminar at [Sandia National Laboratories](http://www.sandia.gov/).
+- **June 2014**: [TBA](sandia-2014/), seminar at [Microsoft Research](http://research.microsoft.com/en-us/).
 
 # Previous Talks #
 ## 2014 ##
 
-- [Accelerated Randomized Benchmarking](arb/), presented as a student seminar at [IQC](http://iqc.uwaterloo.ca).
-- [Characterizing and Verifying 100-Qubit Scale Quantum Computers](talks/unm-2014), presented as a [seminar at CQuIC](https://panda.unm.edu/pandaweb/events/index.php?display=event&event_id=5014) on 26 February 2014.
+- [Accelerated Randomized Benchmarking](../arb/), presented as a student seminar at [IQC](http://iqc.uwaterloo.ca).
+- [Characterizing and Verifying 100-Qubit Scale Quantum Computers](unm-2014/), presented as a [seminar at CQuIC](https://panda.unm.edu/pandaweb/events/index.php?display=event&event_id=5014) on 26 February 2014.
 
 ## 2013 ##
 
