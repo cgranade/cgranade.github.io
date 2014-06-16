@@ -1,0 +1,18 @@
+iframe {
+    width: 100%;
+}
+
+.reveal {
+	font-size: 195%;
+}
+/*
+div.MathJax_Display {
+	text-align: center !important
+}*/
+
+figcaption {
+    font-style: italic !important;
+    padding-top: 0;
+    padding-bottom: 0.4em !important;
+    font-size: 75% !important;
+}
