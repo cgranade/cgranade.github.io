@@ -1779,7 +1779,8 @@ $(document).ready(function(){
 </div>
     </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Slides and references are available at <a href="http://www.cgranade.com/research/talks/sandia-2014/">http://www.cgranade.com/research/talks/sandia-2014/</a>. <span class="math">\(\renewcommand{\vec}[1]{\boldsymbol{#1}}\)</span> <span class="math">\(\renewcommand{\matr}[1]{\mathbf{#1}}\)</span> <span class="math">\(\newcommand{\bra}[1]{\left\langle#1\right|}\)</span> <span class="math">\(\newcommand{\ket}[1]{\left|#1\right\rangle}\)</span> <span class="math">\(\newcommand{\braket}[2]{\left\langle#1\mid#2\right\rangle}\)</span> <span class="math">\(\newcommand{\dd}{\mathrm{d}}\)</span> <span class="math">\(\newcommand{\ii}{\mathrm{i}}\)</span> <span class="math">\(\newcommand{\ee}{\mathrm{e}}\)</span> <span class="math">\(\newcommand{\expect}{\mathbb{E}}\)</span> <span class="math">\(\newcommand{\matr}[1]{\mathbf{#1}}\)</span> <span class="math">\(\newcommand{\T}{\mathrm{T}}\)</span> <span class="math">\(\newcommand{\Cov}{\operatorname{Cov}}\)</span> <span class="math">\(\newcommand{\real}{\mathbb{R}}\)</span></p>
+<p>Slides and references are available at <a href="http://www.cgranade.com/research/talks/sandia-2014/">http://www.cgranade.com/research/talks/sandia-2014/</a>.</p>
+<p>References like <code>10/abc</code> can be looked up using <code>http://doi.org/abc</code>. <span class="math">\(\renewcommand{\vec}[1]{\boldsymbol{#1}}\)</span> <span class="math">\(\renewcommand{\matr}[1]{\mathbf{#1}}\)</span> <span class="math">\(\newcommand{\bra}[1]{\left\langle#1\right|}\)</span> <span class="math">\(\newcommand{\ket}[1]{\left|#1\right\rangle}\)</span> <span class="math">\(\newcommand{\braket}[2]{\left\langle#1\mid#2\right\rangle}\)</span> <span class="math">\(\newcommand{\dd}{\mathrm{d}}\)</span> <span class="math">\(\newcommand{\ii}{\mathrm{i}}\)</span> <span class="math">\(\newcommand{\ee}{\mathrm{e}}\)</span> <span class="math">\(\newcommand{\expect}{\mathbb{E}}\)</span> <span class="math">\(\newcommand{\matr}[1]{\mathbf{#1}}\)</span> <span class="math">\(\newcommand{\T}{\mathrm{T}}\)</span> <span class="math">\(\newcommand{\Cov}{\operatorname{Cov}}\)</span> <span class="math">\(\newcommand{\Tr}{\operatorname{Tr}}\)</span> <span class="math">\(\newcommand{\real}{\mathbb{R}}\)</span> <span class="math">\(\renewcommand{\Re}{\operatorname{Re}}\)</span></p>
 </div><div style=display:none>
     
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -1796,7 +1797,7 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[2]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
@@ -1817,7 +1818,7 @@ In&nbsp;[4]:
 [NbConvertApp] Converting notebook slides.ipynb to slides
 [NbConvertApp] Support files will be in slides_files/
 [NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 296583 bytes to slides.slides.html
+[NbConvertApp] Writing 310852 bytes to slides.slides.html
 
 </pre>
 </div>
@@ -1848,7 +1849,7 @@ In&nbsp;[4]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[25]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">%</span><span class="k">pylab</span> <span class="n">inline</span>
@@ -1879,7 +1880,7 @@ Populating the interactive namespace from numpy and matplotlib
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[26]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">qinfer.smc</span> <span class="kn">import</span> <span class="n">SMCUpdater</span>
@@ -1897,10 +1898,10 @@ In&nbsp;[]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[3]:
+In&nbsp;[5]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">YouTubeVideo</span>
 </pre></div>
 
 </div>
@@ -1912,7 +1913,7 @@ In&nbsp;[3]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[28]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">def</span> <span class="nf">iframe</span><span class="p">(</span><span class="n">src</span><span class="p">):</span>
@@ -1931,17 +1932,16 @@ In&nbsp;[4]:
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This talk will proceed in three parts:</p>
+<p>This talk will proceed in two parts:</p>
 <ul>
 <li>Using sequential Monte Carlo for practical characterization</li>
 <li>Extending optimal control theory algorithms to include realistic models of classical electronics</li>
-<li>Enabling further scaling with quantum resources</li>
 </ul>
 </div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Practical-Characterization">Practical Characterization<a class="anchor-link" href="#Practical-Characterization">&#182;</a></h1>
+<h1 id="Part-1:-Practical-Characterization">Part 1: Practical Characterization<a class="anchor-link" href="#Part-1:-Practical-Characterization">&#182;</a></h1>
 </div>
 </section>
     </section><section>
@@ -1966,12 +1966,21 @@ In&nbsp;[4]:
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
+<figure>
+<img src="figures/nv-lattice-small.jpg" width="40%">
+<figcaption>
+Image courtesy of Ian Hincks.
+</figcaption>
+</figure>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Electronic spin <span class="math">\(\vec{S}\)</span> in NV center coupled to a nearby carbon spin <span class="math">\(\vec{I}\)</span>: <span class="math">\[
 H = \Delta_{\text{zfs}} S_z^2 + \gamma_e (\vec{B} + {\color{red} \vec{\delta B}}) \cdot \vec{S} + \gamma_C (\vec{B} + {\color{red} \vec{\delta B}}) \cdot \vec{I} + \vec{S} \cdot {\color{red} \mathbf{A}} \cdot \vec{I},
 \]</span></p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Errors in <span class="math">\({\color{red} \vec{\delta B}}\)</span> cause large errors in <span class="math">\({\color{red} \matr{A}}\)</span>, making it difficult to accurately characterize <span class="math">\(H\)</span> using spectroscopic methods.</p>
+<p><span class="math">\({\color{red} \vec{\delta B}}\)</span> causes large errors in <span class="math">\({\color{red} \matr{A}}\)</span>, making it difficult to characterize <span class="math">\(H\)</span> using spectroscopic methods.</p>
 </div></section>
     </section><section>
     <section>
@@ -1993,7 +2002,17 @@ H = \Delta_{\text{zfs}} S_z^2 + \gamma_e (\vec{B} + {\color{red} \vec{\delta B}}
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>With this insight, practical characterization can be enabled using <em>sequential Monte Carlo</em>, a classical Bayesian algorithm that employs <em>simulation</em> to <em>estimate</em> parameters. For instance, to learn about a Hamiltonian <span class="math">\(H\)</span> given a measurement <span class="math">\(d\)</span>:</p>
+<p><span class="math">\(\Rightarrow\)</span> Practical characterization can be enabled using <em>sequential Monte Carlo</em>.</p>
+<ul>
+<li>Classical Bayesian algorithm</li>
+<li>Uses <em>simulation</em> to <em>estimate</em> parameters</li>
+<li>Numerical algorithm— doesn't assume analytic solution</li>
+</ul>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For instance, to learn about a Hamiltonian <span class="math">\(H\)</span> given a measurement <span class="math">\(d\)</span>:</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><span class="math">\[\begin{align}
@@ -2003,6 +2022,15 @@ H = \Delta_{\text{zfs}} S_z^2 + \gamma_e (\vec{B} + {\color{red} \vec{\delta B}}
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><span class="math">\(\mathcal{N}\)</span>: normalization factor (can be found implicitly)</p>
+<p>Set <span class="math">\(w_i \gets w_i \Pr(d | H_i) / \mathcal{N}\)</span> to be new prior.</p>
+<ul>
+<li><strong>Iterative</strong> <span class="math">\(\Rightarrow\)</span> SMC can be used <em>online</em> as data arrives.</li>
+<li>Also reduces overhead for postprocessing large datasets.</li>
+</ul>
+<p>Estimate of <span class="math">\(H\)</span> is then <span class="math">\[
+\hat{H} = \expect[H] = \sum_i w_i H_i.
+\]</span></p>
+<p>(Doucet et al., Stat. &amp; Comp. <strong>10</strong> 3 197-208; Huszár and Houlsby, PRA <strong>85</strong> 052120; Granade et al. <a href="http://doi.org/s86">10/s86</a>, NJP <strong>14</strong> 10 103013 <a href="http://doi.org/s87">10/s87</a>)</p>
 </div></section>
     </section><section>
     <section>
@@ -2011,7 +2039,7 @@ H = \Delta_{\text{zfs}} S_z^2 + \gamma_e (\vec{B} + {\color{red} \vec{\delta B}}
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Simulation <span class="math">\(\Pr(d|H_i)\)</span> with hypothesis <span class="math">\(H_i\)</span> allows for additional experimental details in our simulation, at the tradeoff of computational cost.</p>
+<p>Simulation <span class="math">\(\Pr(d|H_i)\)</span> with hypothesis <span class="math">\(H_i\)</span> allows for additional experimental details in our simulation, at the trade off of computational cost.</p>
 <p>Examples:</p>
 <ul>
 <li>Finite and unknown <span class="math">\(T_1\)</span>, <span class="math">\(T_2\)</span>.</li>
@@ -2027,8 +2055,8 @@ H = \Delta_{\text{zfs}} S_z^2 + \gamma_e (\vec{B} + {\color{red} \vec{\delta B}}
 
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>We often need not consider all possible Hamiltonians, but can consider a set of physically reasonable Hamiltonians.</p>
-<p>Let <span class="math">\(H = H(\vec{x})\)</span> be a <em>parametrization</em>, where <span class="math">\(\vec{x} \in \real^d\)</span>.</p>
-<p>Example:</p>
+<p>Let <span class="math">\(H = H(\vec{x})\)</span> be a <em>parameterization</em>, where <span class="math">\(\vec{x} \in \real^d\)</span>.</p>
+<p>Example (<em>Ising model</em>):</p>
 <p><span class="math">\[
 H(\vec{x}) = \sum_{\langle i,j \rangle} x_{i,j} \sigma_z^{(i)} \sigma_z^{(j)}
 \]</span></p>
@@ -2045,13 +2073,31 @@ H(\vec{x}) = \sum_{\langle i,j \rangle} x_{i,j} \sigma_z^{(i)} \sigma_z^{(j)}
 <p>Examples:</p>
 <ul>
 <li>Secondary experiment gives rough estimate of a parameter.</li>
+<li>Physical arguments place limits on feasible parameter values.</li>
 <li><em>Ab initio</em> calculations give expected range for parameters.</li>
 </ul>
 </div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Avoiding-Impovrishment">Avoiding Impovrishment<a class="anchor-link" href="#Avoiding-Impovrishment">&#182;</a></h3>
+<h2 id="Characterizing-Uncertainty">Characterizing Uncertainty<a class="anchor-link" href="#Characterizing-Uncertainty">&#182;</a></h2>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since we have the posterior, we can calculate the mean and covariance easily:</p>
+<p><span class="math">\[\begin{align}
+    \expect[\vec{x}] &amp; = \sum_i w_i \vec{x}_i \\
+    \Cov(\vec{x}) &amp; = \expect[\vec{x}\vec{x}^\T] - \expect[\vec{x}]\expect[\vec{x}]^\T
+\end{align}\]</span></p>
+<ul>
+<li>SMC replaces integrals over <span class="math">\(\Pr(\vec{x})\)</span> with finite sums.</li>
+<li>Covariance describes uncertainty in estimate.</li>
+</ul>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Avoiding-Impoverishment">Avoiding Impoverishment<a class="anchor-link" href="#Avoiding-Impoverishment">&#182;</a></h3>
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -2060,8 +2106,30 @@ H(\vec{x}) = \sum_{\langle i,j \rangle} x_{i,j} \sigma_z^{(i)} \sigma_z^{(j)}
 <li>As more data is collected, posterior becomes sharper.</li>
 <li>Initial particles are unlikely to have support in posterior, reducing <em>effective</em> <span class="math">\(N\)</span>.</li>
 </ul>
-<p>Solution: <strong>resampling</strong>.</p>
-<p>Liu-West algorithm: Sample new <span class="math">\(\vec{x}_i\)</span> from kernel density estimate such that <span class="math">\(\expect[\vec{x}]\)</span> and <span class="math">\(\Cov(\vec{x})\)</span> are preserved.</p>
+<p>Solution: <strong>resampling</strong>. Replace SMC samples with different samples that better represent the same distribution.</p>
+<p>Uses that information can be stored in weights <span class="math">\(\{w_i\}\)</span> or positions <span class="math">\(\{\vec{x}_i\}\)</span>.</p>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Liu-West-Resampling-Algorithm">Liu-West Resampling Algorithm<a class="anchor-link" href="#Liu-West-Resampling-Algorithm">&#182;</a></h3>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Sample new <span class="math">\(\vec{x}_i&#39;\)</span> from kernel density estimate such that <span class="math">\(\expect[\vec{x}]\)</span> and <span class="math">\(\Cov(\vec{x})\)</span> are preserved.</li>
+<li>Set new weights to uniform <span class="math">\(w_i&#39; = 1/ N\)</span>.</li>
+</ul>
+<p>Liu-West distribution: <span class="math">\[
+    \Pr(\vec{x}&#39;_i) = \sum_i w_i \frac{1}{\sqrt{(2\pi)^k |\matr{\Sigma}|}} \exp\left(
+        -\frac{1}{2} (\vec{x}&#39; - \vec{\mu}_i)^\T \matr{\Sigma}^{-1} (\vec{x}&#39; - \vec{\mu}_i)
+    \right)
+\]</span> where <span class="math">\[\begin{align*}
+    \vec{\mu}_i &amp; = a \vec{x}_i + (1 - a) \expect[\vec{x}] \\
+    \matr{\Sigma} &amp; = (1- a^2) \Cov[\vec{x}] \\
+    a &amp; \in [0, 1],
+\end{align*}\]</span></p>
+<p>(West, J. Royal Stat B <strong>55</strong> 2 409-422; Liu and West 2001)</p>
 </div></section>
     </section><section>
     <section>
@@ -2080,6 +2148,7 @@ H(\vec{x}) = \sum_{\langle i,j \rangle} x_{i,j} \sigma_z^{(i)} \sigma_z^{(j)}
 <li>If <span class="math">\(1 / \sum_i w_i^2 &lt; 0.5 N\)</span>, resample.</li>
 </ol></li>
 </ol>
+<p>(Doucet et al., Stat. &amp; Comp. <strong>10</strong> 3 197-208)</p>
 </div></section>
     </section><section>
     <section>
@@ -2090,7 +2159,7 @@ H(\vec{x}) = \sum_{\langle i,j \rangle} x_{i,j} \sigma_z^{(i)} \sigma_z^{(j)}
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[5]:
+In&nbsp;[29]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="n">prior</span> <span class="o">=</span> <span class="n">UniformDistribution</span><span class="p">([[</span><span class="mf">0.9</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">]])</span>
@@ -2108,7 +2177,7 @@ In&nbsp;[5]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>[cite ARB]</p>
+<p>(Granade et al., <a href="https://scirate.com/arxiv/1404.5275">arXiv:1404.5275</a>; <a href="https://github.com/csferrie/python-qinfer">github.com/csferrie/python-qinfer</a>)</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Provides an infrastructure for rapidly deploying SMC. User defines:</p>
@@ -2130,7 +2199,7 @@ In&nbsp;[5]:
 In&nbsp;[12]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c">#updater.plot_posterior_contour(0, 1, res1=50, res2=50)</span>
+<div class="highlight"><pre><span class="n">updater</span><span class="o">.</span><span class="n">plot_posterior_contour</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">res1</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">res2</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2962,25 +3031,21 @@ NsPATkRkMwzsREQ2w8BORGQz/w/JQz0I+rwiKwAAAABJRU5ErkJggg==
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Characterizing-Errors">Characterizing Errors<a class="anchor-link" href="#Characterizing-Errors">&#182;</a></h2>
+<h3 id="Estimation">Estimation<a class="anchor-link" href="#Estimation">&#182;</a></h3>
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Since we have the posterior, we can calculate the mean and variance easily:</p>
-<p><span class="math">\[\begin{align}
-    \expect[\vec{x}] &amp; = \sum_i w_i \vec{x}_i \\
-    \Cov(\vec{x}) &amp; = \expect[\vec{x}\vec{x}^\T] - \expect[\vec{x}]\expect[\vec{x}]^\T
-\end{align}\]</span></p>
-<p>In <strong>QInfer</strong>:</p>
+<p><strong>QInfer</strong> handles drawing estimates from the current SMC distribution:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[13]:
+In&nbsp;[31]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">print</span> <span class="n">updater</span><span class="o">.</span><span class="n">est_mean</span><span class="p">()</span>
 <span class="k">print</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">diag</span><span class="p">(</span><span class="n">updater</span><span class="o">.</span><span class="n">est_covariance_mtx</span><span class="p">()))</span>
+<span class="k">print</span> <span class="n">updater</span><span class="o">.</span><span class="n">est_entropy</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -2993,8 +3058,9 @@ In&nbsp;[13]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-[ 0.95005375  0.45032563  0.54974884]
-[ 0.0290916   0.02892323  0.02895625]
+[ 0.95020288  0.45062089  0.5505005 ]
+[ 0.02895919  0.02872952  0.02877011]
+9.21034037198
 
 </pre>
 </div>
@@ -3011,7 +3077,13 @@ In&nbsp;[13]:
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Regions can be estimated using covariance ellipses, by convex hulls, or by the minimum volume enclosing ellipse (MVEE) for the hull:</p>
+<p>Credible region <span class="math">\(X_{\alpha}\)</span>: <span class="math">\(\Pr(\vec{x} \in X_{\alpha}) \ge \alpha\)</span></p>
+<p>Several ways to choose <span class="math">\(X_{\alpha}\)</span>:</p>
+<ul>
+<li>covariance ellipses— if approx. normal</li>
+<li>convex hulls— very general, but long description</li>
+<li>minimum volume enclosing ellipse (MVEE) for the hull— approximate, but easy to represent</li>
+</ul>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -3027,6 +3099,9 @@ In&nbsp;[8]:
 </div>
 </div>
 
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(<em>Granade</em> et al., NJP <strong>14</strong> 10 103013; Ferrie, NJP <strong>16</strong> 2 023006)</p>
 </div></section>
     </section><section>
     <section>
@@ -3039,8 +3114,34 @@ In&nbsp;[8]:
 <div class="figure">
 <img src="figures/specdens-tracking.svg" />
 </div>
-<p>Here, the true value of <span class="math">\(\omega\)</span> is drawn from a Gaussian process.</p>
-<p>After each measurement, SMC particles are <em>moved</em> to track <span class="math">\(\omega\)</span>.</p>
+<p>Here, the true value of <span class="math">\(\omega\)</span> is drawn from a Gaussian process. After each measurement, SMC particles are <em>moved</em> to track <span class="math">\(\omega\)</span>, <span class="math">\(\vec{x}(t_{k + 1}) \sim \mathrm{N}(\vec{x}(t_k), \sigma^2)\)</span>.</p>
+<p>(Doucet and Johansen 2011)</p>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Robustness-of-SMC:-Finite-Sampling">Robustness of SMC: Finite Sampling<a class="anchor-link" href="#Robustness-of-SMC:-Finite-Sampling">&#182;</a></h2>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When using SMC without exact likelihoods, finite sampling of simulator introduces finite error <span class="math">\(\epsilon\)</span>:</p>
+<p><span class="math">\[
+    w_i \mapsto w_i (\Pr(d | \vec{x}_i) + \epsilon) / \mathcal{N}
+\]</span></p>
+<p><strong>Example</strong> (noisy coin): risk for 1000 experiments vs number of samples.</p>
+<p><img src="figures/nc_risk_v_like_per_part_N1e3.svg" width="50%"></p>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Robustness-of-SMC:-Incorrect-Model">Robustness of SMC: Incorrect Model<a class="anchor-link" href="#Robustness-of-SMC:-Incorrect-Model">&#182;</a></h2>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We also want SMC to be robust against errors in the simulator. Below: risk when Ising simulator neglects terms of order <span class="math">\(10^{-4}\)</span>.</p>
+<div class="figure">
+<img src="figures/badmodel.svg" />
+</div>
 </div></section>
     </section><section>
     <section>
@@ -3101,10 +3202,106 @@ In&nbsp;[21]:
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>SMC can be used to accelerate data processing in interleaved RB experiments.</p>
+<p>Randomized benchmarking: apply random Clifford gates <span class="math">\(\{S_i\}\)</span> to learn average fidelity of a gateset <span class="math">\(\{U_j\}\)</span>:</p>
 <div class="figure">
-<img src="figures/risk-tr-comparison.svg" />
+<img src="figures/benchmarking-overview.svg" />
 </div>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SMC-and-QInfer-in-Action:-Randomized-Benchmarking">SMC and QInfer in Action: Randomized Benchmarking<a class="anchor-link" href="#SMC-and-QInfer-in-Action:-Randomized-Benchmarking">&#182;</a></h2>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Fidelity exposed as <em>decay</em> of survival probability <span class="math">\(\Tr(ES_{\vec{i}}[\rho])\)</span>; removes effect of preparation <span class="math">\(\rho\)</span> and measurement <span class="math">\(E\)</span> (SPAM).</li>
+<li>Can interleave with gate of interest.</li>
+<li>Least-squares fitting often used to extract fidelity.</li>
+</ul>
+<div class="figure">
+<img src="figures/ex-signal-interleaved.svg" />
+</div>
+<p>(Knill et al., PRA <strong>77</strong> 1 012307 <a href="http://doi.org/cxz9vm">10/cxz9vm</a>; Magesan et al., PRL <strong>109</strong> 8 080505 <a href="http://doi.org/s8j">10/s8j</a>)</p>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SMC-and-QInfer-in-Action:-Randomized-Benchmarking">SMC and QInfer in Action: Randomized Benchmarking<a class="anchor-link" href="#SMC-and-QInfer-in-Action:-Randomized-Benchmarking">&#182;</a></h2>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>SMC can be used to accelerate interleaved RB experiments.</p>
+<ul>
+<li>Interpret randomized benchmarking as a <strong>likelihood</strong>.</li>
+</ul>
+<p><strong>Example</strong> (zeroth-order model): <span class="math">\[
+\Pr(\text{survival} | A, B, \tilde{p}, p_{\text{ref}}; m, \text{mode}) = \begin{cases}
+    A (\tilde{p} p_{\text{ref}})^m + B &amp; \text{interleaved} \\
+    A (p_{\text{ref}})^m + B           &amp; \text{reference}
+\end{cases}
+\]</span></p>
+<ul>
+<li><span class="math">\(\tilde{p}\)</span> and <span class="math">\(p_{\text{ref}}\)</span>: interleaved and reference depolarizing parameters (resp)</li>
+<li><span class="math">\(A\)</span> and <span class="math">\(B\)</span>: constants describing SPAM</li>
+</ul>
+<p>Advantages:</p>
+<ul>
+<li><span class="math">\(0 \le p_{\text{ref}}, \tilde{p} \le 1\)</span> manifest in prior— avoids instability as <span class="math">\(\tilde{p} \to 1\)</span>.</li>
+<li>Using prior information and correlations between different data can drastically reduce data requirements.</li>
+</ul>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SMC-and-QInfer-in-Action:-Randomized-Benchmarking">SMC and QInfer in Action: Randomized Benchmarking<a class="anchor-link" href="#SMC-and-QInfer-in-Action:-Randomized-Benchmarking">&#182;</a></h2>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Straightfoward to implement in QInfer:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[16]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">qinfer.abstract_model</span> <span class="kn">import</span> <span class="n">Model</span>
+
+<span class="k">class</span> <span class="nc">RandomizedBenchmarkingModel</span><span class="p">(</span><span class="n">Model</span><span class="p">):</span>
+    <span class="c"># ...</span>
+    
+    <span class="k">def</span> <span class="nf">likelihood</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">outcomes</span><span class="p">,</span> <span class="n">modelparams</span><span class="p">,</span> <span class="n">expparams</span><span class="p">):</span>
+        <span class="n">p_tilde</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span> <span class="o">=</span> <span class="n">modelparams</span><span class="o">.</span><span class="n">T</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        
+        <span class="n">p_C</span> <span class="o">=</span> <span class="n">p_tilde</span> <span class="o">*</span> <span class="n">p</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">expparams</span><span class="p">[</span><span class="s">&#39;reference&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:],</span> <span class="n">p</span><span class="p">,</span> <span class="n">p_C</span><span class="p">)</span>
+        
+        <span class="n">m</span> <span class="o">=</span> <span class="n">expparams</span><span class="p">[</span><span class="s">&#39;m&#39;</span><span class="p">][</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+        
+        <span class="n">pr0</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">A</span> <span class="o">*</span> <span class="p">(</span><span class="n">p</span> <span class="o">**</span> <span class="n">m</span><span class="p">)</span> <span class="o">+</span> <span class="n">B</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">Model</span><span class="o">.</span><span class="n">pr0_to_likelihood_array</span><span class="p">(</span><span class="n">outcomes</span><span class="p">,</span> <span class="n">pr0</span><span class="p">)</span>
+    
+    <span class="c"># ...</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(<em>Granade</em> et al., <a href="https://scirate.com/arxiv/1404.5275">arXiv:1404.5275</a>)</p>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SMC-and-QInfer-in-Action:-Randomized-Benchmarking">SMC and QInfer in Action: Randomized Benchmarking<a class="anchor-link" href="#SMC-and-QInfer-in-Action:-Randomized-Benchmarking">&#182;</a></h2>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="figures/risk-tr-comparison.svg" width="45%"> <img src="figures/risk-tr-comparison-vs-m-max.svg" width="45%"></p>
+<p>(Left: <span class="math">\(m = 1, 2, \dots, 100\)</span>; Right: <span class="math">\(10^3\)</span> shots/sequence length, <span class="math">\(m = 1, 11, \dots, m_{\max}\)</span>)</p>
 </div></section>
     </section><section>
     <section>
@@ -3125,35 +3322,95 @@ In&nbsp;[21]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Electronic spin in an NV center coupled to a nitrogen spin: <span class="math">\[
 H = \Delta_{\text{zfs}} S_z^2 + \gamma_e (\vec{B} + \vec{\delta B}) \cdot \vec{S} + \gamma_N (\vec{B} + \vec{\delta B}) \cdot \vec{I}_N + {A}_N S_z I_{N,z}
-\]</span> Using 5000 particles [look up how many experiments], we can get accurate estimates of both <span class="math">\(\vec{\delta B}\)</span> and <span class="math">\(\matr{A}_N\)</span>.</p>
-<p>[figure here]</p>
+\]</span> Using 5000 particles, we can get accurate estimates of both <span class="math">\(\vec{\delta B}\)</span> and <span class="math">\(\matr{A}_N\)</span>. Shown below for 163M total shots (about 300k photons).</p>
+<p><img src="figures/carbonless_marginals.png" width=80%></p>
 </div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Simulations show that we can hyperfine couplings to carbon spins as well:</p>
-<p>[figure here]</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<video width=600 height=400 controls preload>
+<source src="figures/spam.webm"><source src="figures/spam.mp4">
+</video>
+
 </div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Control-of-Quantum-Devices-with-Non-Linear-Electronics">Control of Quantum Devices with Non-Linear Electronics<a class="anchor-link" href="#Control-of-Quantum-Devices-with-Non-Linear-Electronics">&#182;</a></h1>
+<h1 id="Part-2:-Control-of-Quantum-Devices-with-Non-Linear-Electronics">Part 2: Control of Quantum Devices with Non-Linear Electronics<a class="anchor-link" href="#Part-2:-Control-of-Quantum-Devices-with-Non-Linear-Electronics">&#182;</a></h1>
 </div>
 </section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="OCT-and-GRAPE">OCT and GRAPE<a class="anchor-link" href="#OCT-and-GRAPE">&#182;</a></h2>
+<h2 id="Pulse-Engineering">Pulse Engineering<a class="anchor-link" href="#Pulse-Engineering">&#182;</a></h2>
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Modern optimal control theory (OCT) algorithms such as GRAPE allow for designing pulses with many desired properties, including</p>
+<p>Modern optimal control theory (OCT) algorithms allow for designing pulses with many desired properties, including</p>
 <ul>
 <li>Robustness to distributions over Hamiltonians</li>
 <li>Bandwidth and power limits</li>
 <li>Ringdown compensation</li>
 </ul>
+<p>Utility functional: <span class="math">\[\begin{align*}
+    \Phi(\vec{p}) &amp; = \Tr(U_{\text{target}}^{\dagger} U(\vec{p})) / \dim^2\mathcal{H}, \text{where} \\
+    U(\vec{p}) &amp; := \prod_{i=N}^{1} \ee^{-\ii \Delta t (H_0 + \sum_{k=1}^K p_{i,k} H_k)}
+\end{align*}\]</span></p>
+<ul>
+<li><span class="math">\(H_0\)</span>: internal Hamiltonian</li>
+<li><span class="math">\(\{H_k\}\)</span>: control Hamiltonians</li>
+<li><span class="math">\(\Delta t\)</span>: timestep</li>
+</ul>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="GRAPE">GRAPE<a class="anchor-link" href="#GRAPE">&#182;</a></h2>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>Gradient-ascent pulse engineering</em> (GRAPE) is a commonly used OCT algorithm that provides fast evaluation of</p>
 <p>However, GRAPE assumes linearity of classical control electronics (transfer function).</p>
+<p>(Khaneja et al., JMR <strong>172</strong> 2 296-305 <a href="http://doi.org/cg8cdh">10/cg8cdh</a>)</p>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Calculating-Gradients">Calculating Gradients<a class="anchor-link" href="#Calculating-Gradients">&#182;</a></h3>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Khaneja gives the gradients wrt the controls <span class="math">\(\{p_k(t)\}\)</span> in terms of unitary time steps:</p>
+<p><span class="math">\[\begin{align}
+    \frac{\partial \Phi}{\partial p_k(t_j)} &amp; = -2 \Re\left\{\braket{P_j}{\ii \Delta t\, H_k X_j} \braket{X_j}{P_j} \right\} \\
+    X_j &amp; := U_j \cdots U_1 \\
+    P_j &amp; := U_{j+1}^\dagger \cdots U_{n}^\dagger U_{\text{target}} \\
+    U_j &amp; := \exp\left(-\ii \Delta t (H_0 + \sum_{k=1}^{K} p_k(t_j) H_k )\right)
+\end{align}\]</span></p>
+</div></section>
+    </section><section>
+    <section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Nonlinear-Conjugate-Gradient-Method">Nonlinear Conjugate Gradient Method<a class="anchor-link" href="#Nonlinear-Conjugate-Gradient-Method">&#182;</a></h3>
+</div>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<ol style="list-style-type: decimal">
+<li>Choose initial pulse <span class="math">\(\vec{p}\)</span>.</li>
+<li>Let <span class="math">\(\beta = 0\)</span>, <span class="math">\(\vec{s} = 0\)</span>.</li>
+<li>Until utility goal is met:
+<ol style="list-style-type: decimal">
+<li>Calculate <span class="math">\(\Phi(\vec{p})\)</span>, <span class="math">\(\vec{\nabla}\Phi(\vec{p})\)</span>.</li>
+<li>Update <span class="math">\(\beta\)</span> using Polak–Ribière formula.</li>
+<li><span class="math">\(\vec{s} \gets -\vec{\nabla}\Phi + \beta \vec{s}\)</span>.</li>
+<li>Search along <span class="math">\(\vec{s}\)</span>, <span class="math">\(\vec{p} + \alpha \vec{s}\)</span> for a step size <span class="math">\(\alpha &gt; 0\)</span>.</li>
+<li><span class="math">\(\vec{p} \gets \vec{p} + \alpha \vec{s}\)</span></li>
+</ol></li>
+</ol>
+<p>Gradient information used to update search directions, line search used to determine step sizes.</p>
 </div></section>
     </section><section>
     <section>
@@ -3170,24 +3427,8 @@ Image courtesy of Ian Hincks.
 </figcaption>
 </figure>
 
-
+<p>(Maas 2003; Benningshof et al., JMR <strong>230</strong> 84-87 <a href="http://doi.org/s8m">10/s8m</a>; Mohebbi et al., JAP <strong>115</strong> 9 094502 <a href="http://doi.org/s8n">10/s8n</a>)</p>
 <p>Therefore, the resonance frequency, quality factor and coupling are all functions of current, frustrating linear approximations.</p>
-</div></section>
-    </section><section>
-    <section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Overview-of-GRAPE">Overview of GRAPE<a class="anchor-link" href="#Overview-of-GRAPE">&#182;</a></h2>
-</div>
-
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>GRAPE is a <em>conjugate-gradient</em> algorithm, and uses <span class="math">\(\vec{\nabla}\Phi\)</span>, where <span class="math">\(\Phi\)</span> is the fidelity cost functional.</p>
-<p>Khaneja gives the gradients wrt the controls <span class="math">\(\{p_k(t)\}\)</span> in terms of unitary time steps:</p>
-<p><span class="math">\[\begin{align}
-    \frac{\partial \Phi}{\partial p_k(t_j)} &amp; = -2 \Re\left\{\braket{P_j}{\ii \Delta t\, H_k X_j} \braket{X_j}{P_j} \right\} \\
-    X_j &amp; := U_j \cdots U_1 \\
-    P_j &amp; := U_{j+1}^\dagger \cdots U_{n}^\dagger U_{\text{target}} \\
-    U_j &amp; := \exp\left(-\ii \Delta t (H_0 + \sum_{k=1}^{K} p_k(t_j) H_k )\right)
-\end{align}\]</span></p>
 </div></section>
     </section><section>
     <section>
@@ -3204,9 +3445,16 @@ Image courtesy of Ian Hincks.
 </figcaption>
 </figure>
 
-</div>
+</div></section>
+    </section><section>
+    <section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Since <span class="math">\(\vec{\nabla}_\vec{p}\Phi(g[\vec{p}]) = \vec{\nabla}_\vec{q}\Phi(\vec{q}) \cdot J_g(\vec{p})\)</span>, if we can find the Jacobian of a distortion operator, we can include it into GRAPE.</p>
+<ul>
+<li>Control search is thus for un-distorted pulse.</li>
+<li>Can get higher fidelity controls by including distortion.</li>
+<li>Allows driving at higher powers— don't need to limit to linear regime.</li>
+</ul>
 </div></section>
     </section><section>
     <section>
@@ -3223,6 +3471,7 @@ Image courtesy of Ian Hincks.
     \end{matrix}\right] + \vec{y} V_s(t),
 \end{align}\]</span> where <span class="math">\(\matr{A}\)</span> and <span class="math">\(\vec{y}\)</span> describe the circuit and driving term, respectively.</p>
 <p>This system is nonlinear since <span class="math">\(\matr{A} = \matr{A}(I_L, I_R)\)</span>.</p>
+<p><strong>Note</strong>: rescaling the driving term does not just rescale the output current.</p>
 </div></section>
     </section><section>
     <section>
@@ -3232,7 +3481,7 @@ Image courtesy of Ian Hincks.
 
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To simulate the distortion introduced by this system, we let <span class="math">\(g : \vec{V}_s \mapsto \vec{I}_L\)</span> be the solution to the DEs for a given driving term.</p>
-<p>The Jacobian can then be approximated perterbatively, <span class="math">\[
+<p>The Jacobian can then be approximated perturbatively, <span class="math">\[
     \frac{\partial g_{m,l}}{\partial p_{n,k}} \approx \left[\frac{g(\vec{p} + \epsilon \vec{e}_{n,k}) - g(\vec{p})}{\epsilon}\right].
 \]</span></p>
 <p>Taking a small <span class="math">\(\epsilon\)</span> allows us to find a good direction for the conjugate gradient step.</p>
@@ -3244,11 +3493,11 @@ Image courtesy of Ian Hincks.
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>For a strongly non-linear resonator, we find the following 99.1% fidelity <span class="math">\(\pi/2)_x\)</span> gate using GRAPE. The undistorted pulse is shown in red.</p>
+<p>For a strongly non-linear resonator, we find the following 99.1% fidelity <span class="math">\(\pi/2)_x\)</span> gate using GRAPE. The un-distorted pulse is shown in red.</p>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <figure>
-<img src="figures/example-nonlin-pulse-x.svg" width=50%> <img src="figures/example-nonlin-pulse-y.svg" width=50%>
+<img src="figures/example-nonlin-pulse-x.svg" width=45%> <img src="figures/example-nonlin-pulse-y.svg" width=45%>
 </figure>
 
 </div></section>
@@ -3259,13 +3508,20 @@ Image courtesy of Ian Hincks.
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We want to relax that <span class="math">\(H_0\)</span> and <span class="math">\(\{H_k\}\)</span> be known with certainty. Let <span class="math">\(\overline{\Phi} = \expect_{H_0, \{H_k\}}[\Phi]\)</span> be the expectation over a distribution of internal and control Hamiltonians. By linearity of <span class="math">\(\expect\)</span>, <span class="math">\[
-    \vec{\nabla}_\vec{p} \overline{\Phi}(g[\vec{p}]) = \expect_{H_0, \{H_k\}}[\vec{\nabla}_{\vec{q}} \Phi(\vec{q})] \cdot J_g(\vec{p}).
+<p>We want to relax that <span class="math">\(H_0\)</span> and <span class="math">\(\{H_k\}\)</span> be known with certainty.</p>
+<p>Let <span class="math">\(\overline{\Phi} = \expect_{H_0, \{H_k\}}[\Phi]\)</span></p>
+<ul>
+<li><span class="math">\(H_0\)</span>: internal</li>
+<li><span class="math">\(\{H_k\}\)</span>: control</li>
+</ul>
+<p>By linearity of <span class="math">\(\expect\)</span>: <span class="math">\[
+    \vec{\nabla}_\vec{p} \overline{\Phi}(g[\vec{p}]) = \expect_{H_0, \{H_k\}} [\vec{\nabla}_{\vec{q}} \Phi(\vec{q})] \cdot J_g(\vec{p})
 \]</span></p>
-<p>To optimize pulses for <span class="math">\(\overline{\Phi}\)</span>, we represent <span class="math">\(\Pr(H_0, \{H_k\}) =: \Pr(H_0(\vec{x}), \{H_k(\vec{x})\}) \approx \sum_i w_i \delta{\vec{x} - \vec{x}_i}\)</span>.</p>
+<p>To optimize pulses for <span class="math">\(\overline{\Phi}\)</span>, we represent <span class="math">\(\Pr(H_0, \{H_k\}) =: \Pr(H_0(\vec{x}), \{H_k(\vec{x})\}) \approx \sum_i w_i \delta(\vec{x} - \vec{x}_i)\)</span>.</p>
 <blockquote>
-<p>Robust GRAPE thus takes an SMC approximation as input.</p>
+<p>Robust GRAPE thus can take an SMC approximation as input.</p>
 </blockquote>
+<p>(Borneman et al., JMR <strong>225</strong> 120-129 <a href="http://doi.org/cksg3v">10/cksg3v</a>)</p>
 </div></section>
     </section><section>
     <section>
@@ -3274,10 +3530,14 @@ Image courtesy of Ian Hincks.
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Decay dominated by <span class="math">\(\ee^{-t / t_c}\)</span>, even in non-linear case.</p>
-<p>Can add a timestep <span class="math">\(p(t_{i+1}) = -g[\vec{p}](t_i)/(\ee^{-\delta t / t_c} - 1)\)</span> to drive pulse ringdown to zero. [TODO double-check that I have minus signs in the right places]</p>
-<p>[TODO figure]</p>
-<p>For non-linear, only an approximation. Multiple steps can improve ringdown compensation.</p>
+<p>Decay dominated by <span class="math">\(\ee^{-t / t_c}\)</span>, even in non-linear case. Can add a timestep <span class="math">\(p(t_{i+1}) = -g[\vec{p}](t_i)/(\ee^{\delta t / t_c} - 1)\)</span> to drive pulse ringdown to zero.</p>
+<ul>
+<li>For non-linear, only an approximation.</li>
+<li>Multiple steps or optimization can improve ringdown compensation.</li>
+</ul>
+<p>Using two timesteps for compensation:</p>
+<p><img src="figures/ringdown.png" width="50%"></p>
+<p>(Borneman and Cory, JMR <strong>207</strong> 2 220-233 <a href="http://doi.org/s8p">10/s8p</a>)</p>
 </div></section>
     </section><section>
     <section>
@@ -3297,7 +3557,24 @@ Using these techniques, we can readily design a pulse that is robust over <span 
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Conclusions">Conclusions<a class="anchor-link" href="#Conclusions">&#182;</a></h1>
 </div>
-</section>
+
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Bayesian methods allow for including prior information in characterization
+<ul>
+<li>Simulation is a resource for inference</li>
+</ul></li>
+<li>SMC allows for using Bayesian inference in a <em>practical</em> manner
+<ul>
+<li>Robust to common errors (finite sampling, approximations in simulation)</li>
+</ul></li>
+<li>Can extend GRAPE with simulations of classical systems
+<ul>
+<li>Allows for control of even strongly non-linear devices</li>
+</ul></li>
+<li>GRAPE can optimize over SMC-like distributions for practical control.</li>
+</ul>
+</div></section>
     </section><section>
     <section>
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -3476,8 +3753,8 @@ Reveal.initialize({
 
     // Bounds for smallest/largest possible scale to apply to content
     margin: 0.1,
-    minScale: 1.0,
-    maxScale: 1.0
+    minScale: 0.9,
+    maxScale: 0.9
 
 });
 
