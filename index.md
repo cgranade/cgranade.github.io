@@ -5,8 +5,6 @@ tagline: Supporting tagline
 ---
 {% include JB/setup %}
 
-<div itemtype="http://data-vocabulary.org/Person">
-I am <span itemprop="name">Christopher Granade</span>, a <span itemprop="title">PhD candidate</span> in theoretical physics studying at the <span itemprop="affiliation">[University of Waterloo](http://uwaterloo.ca/)</span>'s [Institute for Quantum Computing](http://iqc.uwaterloo.ca). In 2009, I received Bachelors degrees in math, physics and computer science from the [University of Alaska Fairbanks](http://www.uaf.edu). In 2010, I received my Masters degree in physics from the University of Waterloo and [Perimeter Institute](www.perimeterinstitute.ca)'s Perimeter Scholars International program.
+I am Christopher Granade, a PhD candidate in theoretical physics studying at the [University of Waterloo](http://uwaterloo.ca/)'s [Institute for Quantum Computing](http://iqc.uwaterloo.ca). In 2009, I received Bachelors degrees in math, physics and computer science from the [University of Alaska Fairbanks](http://www.uaf.edu). In 2010, I received my Masters degree in physics from the University of Waterloo and [Perimeter Institute](www.perimeterinstitute.ca)'s Perimeter Scholars International program.
 On this site, I maintain information about my [academic CV](cv.html), [research](research.html) and my [personal projects](projects.html), along with a bit of miscellaneous info about myself.
-</div>
 

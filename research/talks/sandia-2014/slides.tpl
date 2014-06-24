@@ -86,8 +86,8 @@ Reveal.initialize({
 
     // Bounds for smallest/largest possible scale to apply to content
     margin: 0.1,
-    minScale: 1.0,
-    maxScale: 1.0
+    minScale: 0.9,
+    maxScale: 0.9
 
 });
 
