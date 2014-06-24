@@ -1797,7 +1797,7 @@ $(document).ready(function(){
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[3]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>ipython nbconvert --to slides --template slides.tpl slides.ipynb
@@ -1818,7 +1818,7 @@ In&nbsp;[2]:
 [NbConvertApp] Converting notebook slides.ipynb to slides
 [NbConvertApp] Support files will be in slides_files/
 [NbConvertApp] Loaded template slides.tpl
-[NbConvertApp] Writing 310852 bytes to slides.slides.html
+[NbConvertApp] Writing 313269 bytes to slides.slides.html
 
 </pre>
 </div>
@@ -3372,7 +3372,11 @@ H = \Delta_{\text{zfs}} S_z^2 + \gamma_e (\vec{B} + \vec{\delta B}) \cdot \vec{S
 </div>
 
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><em>Gradient-ascent pulse engineering</em> (GRAPE) is a commonly used OCT algorithm that provides fast evaluation of</p>
+<p><em>Gradient-ascent pulse engineering</em> (GRAPE) is a commonly used OCT algorithm.</p>
+<ul>
+<li>Provides fast evaluation of <span class="math">\(\vec{\nabla}\Phi\)</span>.</li>
+<li>Uses gradient-ascent or conjugate-gradient to maximize <span class="math">\(\Phi\)</span>.</li>
+</ul>
 <p>However, GRAPE assumes linearity of classical control electronics (transfer function).</p>
 <p>(Khaneja et al., JMR <strong>172</strong> 2 296-305 <a href="http://doi.org/cg8cdh">10/cg8cdh</a>)</p>
 </div></section>
