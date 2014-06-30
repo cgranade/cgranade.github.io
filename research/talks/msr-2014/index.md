@@ -15,7 +15,7 @@ joint work with
  
 Presented 24 June, 2014 as a seminar at Sandia National Laboratories.
 
- > Slides: [HTML](slides.html) | [LaTeX](slides.tex)
+ > Slides: [PDF](slides.pdf) | [LaTeX](slides.tex)
 
 ## Abstract ##
 
