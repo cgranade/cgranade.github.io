@@ -15,7 +15,7 @@ joint work with
  
 Presented 24 June, 2014 as a seminar at Sandia National Laboratories.
 
- > Slides: [HTML](slides.html) | IPython Notebook: [download](slides.ipynb), [view online](http://nbviewer.ipython.org/github/cgranade/cgranade.github.io/blob/master/research/talks/sandia-2014/slides.ipynb)
+ > Slides: [HTML](slides.html) | [LaTeX](slides.tex)
 
 ## Abstract ##
 

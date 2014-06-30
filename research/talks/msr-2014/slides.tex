@@ -48,7 +48,7 @@
   Institute for Quantum Computing\\
   University of Waterloo, Ontario, Canada
 }
-% TODO: get date!
+
 \date[June 2014]{
   June 30, 2013 \\
   {\footnotesize Microsoft Research}
@@ -104,8 +104,6 @@
 
 \begin{frame}{Process Tomography}
   
-  % TODO: draw AAPT figure.
-
   Can also consider learning about quantum processes, $S : \rho_i \mapsto \rho_f$.
 
   \begin{itemize}
@@ -229,8 +227,6 @@
 \end{frame}
 
 \begin{frame}{Cram\'er-Rao Bound}
-
-  % TODO: consider adding \vec{e} here.
 
   The Fisher information
   \[
@@ -395,7 +391,6 @@
   With SMC and resampling, particles move towards the true model as data is collected.
   
   \begin{figure}
-    % TODO: fix these figures!
     \includegraphics<1>[width=0.6\textwidth]{1D_SMC_1_v2}
     \includegraphics<2>[width=0.6\textwidth]{1D_SMC_6_v2}
     \includegraphics<3>[width=0.6\textwidth]{1D_SMC_11_v2}
@@ -729,7 +724,7 @@
     Solution: couple unknown system is to a
     quantum simulator, then invert evolution by hypothesis $\vec{x}_-$.
     
-    \[ % TODO: remove Phi_dep.
+    \[
       \Qcircuit @R 1em @C 1.5em {
                         &                                      &                & \ustick{t, \vec{x}_-}                 &        &                &  \\
                         & \qw                                  & \qswap \qwx[1] & \gate{e^{+i H(\vec{x}_-) t}} \cwx[-1] & \meter & \rstick{d} \cw &  \\
@@ -974,7 +969,7 @@
   This \emph{guarantees} that error due to truncation is bounded if
   we choose small $t$.
 
-  \bottomnote{(Hastings and Koma 2006 \shortdoi{???}; Nachtergale and Sims 2006 \shortdoi{???})}
+  \bottomnote{(Hastings and Koma 2006 \shortdoi{cddqgz}; Nachtergale and Sims 2006 \shortdoi{d9xwfg})}
 
 \end{frame}
 
@@ -1031,7 +1026,7 @@
   be found at \url{http://www.cgranade.com/research/talks/msr-2014/}.
 
   \begin{figure}
-     %\includegraphics[width=0.4\textwidth]{link}
+     \includegraphics[width=0.4\textwidth]{link}
   \end{figure}
 
   \begin{block}{}
