@@ -386,6 +386,8 @@
 
 \end{frame}
 
+\subsection{Examples}
+
 \begin{frame}{Sequential Monte Carlo}
   
   With SMC and resampling, particles move towards the true model as data is collected.
@@ -462,6 +464,8 @@
   \bottomnote{(\emph{Granade}, Ferrie and Cory 2014 \arxiv{1404.5275})}
 
 \end{frame}
+
+\subsection{Applications}
 
 \begin{frame}{Method of Hyperparameters}
   
@@ -607,6 +611,8 @@
 
 \end{frame}
 
+\subsection{}
+
 \begin{frame}
   
   Main cost to SMC: simulation calls. $n$ each Bayes update.
@@ -623,6 +629,8 @@
   \end{block}
   
 \end{frame}
+
+\section[QHL]{Quantum Hamiltonian Learning}
 
 \subsection[Weak Sim.]{Weak and Strong Simulation}
 
@@ -665,6 +673,8 @@
   \bottomnote{(Ferrie and Blume-Kohout 2012 \shortdoi{tf2}, Ferrie and Granade 2014 \shortdoi{tdj})}
     
 \end{frame}
+
+\subsection[Likelihood]{Likelihood Evaluation}
 
 \begin{frame}{Quantum Likelihood Evaluation}
   
@@ -770,6 +780,8 @@
  
 \end{frame}
 
+\subsection{Results}
+
 \begin{frame}{Ising Model on Spin Chains}
 
     Hamiltonian: nearest-neighbor Ising models on a chain
@@ -872,12 +884,11 @@
 
 \end{frame}
 
-
 \section{Bootstrapping}
 
-\begin{frame}{Information Locality}
+\subsection{Overview}
 
-  % TODO: pick up adding references here.
+\begin{frame}{Information Locality}
   
   To go further, we want to \emph{localize} our experiment,
   such that we can simulate on a smaller system.
@@ -926,6 +937,8 @@
 
 \end{frame}
 
+\subsection{Example}
+
 \begin{frame}{Q50 Example}
 
   Goal: characterize a 50-qubit Ising model (complete graph) with unknown $ZZ$ couplings.
@@ -955,6 +968,8 @@
   NB: 1225 parameter model, $L_2$ error of $0.3\%$.
 
 \end{frame}
+
+\subsection{Non-Commuting $H$}
 
 \begin{frame}{Lieb-Robinson Bounds}
 
@@ -1010,7 +1025,6 @@
 \begin{frame}{}
 
   \begin{itemize}
-   % TODO: rewrite
    \item<+-> Bayesian inference: simulation as a characterization/validation resource.
    \item<+-> Sequential Monte Carlo: numerical algorithm for inference.
    \item<+-> Robust to many practical concerns.
