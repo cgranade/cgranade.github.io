@@ -1,0 +1,1201 @@
+\documentclass[xcolor=dvipsnames, compress]{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage{default}
+
+\usepackage{braket}
+\usepackage{bbm}
+\usepackage[uline]{hhtensor}
+\usepackage[absolute,overlay]{textpos}
+\usepackage{soul}
+
+\usecolortheme[named=Maroon]{structure} 
+\usetheme{Luebeck} 
+\usefonttheme{serif}
+\renewcommand\rmdefault{pplx}
+\setbeamertemplate{navigation symbols}{}
+\renewcommand\UrlFont{\color{red}\rmfamily\itshape}
+
+\newcommand{\shortdoi}[1]{\href{http://doi.org/#1}{\UrlFont 10/#1}}
+\newcommand{\arxiv}[1]{\href{https://scirate.com/arxiv/#1}{\UrlFont #1}}
+
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\OO}{\mathrm{O}}
+\newcommand{\T}{\mathrm{T}}
+\newcommand{\N}{\operatorname{N}}
+\newcommand{\Cov}{\operatorname{Cov}}
+\newcommand{\vecop}{\operatorname{vec}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\expect}{\mathbb{E}}
+\newcommand{\id}{\mathbbm{1}}
+\newcommand{\Hil}{\mathcal{H}}
+\newcommand{\swapgt}{\textsc{swap}}
+\newcommand{\defeq}{\mathrel{:=}}
+
+\input{Qcircuit}
+
+
+\title{Quantum Bootstrapping}
+\author[Granade, Wiebe, Ferrie and Cory]{
+  Christopher Granade  \\
+  {\tiny \url{www.cgranade.com/research/talks/msr-2014}} \\
+  \rule{0.35\textwidth}{0.125pt}\\
+  {\footnotesize Joint work with:}\\
+  Nathan Wiebe \and
+  Christopher Ferrie \and
+  D. G. Cory
+}
+\institute[IQC]{
+  Institute for Quantum Computing\\
+  University of Waterloo, Ontario, Canada
+}
+
+\date[July 2014]{
+  July 14, 2014 \\
+  {\footnotesize LFQIS 2014}
+}
+
+\newcommand{\bottomnote}[1]{
+  \begin{textblock*}{0.95\paperwidth} (0.025\paperwidth,8.9cm)
+    {\tiny \hfill #1}
+  \end{textblock*}
+}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+  \bottomnote{\shortdoi{abc} $\to$ \url{doi.org/abc} \textbullet \href{https://twitter.com/search?q=\%23lfqis2014}{\UrlFont \#lfqis2014}}
+\end{frame}
+
+\section{Introduction}
+\subsection{Overview}
+
+\begin{frame}{Q100}
+  
+  \begin{block}{}
+    We want to build a quantum computer.
+  \end{block}
+
+  \pause
+
+  Need to push past what a classical computer can do.
+  How do we get to 100 qubits?
+
+\end{frame}
+
+\begin{frame}{Building Large Systems: Computational Limits}
+
+  Computational limits affect many aspects of building
+  large quantum systems:
+
+  \begin{itemize}[<+->]
+    \item Characterization of $H$
+    \item Characterization of controls
+    \item \only<-4>{Design of control sequences} \only<5->{\color{gray} \st{Design of control sequences}}
+    \item Verification of control
+  \end{itemize}
+
+  \uncover<5->{
+    Here, we focus on characterization and verification.
+  }
+
+\end{frame}
+
+\begin{frame}{Bootstrapping to Q100}
+
+  Express challenges in terms of \emph{simulation}, then
+  use \alert<2>{quantum simulators}.
+
+  \begin{block}{}
+    Use small quantum simulators to characterize and verify
+    large devices, bootstrap up to Q100 scale.
+  \end{block}
+
+\end{frame}
+
+\begin{frame}{Outline}
+
+  \begin{itemize}[<+->]
+    \item Bayesian inference as platform
+    \begin{itemize}
+      \item Sequential Monte Carlo: algorithm for Bayesian inference
+      \item Generality and robustness of SMC
+    \end{itemize}
+    \item Hamiltonian learning w/ quantum resources
+    \item Bootstrapping Hamiltonian learning
+    \item Learning control distortions
+  \end{itemize}
+
+\end{frame}
+
+\section[Bayes]{Bayesian Inference}
+\subsection{Overview}
+
+\begin{frame}{Bayesian Approaches to Characterization and Control}
+
+  \begin{block}{Likelihood Function}
+  Model data collection as a probability distribution:
+    $$\Pr(d | \vec{x}; \vec{e})$$
+    \begin{center}
+      $d$: data, \quad $\vec{x}$: model, \quad $\vec{e}$: experiment
+    \end{center}
+  \end{block}
+
+  \pause
+  
+  \begin{example}
+    Larmor precession at an unknown $\omega$ and $T_2$:
+    \begin{equation*}
+      H(\omega) = \frac{\omega}{2} \sigma_z,\quad\ket{\psi_\text{in}} = \ket{+},\quad M = \{\ket{+}\bra{+}, \ket{-}\bra{-}\}
+    \end{equation*}
+    \begin{equation*}
+      \Pr(d = 0 | \vec{x} = (\omega, T_2); \vec{e} = (t)) = \frac{1}{2}(1 - e^{-t / T_2}) + e^{-t / T_2} \cos^2(\omega t / 2)
+    \end{equation*}
+
+  \end{example}
+
+\end{frame}
+
+\begin{frame}{Updating Knowledge}
+ 
+  Given a likelihood, we can reason about
+  \[
+    \Pr(\vec{x} | d, \vec{e}),
+  \]
+  what we know having seen some data.
+  
+  \pause\vskip0.5em
+
+  % Formatting solution courtesy of SE user egreg:
+  % http://tex.stackexchange.com/a/55503/615
+  \makebox[0pt][l]{By Bayes' Rule:}%
+  \makebox[\textwidth][c]{$
+    \alert<4>{\Pr(\vec{x} | d, \vec{e})} = \frac{\alert<3>{\Pr(d | \vec{x}; \vec{e})}}{\Pr(d | \vec{e})} \Pr(\vec{x}).
+  $}
+
+  $\Longrightarrow$ \alert<3>{Simulation} is a resource for \alert<4>{learning}.
+  
+  \uncover<5->{\vskip0.5em
+  
+  Estimate $\hat{\vec{x}}$ as the expectation over $\vec{x}$,
+  \[
+      \hat{\vec{x}} = \expect[\vec{x}] = \int \vec{x} \Pr(\vec{x}) \ \dd\vec{x}.
+  \]}
+
+
+\end{frame}
+
+\subsection{SMC Algorithm}
+
+
+\begin{frame}{Sequential Monte Carlo}
+
+  \textbf{SMC} (aka \emph{particle filter})\textbf{:} numerical algorithm for generating samples from a distribution,
+  using a transition kernel.
+
+  $$
+    \text{prior} \overset{\text{Bayes' Rule}}{\longrightarrow} \text{posterior}
+  $$
+
+  \vskip0.5em
+
+  Posterior samples then approximate $\int/\expect$.
+
+  \begin{block}{SMC Approximation}
+    $$
+      \Pr(\vec{x}) \approx \sum_i^n w_i \delta(\vec{x} - \vec{x}_i)
+    $$
+  \end{block}
+
+  \pause
+  \begin{description}
+    \item[QInfer] Open-source implementation for quantum info.
+  \end{description}
+  
+  \bottomnote{(Doucet and Johansen 2011; Huszár and Houlsby \shortdoi{s86}; \emph{Granade} et al. 2012 \shortdoi{s87})}
+\end{frame}
+
+\begin{frame}{Ambiguity and Impovrishment}
+
+  Ambiguity in SMC approximation:
+  \begin{figure}%
+    \makebox[\textwidth][c]{
+      \includegraphics[width=0.7\textwidth]{figures/impovrishment}
+    }
+
+    \vspace{-0.75em}%
+    \makebox[0.2\textwidth][c]{}%
+    \makebox[0.3\textwidth][c]{density}%
+    %\makebox[0.1\textwidth][c]{}%
+    \makebox[0.3\textwidth][c]{weight}%
+    \makebox[0.2\textwidth][c]{}
+  \end{figure}
+
+  \pause
+
+  Using weight is less numerically stable, results in smaller \emph{effective}
+  number of particles.
+
+  \[
+    n_{\text{ess}} \defeq 1 / \sum_i w_i^2
+  \]
+
+\end{frame}
+
+\begin{frame}{Numerical Stability and Resampling}
+
+  As data $D$ is collected, $\Pr(\vec{x}_i | D) \to 0$ for most
+  initial particles $\{x_i\}$.
+
+  \begin{itemize}
+    \item $\Rightarrow n_{\text{ess}} \to 0$ as data is collected.
+  \end{itemize}
+
+  \emph{Resampling}: move information from weights
+  to the density of SMC particles.
+
+  \begin{itemize}
+    \item Resampling when $n_{\text{ess}} / n \le 0.5$ preserves stability.
+    \item Monitoring $n_{\text{ess}}$ can herald some kinds of failures.
+  \end{itemize}
+
+\end{frame}
+ 
+\begin{frame}{Liu and West Algorithm}
+  
+  Draw new particles $\vec{x}'$ from kernel density estimate:
+  \begin{gather*}
+    \Pr(\vec{x}') \propto \sum_i w_i \exp\left((\vec{x}' - \vec{\mu}_i)^\T\matr{\Sigma}(\vec{x}' - \vec{\mu}_i)\right) \\
+    \vec{\mu}_i \defeq a \vec{x}_i + (1 - a) \mathbb{E}[\vec{x}] \qquad
+    \matr{\Sigma} \defeq h^2 \Cov[\vec{x}] \qquad
+    w_i' \defeq 1 / n
+  \end{gather*}
+
+  \pause
+
+  Parameters $a$ and $h$ can be set based on application:
+  \begin{itemize}
+    \item $a = 1, h = 0$: Bootstrap filter, used in state-space applications
+      like \textsc{Condensation}.
+    \item $a^2 + h^2 = 1$: Ensures $\expect[\vec{x}'] = \expect[\vec{x}]$
+      and $\Cov(\vec{x}') = \Cov(\vec{x})$, but assumes unimodality.
+    \item $a = 1, h \ge 0$: Allows for multimodality, emulating state-space
+      with synthesized noise.
+  \end{itemize}
+  
+  \bottomnote{(West 1993;  Isard and Blake 1998 \shortdoi{cc76f6}; Liu and West 2001)}
+  
+\end{frame}
+
+\begin{frame}{Putting it All Together: The SMC Algorithm}
+
+  \begin{enumerate}
+    \item Draw $\{\vec{x}_i\} \sim \pi$, set $\{w_i\} = 1/n$.
+    \item For each datum $d_j \in D$:
+    \begin{enumerate}
+      \item $w_i \gets w_i \times \Pr(d_j | \vec{x}_i; \vec{e}_j)$.
+      \item Renormalize $\{w_i\}$.
+      \item If $n_{\text{ess}} / n \le 0.5$, resample.
+    \end{enumerate}
+    \item Report $\hat{\vec{x}} \defeq \expect[\vec{x}] \approx \sum_i w_i \vec{x}_i$.
+  \end{enumerate}
+
+\end{frame}
+
+\subsection{Examples}
+
+\begin{frame}{Sequential Monte Carlo}
+  
+  With SMC and resampling, particles move towards the true model as data is collected.
+  
+  \begin{figure}
+    \includegraphics<1>[width=0.6\textwidth]{figures/1D_SMC_1_v2}
+    \includegraphics<2>[width=0.6\textwidth]{figures/1D_SMC_6_v2}
+    \includegraphics<3>[width=0.6\textwidth]{figures/1D_SMC_11_v2}
+  \end{figure}
+  
+\end{frame}
+
+\begin{frame}{}
+
+  Before bootstrapping, a few examples of SMC w/ classical resources:
+
+\end{frame}
+
+\begin{frame}{Near-Optimality for $\cos^2$}
+
+  Adaptive experiment design w/ Newton Conjugate-Gradient,
+  vs. optimum from Bayesian Cram\'er-Rao Bound:
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{figures/knownT2-10000-particles-mse} \\
+    \includegraphics[width=0.75\textwidth]{figures/knownT2-n-particles-mse-legend}
+  \end{figure}
+
+  \bottomnote{(\emph{Granade} et al. 2012 \shortdoi{s87})}
+
+\end{frame}
+
+\begin{frame}{Randomized Benchmarking Example}
+
+  Applying sequences of random Clifford gates \emph{twirls}
+  errors in a gateset, such that they can be simulated
+  using depolarizing channels.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/benchmarking-overview}
+  \end{figure}
+
+  \bottomnote{(Knill et al. 2008 \shortdoi{cxz9vm}; Magesan et al. 2012 \shortdoi{tfz}; Magesan et al. 2012 \shortdoi{s8j})}
+
+\end{frame}
+
+\begin{frame}{Randomized Benchmarking Example}
+
+  Interpret survival probability as likelihood.
+  For interleaved case, the lowest-order model is:
+  \[
+    \Pr(\text{survival} | A, B, \tilde{p}, p_{\text{ref}}; m, \text{mode}) =
+    \begin{cases}
+      A p_{\text{ref}}^m + B & \text{reference} \\
+      A (\tilde{p} p_{\text{ref}})^m + B & \text{interleaved}
+    \end{cases}
+  \]
+
+  \begin{description}
+    \item[$A,B$] state preparation and measurement
+    \item[$m$] sequence length
+    \item[$p_{\text{ref}}$] reference depolarizing parameter
+    \item[$\tilde{p}$] depolarizing parameter for gate of interest
+  \end{description}
+
+  \bottomnote{(\emph{Granade}, Ferrie and Cory 2014 \arxiv{1404.5275})}
+
+\end{frame}
+
+\begin{frame}{Randomized Benchmarking Example}
+
+  Using SMC, useful conclusions can be reached with significantly
+  less data than with least-squares fitting.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/risk-tr-comparison} \\
+    \includegraphics[width=0.8\textwidth]{figures/risk-comparison-legend-crop}
+  \end{figure}
+
+  \bottomnote{(\emph{Granade}, Ferrie and Cory 2014 \arxiv{1404.5275})}
+
+\end{frame}
+
+\begin{frame}{SMC in Nitrogen Vacancy Centers}
+
+  Would like to learn hyperfine coupling $\matr{A}$
+  between $e^{-}$ spin $\vec{S}$ and ${}^{13}\text{C}$ spin $\vec{I}$.
+
+  \begin{align*}
+    H(\vec{x}) & = \Delta_{\text{zfs}} S_z^2 + \gamma (\vec{B} + \vec{\delta B}) \cdot \vec{S} + \vec{S} \cdot \matr{A} \cdot \vec{I} \\
+    \vec{x} & = (\vec{\delta B}, \matr{A}, \alpha, \beta, T_{2,e}^{-1}, T_{2,C}^{-1}) \\
+    \alpha,\beta & : \text{visibility parameters}
+  \end{align*}
+
+  \pause
+
+  \begin{itemize}
+    \item Analytic estimate sensitive to error $\vec{\delta B}$ in static field.
+    \item Use multiple $\vec{B}$ settings to decorrelate $\vec{\delta B}$, $\matr{A}$.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+
+  % TODO: put NV figure in here.
+
+\end{frame}
+
+\subsection{More SMC}
+
+\begin{frame}{State-Space SMC}
+  
+  Can move particles
+  at each timestep $\vec{x}(t_k) \sim \Pr(\vec{x}(t_k) | \vec{x}(t_{k - 1}))$.
+
+  \vskip0.5em
+
+  This represents \emph{tracking} of a stochastic process.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/specdens-tracking}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}{Confidence and Credible Regions}
+
+    Characterizing uncertainty of estimates is critical
+    for many applications:
+
+    \only<1>{
+      \begin{definition}[Confidence Region]
+        $X_\alpha$ is an $\alpha$-confidence region if $\Pr_D(\vec{x}_0 \in X_\alpha(D)) \ge \alpha$.
+      \end{definition}
+    }
+
+    \only<2->{
+      \begin{definition}[Credible Region]
+        $X_\alpha$ is an $\alpha$-credible region if $\Pr_{\alert<+->{\vec{x}}}(\vec{x} \in X_\alpha | D) \ge \alpha$.
+      \end{definition}
+    }
+
+    \uncover<3->{
+      Credible regions can be calculated from posterior $\Pr(\vec{x} | D)$
+      by demanding
+      $$
+        \int_{X_\alpha} \dd\Pr(\vec{x} | D) \ge \alpha.
+      $$
+    }
+
+  \bottomnote{(\emph{Granade} et al. 2012 \shortdoi{s87}; Ferrie 2014 \shortdoi{tb4})}
+
+\end{frame}
+
+\begin{frame}{High Posterior Density}
+
+  Want credible regions that are \emph{small} (most powerful).
+
+  \begin{itemize}
+    \item Posterior covariance ellipses (PCE)--- good for approximately normal posteriors
+    \item Convex hull--- very general, but verbose description
+    \item Minimum volume enclosing ellipses (MVEE)--- good approximation to hull
+  \end{itemize}
+
+  \bottomnote{(\emph{Granade} et al. 2012 \shortdoi{s87}; Ferrie 2014 \shortdoi{tb4})}
+
+\end{frame}
+
+\begin{frame}{Comparison of HPD Estimators}
+
+  For multimodal distributions, clustering can be used
+  to exclude regions of small support.
+
+  For a noisy coin model (heads probability $p$, visibility $\eta$):
+
+  \begin{figure}
+    \includegraphics[width=0.6\textwidth]{figures/hpd-clusters}
+  \end{figure}
+
+  Left, no clustering. Right, DBSCAN.
+
+  \bottomnote{Plot courtesy of Chris Ferrie. (Ferrie 2014 \shortdoi{tb4})}
+
+\end{frame}
+
+\begin{frame}{Bayes Factors and Model Selection}
+
+  In SMC update $w_i \mapsto w_i \times \Pr(d | \vec{x}; \vec{e}) / \mathcal{N}$,
+  $$
+    \mathcal{N} \approx \Pr(d | \vec{e}).
+  $$
+
+  Running SMC updaters for distinct models $A$ and $B$, collecting normalizations
+  $\mathcal{N}_A$ and $\mathcal{N}_B$ at each step gives
+  $$
+    \text{BF} = \frac{\mathcal{N}_A}{\mathcal{N}_B} \approx \frac{\Pr(d | A; \vec{e})}{\Pr(d | B; \vec{e})}
+  $$
+
+  For full data record, can multiply normalization records to select $A$ versus $B$.
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tdk})}
+
+\end{frame}
+
+\begin{frame}
+
+  For example, deciding between linear- (left) and complete-graph (right) Ising models:
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.425\textwidth]{figures/modelselect_linetrue}
+    \includegraphics[width=0.425\textwidth]{figures/modelselect_completetrue}
+  \end{figure}
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tdk})}
+
+\end{frame}
+
+\subsection{}
+
+\begin{frame}{Towards Bootstrapping}
+  
+  SMC uses \emph{simulation} as a resource for \emph{learning}.
+
+  \vskip0.5em
+
+  Simulation calls: main cost to SMC ($n$ each Bayes update).
+
+  \vskip0.5em\pause
+  
+  \begin{block}{Big Idea}
+    Use quantum simulation to extend SMC past classical resources.
+  \end{block}
+  
+\end{frame}
+
+\section[QHL]{Quantum Hamiltonian Learning}
+
+\subsection[Weak Sim.]{Weak and Strong Simulation}
+
+\begin{frame}{Weak and Strong Simulation}
+
+  \begin{figure}
+    \includegraphics[width=2in]{figures/simulators}
+  \end{figure}
+
+  \pause \vskip0.5em
+  
+  Quantum simulation produces data, not likelihoods.
+  Must sample to estimate likelihood.
+  
+  \bottomnote{(Ferrie and Granade 2014 \shortdoi{tdj})}
+
+\end{frame}
+
+\begin{frame}{Adaptive Likelihood Estimation}
+
+  \begin{block}{Solution}
+    Treat estimating the likelihood as a secondary estimation
+    problem:
+
+    \vskip0.25em
+
+    Learn likelihood of untrusted system from frequencies of trusted system.
+  \end{block}
+
+  \pause
+
+  \vskip0.5em
+
+  SMC is robust to likelihood estimation errors, given enough particles.
+  
+  \bottomnote{(Ferrie and Blume-Kohout 2012 \shortdoi{tf2}, Ferrie and Granade 2014 \shortdoi{tdj})}
+    
+\end{frame}
+
+\begin{frame}{ALE Example: Two-Outcome Models}
+  
+  Given:
+  \begin{description}
+    \item[$d$] result of measurement
+    \item[$D'$] set of samples from weak simulator
+  \end{description}
+
+  Hedged binomial estimate of likelihood $\ell$
+  from frequency $k / K$:
+  \[
+    \hat{\ell} = \frac{k + \beta}{K + 2 \beta},
+  \]
+  where $\beta \approx 0.509$, $k \defeq |\{d' \in D' | d' = d\}|$, $K = |\{D'\}|$.
+  
+  \pause \vskip0.5em
+  
+  Variance well-known, so collect until a fixed \emph{tolerance} is reached.
+  
+  \bottomnote{(Ferrie and Blume-Kohout 2012 \shortdoi{tf2}, Ferrie and Granade 2014 \shortdoi{tdj})}
+\end{frame}
+
+\subsection[Likelihood]{Likelihood Evaluation}
+
+\begin{frame}{Quantum Likelihood Evaluation}
+  
+    Compare \emph{classical} outcomes of unknown and trusted
+    systems.
+  \[
+      \begin{matrix}
+  \text{Unknown System} &
+  &
+  \text{Simulator} \\
+  \vphantom{\rule{0pt}{2.5em}}\Qcircuit @R 1em @C 1.5em {
+        & \ustick{t}                                     &        &     \\
+      \lstick{\ket{\psi}} & \gate{e^{-i H(\vec{x}_0) t}} \cwx[-1] & \meter & \rstick{d} \cw
+  } &
+  \qquad &
+  \Qcircuit @R 1em @C 1.5em {
+        & \ustick{t, \vec{x}_i}                                     &        &     \\
+      \lstick{\ket{\psi}} & \gate{e^{-i H(\vec{x}_i) t}} \cwx[-1] & \meter & \rstick{D'_i} \cw
+  } 
+      \end{matrix}
+    \]
+
+    \vskip0.5em
+
+    For each $\vec{x}_i$:
+    \begin{itemize}
+      \item repeatedly sample from quantum simulation
+      of $\ee^{-\ii t \vec{x}_i}$, getting $D'_i$.
+      \item estimate $\hat{\ell_i}$ from $D'_i$.
+    \end{itemize}
+
+
+
+    \makebox[0pt][l]{SMC update:}%
+    \makebox[\textwidth][c]{$
+      w_i \mapsto w_i \hat{\ell}_i / \sum_i w_i \hat{\ell}_i.
+    $}
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tf3})}
+  
+    
+\end{frame}
+
+\begin{frame}
+
+  QLE can work, but as $t\to\infty$, $\Pr(d | \vec{x}; t) \rightsquigarrow 1 / \dim{\Hil}$.\\
+  Thus, $t \ge t_{\text{eq}}$ is uninformative.
+
+  \vskip0.5em
+
+  By CRB, error then scales as $\OO(1 / N t_{\text{eq}}^2)$.
+
+\end{frame}
+
+\begin{frame}{Interactive QLE}
+
+    Solution: couple unknown system is to a
+    quantum simulator, then invert evolution by hypothesis $\vec{x}_-$.
+    
+    \[
+      \Qcircuit @R 1em @C 1.5em {
+                        &                                      &                & \ustick{t, \vec{x}_-}                 &        &                &  \\
+                        & \qw                                  & \qswap \qwx[1] & \gate{e^{+i H(\vec{x}_-) t}} \cwx[-1] & \meter & \rstick{d} \cw &  \\
+    \lstick{\ket{\psi}} & \gate{e^{-i H(\vec{x}_0) t}} \cwx[1] & \qswap         & \qw                                   & \qw    & \qw            &  \\
+                        & \dstick{t}                           &                &                                       &        &                &
+      }
+    \]
+    \vskip1em\pause
+
+    \begin{block}{Echo}
+    If $\vec{x}_- \approx \vec{x}_0$, then
+    $\left|\braket{\psi | \ee^{-\ii t (H(\vec{x}_0) - H(\vec{x}_-))} | \psi}\right|^2 \approx 1$.
+    \end{block}
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tf3})}
+
+\end{frame}
+
+\begin{frame}{Posterior Guess Heuristic}
+ 
+    Inversion connects the model and experiment spaces.
+
+    Use this duality as a heuristic for experiment design.
+    
+    \begin{itemize}
+     \item Choose $\vec{x}_-, \vec{x}_-' \sim \Pr(\vec{x})$, the most recent posterior.
+     \item Choose $t = 1 / \|\vec{x}_- - \vec{x}_-'\|$.
+     \item Return $\vec{e} = (\vec{x}_-, t)$.
+    \end{itemize}
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tf3})}
+
+ 
+\end{frame}
+
+\begin{frame}{Alternate Interpretation}
+
+    QHL finds $\hat{\vec{x}}$ such that $H(\hat{\vec{x}})$ most closely
+    approximates ``unknown'' system $H_0$.
+
+    \vskip0.5em
+
+    Gives an $\alpha$-credible bound on error introduced by replacing $H_0 \to H(\hat{\vec{x}})$.
+
+\end{frame}
+
+\subsection{Results}
+
+\begin{frame}{Ising Model on Spin Chains}
+
+    Hamiltonian: nearest-neighbor Ising models on a chain
+    of nine qubits.
+
+    Interactivity allows for dramatic improvements over
+    QLE.
+    
+    \begin{figure}
+      \includegraphics[width=0.725\textwidth]{figures/poison}
+    \end{figure}
+
+    $\mathcal{P}$: adaptive likelihood estimation tolerance.
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tf3})}
+
+\end{frame}
+
+\begin{frame}{Ising Model on the Complete Graph}
+    
+    With IQLE, can also learn on complete interaction graphs.
+    We show the performance as a function of
+    the depolarization strength $\mathcal{N}$.
+    
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.45\textwidth]{figures/tpnoise}
+    \end{figure}
+
+    $\mathcal{N}$: depolarizing noise following SWAP gate.
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tdk})}
+    
+\end{frame}
+
+\begin{frame}{Ising Model with the Wrong Graph}
+
+  Simulate with spin chains, suppose ``true'' system is complete,
+  with non-NN couplings $\OO(10^{-4})$.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/badmodel}
+  \end{figure}
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tdk})}
+
+\end{frame}
+
+\begin{frame}{Scaling Parameter}
+
+  \begin{block}{}
+     $\dim \vec{x}$, not $\dim \Hil$, determines scaling of IQLE.
+  \end{block}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/corner}
+    \caption{4 qubit (red) and 6 qubit (blue) complete graph IQLE}
+  \end{figure}
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tf3})}
+
+\end{frame}
+
+\begin{frame}{Scaling and Dimensionality}
+
+    In spin-chain and complete graph, average error decays exponentially,
+    \[
+      L(N) \propto e^{-\gamma N}
+    \]
+    \pause
+    Assess scaling by finding $\gamma = \gamma(\dim\vec{x})$:
+    \begin{figure}
+      \includegraphics[width=0.55\textwidth]{figures/exp_scale}
+    \end{figure}
+    \vspace{-1.5em}
+    With quantum simulation, learning \emph{may} scale efficiently.
+
+  \bottomnote{(Wiebe, \emph{Granade}, Ferrie and Cory 2014 \shortdoi{tf3})}
+
+\end{frame}
+
+\begin{frame}
+
+  SMC + IQLE:
+
+  \begin{itemize}
+    \item Possibly scalable with quantum resources.
+    \item Robust to finite sampling.
+    \item Robust to approximate models.
+  \end{itemize}
+
+  \begin{block}{}
+    Still requires simulator be at least as large as system of interest.
+  \end{block}
+
+\end{frame}
+
+\section{Bootstrapping}
+
+\subsection{Overview}
+
+\begin{frame}{Information Locality}
+  
+  To go further, we want to \emph{localize} our experiment,
+  such that we can simulate on a smaller system.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/bootstrapping-partition}
+  \end{figure}
+
+  Measure on $X$, simulate on $W$, and ignore all terms with support
+  over $Y$.
+
+  \vskip0.5em
+  \pause
+
+  Gives \emph{approximate} model that can be used to learn Hamiltonian
+  restricted to $X$.
+
+\end{frame}
+
+\begin{frame}{Local and Global Particle Clouds}
+  
+  To reconstruct the entire system, we need to combine data from different partitions.
+  
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.7\textwidth]{figures/global-chain}
+  \end{figure}
+
+  Separate out one partition $W_k$ at a time, maintain a \emph{global} cloud of particles. 
+  
+\end{frame}
+
+\begin{frame}{Local and Global Particle Clouds}
+
+  Initialize $\{\vec{x}_i\}$ over entire system. Then, for each simulated subregister $W_k$:
+  \begin{enumerate}
+    \item Make ``local'' particle cloud $\{\vec{x}_i|_{W_k}\}$ by slicing $\{\vec{x}_i\}$.
+    \item Run SMC+IQLE with $\{\vec{x}_i|_{W_k}\}$ as a prior.
+    \item Ensure that the final ``local'' cloud has been resampled (has equal weights).
+    \item Overwrite parameters in ``global'' cloud $\{\vec{x}_i\}$ corresponding
+      to post-resampling $\{\vec{x}_i|_{W_k}\}$.
+  \end{enumerate}
+
+  In this way, all parameters are updated by an SMC run.
+
+\end{frame}
+
+\subsection{Example}
+
+\begin{frame}{Q50 Example}
+
+  Goal: characterize a 50-qubit Ising model (complete graph) with unknown $ZZ$ couplings.
+
+  \vskip0.5em
+
+  All Hamiltonian terms commute, but initial state doesn't.
+  Let $A_X$ be observable, $A_{X'}$ be sim. observable.
+
+  \begin{align*}
+    \|A_X(t) - A_{X'}(t)\| & \le \|A_X(t)\| (\ee^{2\|H|_{Y}\|t} - 1) \\
+    \Rightarrow t & \le \ln\left(\frac{\delta}{\|A_X(t)\|} + 1\right) (2\|H|_{Y}\|)^{-1},
+  \end{align*}
+
+  where $\delta$ is the tolerable likelihood error.
+
+\end{frame}
+
+\begin{frame}{Example Q50 Run}
+
+  \begin{figure}
+    \centering
+    \includegraphics<1>[width=1\textwidth]{figures/8outc2a-hist}
+    \includegraphics<2>[width=0.5\textwidth]{figures/q50-comparison}
+  \end{figure}
+
+  $|X_k| = 4$, $|W_k| = 8$, $n = 20,000$, $N = 500$, exp. decaying interactions.\\
+  NB: 1225 parameter model, $L_2$ error of $0.3\%$.
+
+\end{frame}
+
+\subsection{Non-Commuting $H$}
+
+\begin{frame}{Lieb-Robinson Bounds}
+
+  More generally, for $[H|_W, H_Y] \ne 0$, use \emph{Lieb-Robinson bound}.
+
+  If interactions between $X$ and $Y$ decay sufficiently quickly,
+  then there exists $C$, $\mu$ and $v$ s. t. for any observables $A_X(t)$, $B_Y$:
+  $$
+    \|[A_X(t), B_Y]\| \le C \|A_X(t)\| \|B_Y\| |X| |Y| (\ee^{v|t|} - 1) \ee^{-\mu d(X, Y)}
+  $$
+
+  This \emph{guarantees} that error due to truncation is bounded if
+  we choose small $t$.
+
+  \bottomnote{(Hastings and Koma 2006 \shortdoi{cddqgz}; Nachtergale and Sims 2006 \shortdoi{d9xwfg})}
+
+\end{frame}
+
+\begin{frame}{Lieb-Robinson Bounds}
+
+  Can find bound in terms of Hamiltonian by considering $H$ site-by-site.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/bootstrapping-partition-distance}
+  \end{figure}
+
+  Let $H_j$ be the Hamiltonian term containing distance-$j$
+  interactions between $W$ and $Y$, acting on sites $\Omega_j$.
+
+  $$
+    \|A(t) - \ee^{\ii H|_W t} A \ee^{-\ii H|_W t} \| \le
+    \sum_{j} C \|A\| \|H_j\| |X| |\Omega_j| \ee^{-\mu j} (\ee^{v |t|} - 1)
+  $$
+
+\end{frame}
+
+\begin{frame}{``Shaking''}
+
+  Can improve the Lieb-Robinson bound by alternating between simulator
+  and system. Using $r \approx vt$ $\swapgt$ gates, error is $\OO(t)$.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.8\textwidth]{figures/shaking}
+  \end{figure}
+
+\end{frame}
+
+\subsection[Control]{Learning Controls}
+
+\begin{frame}{Distortion Operators}
+
+  Control affected by classical system, \emph{distorts}
+  controls from intended pulse.
+
+  \[
+    H(t) = H(t; g[\vec{p}]),
+  \]
+  where $\vec{p}$ is a pulse, $\vec{q} = g[\vec{p}]$ is 
+  the distorted pulse.
+
+  \bottomnote{(Hincks, Granade, Borneman and Cory \emph{forthcoming})}
+
+\end{frame}
+
+\begin{frame}{Learning Controls with IQLE}
+  Learning $g$ is also important to bootstrapping. Suppose:
+  \begin{itemize}
+    \item $H \ne H(t)$
+    \item $g : \vec{y} \mapsto \vec{x}$ distorts static Hamiltonians
+    \item $g$ parameterized by $\vec{z}$ \[
+      H = H(\vec{x}) = H(g[\vec{y}; \vec{z}])
+    \]
+    \item Trusted simulator is characterized s.t.  arbitrary $g[\cdot; \vec{z}_i]$ can be simulated
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{IQLE Setup}
+
+  Experiment:
+  \[
+      \Qcircuit @R 1em @C 1.5em {
+                        &                                      &                & \ustick{t, \vec{y}_-}                 &        &                &  \\
+                        & \qw                                  & \qswap \qwx[1] & \gate{e^{+i H(g'[\vec{y}_-;\, \vec{z}_0']) t}} \cwx[-1] & \meter & \rstick{d} \cw &  \\
+    \lstick{\ket{\psi}} & \gate{e^{-i H(g[\vec{y};\, \vec{z}_0]) t}} \cwx[1] & \qswap         & \qw                                   & \qw    & \qw            &  \\
+                        & \dstick{t, \vec{y}}                           &                &                                       &        &                &
+      }
+  \] 
+
+  
+  \uncover<2->{\vskip1.5em
+    Simulator:
+
+    \[
+        \Qcircuit @R 1em @C 1.5em {
+                          & \ustick{t, \vec{y}'_i}             &\ustick{t, \vec{y}_-}                 &        &                &  \\
+      \lstick{\ket{\psi}} & \gate{e^{-i H(g'[\vec{y}'_i;\, \vec{z}'_0]) t}} \cwx[-1] &  \gate{e^{+i H(g'[\vec{y}_-;\, \vec{z}_0']) t}} \cwx[-1] & \meter & \rstick{d} \cw &
+        }
+    \]
+    where $g'[\vec{y}_i'; \vec{z}_0'] = g[\vec{y}; \vec{z}_i]$.
+  }
+
+\end{frame}
+
+\begin{frame}{Control/Distortion Duality}
+
+  Unknown rescaling example: $g[\vec{y}; \vec{z}] = \vec{y} \odot \vec{z}$.
+
+  Straightforward to invert:
+  \[    
+    \vec{y}_i' = \vec{y} \odot \vec{z}_i \oslash \vec{z}_0' \quad \Longrightarrow \quad
+    g'[\vec{y}_i'; \vec{z}_0'] = g[\vec{y}; \vec{z}_i]
+  \]
+  \vskip1.5em\pause
+  Shows duality between \emph{hypothesis} and \emph{simulation}.
+  \[
+    \begin{matrix}
+      \text{Experiment} & & \text{Simulation} \\ \hline
+      \begin{matrix}
+        \text{hypothesis}\,\vec{z}_i \\
+        \text{fixed}\,\vec{y}
+      \end{matrix} & \longleftrightarrow & \begin{matrix}
+        \text{fixed}\,\vec{z}_0' \\
+        \text{control}\,\vec{y}_i'
+      \end{matrix}
+    \end{matrix}
+  \]
+
+  \begin{block}{}
+    QHL: special case $\vec{y} = \vec{1}$.
+
+    What must we invert by to affect $\id$?
+  \end{block}
+
+\end{frame}
+
+\begin{frame}{Future: Bootstrapping for Control}
+
+  Same approach can be used to model cross-talk:
+  \[
+    \vec{z} = (\vecop{\matr{G}}, \vec{\epsilon}) \quad g[\vec{y}; \vec{z}] = \matr{G} \vec{y} + \vec{\epsilon}
+  \]
+  Parameter count can be reduced by restricting $\matr{G}$ (i.e.: tridiagonal).
+
+  \pause\vskip1em
+
+  Can quantum resources be applied to \emph{design} control?
+
+\end{frame}
+
+\section{Conclusions}
+
+\begin{frame}{}
+
+  \begin{itemize}
+   \item<+-> Bayesian inference: simulation as a characterization/validation resource.
+   \item<+-> Sequential Monte Carlo: numerical algorithm for inference.
+   \item<+-> Robust to many practical concerns.
+   \item<+-> Can use quantum simulation to offer potential scaling.
+   \item<+-> Using robustness of SMC, can truncate simulation $\to$ bootstrapping.
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}{Further Information}
+
+  Slides, a journal reference for this work, a full bibliography and a software implementation can
+  be found at \url{http://www.cgranade.com/research/talks/lfqis-2014/}.
+
+  \begin{figure}
+     \includegraphics[width=0.4\textwidth]{figures/link}
+  \end{figure}
+
+  \begin{block}{}
+    Thank you for your kind attention!
+  \end{block}
+\end{frame}
+
+
+\appendix 
+
+
+
+\begin{frame}{Decision Theory}
+
+  A few definitions help us evaluate estimates $\hat{\vec{x}}$ of $\vec{x}$:
+
+  \begin{description}[<+->]
+    \item[Loss]       How well have we learned?
+      $L_{\matr{Q}}(\hat{\vec{x}}, \vec{x}) \defeq (\hat{\vec{x}} - \vec{x})^{\T} \matr{Q} (\hat{\vec{x}} - \vec{x})$
+    \item[Risk]       On average, how well will we learn a particular model?\\
+      $R(\hat{\vec{x}}, \vec{x}) \defeq \expect_D [L(\hat{\vec{x}}(D), \vec{x})]$
+    \item[Bayes risk] On average, how well will we learn a range of models?\\
+      $r(\hat{\vec{x}}, \pi) = \expect_{\vec{x} \sim \pi}[R(\hat{\vec{x}}, \vec{x})]$
+    \item[Cram\'er-Rao Bound] On average, how well \emph{can} we learn?
+  \end{description}
+
+\end{frame}
+
+\begin{frame}{Cram\'er-Rao Bound}
+
+  \begin{block}{Fisher Information}
+    How much information about $\vec{x}$ is obtained
+    by sampling data?
+    \[
+      \matr{I}(\vec{x}) = \expect_D[
+        (\vec{\nabla}_{\vec{x}}\log\Pr(D | \vec{x}))
+        (\vec{\nabla}_{\vec{x}}\log\Pr(D | \vec{x}))^\T
+      ]
+    \]
+  \end{block}
+
+  \pause
+  
+  The Cram\'er-Rao Bound tells how well any unbiased estimator
+  can do. If $\matr{Q} = \id$, then
+  \[
+    R(\hat{\vec{x}}, \vec{x}) = \Tr(\Cov(\hat{\vec{x}})) \ge \Tr(\matr{I}(\vec{x})^{-1}).
+  \]
+
+  \bottomnote{(Ferrie, \emph{Granade} and Cory 2013 \shortdoi{tfx})}
+ 
+\end{frame}
+
+\begin{frame}{Bayesian Cram\'er-Rao Bound}
+
+  Expectation of Fisher information
+  over prior $\pi$: the \emph{Bayesian} Cram\'er-Rao bound.
+  \[
+    \matr{B} \defeq \expect_{\vec{x}\sim\pi} [ \matr{I}(\vec{x}) ], \quad r(\pi) \ge \matr{B}^{-1}
+  \]
+  For adaptive experiments, the posterior is used instead of the prior.
+  
+  \vskip0.25em
+
+  The BCRB can be computed iteratively: useful for
+  tracking optimality online.
+
+  \[
+    \matr{B}_{k + 1} = \matr{B}_{k} + \begin{cases}
+      \expect_{\vec{x} \sim \pi} [\matr{I}(\vec{x}; \vec{e}_{k+1})] & \text{(non-adaptive)} \\
+      \expect_{\vec{x} | d_1, \dots, d_k} [\matr{I}(\vec{x}; \vec{e}_{k+1})] & \text{(adaptive)}
+    \end{cases}
+  \]
+
+  \bottomnote{(Gill and Levit 1995; Ferrie, \emph{Granade} et al. 2012 \shortdoi{s87})}
+
+\end{frame}
+
+
+\begin{frame}{Method of Hyperparameters}
+  
+  If ``true'' model $\vec{x} \sim \Pr(\vec{x} | \vec{y})$,
+  for some \emph{hyperparameters} $\vec{y}$, can est.
+  $\vec{y}$ directly:
+  \[
+    \Pr(d | \vec{y}; \vec{e}) = \int \Pr(d | \vec{x}, \vec{y}; \vec{e})
+      \Pr(\vec{x} | \vec{y}; \vec{e})\ \dd\vec{x}.
+  \]
+
+  \pause \vskip0.5em
+  
+  \begin{example}
+    For Larmor precession with $\omega \sim \operatorname{Cauchy}(\omega_0, T_2^{-1})$,
+    \[
+      \Pr(d | (\omega_0, T_2^{-1}); t) = \ee^{-t T_2^{-1}}\cos^2(\omega_0 t / 2) + (1 - \ee^{-t T_2^{-1}}) / 2.
+    \]
+    Let $\vec{y} = (\omega_0, T_2^{-1})$.
+  \end{example}
+
+  \bottomnote{(\emph{Granade} et al. 2012 \shortdoi{s87})}
+  
+\end{frame}
+
+\begin{frame}{Hyperparameters and Region Estimation}
+
+  In some hyperparameter models, can also express as region
+  estimator on underlying parameters.
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.5\textwidth]{figures/hypernormal-excess-cov}
+    \caption{Larmor precession model w/ $\omega\sim\N(\mu, \sigma^2)$, three exp. design strategies}
+  \end{figure}
+
+  Critically, the covariance region for $\omega$ is not smaller
+  than the true covariance given by the hyperparameter $\sigma^2$.
+
+  \bottomnote{(\emph{Granade} et al. 2012 \shortdoi{s87})}
+
+\end{frame} 
+
+\end{document}
