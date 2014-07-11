@@ -1,6 +1,6 @@
 ---
 layout: page
-title: "Semiquantum Algorithms for Characterization and Verification"
+title: "Quantum Bootstrapping"
 description: ""
 ---
 {% include JB/setup %}
@@ -13,28 +13,17 @@ joint work with
 
  > Primarily based on [arXiv:1207.1655](https://scirate.com/arxiv/1207.1655), [arXiv:1404.5275](../../arb/), and on forthcoming work.
  
-Presented 1 July, 2014 as a presentation at Microsoft Research.
+Presented 18 July, 2014 as a talk at the Last Frontiers in Quantum Information Science workshop in Fairbanks, AK.
 
  > Slides: [PDF](slides.pdf) | [LaTeX](slides.tex)
 
 ## Abstract ##
 
-With the increasing scale and complexity of quantum information processing experiments,
-new methods are required to characterize and control quantum devices,
-and to verify the correct operation of those devices. In particular,
-the costs of simulating quantum systems are often a limiting factor in characterizaton
-tasks. In this talk, we show how to integrate quantum simulation resources into
-sequential Monte Carlo, and how this can alleviate some scaling concerns that
-arise in purely classical approaches. We demonstrate the practicality
-of our semiquantum algorithm by showing robustness to errors introduced
-by finite sampling, and by excluded terms in the trusted simulator.
-Finally, we discuss how to use this robustness together with Lieb-Robinson
-bounds in order to bootstrap, using smaller quantum resources to characterize
-larger devices.
+Coming soon.
 
 ## Bibliography ##
 
- > [View on Zotero](https://www.zotero.org/cgranade/items/collectionKey/Z8GEW5S7)
+ > [View on Zotero](https://www.zotero.org/cgranade/items/collectionKey/8Q8XCFST)
 
 ## Affiliations ##
 

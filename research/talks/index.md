@@ -7,9 +7,9 @@ description: ""
 
 # Upcoming Talks #
 
-- **14-18 July 2014**: [TBA](lfqis-2014/), [LFQIS 2014](http://lfqis.net/).
-- **June 2014**: [TBA](sandia-2014/), seminar at [Sandia National Laboratories](http://www.sandia.gov/).
-- **June 2014**: [TBA](msr-2014/), seminar at [Microsoft Research](http://research.microsoft.com/en-us/).
+- **14-18 July 2014**: [Quantum Bootstrapping](lfqis-2014/), [LFQIS 2014](http://lfqis.net/).
+- **1 July 2014**: [Semiquantum Algorithms for Characterization and Verification](msr-2014/), seminar at [Microsoft Research](http://research.microsoft.com/en-us/).
+- **24 June 2014**: [Practical Characterization and Control of Quantum Systems](sandia-2014/), seminar at [Sandia National Laboratories](http://www.sandia.gov/).
 
 # Previous Talks #
 ## 2014 ##
