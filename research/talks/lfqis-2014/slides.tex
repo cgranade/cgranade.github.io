@@ -409,23 +409,49 @@
   \begin{itemize}
     \item Analytic estimate sensitive to error $\vec{\delta B}$ in static field.
     \item Use multiple $\vec{B}$ settings to decorrelate $\vec{\delta B}$, $\matr{A}$.
+    \item Each experiment informs about multiple parameters
   \end{itemize}
 
 \end{frame}
 
 \begin{frame}{Preliminary Results from Rabi Experiment}
 
-  As a test, attempt to learn $\vec{\delta B}$, $\Delta_{\text{zfs}}$
-  $\delta\omega_{\text{Rabi}}$ and $A_N$ (coupling to nitrogen spin).
+  \only<1>{
+    As a test, attempt to learn $\vec{\delta B}$, $\Delta_{\text{zfs}}$
+    $\delta\omega_{\text{Rabi}}$ and $A_N$ (coupling to nitrogen spin).
+  }
 
-  \begin{figure}
-    \centering
-    % TODO \includegraphics[]{}
-  \end{figure}
+  \only<2->{
+    \begin{figure}
+      \centering
+      %\includegraphics[height=2.5cm]{figures/marginals5000_000}
+      \includegraphics<2>[height=3.5cm]{figures/simulation_fourier5000_000}
+      \includegraphics<3>[height=3.5cm]{figures/simulation_fourier5000_020}
+      \includegraphics<4>[height=3.5cm]{figures/simulation_fourier5000_486}
+      \includegraphics<5>[height=6cm]{figures/marginals5000_000}
+      \includegraphics<6>[height=6cm]{figures/marginals5000_020}
+      \includegraphics<7>[height=6cm]{figures/marginals5000_486}
+
+      \only<2>{Simulation with prior mean}
+      \only<3>{Simulation with posterior mean, 20 averages}
+      \only<4>{Simulation with posterior mean, 486 averages}
+      \only<5>{Marginals of prior}
+      \only<6>{Marginals of posterior, 20 averages}
+      \only<7>{Marginals of posterior, 486 averages}
+    \end{figure}
+
+    \bottomnote{Each average: 30k shots per point, 100 Rabi points + 200 Ramsey points}
+  }
 
 \end{frame}
 
 \subsection{More SMC}
+
+\begin{frame}
+
+  We can do a few more things with SMC, some of which will be very useful in the semiquantum case.
+
+\end{frame}
 
 \begin{frame}{State-Space SMC}
   
@@ -505,15 +531,22 @@
 
 \begin{frame}{Bayes Factors and Model Selection}
 
-  In SMC update $w_i \mapsto w_i \times \Pr(d | \vec{x}; \vec{e}) / \mathcal{N}$,
-  $$
-    \mathcal{N} \approx \Pr(d | \vec{e}).
-  $$
+  
+  \begin{block}{Drunk Under the Streetlights}
+    In SMC update $w_i \mapsto w_i \times \Pr(d | \vec{x}; \vec{e}) / \mathcal{N}$,
+    $$
+      \mathcal{N} = \mathcal{N}(d) \approx \Pr(d | \vec{e}).
+    $$
+    Is this useful?
+  \end{block}
 
-  Running SMC updaters for distinct models $A$ and $B$, collecting normalizations
-  $\mathcal{N}_A$ and $\mathcal{N}_B$ at each step gives
+  \pause
+
+  Collecting normalizations $\mathcal{N}_A$ and $\mathcal{N}_B$
+  for models $A$, $B$ at each step gives (assuming uniform prior over $A$, $B$)
   $$
-    \text{BF} = \frac{\mathcal{N}_A}{\mathcal{N}_B} \approx \frac{\Pr(d | A; \vec{e})}{\Pr(d | B; \vec{e})}
+    \text{Bayes factor} = \frac{\Pr(D | A; \vec{e})}{\Pr(D | B; \vec{e})}
+    \approx \frac{\prod_{d\in D}\mathcal{N}_A(d)}{\prod_{d\in D}\mathcal{N}_B(d)}
   $$
 
   For full data record, can multiply normalization records to select $A$ versus $B$.
@@ -586,11 +619,25 @@
 
   \pause
 
-  \vskip0.5em
+  SMC is robust to likelihood estimation errors.
 
-  SMC is robust to likelihood estimation errors, given enough particles.
-  
-  \bottomnote{(Ferrie and Blume-Kohout 2012 \shortdoi{tf2}, Ferrie and Granade 2014 \shortdoi{tdj})}
+\end{frame}
+
+\begin{frame}{Performance of SMC+ALE}
+
+  \textbf{Ex:} Simple `photodetector' model
+  $
+      \Pr(0 | p) = \alpha p + (1-p) \beta
+  $
+  \begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{figures/nc_risk_v_ale_eps}
+  \end{figure}
+  \begin{description}
+      \item[$\alpha,\beta$] known bright, dark references
+  \end{description}
+
+  \bottomnote{(Ferrie and Granade 2014 \shortdoi{tdj})}
     
 \end{frame}
 
@@ -673,7 +720,7 @@
 
 \begin{frame}{Interactive QLE}
 
-    Solution: couple unknown system is to a
+    Solution: couple unknown system to a
     quantum simulator, then invert evolution by hypothesis $\vec{x}_-$.
     
     \[
@@ -973,6 +1020,14 @@
   where $\vec{p}$ is a pulse, $\vec{q} = g[\vec{p}]$ is 
   the distorted pulse.
 
+  \pause
+
+  \begin{itemize}[<+->]
+      \item Resonator transfer function
+      \item Cross-talk of control lines
+      \item Phase calibration / reference frame
+  \end{itemize}
+
   \bottomnote{(Hincks, Granade, Borneman and Cory \emph{forthcoming})}
 
 \end{frame}
@@ -987,6 +1042,10 @@
     \]
     \item Trusted simulator is characterized s.t.  arbitrary $g[\cdot; \vec{z}_i]$ can be simulated
   \end{itemize}
+
+  \pause 
+
+  Doesn't help with all distortions, but covers a range of important cases.
 \end{frame}
 
 \begin{frame}{IQLE Setup}
@@ -1055,6 +1114,10 @@
     \vec{z} = (\vecop{\matr{G}}, \vec{\epsilon}) \quad g[\vec{y}; \vec{z}] = \matr{G} \vec{y} + \vec{\epsilon}
   \]
   Parameter count can be reduced by restricting $\matr{G}$ (i.e.: tridiagonal).
+
+  \vskip0.25em
+
+  Extend to learning time-dependent distortions?
 
   \pause\vskip1em
 
