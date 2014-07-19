@@ -40,7 +40,7 @@
 \title{Quantum Bootstrapping}
 \author[Granade, Wiebe, Ferrie and Cory]{
   Christopher Granade  \\
-  {\tiny \url{www.cgranade.com/research/talks/msr-2014}} \\
+  {\tiny \url{www.cgranade.com/research/talks/lfqis-2014}} \\
   \rule{0.35\textwidth}{0.125pt}\\
   {\footnotesize Joint work with:}\\
   Nathan Wiebe \and
@@ -53,7 +53,7 @@
 }
 
 \date[July 2014]{
-  July 14, 2014 \\
+  July 18, 2014 \\
   {\footnotesize LFQIS 2014}
 }
 
@@ -67,7 +67,7 @@
 
 \begin{frame}[plain]
   \titlepage
-  \bottomnote{\shortdoi{abc} $\to$ \url{doi.org/abc} \textbullet \href{https://twitter.com/search?q=\%23lfqis2014}{\UrlFont \#lfqis2014}}
+  \bottomnote{\shortdoi{abc} $\to$ \url{doi.org/abc} \textbullet~\href{https://twitter.com/search?q=\%23lfqis2014}{\UrlFont \#lfqis2014}}
 \end{frame}
 
 \section{Introduction}
@@ -409,7 +409,7 @@
   \begin{itemize}
     \item Analytic estimate sensitive to error $\vec{\delta B}$ in static field.
     \item Use multiple $\vec{B}$ settings to decorrelate $\vec{\delta B}$, $\matr{A}$.
-    \item Each experiment informs about multiple parameters
+    \item Each experiment informs about multiple parameters.
   \end{itemize}
 
 \end{frame}
@@ -442,6 +442,24 @@
 
     \bottomnote{Each average: 30k shots per point, 100 Rabi points + 200 Ramsey points}
   }
+
+\end{frame}
+
+\begin{frame}{SMC and Hamiltonian Learning as Vector Metrology}
+
+  In the previous example, $\delta B_x$ and $\delta B_y$ manifest
+  as effective Hamiltonian by Floquet theory.
+
+  \pause
+
+  \begin{block}{}
+    Each experiment carries phase information about $\vec{\delta B}$.
+
+    \vskip0.5em
+
+    SMC uses this to learn vector quantities: we do not require
+    that each component of $\vec{\delta B}$ be measured seperately.
+  \end{block}
 
 \end{frame}
 
@@ -543,10 +561,11 @@
   \pause
 
   Collecting normalizations $\mathcal{N}_A$ and $\mathcal{N}_B$
-  for models $A$, $B$ at each step gives (assuming uniform prior over $A$, $B$)
+  for models $A$, $B$ at each step gives
   $$
-    \text{Bayes factor} = \frac{\Pr(D | A; \vec{e})}{\Pr(D | B; \vec{e})}
+    \text{Bayes factor} = \frac{\Pr(D | A; \vec{e}) \Pr(A)}{\Pr(D | B; \vec{e}) \Pr(B)}
     \approx \frac{\prod_{d\in D}\mathcal{N}_A(d)}{\prod_{d\in D}\mathcal{N}_B(d)}
+    \times \frac{\Pr(A)}{\Pr(B)} 
   $$
 
   For full data record, can multiply normalization records to select $A$ versus $B$.
@@ -591,18 +610,25 @@
 
 \subsection[Weak Sim.]{Weak and Strong Simulation}
 
-\begin{frame}{Weak and Strong Simulation}
+\begin{frame}{Weak and Strong \only<3->{Analog[ue]? }Simulation}
 
   \begin{figure}
     \includegraphics[width=2in]{figures/simulators}
   \end{figure}
 
-  \pause \vskip0.5em
+  \vskip0.5em
   
-  Quantum simulation produces data, not likelihoods.
-  Must sample to estimate likelihood.
+  \uncover<2->{
+    Quantum simulation produces data, not likelihoods.
+    Must sample to estimate likelihood.
+  }
+
+  \vskip0.5em
+  \uncover<3->{
+    Potential application for analog[ue] simulators?
+  }
   
-  \bottomnote{(Ferrie and Granade 2014 \shortdoi{tdj})}
+  \bottomnote{(Ferrie and \emph{Granade} 2014 \shortdoi{tdj})}
 
 \end{frame}
 
