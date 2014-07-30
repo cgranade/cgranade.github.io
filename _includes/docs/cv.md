@@ -3,6 +3,7 @@
 
 - Statistical inference for quantum information applications.
 - Control and simulation of noisy quantum systems.
+- Algorithms for using quantum resources to characterize and control.
 - Applications of error correction and prevention.
 
 ## Academic History ##
@@ -73,7 +74,7 @@ projects:
 
 - Complexity Zoo
 - [QuaEC](http://github.com/cgranade/python-quaec)
-- [Qinfer](http://github.com/csferrie/python-qinfer)
+- [QInfer](http://github.com/csferrie/python-qinfer)
 - [Quantum Utils for MATLAB](https://github.com/CoryGroup/quantum-utils-matlab)
 
 ## Awards and Honors ##
