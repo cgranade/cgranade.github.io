@@ -5,15 +5,16 @@ description: ""
 ---
 {% include JB/setup %}
 
+<!--
 # Upcoming Talks #
-
-- **14-18 July 2014**: [Quantum Bootstrapping](lfqis-2014/), [LFQIS 2014](http://lfqis.net/).
-- **1 July 2014**: [Semiquantum Algorithms for Characterization and Verification](msr-2014/), seminar at [Microsoft Research](http://research.microsoft.com/en-us/).
-- **24 June 2014**: [Practical Characterization and Control of Quantum Systems](sandia-2014/), seminar at [Sandia National Laboratories](http://www.sandia.gov/).
+-->	
 
 # Previous Talks #
 ## 2014 ##
 
+- [Quantum Bootstrapping](lfqis-2014/), presented as a talk at [LFQIS 2014](http://lfqis.net/).
+- [Semiquantum Algorithms for Characterization and Verification](msr-2014/), presented as a seminar at [Microsoft Research](http://research.microsoft.com/en-us/).
+- [Practical Characterization and Control of Quantum Systems](sandia-2014/), presented as a seminar at [Sandia National Laboratories](http://www.sandia.gov/).
 - [Accelerated Randomized Benchmarking](../arb/), presented as a student seminar at [IQC](http://iqc.uwaterloo.ca).
 - [Characterizing and Verifying 100-Qubit Scale Quantum Computers](unm-2014/), presented as a [seminar at CQuIC](https://panda.unm.edu/pandaweb/events/index.php?display=event&event_id=5014) on 26 February 2014.
 
