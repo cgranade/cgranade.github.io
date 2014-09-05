@@ -12,7 +12,7 @@ description: ""
 # Previous Talks #
 ## 2014 ##
 
-- [Quantum Bootstrapping](lfqis-2014/), presented as a talk at [LFQIS 2014](http://lfqis.net/).
+- *Quantum Bootstrapping*, presented as a [talk](lfqis-2014/) at [LFQIS 2014](http://lfqis.net/), and at the [University of Sydney](usydney-2014/).
 - [Semiquantum Algorithms for Characterization and Verification](msr-2014/), presented as a seminar at [Microsoft Research](http://research.microsoft.com/en-us/).
 - [Practical Characterization and Control of Quantum Systems](sandia-2014/), presented as a seminar at [Sandia National Laboratories](http://www.sandia.gov/).
 - [Accelerated Randomized Benchmarking](../arb/), presented as a student seminar at [IQC](http://iqc.uwaterloo.ca).
