@@ -19,6 +19,12 @@ Many of these can be found on [my GitHub profile](https://github.com/cgranade).
 - [pymex-embed](https://github.com/cgranade/pymex-embed): Embedding of the
   CPython interpeter into MATLAB.
 
+Additionally, I contribute to the following software projects:
+
+ - [InstrumentKit](https://github.com/Galvant/InstrumentKit): Instrument
+   control software for Python.
+ - [QuTiP](https://github.com/qutip/qutip): Quantum Toolbox in Python.
+
 #### Gaming Software ####
 - [hero_init](https://github.com/cgranade/hero_init): Initiative tracker for
   the HERO System Sixth Edition tabletop roleplaying game (RPG).
