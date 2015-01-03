@@ -12,7 +12,7 @@ description: ""
 # Previous Talks #
 ## 2014 ##
 
-- *Quantum Bootstrapping*, presented as a [talk](lfqis-2014/) at [LFQIS 2014](http://lfqis.net/), and at the [University of Sydney](usydney-2014/).
+- [Quantum Bootstrapping](../qbs/), presented as a [talk](lfqis-2014/) at [LFQIS 2014](http://lfqis.net/), and at the [University of Sydney](usydney-2014/).
 - [Semiquantum Algorithms for Characterization and Verification](msr-2014/), presented as a seminar at [Microsoft Research](http://research.microsoft.com/en-us/).
 - [Practical Characterization and Control of Quantum Systems](sandia-2014/), presented as a seminar at [Sandia National Laboratories](http://www.sandia.gov/).
 - [Accelerated Randomized Benchmarking](../arb/), presented as a student seminar at [IQC](http://iqc.uwaterloo.ca).
@@ -20,7 +20,7 @@ description: ""
 
 ## 2013 ##
 
-- [Quantum Hamiltonian Learning](qhl/), presented as a poster at [Q100 2013](http://researcher.watson.ibm.com/researcher/view_project.php?id=4847) and [SQuInT 2014](http://panda.unm.edu/SQuInT/).
+- [Quantum Hamiltonian Learning](../qhl/), presented as a poster at [Q100 2013](http://researcher.watson.ibm.com/researcher/view_project.php?id=4847) and [SQuInT 2014](http://panda.unm.edu/SQuInT/).
 - [Parameter Estimation for Quantum Information](talks/lfqis2013/), presented as a talk at LFQIS 2013.
 - [Robust Online Hamiltonian Learning](rohl/), presented as a poster at [TQC 2013](http://www.uoguelph.ca/quigs/tqc2013/), and as a contributed talk at [DAMOP 2013](http://www.aps.org/units/damop/meetings/annual/).
 
