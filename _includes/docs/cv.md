@@ -31,28 +31,28 @@
 - *Quantum Bootstrapping via Compressed Quantum Hamiltonian Learning*, Nathan Wiebe, **Christopher E. Granade**, David G. Cory.
    > [arXiv:1409.1524](https://scirate.com/arxiv/1409.1524)
 
-- *Accelerated Randomized Benchmarking*, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
-    > [arXiv:1404.5275](http://arxiv.org/abs/1404.5275) | To appear in New Journal of Physics.
+- *Accelerated Randomized Benchmarking*, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory. New Journal of Physics **17** 013042.
+    > [doi:10.1088/1367-2630/17/1/013042](http://dx.doi.org/10.1088/1367-2630/17/1/013042) | [arXiv:1404.5275](http://arxiv.org/abs/1404.5275)
 
 - *Quantum Hamiltonian Learning Using Imperfect Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory. Physical Review A **89** 042314.
     > [arXiv:1311.5269](http://arxiv.org/abs/1311.5269) | [doi:10.1103/PhysRevA.89.042314](http://dx.doi.org/10.1103/PhysRevA.89.042314)
 
-- *Likelihood-Free Methods for Quantum Parameter Estimation*, Christopher Ferrie, **Christopher E. Granade**.
+- *Likelihood-Free Methods for Quantum Parameter Estimation*, Christopher Ferrie, **Christopher E. Granade**. Physical Review Letters **112** 130402.
     > [arXiv:1304.5828](http://arxiv.org/abs/1304.5828) | [doi:10.1103/PhysRevLett.112.130402](http://dx.doi.org/10.1103/PhysRevLett.112.130402)
 
-- *Tractable Simulation of Quantum Error Correction with Honest Approximations to Realistic Fault Models*, Daniel Puzzuoli, **Christopher E. Granade**, Holger Haas, Ben Criger, Easwar Magesan, D. G. Cory. Physical Review A 89, 022306.
+- *Tractable Simulation of Quantum Error Correction with Honest Approximations to Realistic Fault Models*, Daniel Puzzuoli, **Christopher E. Granade**, Holger Haas, Ben Criger, Easwar Magesan, D. G. Cory. Physical Review A **89** 022306.
     > [arXiv:1309.4717](http://arxiv.org/abs/1309.4717) | [doi:10.1103/PhysRevA.89.022306](http://dx.doi.org/10.1103/PhysRevA.89.022306)
 
-- *Hamiltonian Learning and Certification Using Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory.
+- *Hamiltonian Learning and Certification Using Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory. Physical Review A **89** 042314.
     > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876) | [doi:10.1103/PhysRevA.89.042314](http://dx.doi.org/10.1103/PhysRevA.89.042314)
 
 #### 2012 ####
 
-- *Robust Online Hamiltonian Learning*, **Christopher E. Granade**, Christopher Ferrie, Nathan Wiebe, David G. Cory.
+- *Robust Online Hamiltonian Learning*, **Christopher E. Granade**, Christopher Ferrie, Nathan Wiebe, David G. Cory. New Journal of Physics **14** 103013.
     > [doi:10.1088/1367-2630/14/10/103013](http://dx.doi.org/10.1088/1367-2630/14/10/103013) | [arXiv:1207.1655](http://arxiv.org/abs/1207.1655)
     
 - *Modeling quantum noise for efficient testing of fault-tolerant circuits*, Easwar Magesan, Daniel Puzzuoli, **Christopher E. Granade**, David G. Cory.
-  Physical Review A 87, 012324.
+  Physical Review A **87** 012324.
     > [doi:10.1103/PhysRevA.87.012324](http://dx.doi.org/10.1103/PhysRevA.87.012324) | [arXiv:1206.5407](http://arxiv.org/abs/1206.5407)
 
 #### 2011 ####
@@ -67,7 +67,7 @@
     > [doi:10.1007/s11128-012-0407-6](http://dx.doi.org/10.1007/s11128-012-0407-6) | [arXiv:1110.3067](http://arxiv.org/abs/1110.3067)
 
 - *Parallel Information Transfer in a Multi-Node Quantum Information Processor*, Troy W. Borneman, **Christopher E. Granade**, David G. Cory.
-  Physics Review Letters 108 140502.
+  Physics Review Letters **108** 140502.
     > [doi:10.1103/PhysRevLett.108.140502](http://dx.doi.org/10.1103/PhysRevLett.108.140502) | [arXiv:1107.4333](http://arxiv.org/abs/1107.4333)
 
 #### 2009 ####
