@@ -23,7 +23,7 @@ In this work we combine two distinct machine learning methodologies, sequential 
 implementation of the algorithm presented in this work, is
 [available from GitHub](https://github.com/csferrie/python-qinfer).
 
-<iframe width="420" height="315" src="https://www.youtube.com/embed/4EiD8JcCSlQ&rel=0" frameborder="0" allowfullscreen></iframe>
+<iframe width="420" height="315" src="https://www.youtube.com/embed/4EiD8JcCSlQ" frameborder="0" allowfullscreen></iframe>
 
 [[source code for above demo](http://nbviewer.ipython.org/url/www.cgranade.com/research/rohl/demos/animated_multicos.ipynb)]
 
