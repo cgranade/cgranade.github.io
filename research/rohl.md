@@ -17,11 +17,15 @@ Presented as a contributed talk at [DAMOP 2013](http://www.aps.org/units/damop/m
 
 In this work we combine two distinct machine learning methodologies, sequential Monte Carlo and Bayesian experimental design, and apply them to the problem of inferring the dynamical parameters of a quantum system. We design the algorithm with practicality in mind by including parameters that control trade-offs between the requirements on computational and experimental resources. The algorithm can be implemented online (during experimental data collection), avoiding the need for storage and post-processing. Most importantly, our algorithm is capable of learning Hamiltonian parameters even when the parameters change from experiment-to-experiment, and also when additional noise processes are present and unknown. The algorithm also numerically estimates the Cramer-Rao lower bound, certifying its own performance.
 
-## Software Resources ##
+## Software Resources and Demonstrations ##
 
 [**QInfer**](https://github.com/csferrie/python-qinfer), a Python-language
 implementation of the algorithm presented in this work, is
 [available from GitHub](https://github.com/csferrie/python-qinfer).
+
+<iframe width="420" height="315" src="https://www.youtube.com/embed/4EiD8JcCSlQ&rel=0" frameborder="0" allowfullscreen></iframe>
+
+[[source code for above demo](http://nbviewer.ipython.org/url/www.cgranade.com/research/rohl/demos/animated_multicos.ipynb)]
 
 ## Bibliography ##
 
