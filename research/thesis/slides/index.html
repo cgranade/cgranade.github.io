@@ -212,7 +212,7 @@
 					</p>
 
 					\begin{align}
-						\Pr(\vec{x}) & = \sum_i w_i \Pr(\vec{x}_i) \\
+						\Pr(\vec{x}) & = \sum_i w_i \delta(\vec{x} - \vec{x}_i) \\
 						w_i & \mapsto w_i \times \Pr(\text{data} | \vec{x}_i) / \mathcal{N}
 					\end{align}
 				</section>
@@ -238,7 +238,7 @@
 				</section>
 
 				<section>
-					<h3>Near-Optimal Performance for $\cos^2(\omega t / 2)$</h3>
+					<h3>Near-Optimal Performance for $H = \sigma_z / 2$</h3>
 					<p>
 						<img data-src="figures/knownT2-10000-particles-mse.png"><br>
 						<img data-src="figures/knownT2-n-particles-mse-legend.png">
@@ -282,15 +282,15 @@
 					</p>
 
 					<p>
-						<small>Reference: $m\in\{1, 2, \dots, 100\}$, Interleaved: $m \in \{1, 2, \dots, 50\}$.</small>
+						<small>Reference: $m\in\{1, 2, \dots, 100\}$, interleaved: $m \in \{1, 2, \dots, 50\}$.</small>
 					</p>
 
 					<p>
-						We use prior information to accelerate learning.
+						We use prior information to accelerate learning. Essential for use in optimal control.
 					</p>
 
 					<p class="fragment">
-						Bonus: we provide <span class="fragment highlight-red">error bars</span>.
+						Bonus: the estimates we obtain have <span class="fragment highlight-red">finite error bars</span>.
 					</p>
 				</section>
 
@@ -337,25 +337,38 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 					</p>
 				</section>
 
-				<section data-markdown>
-					### SMC and QHL are Robust ###
+				<section>
+					<h3>Sequential Monte Carlo and QHL are Robust</h3>
 					
-					- Sampling error
-					- Imperfect coupling
-					- Approximate models
+					We obtain accurate results even with
+					<span class="fragment">sampling error</span><span class="fragment">,
+					imperfect coupling</span><span class="fragment">, and
+					<span class="fragment highlight-red">approximate models</span>.</span>
 				</section>
 
 				<section>
-					<h2>Memetic Algorithms for Optimal Control</h2>
+					<p>
+						Once we have characterized a quantum device, how do we <em>control</em> it?
+					</p>
+
+					<p class="fragment">
+						Gradient-ascent optimal control methods use structure of problem.
+						We want something <em>black box</em>.					
+					</p>
 				</section>
 
-				<section data-markdown>
-					Gradient-ascent methods use structure of problem.
-					We want something <em>black box</em>.
-
-					### Genetic Algorithms ###
+				<section>
 					
-					Population-based, ideal for *multi-objective* case.
+					<p>
+						We use <em>genetic</em> crossover and mutation steps to find
+						optimal control.
+					</p>
+
+					<p>
+						Population-based, ideal for <em>multi-objective</em> case.
+					</p>
+
+
 				</section>
 
 				<section>
@@ -423,6 +436,15 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 				</section>
 
 				<section>
+					<p>
+						Adding quantum resources to characterization and control algorithms
+						thus yields semiquantum algorithms.
+					</p>
+
+					<p>
+						We can go further by building on physical insights…
+					</p>
+
 					<h2>Quantum Bootstrapping</h2>
 				</section>
 
