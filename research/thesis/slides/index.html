@@ -253,7 +253,7 @@
 					</p>
 
 					<figure>
-						<img data-src="figures/rb-0order-deriv.svg">
+						<img data-src="figures/rb-0order-deriv.png">
 						<figcaption>
 							<small>Sketch of Magesan <em>et al</em> derivation.</small>
 						</figcaption>
@@ -278,7 +278,7 @@
 
 				<section>
 					<p>
-						<img data-src="figures/risk-tr-comparison.svg">
+						<img data-src="figures/risk-tr-comparison.png">
 					</p>
 
 					<p>
@@ -286,11 +286,13 @@
 					</p>
 
 					<p>
-						We use prior information to accelerate learning. Essential for use in optimal control.
+						We use prior information to accelerate learning.<br>
+						Essential for use in optimal control.
 					</p>
 
 					<p class="fragment">
-						Bonus: the estimates we obtain have <span class="fragment highlight-red">finite error bars</span>.
+
+						Bonus: the estimates we obtain have <span class="fragment highlight-red">meaningful error bars</span>.
 					</p>
 				</section>
 
@@ -319,21 +321,21 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 					</p>
 
 					<p>
-						<img data-src="figures/qle_iqle_circuits.svg">
+						<img data-src="figures/qle_iqle_circuits.png">
 					</p>
 				</section>
 
 				<section>
 					<h3>Scaling for Complete Ising Graph</h3>
 					<figure>
-						<img data-src="figures/complete_scaling.svg" height="400">
+						<img data-src="figures/complete_scaling.png" height="400">
 					</figure>
 				</section>
 
 				<section>
 					<h3>Scaling with Model Dimension</h3>
 					<p>
-						<img data-src="figures/exp_scale.svg" height="500">
+						<img data-src="figures/exp_scale.png" height="500">
 					</p>
 				</section>
 
@@ -389,7 +391,7 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 					</p>
 
 					<p>
-						<img data-src="figures/trivial-pareto-projection.svg">
+						<img data-src="figures/trivial-pareto-projection.png" height="450">
 					</p>
 				</section>
 
@@ -402,13 +404,24 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 
 					<p>
 						\begin{align}
-							\vec{\nabla} f & \approx \frac{f(\vec{p} + \beta \vec{\Delta}) - f(\vec{p} - \beta \vec{\Delta})}{2 \beta} \\
-							       \vec{p} & \mapsto \vec{p} + \alpha \vec{\nabla} f
+							\vec{\nabla} f \cdot \vec{\Delta} & \approx \frac{f(\vec{p} + \beta \vec{\Delta}) - f(\vec{p} - \beta \vec{\Delta})}{2 \beta} \\
+							       \vec{p} & \mapsto \vec{p} + \alpha \vec{\nabla} f \cdot \vec{\Delta}
 						\end{align}
 					</p>
 
 					<p>
 						<small>$\vec{\Delta}$: random $\pm 1$ vector, $\alpha, \beta$: approximation parameters</small>
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Calculating gradients is hard. Projecting $\vec{\nabla} f$ onto a random vector takes 2 calls.
+					</p>
+
+					<p>
+						$\alpha, \beta \to 0$ as algorithm proceeds; can bound effect of memetic steps to provide
+						prior information to benchmarking oracle.
 					</p>
 				</section>
 
@@ -427,11 +440,33 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 				</section>
 
 				<section>
+					
+					<h3>Example: $\left.\frac{\pi}{2}\right)_x$</h3>
+
+					<p>
+						We consider controls up to $70$ MHz, but we want robustness to $\pm 100$ kHz
+						static field, ringdown distortion, imperfect measurement of distortion.
+					</p>
+
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/example-ga-qcp-view.png" height="450">
+					</p>
+
+					<p>
+						Memetic optimization finds Pareto optimal pulses with fidelity $\ge 0.99$.
+					</p> 
+
+				</section>
+
+				<section>
 					<figure>
 						<img data-src="figures/example-ga-norm-infid-hist-pf.png" height="550">
 					</figure>
 					<p>
-						<small>200 generations, 140 individuals, 5 hypotheses ($\pm 100 \text{kHz}$), noisy evaluation of fidelity</small>
+						<small>200 generations, 140 individuals, 5 hypotheses ($\pm 100 \text{kHz}$), noisy evaluation of distortion (~20 dB SNR)</small>
 					</p>
 				</section>
 
@@ -453,7 +488,7 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 						Quantum Hamiltonian Learning is robust to approximate models.
 					</p>
 					<p>
-						<img data-src="figures/lightcones-vertical-v1.svg">
+						<img data-src="figures/lightcones-vertical-v1.png" height="350">
 					</p>
 					<p>
 						Use information locality (Lieb-Robinson bounds) to bound error incurred by truncating qubits.
@@ -462,7 +497,7 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 
 				<section>
 					<p>
-						<img data-src="figures/scanning.svg" style="transform: scale(1.5)">
+						<img data-src="figures/scanning.png" height="400">
 					</p>
 
 					<p>
@@ -474,7 +509,7 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 
 				<section>
 					<p>
-						 <img data-src="figures/shaking.svg" style="transform: scale(2)">
+						 <img data-src="figures/shaking.png" height="450">
 					</p>
 
 					<p>
@@ -508,7 +543,7 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 
 				<section>
 					<p>
-						<img data-src="figures/histplots_300.svg" height="550">
+						<img data-src="figures/histplots_300.png" height="550">
 					</p>
 					<p>
 						<small>50-qubit untrusted device, 8-qubit simulator, 4-qubit observable, 300 measurements/scan</small>
