@@ -59,7 +59,7 @@ the dynamics of a 50-qubit device using an 8-qubit simulator.
 
 ## Software Resources ##
 
-<a id="#software-resources">
+<a id="software-resources"></a>
 
 The following libraries for Python, MATLAB and Mathematica were used to implement the results in this work. Each library was developed by or in collaboration with the author, or includes contributions from the author. Full details are included in the thesis and in each respective project.
 
