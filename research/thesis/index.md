@@ -59,9 +59,15 @@ the dynamics of a 50-qubit device using an 8-qubit simulator.
 
 ## Software Resources ##
 
-[**QInfer**](https://github.com/csferrie/python-qinfer), a Python-language
-implementation the algorithms presented in this work, is
-[available from GitHub](https://github.com/csferrie/python-qinfer).
+<a id="#software-resources">
+
+The following libraries for Python, MATLAB and Mathematica were used to implement the results in this work. Each library was developed by or in collaboration with the author, or includes contributions from the author. Full details are included in the thesis and in each respective project.
+
+- [**QInfer**](https://github.com/csferrie/python-qinfer): a Python-language implementation the classical and quantum characterization algorithms presented in this work.
+- [**QuaEC**](https://github.com/cgranade/python-quaec): a Python-language library implementing quantum error correcting primitives in the stabilizer formalism.
+- [**QuTiP**](http://qutip.org/): a Python-language library for manipulating and simulating the dynamics of quantum objects and systems.
+- [**QuantumUtils for MATLAB**](https://github.com/CoryGroup/quantum-utils-matlab): a MATLAB-language library used to implement portions of this work, including portions of the honest approximation section.
+- **QuantumUtils for Mathematica**: coming soon.
 
 ## Bibliography ##
 
