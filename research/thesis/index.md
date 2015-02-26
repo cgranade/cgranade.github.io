@@ -11,7 +11,7 @@ description: ""
 
 PhD thesis, to be defended 26 February 2015. 
 
- > [Slides](slides/) (will follow presentation during defense) | [Livetweets](https://twitter.com/hashtag/)
+ > [Slides](slides/) (will follow presentation during defense) | [Livetweets](https://twitter.com/hashtag/GranadeDefense)
 
 ## Abstract ##
 
