@@ -233,7 +233,7 @@
 
 				<section data-background-video="figures/multicos-distributions.mp4">
 					<p class="fragment">
-						$\cos^2(\omega_1 t_1 / 2) \cos^2(\omega_2 t_2 / 2)$
+						$\Pr(1 | \omega_1, \omega_2; t_1, t_2) = \cos^2(\omega_1 t_1 / 2) \cos^2(\omega_2 t_2 / 2)$
 					</p>
 				</section>
 
@@ -391,8 +391,14 @@ updater = qi.smc.SMCUpdater(model, 5000, prior)
 					</p>
 
 					<p>
-						<img data-src="figures/trivial-pareto-projection.png" height="450">
+						<img data-src="figures/trivial-pareto-projection.png" height="350">
 					</p>
+
+					<p><small>
+						Example: $
+							\max o(\vec{r}) = \vec{r} \text{ s.t. } \|\vec{r}\|_2 \le 1
+						$
+					</small></p>
 				</section>
 
 				<section>
