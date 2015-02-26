@@ -5,7 +5,7 @@ description: ""
 ---
 {% include JB/setup %}
 
-**[Christopher E. Granade]**(/)<sup>[1](#affil-iqc)
+[**Christopher E. Granade**](/)<sup>[1](#affil-iqc), [2](#affil-uw-phys)</sup>
 
  > PDF (coming soon) | arXiv (coming soon) | SciRate (coming soon) | UWSpace (coming soon) | LaTeX source (coming soon)
 
@@ -76,3 +76,4 @@ The following libraries for Python, MATLAB and Mathematica were used to implemen
 ## Affiliations ##
 
 1. <a id="affil-iqc"></a>[Institute for Quantum Computing, University of Waterloo](http://iqc.uwaterloo.ca).
+1. <a id="affil-uw-phys"></a>[Physics Department, University of Waterloo](https://uwaterloo.ca/physics-astronomy/).
