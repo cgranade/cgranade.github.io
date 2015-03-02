@@ -13,6 +13,7 @@ All prices OBO.
 			<th>Item Name</th>
 			<th>Price</th>
 			<th>Comments</th>
+			<th>Dimensions</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -27,9 +28,10 @@ All prices OBO.
 			<td>Slight cosmetic damage. Needs some repairs --- minor soldering.</td>
 		</tr>
 		<tr>
-			<td><a href="http://www.kijiji.ca/v-view-details.html?adId=1054098885">42" LG TV and Stand</a></td>
+			<td><a href="http://www.kijiji.ca/v-view-details.html?adId=1054098885">42" LG TV and Media Stand</a></td>
 			<td>$375</td>
 			<td>Prefer to sell together.</td>
+			<td>Stand: 54"W &times; 22"H &times; 22"D</td>
 		</tr>
 		<tr>
 			<td>Shoe rack</td>
@@ -61,11 +63,14 @@ All prices OBO.
 		</tr>
 		<tr>
 			<td>Toaster oven</td>
-			<td>$10</td>
+			<td>$5</td>
+			<td>Not suitable for repurposing as a reflow oven.</td>
 		</tr>
 		<tr>
 			<td>L-shaped computer desk</td>
 			<td>$30</td>
+			<td></td>
+			<td>Each side: 20"D &times; 58"W &times; 28.5"H</td>
 		</tr>
 	</tbody>
 </table>
