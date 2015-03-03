@@ -34,8 +34,8 @@ All prices OBO.
 			<td>Stand: 54"W &times; 22"H &times; 22"D</td>
 		</tr>
 		<tr>
-			<td>Shoe rack</td>
-			<td>$5</td>
+			<td><del>Shoe rack</del></td>
+			<td><del>$5</del></td>
 		</tr>
 		<tr>
 			<td>Brother HL-5140 Printer</td>
