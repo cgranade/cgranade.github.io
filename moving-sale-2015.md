@@ -28,10 +28,10 @@ All prices OBO.
 			<td>Slight cosmetic damage. Needs some repairs --- minor soldering.</td>
 		</tr>
 		<tr>
-			<td><a href="http://www.kijiji.ca/v-view-details.html?adId=1054098885">47" LG TV and Media Stand</a></td>
-			<td>$375</td>
-			<td>Prefer to sell together.</td>
-			<td>Stand: 54"W &times; 22"H &times; 22"D</td>
+			<td><del><a href="http://www.kijiji.ca/v-view-details.html?adId=1054098885">47" LG TV and Media Stand</a></del></td>
+			<td><del>$375</del></td>
+			<td><del>Prefer to sell together.</del></td>
+			<td><del>Stand: 54"W &times; 22"H &times; 22"D</del></td>
 		</tr>
 		<tr>
 			<td><del>Shoe rack</del></td>
