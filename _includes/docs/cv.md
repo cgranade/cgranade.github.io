@@ -8,6 +8,7 @@
 
 ## Academic History ##
 
+- PhD, Physics (quantum information). University of Waterloo. 2015.
 - Master of Science, Physics. Perimeter Scholars International. 2010.
 - Bachelor of Science (Honors cum laude), Physics. University of Alaska Fairbanks. 2009.
 - Bachelor of Science (Honors cum laude), Mathematics and Computer Science. University of
@@ -15,13 +16,22 @@
   
 ## Recent Work History ##
 
-- Research Assistant, Institute for Quantum Computing. May 2010 to current.
+- Research Associate, University of Sydney. March 2015 to present.
+- Research Assistant, Institute for Quantum Computing. May 2010 to February 2015.
 - Teaching Assistant, Physics Department, University of Alaska Fairbanks. September 2008 to May 2009.
 - Research Assistant, Computer Science and Artifical Intelligence Laboratory, Massachusetts Institute of Technology. June 2008 to August 2008.
 - Student Researcher, Infrasound Group, University of Alaska Fairbanks. September 2006 to June 2008.
 
 ## Academic Contributions ##
 ### Papers, Essays and Publications ###
+
+#### 2015 ####
+
+- *Characterization, Veriﬁcation and Control for Large Quantum Systems*, **Christopher E. Granade**. PhD Thesis.
+  > [UWSpace](https://uwspace.uwaterloo.ca/handle/10012/9217)
+
+- *Estimating the Coherence of Noise*, Joel Wallman, **Christopher E. Granade**, Robin Harper, Steven T. Flammia.
+  > [arXiv:1503.07865](https://scirate.com/arxiv/1503.07865)
 
 #### 2014 ####
 
