@@ -13,13 +13,16 @@ Presented as a talk [at IQC](../talks/iqc/09-2015) and [at QuICS](../talks/quics
 
 ## Abstract ##
 
-In recent years, Bayesian methods have been proposed as a solution to a wide range of issues in quantum state and process tomography. State-of-the-art Bayesian tomography solutions suffer from three problems: numerical intractability, a lack of informative prior distributions, and an inability to track time-dependent processes. Here, we solve all three problems. First, we use modern statistical methods, as pioneered by [Huszar and Houlsby](https://dx.doi.org/10.1103/PhysRevA.85.052120) and by [Ferrie](https://dx.doi.org/10.1088/1367-2630/16/9/093035), to make Bayesian tomography numerically tractable. Our approach allows for practical computation of Bayesian point and region estimatorsforquantumstatesandchannels. Second,weproposetheﬁrstinformativepriorsonquantum states and channels. Finally, we develop a method that allows online tracking of time-dependent states and estimates the drift and diffusion processes affecting a state. We provide source code and animated visual examples for our methods.
+In recent years, Bayesian methods have been proposed as a solution to a wide range of issues in quantum state and process tomography. State-of-the-art Bayesian tomography solutions suffer from three problems: numerical intractability, a lack of informative prior distributions, and an inability to track time-dependent processes. Here, we solve all three problems. First, we use modern statistical methods, as pioneered by [Huszar and Houlsby](https://dx.doi.org/10.1103/PhysRevA.85.052120) and by [Ferrie](https://dx.doi.org/10.1088/1367-2630/16/9/093035), to make Bayesian tomography numerically tractable. Our approach allows for practical computation of Bayesian point and region estimators for quantum states and channels. Second, we propose the first informative priors on quantum states and channels. Finally, we develop a method that allows online tracking of time-dependent states and estimates the drift and diffusion processes affecting a state. We provide source code and animated visual examples for our methods.
 
-## Software Resources ##
+## Online Resources ##
 
-[**QInfer**](https://github.com/csferrie/python-qinfer), a Python-language
+- [**QInfer**](https://github.com/csferrie/python-qinfer), a Python-language
 implementation of the classical portions of the algorithm presented in this work, is
 [available from GitHub](https://github.com/csferrie/python-qinfer).
+- A tutorial and code used to generate figures and animations are available
+as [literate source code](https://gist.github.com/cgranade/9b3f8c4c8173eebf5f35).
+- A video demonstrating the state-tracking algorithm is [available on YouTube](https://www.youtube.com/watch?v=22ejRV0Kx2g).
 
 ## Affiliations ##
 
