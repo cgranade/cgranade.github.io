@@ -10,6 +10,12 @@ description: ""
 -->	
 
 # Previous Talks #
+
+## 2015 ##
+
+- [Practical Bayesian Tomography](../pbt/), presented as a [talk](iqc/09-2015) at [IQC](https://iqc.uwaterloo.ca) on 14 September 2015, and as a [seminar](quics/09-2015) at [QuICS](https://quics.umd.edu/) on 23 September 2015.
+- [Assessing and Controlling Quantum Information Processing Devices](lfqis-2015/), presented as a talk at LFQIS 2015.
+
 ## 2014 ##
 
 - [Quantum Bootstrapping](../qbs/), presented as a [talk](lfqis-2014/) at [LFQIS 2014](http://lfqis.net/), and at the [University of Sydney](usydney-2014/).
