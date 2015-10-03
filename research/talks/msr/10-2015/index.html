@@ -1,0 +1,876 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Practical Bayesian Tomography</title>
+
+		<meta name="description" content="IQC, September 2015">
+		<meta name="author" content="Christopher E. Granade">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style type="text/css">
+			.reveal section img {
+				border: none;
+				box-shadow: none;
+				background: none;
+			}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1 style="font-size: 175%"><a href="http://www.cgranade.com/research/pbt/">Practical Bayesian Tomography</a></h1>
+					<hr>
+					<p>
+						<a href="http://www.cgranade.com">Christopher E. Granade</a> <br>
+						<a href="https://equs.org/">Centre for Engineered Quantum Systems</a>
+					</p>
+
+					<p data-markdown style="font-size: 80%">
+						joint work with Joshua Combes and D. G. Cory • [1509.03770](https://scirate.com/arxiv/1509.03770) <br/>
+						http://www.cgranade.com/research/talks/msr/10-2015/
+                        $
+							\newcommand{\ee}{\mathrm{e}}
+							\newcommand{\ii}{\mathrm{i}}
+							\newcommand{\dd}{\mathrm{d}}
+							\newcommand{\id}{&#x1d7d9;}
+							\newcommand{\TT}{\mathrm{T}}
+							\newcommand{\defeq}{\mathrel{:=}}
+							\newcommand{\Tr}{\operatorname{Tr}}
+							\newcommand{\Var}{\operatorname{Var}}
+							\newcommand{\Cov}{\operatorname{Cov}}
+							\newcommand{\rank}{\operatorname{rank}}
+							\newcommand{\expect}{\mathbb{E}}
+							\newcommand{\sket}[1]{|#1\rangle\negthinspace\rangle}
+							\newcommand{\sbraket}[1]{\langle\negthinspace\langle#1\rangle\negthinspace\rangle}
+							\newcommand{\Gini}{\operatorname{Ginibre}}
+							\newcommand{\supp}{\operatorname{supp}}
+							\newcommand{\CC}{\mathbb{C}}
+						$
+					</p>
+				</section>
+
+				<section>
+					<h3>A Quick Note On Citations</h3>
+					<p>
+						10/<em>abc</em> $\mapsto$ https://dx.doi.org/10/<em>abc</em>
+					</p>
+
+					<p style="font-size: 80%">
+						(Make your own at <a href="http://shortdoi.org/">shortdoi.org</a>!)
+					</p>
+				</section>
+
+
+				<section data-markdown>
+					### Building Quantum Computers ###
+
+					This is a *huge* experimental challenge.
+
+					- Need diagnostic info to solve experimental problems.
+					- Need to assess how well a prototype works.
+					- Need to convince others of progress.
+
+					---
+
+					Same mathematical problem (parameter estimation),
+					different assumptions and tools.
+				</section>
+
+				<section data-markdown>
+					We can choose a model to include parameters matching
+					the diagnostic info we need.
+
+					### Small Models ###
+
+					- **Randomized benchmarking** (RB): fidelity, error in preparation and meas. $\mathrm{O}(1)$
+					  parameters w/ dimension.
+					- **Hamiltonian learning**: models dynamical generators.
+					  Under 2-body assumptions, quadratic in # of qubits.
+				</section>
+
+				<section data-markdown>
+					### Big Models ###
+
+					Tomography models an entire state $\rho \in \CC^{N \times N}$
+					or process $\Lambda \in \mathrm{L}(\CC^{N \times N})$.
+					Exponentially many parameters, but tractable for small systems.
+
+					- **State tomography**: Estimate $\rho$.
+					- **In-situ**: Uses error correction to probe $\Lambda^{\otimes n}$.
+					  Combes *et al.* [1405.5656](https://scirate.com/arxiv/1405.5656)
+					- **RB tomography**: Models prep/meas errors, amplifies errors
+					  w/ sequences. e. g.: Kimmel *et al.* [10/734](https://dx.doi.org/10/734)
+					- **Process tomography**: Estimate $\Lambda$.
+				</section>
+
+				<section>
+					<h3>Even Bigger Models</h3>
+					<p data-markdown>
+						- **Gate set tomography**: Still more parameters, but explicitly
+						  models multiple processes and prep/meas errors.
+					</p>
+
+					<hr>
+
+					<h3>Let's Meet In the Middle</h3>
+					<p>
+						\[
+							\text{tomography} = \{
+								\text{state tomography},
+								\text{process tomography}
+							\}
+						\]
+					</p>
+
+					<p data-markdown>
+						Tomography is exponentially hard, but is still essential
+						for *small* quantum systems.
+					</p>
+				</section>
+
+				<section>
+					<h3>Sure, tomography, but why Bayesian?</h3>
+
+					<p data-markdown>
+						- Gives calculus for including the effect of prior assumptions.
+						- Good numerical algorithms. (More on this later!)
+					</p>
+
+					<video data-autoplay class="stretch" controls loop>
+						<source src="figures/multicos-distributions.mp4">
+					</video>
+				</section>
+
+				<section>
+					<h3>The Five Habits of Highly Effective Tomographic Procedures</h3>
+					<p data-markdown>
+						- Provide accurate estimates.
+						- Characterize their uncertainty.
+						- Allow inclusion of prior knowledge.
+						- Can track changes with time.
+						- Come with “off-the-shelf” implementations.
+					</p>
+
+					<p>
+						We get the first two for free from taking a Bayesian perspective.
+					</p>
+				</section>
+
+				<section>
+					<h3>Challenges for Bayesian Tomography</h3>
+
+					<p data-markdown>
+						- What prior should we use?
+						- How should we update estimates in time?
+						- How can we efficiently implement Bayesian tomography?
+					</p>
+
+					<p>
+						In this talk, we will address all three challenges.
+					</p>
+				</section>
+
+				<section>
+					<h4>But first,</h4>
+					<h2>A Short Primer on Bayesian Inference and Tomography</h2>
+
+					<p data-markdown>
+						See also:
+
+						- Jones [10/fpbsfw](https://dx.doi.org/10/fpbsfw)
+						- Blume-Kohout [10/cn772j](https://dx.doi.org/10/cn772j)
+					</p>
+				</section>
+
+				<section>
+					<h3>Bayesian Parameter Estimation</h3>
+					<p>
+						Suppose we want to learn $x$ from data $D$.
+						Then
+						\[
+							\Pr(x | D) = \frac{\Pr(D | x)}{\Pr(D)} \Pr(x)
+						\]
+						is the <em>posterior</em> distribution over $x$.
+					</p>
+
+					<p>
+						$\Pr(x | D)$ describes what we know about $x$.
+					</p>
+
+				</section>
+
+				<section>
+					<h3>Likelihood Functions</h3>
+
+					<p>
+						$\Pr(D | x)$ is a <em>likelihood function</em>
+						that specifies an experimental model.
+					</p>
+
+					<hr>
+
+					<p>
+						For state tomography, our likelihood is
+						<em>Born's rule</em>,
+						\[
+							\Pr(E | \rho) = \Tr[E \rho],
+						\]
+						where $x = \rho$ is a state and $D = E$ is a measurement effect.
+					</p>
+				</section>
+
+				<section>
+
+					<p>
+						We estimate $\rho$ by the expectation value
+						\[
+							\hat{\rho} = \expect[\rho | D] = \int \rho\,\Pr(\rho|E)\, \dd \rho.
+						\]
+					</p>
+
+					<p>
+						This estimator is <em>optimal</em> for the mean squared
+						error.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						We estimate the error incurred by our estimate $\hat{\rho}(E)$ in the same way:
+                        \begin{align*}
+                            &amp; \expect[\Tr\left( (\rho - \hat{\rho}(E))^2 \right) | \text{data}] \\
+                            =\ &amp;\expect[\Tr\left( (\rho - \expect[\rho | E])^2 \right) |  \text{data}] \\
+                            =\ &amp; \Tr\Cov(\rho | E).
+                        \end{align*}
+					</p>
+
+					<hr>
+
+					<p>
+						More generally,
+						\[
+							\hat{f} = \expect[f(\rho) | E].
+						\]
+					</p>
+				</section>
+
+				<section>
+					<p data-markdown>
+						For state tomography, the Bayesian mean estimate is approximately optimal for the fidelity (Ferrie and Keung [1503.00677](https://arxiv.org/abs/1503.00677)).
+					</p>
+
+					<p>
+						The error in an observable $X$ is given by
+						the covariance superoperator $\Sigma\rho = \Cov(\sket{\rho})$,
+						\begin{align*}
+							\Var(X) &amp; = \Var_{\rho}[\langle X\rangle_{\rho}] +
+										    \langle X^2\rangle_{\expect[\rho]} -
+										    \langle X\rangle_{\expect[\rho]}^2 \\
+							&amp; = \sbraket{X | \Sigma\rho | X} +
+								            \sbraket{X | X | \hat\rho} -
+								            \langle X\rangle_{\expect[\rho]}.
+						\end{align*}
+                        (Blume-Kohout <a href="https://dx.doi.org/10/cn772j">10/cn772j</a>)
+					</p>
+				</section>
+
+
+				<section>
+					<p>
+						The Choi-Jamiołkowski isomorphism lets us rewrite process tomography as (ancilla-assisted)
+						state tomography.
+					</p>
+
+					<p>
+						\[
+							\Tr[E \Lambda(\rho)] = \Tr[(\id \otimes E) J(\Lambda) (\rho^\TT \otimes \id)] = \sbraket{\rho^\TT, E | J(\Lambda)}
+						\]
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Thus, Bayesian inference allows us to estimate states $\rho$
+						and processes $\Lambda$.
+					</p>
+				</section>
+
+				<section>
+					<h3>What About The Prior?</h3>
+					<p>
+						Want <em>conjugate priors</em> $f(x; y)$ to perform Bayesian inference:
+						\begin{align*}
+							\frac{\Pr(d | x)}{\Pr(d)} f(x; y) = f(x; y'(d, y)).
+						\end{align*}
+						Inference then consists of finding a “nice” form for $y'$.
+					</p>
+				</section>
+
+				<section>
+					<h3>Examples</h3>
+					<p data-markdown>
+						- Gaussian priors are conjugate for Gaussian likelihoods
+						- Gaussian priors are *approximately* conjugate for one-qubit Hamiltonian learning (Ferrie *et al.*  [10/tfx](https://dx.doi.org/10/tfx))
+						- Beta distribution is conjugate for coin estimation
+					</p>
+
+					<p>
+						Frustrating to find conjugate priors for states that
+						respect Hilbert space structure.
+					</p>
+				</section>
+
+				<section data-background-video="figures/beta-distribution.mp4" data-background-video-loop>
+					<h3>Wait, Beta Distribution?</h3>
+					<p>
+						The beta distribution is supported on $[0, 1]$ for all $\alpha, \beta > 0$
+						and is a conjugate prior to the binomial distribution.
+					</p>
+
+					<p>
+						We will use later that the beta distribution is <em>always</em> supported
+						on 0.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						In practice, Bayesian mean estimation is not tractable in the exact case.
+						We thus use <em>particle filtering</em> to approximate.
+					</p>
+
+					<p data-markdown>
+						- Huszár and Houlsby [10/s86](https://dx.doi.org/10/s86)
+						- Ferrie [10/7nt](https://dx.doi.org/10/7nt)
+					</p>
+
+					<p data-markdown>
+						Implemented by the [QInfer library](https://github.com/csferrie/python-qinfer) for Python.
+					</p>
+				</section>
+
+				<section>
+					<h3>Particle Filtering for Approximate Estimation</h3>
+
+					<p>
+						\begin{align}
+							\Pr(\rho) &amp; \approx \sum_{p\in\text{particles}} w_p \delta(\rho - \rho_p) \\
+							w_p &amp; \mapsto w_p \times \Pr(E | \rho_p) / \mathcal{N}
+						\end{align}
+					</p>
+
+					<p>
+						Mixtures of $\delta$-functions are conjugate priors for
+						practically any likelihood.
+					</p>
+
+					<p>
+						<strong>Big advantage:</strong> we only need <em>samples</em> from the prior!
+					</p>
+				</section>
+
+				<section>
+					<p>
+						As we collect data, this becomes unstable, so we must <em>resample</em>.
+					</p>
+
+					<figure>
+						<img src="figures/impovrishment.png">
+					</figure>
+				</section>
+
+				<section>
+					<p>
+						Particle filtering is used in a range of quantum information
+						applications.
+					</p>
+                    
+					<p data-markdown>
+						- Hamiltonian learning: Granade *et al.* [10/s87](https://dx.doi.org/10/s87), Stenberg *et al.* [10/7nw](https://dx.doi.org/10/7nw)
+						- Randomized benchmarking: Granade *et al.* [10/zmz](https://dx.doi.org/10/zmz)
+						- Quantum Hamiltonian learning and bootstrapping: Wiebe *et al.* [10/tdk](https://dx.doi.org/10/tdk), Wiebe *et al.* [10/7nx](https://dx.doi.org/10/7nx)
+						- Phase estimation: Wiebe and Granade [1508.00869](https://arxiv.org/abs/1508.00869)
+					</p>
+				</section>
+            
+                <section>
+                    <h3 style="line-height: 35%">Why Particle Filtering?
+                        <span style="font-size: 30%"><br/>(You Forgot My Favorite Algorithm)</span></h3>
+                    
+                    <p data-markdown>
+						- MCMC: works, but isn't streaming or time-dependent.
+						- Rejection filtering (Wiebe and Granade [1508.00869](https://arxiv.org/abs/1508.00869)): only keeps sufficient statistics; need more expressive instrumental distribution.
+                    </p>
+                </section>
+
+				<section>
+					<h2>Other Advantages</h2>
+
+					<p>
+						Expressing as Bayesian parameter estimation /
+						particle filtering problem affords
+						us a few other advantages.
+					</p>
+				</section>
+
+				<section>
+					<h3>Region Estimation</h3>
+
+					<p>
+						A credible region $R_\alpha$ for $\rho$ satisfies                        
+						\[
+							\Pr(\rho \in R_{\alpha} | D) \ge \alpha.
+						\]
+                    </p>
+                    
+                    <p data-markdown>
+                        Construct from particle approximation to posterior,
+                        covariance regions (Granade *et al*  [10/s87](https://dx.doi.org/10/s87)), convex hull or minimum-volume enclosing ellipse
+						(Ferrie [10/tb4](https://dx.doi.org/10/tb4)).
+					</p>
+                    
+                    <p>
+                        Built-in to QInfer.
+                    </p>
+				</section>
+
+				<section>
+					<h3>Model Selection</h3>
+
+                    <p data-markdown>
+						- Akaike / Bayesian information criterion: Guţă *et al.* [10/7nz](https://dx.doi.org/10/7nz), van Enk and Blume-Kohout [10/7n2](https://dx.doi.org/10/7n2)
+						- Bayes factors: Wiebe *et al.* [10/tdk](https://dx.doi.org/10/tdk)
+						\begin{equation}
+							\text{BF}(A : B) = \frac{\Pr(A | \text{data})}{\Pr(B | \text{data})}
+						\end{equation}
+						- Model averaging: Ferrie [10/7nt](https://dx.doi.org/10/7nt)
+                    </p>
+                        
+					<p>
+						Bayes factor&ndash;based model selection built-in to QInfer.
+					</p>
+
+				</section>
+
+				<section>
+					<h3>Hyperparameterization</h3>
+
+					<p>
+                        \begin{align*}
+                            \text{Suppose } \vec{x} &amp; \sim \Pr(\vec{x} | \vec{y}) \\
+                            \text{Then, } \Pr(D | \vec{y}) &amp; = \expect_{\vec{x} | \vec{y}} [\Pr(D | \vec{x}, \vec{y})] \\
+                            &amp; = \int \Pr(D | \vec{x}, \vec{y}) \Pr(\vec{x} | \vec{y})\,\dd\vec{x}.
+                        \end{align*}
+                        Marginalizing gives us a likelihood for the hyperparameters $\vec{y}$!
+                    </p>
+
+					<p>
+                        Allows us to include effects outside of Born's rule.
+                        For instance, non-Cauchy decoherence (Granade <em>et al.</em> <a href="https://dx.doi.org/10/s87">10/s87</a>).
+					</p>
+				</section>
+
+
+				<section>
+					<p>
+						But how do we choose our prior? Let's get to the meat of things.
+					</p>
+
+					<h2>Informative Priors for Bayesian Tomography</h2>
+				</section>
+
+				<section>
+					<p data-markdown>
+						In order to be useful, a prior over states should:
+
+						- Have support over all states,
+						- Allow us to encode our assumptions, and
+						- Be efficient to draw samples from.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						It helps to consider an <em>uninformative</em> prior first.
+					</p>
+
+					<h3>Ginibre Prior for Pure and Mixed States</h3>
+
+					<ul>
+						<li>Let $X$ be a $N \times K$ matrix with complex Gaussian entries.</li>
+						<li>$\rho \gets XX^\dagger / \Tr(XX^\dagger)$.
+					</ul>
+
+					<p>
+						$\rank(\rho) = K$. If $K = 1$, $\rho$ is pure.
+						If $K = N$, Hilbert-Schmidt prior.
+					</p>
+                    
+                    <p>
+                        <strong>NB:</strong> Choosing $X$ to be real gives Ginibre over redits.
+                    </p>
+				</section>
+            
+				<section>
+                    <figure>
+                        <img src="figures/ginibre-rebit.png" width="80%">
+                    </figure>
+                    
+					<pre><code class="python" data-trim>
+import qinfer as qi
+
+basis = qi.tomography.pauli_basis(1)
+prior = qi.tomography.GinibreReditDistribution(basis)
+qi.tomography.plot_rebit_prior(prior, rebit_axes=[1, 3])
+                    </code></pre>
+				</section>
+
+				<section>
+					<p>
+						What makes $\Gini(N, K)$ uninformative?
+						\[
+							\expect[\rho] = \id / N.
+						\]
+						The mean is the maximally-mixed state.
+					</p>
+				</section>
+
+				<section>
+					<h3>Other Useful Priors</h3>
+
+					<p data-markdown>
+						- Haar, uniform over pure states
+						- Bures, uniform over mixed states
+						- BCSZ, uniform over CPTP maps
+					</p>
+				</section>
+
+				<section>
+					<p>
+						How do we add information to the prior, specifically
+						the prior estimate state $\rho_\mu$?
+					</p>
+
+					<p>
+						<strong>Big idea:</strong> Use an ensemble of
+						amplitude damping channels to transform a uniform prior.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Let $\phi$ be a <em>fiducial prior</em>.
+						Then, for scalars $\alpha,\beta$ and a state $\rho_*$,
+						draw $\rho_{\text{sample}}$ by:
+					</p>
+
+					<ul>
+						<li>Draw $\rho \sim \phi$.</li>
+						<li>Draw $\epsilon \sim \mathrm{Beta}(\alpha, \beta)$.</li>
+						<li> $\rho_{\text{sample}} \gets (1 - \epsilon) \rho + \epsilon \rho_*$</li>
+					</ul>
+
+					<p>
+						<strong>NB:</strong> $\supp \pi \supseteq \supp \phi$
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Choose $\rho_*$ s. t. $\expect_{\rho\sim\pi}[\rho] = \rho_\mu$:
+					</p>
+					<p>
+						\[
+							\rho_* = \left(\frac{\alpha + \beta}{\alpha}\right) \left(
+								\rho_\mu - \frac{\beta}{\alpha+\beta} \frac{\id}{N}
+							\right)
+						\]
+					</p>
+					<hr>
+					<p>
+						Choose $\alpha,\beta$ s. t. $\expect[\epsilon]$ is minimized:
+						\[
+							\alpha = 1 \qquad \beta = \frac{\lambda_\min}{1 - N \lambda_\min},
+						\]
+						where $\lambda_\min$ is the smallest eigenvalue of $\rho_\mu$.
+					</p>
+				</section>
+
+				<section>
+                    <p><em>
+                        That is, we contract the fiducial prior as little as possible
+                        to obtain the desired mean.
+                    </em></p>
+                    
+					<p>
+						This construction preserves the support of our “flat” prior,
+						takes $\rho_\mu$ as an input and can be easily sampled.
+					</p>
+
+					<p>
+						Inherits other assumptions by convexity (e.g.: rebit, CPTP, positivity, etc.).
+					</p>
+				</section>
+
+				<section>
+					<img data-src="figures/gadfli-rebit.png">
+				</section>
+            
+                <section>
+                    <h3>Easy to Use</h3>
+                    <pre><code data-trim class="python">
+import qinfer as qi
+import qutip as qt
+                    
+I, X, Y, Z = qt.qeye(2), qt.sigmax(), qt.sigmay(), qt.sigmaz()
+prior_mean = (I + (2/3) * Z + (1/3) * X) / 2
+
+basis = qi.tomography.pauli_basis(1)
+fiducial_prior = qi.tomography.GinibreReditDistribution(basis)
+prior = qi.tomography.GADFLIDistribution(fiducial_prior, prior_mean)
+                    </code></pre>
+                    
+                    <p>
+                        QInfer's tomography support is backed by QuTiP.
+                    </p>
+                </section>
+
+				<section>
+					<figure>
+						<img data-src="figures/qutrit-risk.png" width="80%">
+					</figure>
+					<h3>Prior Information Really Helps</h3>
+				</section>
+
+				<section>
+					<p>
+						Posterior covariance characterizes uncertainty.
+					</p>
+
+					<figure>
+						<img data-src="figures/qpt-cov.png" width="60%">
+					</figure>
+				</section>
+
+				<section>
+					<p>
+						Principal channels tell us which components dominate our
+                        uncertianty.
+					</p>
+					<figure>
+						<img data-src="figures/qpt-cov-principal.png" width="60%">
+					</figure>
+				</section>
+            
+                <section>
+                    <h2>How Do I Use This Bloody Thing?</h2>
+                    <p>
+                        (a quick tutorial)
+                    </p>
+                </section>
+            
+                <section>                    
+                    <blockquote>
+                        All models are wrong, some are useful. &mdash;Chris Ferrie
+                    </blockquote>
+                    
+                    <p>
+                        We've seen how to create bases and priors,
+                        to finish we need a <em>model</em>, an
+                        <em>updater</em> and a <em>heuristic</em>.
+                    </p>
+                    
+                    <pre><code data-trim class="python">
+model = qi.BinomialModel(qi.tomography.TomographyModel(basis))
+                    </code></pre>
+                </section>
+            
+                <section>
+                    <p>
+                        The sequential Monte Carlo updater performs Bayes updates
+                        using particle filtering.
+                    </p>
+                    
+                    <pre><code data-trim class="python">
+updater = qi.smc.SMCUpdater(model, 2000, prior)
+heuristic = qi.tomography.RandomPauliHeuristic(updater,
+    other_fields={'n_meas': 40}
+)
+                    </code></pre>
+                    
+                    <p>
+                        This heuristic measures random Paulis 40 times each.
+                    </p>
+                </section>
+            
+                <section>
+                    <h3>I'm Sick of This&mdash; Let's Measure!</h3>
+                    <pre><code data-trim class="python">
+for idx_exp in xrange(50):
+    experiment = heuristic()
+    
+    # This is where your data goes! 💗
+    # For now, we'll simulate. 💔
+    datum = model.simulate_experiment(true_state, experiment)
+    
+    updater.update(datum, experiment)
+                    </code></pre>
+                </section>
+            
+                <section>
+                    <figure>
+                        <img src="figures/tutorial-tada.png" width="65%">
+                    </figure>
+                </section>
+
+				<section>
+					<h2>Tracking Time-Dependent States</h2>
+				</section>
+
+				<section>
+                    <h3>Condensation Algorithm</h3>
+                    
+					<p>
+						Interlace Bayesian updates with
+						<em>diffusion</em>
+						\[
+							\rho(t_{k+1}) = \rho(t_k) + \Delta \eta.
+						\]
+						and <em>truncation</em>.
+					</p>
+
+					<p>
+						Draw each traceless parameter of the diffusion step $\Delta \eta$
+						from a Gaussian.
+					</p>
+
+					<p data-markdown>
+						(Isard and Blake [10/cc76f6](https://dx.doi.org/10/cc76f6))
+					</p>
+				</section>
+
+				<section>
+					<p>
+						We can do this in general.
+					</p>
+
+					<p>
+						Parameterize a state $\rho$ as a real vector $\vec{x}$,
+						\[
+							x_i = \sbraket{B_i | \rho} = \Tr(B_i^\dagger \rho),
+						\]
+						where $\{B_i\}$ is a basis of Hermitian operators.
+					</p>
+
+					<p>
+						By convention, $\Tr(B_i) = \delta_{i0} / \sqrt{D}$. E.g.:
+
+						<ul>
+							<li>Pauli basis</li>
+							<li>Gell-Mann basis</li>
+						</ul>
+					</p>
+				</section>
+
+				<section>
+					<h3>Co-Evolution for Fun and Diffusion Estimation</h3>
+					<p>
+						We don't need to assume a particular diffusion rate.
+						Include as model parameter $\eta$, such that
+						\begin{equation}
+							\sigma = \sqrt{t_{k + 1} - t_k} \eta.
+						\end{equation}
+					</p>
+
+					<p>
+						Bayesian updates on the state then “co-evolve”
+						$\eta$ to learn diffusion rate.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						We don't need to assume that the "true" state
+						follows a random walk.
+					</p>
+
+					<figure>
+						<img src="figures/diffusive-coin.png">
+					</figure>
+				</section>
+
+				<section data-background-video="figures/gadfli-tracking.mp4">
+				</section>
+
+				<section>
+					<h2>Conclusions</h2>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+				zoomKey: 'shift',
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
