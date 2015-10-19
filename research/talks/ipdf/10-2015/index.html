@@ -180,11 +180,29 @@
 					</p>
 
 					\begin{align}
-						\Pr(\vec{x}) & = \sum_i w_i \delta(\vec{x} - \vec{x}_i) \\
-						w_i & \mapsto w_i \times \Pr(\text{data} | \vec{x}_i) / \mathcal{N}
+						\Pr(\vec{x}) &amp; = \sum_{p \in \text{particles}} w_p \delta(\vec{x} - \vec{x}_p) \\
+						w_p &amp; \mapsto w_p \times \Pr(\text{data} | \vec{x}_p) / \mathcal{N}
 					\end{align}
 
-					<br>
+					<p><em>
+						Simulation is a resource to perform Bayes updates.
+					</em></p>
+				</section>
+
+				<section>
+					<p>
+						<em>Liu-West Resampling</em> (<a href="https://dx.doi.org/10/8c2">10/8c2</a>) dynamically moves samples to recover numerical stability.
+					</p>
+
+					<p>
+						<img src="figures/impovrishment.png" height="350">
+					</p>
+				</section>
+
+				<section data-background-video="figures/multicos-distributions.mp4">
+					<p class="fragment">
+						$\Pr(1 | \omega_1, \omega_2; t_1, t_2) = \cos^2(\omega_1 t_1 / 2) \cos^2(\omega_2 t_2 / 2)$
+					</p>
 				</section>
 
 				<section>
@@ -202,22 +220,6 @@
 						- Region estimation: [Granade *et al.* 10/s87](https://dx.doi.org/10/s87), [Ferrie 10/tb4](https://dx.doi.org/10/tb4)
 						- Time-dependence (drift/diffusion): [Granade *et al.* 1509.03770](https://scirate.com/arxiv/1509.03770),
 						  [Granade 10012/9217](https://dx.doi.org/10012/9217), [Wiebe and Granade 1508.00869](https://scirate.com/arxiv/1508.00869)
-					</p>
-				</section>
-
-				<section>
-					<p>
-						<em>Liu-West Resampling</em> (<a href="https://dx.doi.org/10/8c2">10/8c2</a>) dynamically moves samples to recover numerical stability.
-					</p>
-
-					<p>
-						<img src="figures/impovrishment.png" height="350">
-					</p>
-				</section>
-
-				<section data-background-video="figures/multicos-distributions.mp4">
-					<p class="fragment">
-						$\Pr(1 | \omega_1, \omega_2; t_1, t_2) = \cos^2(\omega_1 t_1 / 2) \cos^2(\omega_2 t_2 / 2)$
 					</p>
 				</section>
 
@@ -246,14 +248,20 @@ updater = qi.smc.SMCUpdater(model, 1200, prior)
 				</section>
 
 				<section>
-					<h3>Quantum Hamiltonian Learning</h3>
 					<p>
-						Replace likelihood calls with <em>quantum likelihood evaluation</em>, using trusted device.
+						Enough classical, though, let's get back to
 					</p>
 
+
+					<h3>Quantum Hamiltonian Learning.</h3>
+
+
 					<p>
-						<img data-src="figures/qle_iqle_circuits.png">
+						Replace likelihood calls in the Bayes update with <em>quantum likelihood evaluation</em>, using trusted device.
 					</p>
+				</section>
+
+				<section data-background="figures/qle_iqle_circuits.png" data-background-size="100%" data-background-transition="slide">
 				</section>
 				
 				<section>
@@ -346,9 +354,14 @@ updater = qi.smc.SMCUpdater(model, 1200, prior)
 						\]
 					</p>
 
-					<p>
-						Pseudoinverse then gives control settings to implement simulation
-						at next iteration.
+					<p data-markdown>
+						- Characterizes the crosstalk, such that we can pre-compensate to
+						get local control.
+
+						---
+
+						- Pseudoinverse gives control settings to implement
+						a bigger instance of quantum bootstrapping.
 					</p>
 				</section>
 
