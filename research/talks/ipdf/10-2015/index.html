@@ -1,0 +1,451 @@
+<!doctype html>
+<!-- foobar2 -->
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Quantum Bootstrapping</title>
+
+		<meta name="author" content="Christopher E. Granade">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style type="text/css">
+		.reveal section img {
+			border: none;
+			box-shadow: none;
+			background: none;
+		}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1 style="font-size: 175%"><a href="http://www.cgranade.com/research/qbs/">
+						Quantum Bootstrapping
+					</a></h1>
+					<hr>
+					<p>
+						<a href="http://www.cgranade.com">Christopher E. Granade</a> <br>
+						<a href="https://equs.org/">Centre for Engineered Quantum Systems</a>
+					</p>
+
+					<p data-markdown style="font-size: 80%">
+						joint work with [Nathan Wiebe](http://research.microsoft.com/en-us/people/nawiebe/), Christopher Ferrie, and D. G. Cory  
+						[doi:10/tf3](https://dx.doi.org/10/tf3), [doi:10/tdk](https://dx.doi.org/10/tdk), and [doi:10/7nx](https://dx.doi.org/10/7nx)  
+						http://www.cgranade.com/research/talks/ipdf/10-2015/
+                        $
+							\newcommand{\ee}{\mathrm{e}}
+							\newcommand{\ii}{\mathrm{i}}
+							\newcommand{\dd}{\mathrm{d}}
+							\newcommand{\id}{&#x1d7d9;}
+							\newcommand{\TT}{\mathrm{T}}
+							\newcommand{\defeq}{\mathrel{:=}}
+							\newcommand{\Tr}{\operatorname{Tr}}
+							\newcommand{\Var}{\operatorname{Var}}
+							\newcommand{\Cov}{\operatorname{Cov}}
+							\newcommand{\rank}{\operatorname{rank}}
+							\newcommand{\expect}{\mathbb{E}}
+							\newcommand{\sket}[1]{|#1\rangle\negthinspace\rangle}
+							\newcommand{\sbraket}[1]{\langle\negthinspace\langle#1\rangle\negthinspace\rangle}
+							\newcommand{\Gini}{\operatorname{Ginibre}}
+							\newcommand{\supp}{\operatorname{supp}}
+							\newcommand{\CC}{\mathbb{C}}
+						$
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Citations are listed by handle (e.g. 10/<em>abc</em> or 10012/<em>abc</em>) or arXiv number.<br />
+						<em>handle</em> $\mapsto$ https://dx.doi.org/<em>handle</em>
+					</p>
+				</section>
+
+				<section>
+					<p>
+						We want to build a quantum computer.
+					</p>
+
+					<p>
+						As a prerequiste, we must be able to characterize the dynamics of
+						large quantum systems, and to calibrate our control for these dynamics.
+					</p>
+
+					<hr>
+
+					<p>
+						Formally, we need to learn the Hamiltonian $H$ of a system.
+					</p>
+				</section>
+
+				<section>
+					<h3>Our Strategy</h3>
+
+					<p data-markdown>
+						- Express Hamiltonian learning in terms of <em>simulation</em>.
+						- Substitute in	quantum simulators.
+					</p>
+
+					Yields <em class="highlight-red">semiquantum</em> algorithm that
+					avoid classically-infeasible simulation calls.
+				</section>
+
+				<section>
+					<p>We use physical insight to reduce the size of the quantum simulator
+					needed.</p>
+
+					<p>
+						<strong>Information locality</strong> provides a potentially-scalable
+						characterization and calibration algorithm.
+					</p>
+				</section>
+
+				<section>
+					<h2>Bayesian Inference</h2>
+
+					<p>
+						Allows us to reduce <em>learning</em> to <em>simulation</em>.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						$$
+							\Pr(\text{hypothesis} | \text{data}) = \frac{\Pr(\text{data} | \text{hypothesis})}{\Pr(\text{data})} \Pr(\text{hypothesis})
+						$$
+					</p>
+
+					<p data-markdown>
+						- Prior $\Pr(\text{hypothesis})$ describes initial knowledge.
+						- Posterior $\Pr(\text{hypothesis} | \text{data})$ describes
+						  what we learn from $\text{data}$.
+						- Likelihood $\Pr(\text{data} | \text{hypothesis})$ represents
+						  simulation of experimental system.
+					</p>
+				</section>
+
+				<section>
+					<h3>Representing Hypotheses</h3>
+
+					<p>
+						We represent hypothetical Hamiltonians by a model $H = H(\vec{x})$
+						w/ params $\vec{x}$.
+					</p>
+
+					<p>
+						<strong>Example (</strong>Ising model<strong>):</strong>
+						$
+							H(\vec{x}) = \sum_{i,j} x_{i,j} \sigma_z^{(i)} \sigma_z^{(j)}.
+						$
+					</p>
+
+					<p>
+						$\mathrm{O}(n^2)$ parameters vs $\mathrm{O}(2^{2n})$ parameters.
+					</p>
+				</section>
+
+				<section>
+					<h3>Sequential Monte Carlo</h3>
+					<p>
+						Represents distributions by finite sums for efficient numerical implementation.
+					</p>
+
+					\begin{align}
+						\Pr(\vec{x}) & = \sum_i w_i \delta(\vec{x} - \vec{x}_i) \\
+						w_i & \mapsto w_i \times \Pr(\text{data} | \vec{x}_i) / \mathcal{N}
+					\end{align}
+
+					<br>
+				</section>
+
+				<section>
+					<h3>Already Useful!</h3>
+
+					<p data-markdown>
+						- Classical Hamiltonian learning: [Granade *et al.* 10/s87](https://dx.doi.org/10/s87), [Stenberg *et al.* 10/7nw](https://dx.doi.org/10/7nw)
+						- Randomized benchmarking: [Granade *et al.* 10/zmz](https://dx.doi.org/10/zmz)
+						- Tomography: [Huszár and Houlsby 10/s86](https://dx.doi.org/10/s86), [Ferrie 10/7nt](https://dx.doi.org/10/7nt), [Granade *et al.* 1509.03770](https://scirate.com/arxiv/1509.03770)
+					</p>
+
+					<h3>More Than Just Learning</h3>
+
+					<p data-markdown>
+						- Region estimation: [Granade *et al.* 10/s87](https://dx.doi.org/10/s87), [Ferrie 10/tb4](https://dx.doi.org/10/tb4)
+						- Time-dependence (drift/diffusion): [Granade *et al.* 1509.03770](https://scirate.com/arxiv/1509.03770),
+						  [Granade 10012/9217](https://dx.doi.org/10012/9217), [Wiebe and Granade 1508.00869](https://scirate.com/arxiv/1508.00869)
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<em>Liu-West Resampling</em> (<a href="https://dx.doi.org/10/8c2">10/8c2</a>) dynamically moves samples to recover numerical stability.
+					</p>
+
+					<p>
+						<img src="figures/impovrishment.png" height="350">
+					</p>
+				</section>
+
+				<section data-background-video="figures/multicos-distributions.mp4">
+					<p class="fragment">
+						$\Pr(1 | \omega_1, \omega_2; t_1, t_2) = \cos^2(\omega_1 t_1 / 2) \cos^2(\omega_2 t_2 / 2)$
+					</p>
+				</section>
+
+				<section>
+					<h3>Near-Optimal Performance for $H = \omega \sigma_z / 2$</h3>
+					<p>
+						<img data-src="figures/knownT2-10000-particles-mse.png"><br>
+						<img data-src="figures/knownT2-n-particles-mse-legend.png">
+					</p>
+				</section>
+
+				<section>
+					<h3>QInfer</h3>
+					<p>
+						Extensible and flexible open-source library for Python.
+					</p>
+
+
+					<h3>Easy to Use</h3>
+					<pre><code data-trim class="python">
+import qinfer as qi
+model = qi.BinomialModel(qi.SimplePrecessionModel())
+prior = qi.UniformDistribution([[0, 1]])
+updater = qi.smc.SMCUpdater(model, 1200, prior)
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Quantum Hamiltonian Learning</h3>
+					<p>
+						Replace likelihood calls with <em>quantum likelihood evaluation</em>, using trusted device.
+					</p>
+
+					<p>
+						<img data-src="figures/qle_iqle_circuits.png">
+					</p>
+				</section>
+				
+				<section>
+					<p>
+						Heuristics for experiment design are <em>critical</em>.
+					</p>
+
+					<h3>Particle Guess Heuristic</h3>
+					<ul>
+						<li>Draw $H_-$, $H_-'$ from posterior.</li>
+						<li>Evolve under $H_-$ for $t = 1 / \|H_- - H_-'\|$.</li>
+					</ul>
+
+					<p>
+						<em>Simulation-free</em>, uses current uncertainty to choose next experiment
+						s.t. $t \|H_- - H\| \approx \text{const}$.
+					</p>
+				</section>
+
+				<section>
+					<h3>Scaling for Complete Ising Graph</h3>
+					<figure>
+						<img data-src="figures/complete_scaling.png" height="400">
+					</figure>
+				</section>
+
+				<section>
+					<h3>QHL is Robust</h3>
+					
+					We obtain accurate results even with
+					sampling error,
+					imperfect coupling, and
+					approximate models.
+				</section>
+
+				<section>
+					<p>
+						Since QHL is robust to approximate models,
+						use <em>information locality</em> (Lieb-Robinson bounds) to provide
+						approximate <em>compressed</em> model.
+					</p>
+					<p>
+						<img data-src="figures/lightcones-vertical-v1.png" height="350">
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/scanning.png" height="400">
+					</p>
+
+					<p>
+						<br>
+						Scan <span style="color: red">observable</span> across <span style="color: blue">trusted</span>
+						register and untrusted device.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						 <img data-src="figures/shaking.png" height="450">
+					</p>
+
+					<p>
+						<br>
+						Perform multiple rounds to reduce Lieb-Robinson velocity by current knowledge
+						of $H$.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/errperexp_v1.png" height="550">
+					</p>
+					<p>
+						<small>50-qubit untrusted device, 8-qubit simulator, 4-qubit observable</small>
+					</p>
+				</section>
+
+				<section>
+					<h3>Calibrating for Crosstalk</h3>
+					<p>
+						Iterate compressed quantum Hamiltonian learning for each control
+						Hamiltonian $H_i$.
+					</p>
+
+					<p>
+						\[
+							H(\vec{c}; \vec{x}) = H_0(\vec{x}) + \sum_i c_i H_i(\vec{x})
+						\]
+					</p>
+
+					<p>
+						Pseudoinverse then gives control settings to implement simulation
+						at next iteration.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/histplots_300.png" height="550">
+					</p>
+					<p>
+						<small>50-qubit untrusted device, 8-qubit simulator, 4-qubit observable, 300 measurements/scan</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Conclusions</h2>
+
+					<p data-markdown>
+						- Sequential Monte Carlo let us learn Hamiltonians
+						  with quantum resources.
+						- Information locality enables using *smaller* trusted quantum
+						  resources.
+						- Hamiltonian learning also learns crosstalk.
+					</p>
+
+					<hr>
+
+					<p>
+						Quantum resources provide a path towards developing more powerful quantum resources.
+					</p>
+				</section>
+
+				<section>
+					
+				</section>
+
+				<section>
+					<h3>Scaling with Model Dimension</h3>
+					<p>
+						<img data-src="figures/exp_scale.png" height="500">
+					</p>
+				</section>
+
+				<section>
+					<h3>Number of Parameters?</h3>
+					<p>
+						<img data-src="figures/corner.png">
+					</p>
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+                                zoomKey: 'shift',
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// multiplex: {
+			 //        // Example values. To generate your own, see the socket.io server instructions.
+
+			 //        // TODO:
+			 //        // - Run $ forever plugin/multiplex from the presentation directory.
+			 //        // - Generate new token from http://berith.cgranade.com:1948/token
+			 //        // - Save id here, push to GitHub.
+			 //        // - Add secret here, do not push!!!
+			 //        id: 'f3d6f929f87f6d6f', // Obtained from socket.io server
+			 //        url: 'berith.cgranade.com:1948' // Location of socket.io server
+			 //    },
+
+
+				// Optional reveal.js plugins
+				dependencies: [
+				    { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+				    { src: 'plugin/multiplex/master.js', async: true },
+        			{ src: 'plugin/multiplex/client.js', async: true },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
