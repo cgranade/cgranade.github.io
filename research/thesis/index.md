@@ -7,9 +7,9 @@ description: ""
 
 [**Christopher E. Granade**](/)<sup>[1](#affil-iqc), [2](#affil-uw-phys)</sup>
 
- > PDF (coming soon) | arXiv (coming soon) | SciRate (coming soon) | UWSpace (coming soon) | LaTeX source (coming soon)
+ > [PDF](http://www.cgranade.com/downloads/cgranade-thesis.pdf)
 
-PhD thesis, to be defended 26 February 2015. 
+PhD thesis, defended 26 February 2015. 
 
  > [Slides](slides/) (will follow presentation during defense) | [Livetweets](https://twitter.com/hashtag/GranadeDefense)
 
