@@ -9,7 +9,7 @@ description: ""
 
  > [arXiv:1509.03770](https://scirate.com/arxiv/1509.03770).
  
-Presented as a talk [at IQC](../talks/iqc/09-2015) and [at QuICS](../talks/quics/09-2015).
+Presented as a talk [at IQC](../talks/iqc/09-2015), [at QuICS](../talks/quics/09-2015), and [at the 2015 QIT Workshop](../talks/qit-workshop/12-2015).
 
 ## Abstract ##
 
