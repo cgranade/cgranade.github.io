@@ -257,7 +257,12 @@
 
 					<p>
 						This estimator is <em>optimal</em> for the mean squared
-						error.
+						error (Blume&#8209;Kohout and Hayden <a
+						href="https://arxiv.org/abs/quant-ph/0603116">quant-ph/0603116</a>).
+					</p>
+
+					<p>
+						More generally, for all Bregman divergences (Banerjee&nbsp;<em>et&nbsp;al.</em>&nbsp;<a href="https://dx.doi.org/10/d6cxmr">10/d6cxmr</a>).
 					</p>
 				</section>
 
@@ -283,7 +288,7 @@
 
 				<section>
 					<p data-markdown>
-						For state tomography, the Bayesian mean estimate is approximately optimal for the fidelity (Ferrie and Keung [1503.00677](https://arxiv.org/abs/1503.00677)).
+						For state tomography, the Bayesian mean estimate is approximately optimal for the fidelity (Kueng and Ferrie [1503.00677](https://arxiv.org/abs/1503.00677)).
 					</p>
 
 					<p>
@@ -413,6 +418,10 @@
 						- Randomized benchmarking: Granade *et al.* [10/zmz](https://dx.doi.org/10/zmz)
 						- Quantum Hamiltonian learning and bootstrapping: Wiebe *et al.* [10/tdk](https://dx.doi.org/10/tdk), Wiebe *et al.* [10/7nx](https://dx.doi.org/10/7nx)
 						- Phase estimation: Wiebe and Granade [1508.00869](https://arxiv.org/abs/1508.00869)
+					</p>
+
+					<p data-markdown style="font-size: 60%">
+						(A few more examples: Granade [10012/9217](https://dx.doi.org/10012/9217))
 					</p>
 				</section>
             
@@ -696,6 +705,10 @@ prior = qi.tomography.GADFLIDistribution(fiducial_prior, prior_mean)
                     <blockquote>
                         All models are wrong, some are useful. &mdash;Chris Ferrie
                     </blockquote>
+
+                    <span style="position: relative; top: -6.5em; font-size: small; font-style: normal;"><br>
+                    	(Box said it first, but it's funnier this way.)
+                    </span>
                     
                     <p>
                         We've seen how to create bases and priors,
