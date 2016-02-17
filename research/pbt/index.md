@@ -9,7 +9,7 @@ description: ""
 
  > [arXiv:1509.03770](https://scirate.com/arxiv/1509.03770).
  
-Presented as a talk [at IQC](../talks/iqc/09-2015), [at QuICS](../talks/quics/09-2015), and [at the 2015 Sydney QIP Workshop](../talks/sqip-workshop/12-2015).
+Presented as a talk [at IQC](../talks/iqc/09-2015), [at QuICS](../talks/quics/09-2015), and [at the 2015 Sydney QIP Workshop](../talks/sqip-workshop/12-2015). Presented [as a poster](./squint-2016.pdf) at [SQuInT 2016](http://physics.unm.edu/SQuInT/2016).
 
 ## Abstract ##
 
