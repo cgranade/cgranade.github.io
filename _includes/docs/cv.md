@@ -25,21 +25,39 @@
 ## Academic Contributions ##
 ### Papers, Essays and Publications ###
 
+#### 2016 ####
+
+- *Practical Bayesian Tomography*, **Christopher E. Granade**, Joshua Combes and D. G. Cory. New Journal of Physics **18** 033024.
+  > [doi:10.1088/1367-2630/18/3/033024](https://dx.doi.org/10.1088/1367-2630/18/3/033024) | [literate source code](http://nbviewer.jupyter.org/gist/cgranade/9b3f8c4c8173eebf5f35) | [arXiv:1509.03770](https://scirate.com/arxiv/1509.03770)
+
 #### 2015 ####
 
-- *Characterization, Veriﬁcation and Control for Large Quantum Systems*, **Christopher E. Granade**. PhD Thesis.
+- *Can small quantum systems learn?*, Nathan Wiebe, **Christopher E. Granade**.
+  > [arXiv:1512.03145](https://scirate.com/arxiv/1512.03145)
+
+- *Bayesian inference via rejection filtering*, Nathan Wiebe, **Christopher E. Granade**, Ashish Kapoor, Krysta M Svore.
+  > [arXiv:1511.06458](https://scirate.com/arxiv/1511.06458)
+
+- *Accounting for Classical Hardware in the Control of Quantum Devices*, Ian N. Hincks, **Christopher E. Granade**, Troy W. Borneman, D. G. Cory. Physical Review Applied **4** 024012.
+   > [doi:10.1103/PhysRevApplied.4.024012](https://dx.doi.org/10.1103/PhysRevApplied.4.024012) | [arXiv:1409.8178](https://scirate.com/arxiv/1409.8178)
+
+- *Efficient Bayesian Phase Estimation*, Nathan Wiebe, **Christopher E. Granade**.
+  > [arXiv:1508.00869](https://scirate.com/arxiv/1508.00869)
+
+- *Quantum Inspired Training for Boltzmann Machines*, Nathan Wiebe, Ashish Kapoor, **Christopher E. Granade**, Krysta M Svore.
+  > [arXiv:1507.02642](https://scirate.com/arxiv/1507.02642)
+
+- *Characterization, Verification and Control for Large Quantum Systems*, **Christopher E. Granade**. PhD Thesis.
   > [UWSpace](https://uwspace.uwaterloo.ca/handle/10012/9217)
 
 - *Estimating the Coherence of Noise*, Joel Wallman, **Christopher E. Granade**, Robin Harper, Steven T. Flammia.
   > [arXiv:1503.07865](https://scirate.com/arxiv/1503.07865)
 
+- *Quantum Bootstrapping via Compressed Quantum Hamiltonian Learning*, Nathan Wiebe, **Christopher E. Granade**, David G. Cory. 
+New Journal of Physics (Fast Track Communications) **17** 022005.
+   > [doi:10.1088/1367-2630/17/2/022005](http://dx.doi.org/10.1088/1367-2630/17/2/022005) | [arXiv:1409.1524](https://scirate.com/arxiv/1409.1524)
+
 #### 2014 ####
-
-- *Accounting for Classical Hardware in the Control of Quantum Devices*, Ian N. Hincks, **Christopher E. Granade**, Troy W. Borneman, D. G. Cory.
-   > [arXiv:1409.8178](https://scirate.com/arxiv/1409.8178)
-
-- *Quantum Bootstrapping via Compressed Quantum Hamiltonian Learning*, Nathan Wiebe, **Christopher E. Granade**, David G. Cory.
-   > [arXiv:1409.1524](https://scirate.com/arxiv/1409.1524)
 
 - *Accelerated Randomized Benchmarking*, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory. New Journal of Physics **17** 013042.
     > [doi:10.1088/1367-2630/17/1/013042](http://dx.doi.org/10.1088/1367-2630/17/1/013042) | [arXiv:1404.5275](http://arxiv.org/abs/1404.5275)
@@ -94,9 +112,11 @@ I have contributed or am an active contributor to the following academic
 projects:
 
 - Complexity Zoo
+- [QuTiP](https://github.com/qutip/qutip)
 - [QuaEC](http://github.com/cgranade/python-quaec)
 - [QInfer](http://github.com/csferrie/python-qinfer)
-- [Quantum Utils for MATLAB](https://github.com/CoryGroup/quantum-utils-matlab)
+- [QuantumUtils for MATLAB](https://github.com/CoryGroup/quantum-utils-matlab)
+- [QuantumUtils for Mathematica](https://github.com/QuantumUtils/quantum-utils-mathematica)
 
 ## Awards and Honors ##
 
