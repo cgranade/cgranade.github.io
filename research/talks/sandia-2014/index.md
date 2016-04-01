@@ -3,7 +3,6 @@ layout: page
 title: "Practical Characterization and Control of Quantum Systems"
 description: ""
 ---
-{% include JB/setup %}
 
 **[Christopher Granade](/)<sup>[1](#affil-iqc), [2](#affil-uwphys)</sup>**,
 joint work with

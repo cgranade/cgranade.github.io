@@ -3,7 +3,6 @@ layout: page
 title: "Parameter Estimation for Quantum Information"
 description: ""
 ---
-{% include JB/setup %}
 
 **[Chris Granade](/)<sup>[1](#affil1),[2](#affil2)</sup>, [Chris Ferrie](http://csferrie.com/)<sup>[1](#affil1),[3](#affil3)</sup>, [Nathan Wiebe](https://services.iqc.uwaterloo.ca/people/profile/nwiebe/)<sup>[1](#affil1),[4](#affil4)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[1](#affil1),[5](#affil5),[6](#affil6)</sup>**
 

@@ -23,6 +23,7 @@
 - Student Researcher, Infrasound Group, University of Alaska Fairbanks. September 2006 to June 2008.
 
 ## Academic Contributions ##
+
 ### Papers, Essays and Publications ###
 
 #### 2016 ####

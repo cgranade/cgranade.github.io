@@ -3,7 +3,6 @@ layout: page
 title: "Practical Bayesian Tomography"
 description: ""
 ---
-{% include JB/setup %}
 
 **[Christopher Granade](/)<sup>[1](#affil1),[2](#affil2)</sup>, Joshua Combes<sup>[3](#affil3),[4](#affil4),[5](#affil5)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[3](#affil3),[5](#affil5),[6](#affil6),[7](#affil7)</sup>**
 

@@ -4,7 +4,6 @@ title: "Contact Me"
 description: ""
 group: navigation
 ---
-{% include JB/setup %}
 
 ## Contact Information and Profiles ##
 

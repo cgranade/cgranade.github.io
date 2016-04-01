@@ -1,0 +1,1493 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"pri",
+				"primary_eval"
+			],
+			[
+				"le",
+				"legalize_policy"
+			],
+			[
+				"op",
+				"ops"
+			],
+			[
+				"lo",
+				"_load_ops"
+			],
+			[
+				"A",
+				"A_acc"
+			],
+			[
+				"c",
+				"coeffs"
+			],
+			[
+				"P",
+				"PADE_COEFFS"
+			],
+			[
+				"pa",
+				"pade_coeffs"
+			],
+			[
+				"no",
+				"nopython"
+			],
+			[
+				"nor",
+				"norm1"
+			],
+			[
+				"U_",
+				"U_us"
+			],
+			[
+				"as",
+				"assert_almost_equal"
+			],
+			[
+				"idx_",
+				"idx_control"
+			],
+			[
+				"idx",
+				"idx_i"
+			],
+			[
+				"id",
+				"idx_t"
+			],
+			[
+				"H_c",
+				"H_cs"
+			],
+			[
+				"_s",
+				"_dense_Hint"
+			],
+			[
+				"_dens",
+				"_dense_Hint"
+			],
+			[
+				"_den",
+				"_dense_simulate"
+			],
+			[
+				"sim",
+				"simulate_pulse"
+			],
+			[
+				"step",
+				"step_norms"
+			],
+			[
+				"ste",
+				"step_norms"
+			],
+			[
+				"eval",
+				"eval_history"
+			],
+			[
+				"eva",
+				"eval_history"
+			],
+			[
+				"return",
+				"return_details"
+			],
+			[
+				"ide",
+				"ideal_evaluator"
+			],
+			[
+				"confi",
+				"confirmation_evals"
+			],
+			[
+				"conif",
+				"confirmation_evals"
+			],
+			[
+				"pro",
+				"property	New Property"
+			],
+			[
+				"Sf_",
+				"Sf_logical"
+			],
+			[
+				"_S",
+				"_S_prep"
+			],
+			[
+				"Sf",
+				"Sf_phys"
+			],
+			[
+				"__in",
+				"__uninitialized__"
+			],
+			[
+				"eps",
+				"eps_range"
+			],
+			[
+				"ep",
+				"eps_range"
+			],
+			[
+				"pulse",
+				"pulse_sample_fn"
+			],
+			[
+				"init",
+				"init_pulse"
+			],
+			[
+				"fn_",
+				"fn_p"
+			],
+			[
+				"pu",
+				"pulse_m"
+			],
+			[
+				"beta",
+				"beta_k"
+			],
+			[
+				"ini",
+				"init_n_steps"
+			],
+			[
+				"ab",
+				"abstractmethod"
+			],
+			[
+				"abc",
+				"abstractproperty"
+			],
+			[
+				"pr",
+				"property	New Property"
+			],
+			[
+				"aver",
+				"average_gate_fidelity"
+			],
+			[
+				"av",
+				"average_gate_fidelity"
+			],
+			[
+				"PulseS",
+				"PulseSimulator"
+			],
+			[
+				"sup",
+				"suppress_base"
+			],
+			[
+				"mod",
+				"model_chain"
+			],
+			[
+				"model",
+				"model_chain"
+			],
+			[
+				"under",
+				"underlying_model"
+			],
+			[
+				"base",
+				"base_model"
+			],
+			[
+				"n_mp",
+				"n_modelparams"
+			],
+			[
+				"n_m",
+				"n_mp"
+			],
+			[
+				"_for",
+				"_format_complex_as_latex"
+			],
+			[
+				"element",
+				"element_strings"
+			],
+			[
+				"ti",
+				"tick_labels"
+			],
+			[
+				"colo",
+				"color_max"
+			],
+			[
+				"si",
+				"size_fitness"
+			],
+			[
+				"or",
+				"orig_shape"
+			],
+			[
+				"prob",
+				"probability"
+			],
+			[
+				"save",
+				"save_file"
+			],
+			[
+				"mate",
+				"mate_exchange_conditionals"
+			],
+			[
+				"fit",
+				"fitness"
+			],
+			[
+				"fin",
+				"final_popn"
+			],
+			[
+				"ca",
+				"causal_Statistics"
+			],
+			[
+				"caus",
+				"causalEdges"
+			],
+			[
+				"rho",
+				"rho_D"
+			],
+			[
+				"sec",
+				"section	Tag"
+			],
+			[
+				"is",
+				"isinstance"
+			],
+			[
+				"tens",
+				"tensor_product_basis"
+			],
+			[
+				"expp",
+				"expparams"
+			],
+			[
+				"rand",
+				"randint"
+			],
+			[
+				"are",
+				"are_models_valid"
+			],
+			[
+				"can",
+				"canonicalize"
+			],
+			[
+				"p",
+				"pkl_file"
+			],
+			[
+				"st",
+				"startswith"
+			],
+			[
+				"blocks",
+				"block_struct"
+			],
+			[
+				"block",
+				"block_struct"
+			],
+			[
+				"b",
+				"block"
+			],
+			[
+				"blo",
+				"block_struct"
+			],
+			[
+				"ten",
+				"tensor_product_basis"
+			],
+			[
+				"fac",
+				"factor_dms"
+			],
+			[
+				"fa",
+				"factor_dist"
+			],
+			[
+				"_sam",
+				"_sample_dm"
+			],
+			[
+				"mode",
+				"modelparams"
+			],
+			[
+				"BC",
+				"BCSZChoiDistribution"
+			],
+			[
+				"Gini",
+				"GinibreReditDistribution"
+			],
+			[
+				"B",
+				"BCSZChoiDistribution"
+			],
+			[
+				"fid",
+				"fid_samp"
+			],
+			[
+				"fi",
+				"fiducial_distribution"
+			],
+			[
+				"sam",
+				"_sample_dm"
+			],
+			[
+				"ra",
+				"rand_dm_ginibre"
+			],
+			[
+				"stat",
+				"state_to_modelparams"
+			],
+			[
+				"the",
+				"theta_b"
+			],
+			[
+				"thet",
+				"theta_b"
+			],
+			[
+				"theta",
+				"theta_b"
+			],
+			[
+				"reg",
+				"regularize_nodes"
+			],
+			[
+				"Prob",
+				"Problem11Conic"
+			],
+			[
+				"PRo",
+				"Problem11HTA"
+			],
+			[
+				"Pro",
+				"Problem11HTA"
+			],
+			[
+				"s",
+				"self"
+			],
+			[
+				"con",
+				"conjugate"
+			],
+			[
+				"norm",
+				"norm_11conic"
+			],
+			[
+				"yield",
+				"yield_many"
+			],
+			[
+				"ve",
+				"vector_to_operator"
+			],
+			[
+				"to",
+				"to_super"
+			],
+			[
+				"met",
+				"metric_label"
+			],
+			[
+				"QB",
+				"QB_SDIMS"
+			],
+			[
+				"de",
+				"depol_channel"
+			],
+			[
+				"QB_",
+				"QB_SDIMS"
+			],
+			[
+				"pic",
+				"picos_args"
+			],
+			[
+				"to_",
+				"to_stinespring"
+			],
+			[
+				"keep",
+				"keep_left"
+			],
+			[
+				"kee",
+				"keep_left"
+			],
+			[
+				"sla",
+				"slack_name"
+			],
+			[
+				"tr",
+				"traceout"
+			],
+			[
+				"zip",
+				"zip_longest"
+			],
+			[
+				"ver",
+				"version_info"
+			],
+			[
+				"assert_",
+				"assert_equal"
+			],
+			[
+				"cho",
+				"choi_to_stinespring"
+			],
+			[
+				"th",
+				"thresh"
+			],
+			[
+				"supp",
+				"superrep"
+			],
+			[
+				"avg",
+				"avg_data"
+			],
+			[
+				"seq",
+				"seq_length"
+			],
+			[
+				"emp",
+				"empty_like"
+			],
+			[
+				"np",
+				"npy"
+			],
+			[
+				"se",
+				"seq_length"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "research/thesis/index.md",
+			"settings":
+			{
+				"buffer_size": 4629,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "research/talks/msr/10-2015/index.html",
+			"settings":
+			{
+				"buffer_size": 25878,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "research/talks/msr/10-2015/css/theme/serif.css",
+			"settings":
+			{
+				"buffer_size": 6106,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "research/talks/msr/10-2015/css/theme/blood.css",
+			"settings":
+			{
+				"buffer_size": 7350,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 588.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"qu",
+				"Git: Quick Commit"
+			],
+			[
+				"pan",
+				"Pandoc"
+			],
+			[
+				"comm",
+				"Git: Commit"
+			],
+			[
+				"add",
+				"Git: Add..."
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"com",
+				"Git: Commit"
+			],
+			[
+				"tabs",
+				"Indentation: Convert to Tabs"
+			],
+			[
+				"ad",
+				"Git: Add..."
+			],
+			[
+				"ament",
+				"Git: Amend Commit"
+			],
+			[
+				"q",
+				"Git: Quick Commit"
+			],
+			[
+				"a",
+				"Git: Add Current File"
+			],
+			[
+				"git pu",
+				"Git: Pull"
+			],
+			[
+				"p",
+				"Pandoc"
+			],
+			[
+				"git br",
+				"Git: Change Branch"
+			],
+			[
+				"pand",
+				"Pandoc"
+			],
+			[
+				"",
+				"Bookmarks: Toggle"
+			],
+			[
+				"pandoc",
+				"Pandoc"
+			],
+			[
+				"view pdf",
+				"LaTeXTools: View PDF"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"syntax acad",
+				"Set Syntax: AcademicMarkdown"
+			],
+			[
+				"syntax pand",
+				"Set Syntax: Pandoc"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"stat",
+				"Git: Status"
+			],
+			[
+				"pus",
+				"Git: Push"
+			],
+			[
+				"git add",
+				"Git: Add Current File"
+			],
+			[
+				"lint",
+				"MarkdownEditing: Markdown Lint"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"latex",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"setting",
+				"Preferences: Settings - User"
+			],
+			[
+				"spaces",
+				"Indentation: Convert to Spaces"
+			],
+			[
+				"push",
+				"Git: Push"
+			],
+			[
+				"commit",
+				"Git: Commit"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"recon",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"reconfig",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"set late",
+				"Set Syntax: LaTeX"
+			],
+			[
+				"log",
+				"Set Syntax: LaTeX Log"
+			],
+			[
+				"pu",
+				"Git: Push"
+			],
+			[
+				"pull",
+				"Git: Pull"
+			],
+			[
+				"chec",
+				"Git: Change Branch"
+			],
+			[
+				"push ",
+				"Git: Push Current Branch"
+			],
+			[
+				"branc",
+				"Git: New Branch"
+			],
+			[
+				"git ad",
+				"Git: Add..."
+			],
+			[
+				"cus",
+				"Git: Custom Command"
+			],
+			[
+				"custo",
+				"Git: Custom Command"
+			],
+			[
+				"command",
+				"Git: Custom Command"
+			],
+			[
+				"delet",
+				"LaTexTools: Delete temporary files"
+			],
+			[
+				"spell",
+				"Google Spell Check"
+			],
+			[
+				"delete",
+				"LaTexTools: Delete temporary files"
+			],
+			[
+				"status",
+				"Git: Status"
+			],
+			[
+				"git stat",
+				"Git: Status"
+			],
+			[
+				"gits",
+				"Git: Status"
+			],
+			[
+				"figu",
+				"Snippet: figure"
+			],
+			[
+				"newgl",
+				"Snippet: New Glossary Entry"
+			],
+			[
+				"co",
+				"Git: Commit"
+			],
+			[
+				"commi",
+				"Git: Commit"
+			],
+			[
+				"git: st",
+				"Git: Status"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"refresh",
+				"Project: Refresh Folders"
+			],
+			[
+				"bui",
+				"Build: Build"
+			],
+			[
+				"close",
+				"Project: Close"
+			],
+			[
+				"migr",
+				"LaTeXTools: Reconfigure and migrate settings"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"boo",
+				"Bookmarks: Select Next"
+			],
+			[
+				"bo",
+				"Bookmarks: Toggle"
+			],
+			[
+				"build",
+				"Build: Build"
+			],
+			[
+				"open",
+				"LaTeXing: Open PDF"
+			],
+			[
+				"quic",
+				"Build: Choose Quick Build"
+			],
+			[
+				"linter",
+				"SublimeLinter: Lint This View"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pakc",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: List Packages"
+			]
+		],
+		"width": 600.0
+	},
+	"console":
+	{
+		"height": 139.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Chris/Dropbox/cgranade.github.io",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/downloads",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/talks",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/talks/msr",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/talks/msr/10-2015",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/talks/msr/10-2015/css",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/talks/msr/10-2015/css/theme",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/thesis"
+	],
+	"file_history":
+	[
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/papers/logical_rb/revquantum.sty",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/.gitignore",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/papers/logical_rb/logical_rb.log",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/notes/overview.tex",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/notes/overview.pdf",
+		"/C/Users/Chris/Dropbox/software-projects/revquantum/revquantum.dtx",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/notes/josh/fidelity estimates/fid_est_Logical_RB.tex",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/papers/logical_rb/logical_rb_v2.tex",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/wtf-bbq.sublime-project",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/wtf_bbq/__init__.py",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/wtf_bbq/spsa.py",
+		"/C/Users/Chris/Dropbox/academics/research/tracking-rd/notes/revquantum.sty",
+		"/C/Users/Chris/Dropbox/academics/research/tracking-rd/.gitignore",
+		"/C/Users/Chris/Dropbox/academics/research/randomized-diagnostics-review/randomized-diagnostics-review.sublime-project",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/pulsekit/pulses.py",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/wtf_bbq/tensors.py",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/wtf_bbq/problems.py",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/wtf_bbq/evaluators.py",
+		"/C/Users/Chris/Dropbox/academics/research/randomized-diagnostics-review/tex/revquantum.sty",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/notes/wtfbbq.bib",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/wtf_bbq/logical.py",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/wtf_bbq/hamiltonians.py",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/wtf_bbq/expm.py",
+		"/C/Anaconda/Lib/distutils/distutils.cfg",
+		"/C/Users/Chris/AppData/Roaming/qutip/qutiprc",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/rb.py",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/papers/practical-bayesian-tomography/V5/pbt.bib",
+		"/C/Users/Chris/tmp/Exported Items.bib",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/paper/working.tex",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/notes/.gitignore",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/notes/overview.md",
+		"/C/Users/Chris/Dropbox/tmp/NewParameters_main.bmp",
+		"/C/Users/Chris/Dropbox/tmp/for-astrokatie/weights.txt",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/pulsekit/distortions.py",
+		"/C/Users/Chris/Dropbox/academics/research/wtf-bbq/src/.gitignore",
+		"/C/Users/Chris/Dropbox/academics/supervising/usyd/tsp-project-2015/README.md",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/papers/practical-bayesian-tomography/V4/pbt_v4.bbl",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/papers/practical-bayesian-tomography/V4/pbt.bib",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/papers/practical-bayesian-tomography/V4/pbt_v4.tex",
+		"/C/Users/Chris/projects/CRPE4/CRPE6.bbl",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/papers/practical-bayesian-tomography/V3/pbt.bib",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/papers/practical-bayesian-tomography/V3/pbt_v3.tex",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/abstract_model.py",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/smc.py",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/tomography/distributions.py",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/tomography/bases.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/qutip/qobj.py",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/papers/practical-bayesian-tomography/V3/pbt_v3.log",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/papers/practical-bayesian-tomography/V3/pbt_v3.bbl",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/talks/lfqis-2015/index.html",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/tomography/plotting_tools.py",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/tomography/models.py",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/src/causal_graphs/pareto_plotting.py",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/tomography/__init__.py",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/.gitignore",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/src/causal_graphs/GraphEvolve.py",
+		"/C/Users/Chris/AppData/Local/Temp/scatter3d_demo.py",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/paper/working.log",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/paper/working.toc",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/src/causal_graphs/synthetic_data.py",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/src/causal_graphs/fast_pareto_front.py",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/src/causal_graphs/simulateDistribution.py",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/src/causal_graphs/simulate_distribution.py",
+		"/C/Users/Chris/Dropbox/academics/research/characterizing-decoherence/Characterizing.tex",
+		"/C/Users/Chris/Dropbox/research/distortion-oct/.gitignore",
+		"/C/Users/Chris/Dropbox/research/distortion-oct/papers/paper1/main/mainNotes.bib",
+		"/C/Users/Chris/Dropbox/research/distortion-oct/papers/paper1/main/mainbib.bib",
+		"/C/Program Files/MiKTeX 2.9/bibtex/bst/revtex/apsrev4-1.bst",
+		"/C/Program Files/MiKTeX 2.9/bibtex/bst/revtex4/apsrev.bst",
+		"/C/Users/Chris/Dropbox/research/distortion-oct/papers/paper1/main/main.bbl",
+		"/C/Users/Chris/Dropbox/research/generic-hamiltonian-finding/Notes/2-param/apsrev.bst",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/_includes/docs/cv.tex",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/_includes/docs/cv.md",
+		"/C/Users/Chris/Google Drive/Academics/Reviews/NJP/Maciel et al 2015/round-1-review.md",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/thesis/slides/index.html",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/talks/unm-2014/slides.html",
+		"/C/Users/Chris/Dropbox/cgranade.github.io/research/talks/iqc/student-seminar-2014/index.html",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/expdesign.py",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/distributions.py",
+		"/C/Users/Chris/AppData/Local/Temp/hermitian_basis_S.m",
+		"/C/Users/Chris/projects/qpf/QRej2.tex",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/2014-06-20 02-14-08 Poln Opt IO.txt",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/src/poln_io_parser.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/qutip/random_objects.py",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/src/qinfer/tomography/__init__.py",
+		"/C/Users/Chris/Dropbox/academics/research/my-little-pauli/src/qinfer/__init__.py",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/src/causal_graphs/__init__.py",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/src/causal_graphs/deap_ops.py",
+		"/C/Users/Chris/Dropbox/academics/research/causal-discovery/notes/bounds/bounds.md",
+		"/C/Users/Chris/tmp/msg.txt.asc",
+		"/C/Users/Chris/tmp/msg.txt",
+		"/C/Users/Chris/projects/qpf-v2/QRej2.tex",
+		"/C/Users/Chris/Google Drive/Academics/Reviews/PRL/Wang et al 2015/round-2-review.md",
+		"/C/Users/Chris/AppData/Roaming/Sublime Text 3/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Users/Chris/Downloads/1505.06686v1.tar/RBT-Exp.tex",
+		"/C/Users/Chris/Dropbox/research/quantum-bootstrapping-lrb/paper/QBS_15.tex",
+		"/C/Users/Chris/projects/Crej/RejS-aistats/RejS-6.log",
+		"/C/Users/Chris/projects/Crej/RejS-aistats/qsmc.bib",
+		"/C/Users/Chris/projects/Crej/RejS-aistats/RejS-6.bbl",
+		"/C/Users/Chris/Dropbox/academics/research/overcompilation/notes/online-benchmarking.md",
+		"/C/Users/Chris/projects/Crej/RejS-5.tex",
+		"/C/Users/Chris/AppData/Roaming/Sublime Text 3/Packages/User/LaTeXTools.sublime-settings",
+		"/C/Users/Chris/Dropbox/academics/research/overcompilation/notes/overcompile.tex",
+		"/C/Users/Chris/tmp/pdg-vita/pdg-vita.tex",
+		"/C/Users/Chris/Dropbox/academics/research/overcompilation/src/overcompilation/common_channels.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/qutip/visualization.py",
+		"/C/Users/Chris/Dropbox/academics/research/overcompilation/overcompilation.sublime-project",
+		"/C/Users/Chris/Dropbox/academics/research/overcompilation/src/overcompilation/norms.py",
+		"/C/Users/Chris/Documents/GitHub/quantum-utils-mathematica/doc/api-doc/Visualization.nb",
+		"/C/Users/Chris/Dropbox/academics/research/overcompilation/.gitignore",
+		"/C/Users/Chris/Dropbox/software-projects/python-qinfer/src/qinfer/tomography.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/qutip/tests/test_qobj.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/qutip/__init__.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/qutip/metrics.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/qutip/picos_tools.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/qutip/superop_reps.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/setup.py",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/stinespring_demo.ipynb",
+		"/C/Users/Chris/tmp/qutip_mul_issue.ipynb",
+		"/C/Users/Chris/Dropbox/software-projects/qutip/debian/rules",
+		"/C/Users/Chris/Dropbox/academics/research/characterizing-decoherence/arxiv1.0/Characterizing.tex",
+		"/C/Users/Chris/Dropbox/research/quantum-bootstrapping/paper/QHL_v14.tex",
+		"/C/Users/Chris/Dropbox/academics/research/unsw-data/src/models.py",
+		"/C/Users/Chris/Dropbox/academics/research/unsw-data/foo.txt",
+		"/C/Users/Chris/Dropbox/research/thesis/latex/chapters/oct.tex",
+		"/C/Users/Chris/Dropbox/research/thesis/latex/chapters/verification.tex",
+		"/C/Users/Chris/Dropbox/research/thesis/latex/chapters/ha.tex",
+		"/C/Users/Chris/Dropbox/research/thesis/latex/chapters/intro.tex"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"figure",
+			"final",
+			"\n\\newboolean{@final}\n\\setboolean{@final}{false}",
+			"fig/",
+			"\\tr",
+			"\\Id",
+			"\\dg",
+			"\\expt",
+			"<+date+>",
+			"<",
+			"ensuremath",
+			"legalize",
+			"array",
+			"_expm",
+			"norm",
+			"100",
+			"tocsc",
+			"sp_one",
+			"theta",
+			"m_vals",
+			"idx_j",
+			"idx_i",
+			"sim_result",
+			"_n_copies",
+			"figure",
+			"_S_tr",
+			"_S_prep",
+			"tr",
+			"\\tr",
+			"equation",
+			"itemize",
+			"simulator",
+			"_simulator",
+			"q.",
+			"align",
+			"WTFQ",
+			"align",
+			"equation",
+			"that is,",
+			"et al",
+			"granade",
+			"cgranade",
+			"Granade",
+			"granade",
+			"shul",
+			"6156",
+			"svore",
+			"450",
+			"adjustimage",
+			"QInfer Tomography Tutorial_files",
+			"adju",
+			"QInfer Tomography Tutorial_files",
+			"underl",
+			"_format_complex_as_latex",
+			"gadfli",
+			"Delta",
+			"\\todo",
+			"542",
+			":542",
+			"\\todo",
+			"@misc",
+			"howpub",
+			"Phi",
+			"\\todo",
+			"granade_accelerated_2014",
+			"\">\n",
+			"\\arxivref{",
+			"}.\n",
+			"\\arxivref{",
+			"\\href{http://arxiv.org/",
+			"\\href{http://dx.doi.org/",
+			"\\doi",
+			"doi",
+			"\\mathrm{Pr}",
+			"\\mathrm{TVD}",
+			"\\ref{",
+			"{alg:",
+			"alg:",
+			"autoref",
+			"\\sec{",
+			"\\sec",
+			"idx_fitness_size",
+			"Axes",
+			"1",
+			"final_pop",
+			"nmask",
+			"rows",
+			"orig",
+			"getFront",
+			"saveFile",
+			"causal_St",
+			"causal_Statistics",
+			"outputfile",
+			"fileName",
+			"popSize",
+			"numberOfIterations",
+			"count",
+			"hofList",
+			"Individual",
+			"create_type2",
+			"numberOfIt",
+			"idxY",
+			"idxX",
+			"nset",
+			"produc",
+			"rho_D",
+			"rho_1",
+			"rho_b",
+			"proj",
+			"proj(",
+			"{English",
+			"{en}",
+			"ladd_quantum_2010",
+			"language",
+			"selectlangu",
+			"control.title",
+			"control.",
+			"control",
+			"suppleme",
+			"\\app",
+			"appendix",
+			"Systems}",
+			"Systems",
+			"acro",
+			"src",
+			"SRC",
+			"p",
+			"TODO"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"\\figurefolder/",
+			"\\Tr",
+			"\\id",
+			"\\dagger",
+			"\\expect",
+			"18-Sep-2015",
+			"qt.",
+			"../apx/QInfer Tomography Tutorial_files",
+			"granade_accelerated_2015",
+			"\\arxivref{",
+			"\\doiref{",
+			"\\doi{",
+			"\\doi",
+			"\\Pr",
+			"\\TVD",
+			"\\begin{Verbatim}[fontfamily=zi4,",
+			"\\begin{Verbatim}[fontfamily=zi4",
+			"expparams",
+			"\\bomb:",
+			"\\nttu",
+			"1j *",
+			"**",
+			"\\Lambda",
+			"V_s",
+			"\\UU",
+			"sop",
+			"pt}",
+			"    ",
+			"sec:"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "research/thesis/index.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4629,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								219,
+								219
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 0,
+								"count": 555,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"WordCountShouldRun": true,
+							"WordCountSyntax": "academicmarkdown",
+							"side_bar_folders_auto_load_folder": 1,
+							"syntax": "Packages/AcademicMarkdown/AcademicMarkdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "research/talks/msr/10-2015/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 25878,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								832,
+								832
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": 18,
+								"count": 1428,
+								"modified": false,
+								"selection": false,
+								"status": -1,
+								"syntax": "plain text"
+							},
+							"side_bar_folders_auto_load_folder": 1,
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "research/talks/msr/10-2015/css/theme/serif.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6106,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								767,
+								767
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "css"
+							},
+							"side_bar_folders_auto_load_folder": 1,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "research/talks/msr/10-2015/css/theme/blood.css",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 7350,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"WordCount":
+							{
+								"changes": -1,
+								"modified": true,
+								"selection": true,
+								"status": -1,
+								"syntax": "css"
+							},
+							"side_bar_folders_auto_load_folder": 1,
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 37.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 413.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 112.0
+	},
+	"output.markdown":
+	{
+		"height": 172.0
+	},
+	"output.mde":
+	{
+		"height": 172.0
+	},
+	"pinned_build_system": "",
+	"project": "cgranade.github.io.sublime-project",
+	"replace":
+	{
+		"height": 70.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Dropbox/research/quantum-bootstrapping/paper/QHL_v14.tex"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 750.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Chris\\Dropbox\\software-projects\\qutip-doc\\qutip-doc.sublime-project"
+			]
+		],
+		"width": 570.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 404.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

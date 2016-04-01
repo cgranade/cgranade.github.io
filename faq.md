@@ -3,7 +3,6 @@ layout: page
 title: "FAQ"
 description: "Frequently Asked Questions"
 ---
-{% include JB/setup %}
 
 ## Meta Questions ##
 > Why do you write and maintain a FAQ for yourself?

@@ -3,7 +3,6 @@ layout: page
 title: "Quantum Bootstrapping via Compressed Quantum Hamiltonian Learning"
 description: ""
 ---
-{% include JB/setup %}
 
 **[Nathan Wiebe](http://research.microsoft.com/en-us/people/nawiebe/)<sup>[1](#affil1)</sup>, [Chris Granade](/)<sup>[2](#affil2), [3](#affil3)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[2](#affil2),[4](#affil5),[5](#affil6)</sup>**
 

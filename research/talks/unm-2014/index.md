@@ -3,7 +3,6 @@ layout: page
 title: "Characterizing and Verifying 100-qubit Scale Quantum Computers"
 description: ""
 ---
-{% include JB/setup %}
 
 **[Christopher Granade](/)<sup>[1](#affil-iqc), [2](#affil-uwphys)</sup>**, joint work with **[Nathan Wiebe](http://research.microsoft.com/en-us/people/nawiebe/)<sup>[3](#affil-msr)</sup>, [Christopher Ferrie](http://csferrie.com/)<sup>[4](#affil-cquic)</sup>, [Ian Hincks](https://services.iqc.uwaterloo.ca/people/profile/ihincks/)<sup>[1](#affil-iqc), [5](#affil-uwamath)</sup>, [Rahul Deshpande](https://services.iqc.uwaterloo.ca/people/profile/rdeshpande/)<sup>[1](#affil-iqc), [2](#affil-uwphys)</sup>, and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[1](#affil-iqc),[6](#affil-uwchem),[7](#affil-pi)</sup>**
 

@@ -3,7 +3,6 @@ layout: page
 title: "Research Talks and Posters"
 description: ""
 ---
-{% include JB/setup %}
 
 # Upcoming Talks #
 

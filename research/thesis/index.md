@@ -3,7 +3,6 @@ layout: page
 title: "Characterization, Verification and Control for Large Quantum Systems"
 description: ""
 ---
-{% include JB/setup %}
 
 [**Christopher E. Granade**](/)<sup>[1](#affil-iqc), [2](#affil-uw-phys)</sup>
 

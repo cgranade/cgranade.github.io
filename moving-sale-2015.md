@@ -3,7 +3,6 @@ layout: page
 title: "Moving Sale 2015"
 description: ""
 ---
-{% include JB/setup %}
 
 All prices OBO.
 

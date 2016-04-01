@@ -4,7 +4,6 @@ title: "Public Key"
 description: ""
 group: navigation
 ---
-{% include JB/setup %}
 
 ## OpenPGP/GPG Public Key ##
 

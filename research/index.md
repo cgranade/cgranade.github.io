@@ -3,7 +3,6 @@ layout: page
 title: "Research"
 description: ""
 ---
-{% include JB/setup %}
 
 For more details, please see my [CV](/cv.html), or [Talks, Posters and Seminars](talks/).
 

@@ -3,7 +3,6 @@ layout: page
 title: "Projects"
 description: ""
 ---
-{% include JB/setup %}
 
 
 ### Software Projects ###
