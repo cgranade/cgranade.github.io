@@ -7,7 +7,7 @@ group: navigation
 
 ## OpenPGP/GPG Public Key ##
 
-Since 9 September 2013, I use the following OpenPGP/GnuPG public key:
+Since 9 September 2013, I use the following OpenPGP/GnuPG public key. This key can also be found on [keybase.io](https://keybase.io/cgranade).
 
     -----BEGIN PGP PUBLIC KEY BLOCK-----
     Version: GnuPG v1.4.12 (GNU/Linux)
