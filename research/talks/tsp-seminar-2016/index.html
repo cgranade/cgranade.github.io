@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+
+<!--
+	ABSTRACT
+	========
+
+	In this talk, I will discuss scientific programming from the perspective
+	of quantum information research. Using the example of the QuTiP library
+	for Python, I will demonstrate how software design can play an important
+	role in research.
+-->
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Scientific Software for Quantum Information</title>
+
+		<meta name="description" content="IQC, September 2015">
+		<meta name="author" content="Christopher E. Granade">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style type="text/css">
+			.reveal section img {
+				border: none;
+				box-shadow: none;
+				background: none;
+			}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1 style="font-size: 175%">Scientific Software for Quantum Information</h1>
+					<hr>
+					<p>
+						<a href="http://www.cgranade.com">Christopher E. Granade</a> <br>
+						<a href="https://equs.org/">Centre for Engineered Quantum Systems</a>
+					</p>
+
+					<p data-markdown style="font-size: 80%">
+						http://www.cgranade.com/research/talks/tsp-seminar-2016/
+                        $
+							\newcommand{\ee}{\mathrm{e}}
+							\newcommand{\ii}{\mathrm{i}}
+							\newcommand{\dd}{\mathrm{d}}
+							\newcommand{\id}{&#x1d7d9;}
+							\newcommand{\TT}{\mathrm{T}}
+							\newcommand{\defeq}{\mathrel{:=}}
+							\newcommand{\Tr}{\operatorname{Tr}}
+							\newcommand{\Var}{\operatorname{Var}}
+							\newcommand{\Cov}{\operatorname{Cov}}
+							\newcommand{\rank}{\operatorname{rank}}
+							\newcommand{\expect}{\mathbb{E}}
+							\newcommand{\sket}[1]{|#1\rangle\negthinspace\rangle}
+							\newcommand{\sbraket}[1]{\langle\negthinspace\langle#1\rangle\negthinspace\rangle}
+							\newcommand{\Gini}{\operatorname{Ginibre}}
+							\newcommand{\supp}{\operatorname{supp}}
+							\newcommand{\ket}[1]{\left|#1\right\rangle}
+							\newcommand{\bra}[1]{\left\langle#1\right|}
+							\newcommand{\braket}[1]{\left\langle#1\right\rangle}
+						$
+					</p>
+				</section>
+
+				<section>
+					<h3>About Me</h3>
+
+					<dl>
+						<dt>2009</dt>
+						<dd>Bachelor of Science (phys, math, CS)<br />University of Alaska Fairbanks</dd>
+
+						<dt>2010</dt>
+						<dd>
+							Master of Science (phys)<br />
+							University of Waterloo / Perimeter Scholars International
+						</dd>
+
+						<dt>2015</dt>
+						<dd>
+							PhD (physics / quantum information)<br />
+							University of Waterloo
+						</dd>
+
+						<dt>The Present</dt>
+						<dd>
+							Postdoctoral Research Associate<br />
+							Centre for Engineered Quantum Systems
+						</dd>
+					</dl>
+				</section>
+
+				<section data-markdown>
+					### Science is for People ###
+
+					This is why it's important for our work to be:
+
+					- Accessible (open access)
+					- Reproducible (open data and source)
+					- Understandable (well-written and clear)
+				</section>
+
+				<section data-markdown>
+					From this view,
+
+					### Scientific Software is Also for People. ###
+
+					- Use accessible tools (e.g.: Python, Julia) whenever possible
+					- Make source code available (e.g.: GitHub or Bitbucket, Zenodo, Figshare)
+					- Write consise and legible code
+
+					After all, you have to read it as well!
+				</section>
+
+				<section data-markdown>
+					How can we make our code not only useful, but also
+					clearly legible?
+
+					---
+
+					Consider summing a list of numbers.
+
+					```c
+					int data[] = {1, 2, 3};
+					int total = 0;
+					for (int i = 0; i < 3; i++) {
+						total = total + data[i];
+					}
+					```
+
+					- Lots of boilerplate to get to the actual operation ($+$).
+					- Lots of room for bugs.
+				</section>
+
+				<section data-markdown>
+					```python
+					>>> data = [1, 2, 3]
+					>>> total = 0
+					>>> for i in range(len(data)):
+					>>>     total = total + data[i]
+					>>> print(total)
+					```
+
+					- We never needed to know what ``i`` was.
+					- Enforces an order, but $a + b = b + a$.
+					- Doesn't communicate "sum" to reader.
+					- Several lines to rewrite each time we need a sum.
+				</section>
+
+				<section data-markdown>
+					Simplifying makes our intent more clear:
+
+					```python
+					>>> data = [1, 2, 3]
+					>>> total = 0
+					>>> for datum in data:
+					>>>     total = total + datum
+					>>> print(total)
+					```
+
+					- No explicit use of an index ``i``.
+				</section>
+
+				<section data-markdown>
+					Can simplify further by isolating the relevant pattern:
+
+					```python
+					>>> data = [1, 2 ,3]
+					>>> def add(x, y): return x + y
+					>>> total = reduce(add, data)
+					```
+
+					We can even do better
+					by relying on built-in functions:
+
+					```python
+					>>> total = sum(data)
+					```
+
+					Thus, `sum` makes it easier for us to say what we mean.
+				</section>
+
+				<section data-markdown>
+					We need to write libraries that make it easy
+					to express scientific concepts.
+
+					- Provide common operations (e.g.: ``sum``)
+					- Abstract away common patterns to make intent clear (e.g.: ``reduce``)
+				</section>
+
+				<section data-markdown>
+					# Quantum is No Exception #
+
+					We need generic and flexible libraries to solve
+					problems in quantum information	research...
+				</section>
+
+				<section data-background-video="figures/multicos-distributions.mp4">
+					<p>
+						...like how to process experimental data...
+					</p>
+				</section>
+
+				<section data-background="figures/example-ga-qcp-view-desat.png">
+					<p>
+						...or how to control quantum systems.
+					</p>
+				</section>
+
+				<section>
+					<h3><code class="python">&gt;&gt;&gt; from qutip import *</code></h3>
+
+					<p data-markdown>
+						QuTiP (http://qutip.org/) provides flexible and efficient representations
+						of scientific concepts common to quantum information.
+					</p>
+
+					<ul>
+						<li>states, mixed states, channels</li>
+						<li>gates, Hamiltonians, stochastic evolution</li>
+						<li>metrics and norms</li>
+						<li>etc.</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Let's Get Quantum</h2>
+
+					<p>
+						Preparations described as <em>states</em> $\ket{\cdot}$, vectors of complex numbers.
+					
+						For <em>qubits</em>:
+					</p>
+
+					<p>
+						\begin{align}
+							\ket{\psi} = \left(\begin{matrix} \alpha \\ \beta \end{matrix}\right)
+							 \text{ where } \alpha\alpha^* + \beta\beta^* = 1.
+						\end{align}
+					</p>
+
+					<pre><code class="python" data-trim>
+>>> alpha = 1; beta = 0;
+>>> psi = Qobj([[alpha], [beta]])
+>>> print(psi)
+Quantum object: dims = [[2], [1]], shape = [2, 1], type = ket
+Qobj data =
+[[ 1.]
+ [ 0.]]
+					</code></pre>
+				</section>
+
+				<section data-markdown>
+					States evolve by *unitaries* $U$ such that
+					$U^\dagger = U^{-1}$. For example, a spin in a magnetic
+					field $B$ evolves as
+
+					\begin{align}
+						U(t) &amp; = \ee^{\ii \sigma_x B \gamma t / 2} \\\\
+						     &amp; = \cos(B \gamma t / 2) \id + \sin(B \gamma t / 2) \sigma_x,
+					\end{align}
+
+					where $\sigma_x = \left(\begin{matrix}0 &amp; 1 \\\\ 1 &amp; 0\end{matrix}\right)$.
+				</section>
+
+				<section data-markdown>
+					\begin{align}
+						U(t) &amp; = \ee^{\ii \sigma_x B \gamma t / 2}
+					\end{align}
+
+					```python
+					>>> from numpy import *
+					>>> t = pi
+					>>> gamma = 1
+					>>> B = 0.25
+					>>> U = (1j * sigmax() * B * gamma * t).expm()
+					>>> print(U)
+					Quantum object: dims = [[2], [2]], shape = [2, 2], type = oper,
+						isherm = False
+					Qobj data =
+					[[ 0.70710678+0.j          0.00000000+0.70710678j]
+					 [ 0.00000000+0.70710678j  0.70710678+0.j        ]]
+					>>> print(U * psi)
+					Quantum object: dims = [[2], [1]], shape = [2, 1], type = ket
+					Qobj data =
+					[[ 0.70710678+0.j        ]
+					 [ 0.00000000+0.70710678j]]
+					```
+				</section>
+
+				<section data-markdown>
+					Measurements are described by Born's Rule,
+					\begin{equation}
+						\Pr(\phi | \psi) = \left|\braket{\phi | \psi}^2\right|,
+					\end{equation}
+					where $\bra{\phi} = \ket{\phi}^\dagger$.
+
+					```python
+					>>> phi = Qobj([[1], [0]])
+					>>> print(abs(phi.dag() * psi)[0, 0] ** 2)
+					1.0
+					>>> print(abs(phi.dag() * U * psi)[0, 0] ** 2)
+					0.5
+					```
+				</section>
+
+				<section data-markdown data-background='figures/evolution.png' data-background-size='80%'>
+					```python
+					>>> ts = linspace(0, 20, 51)
+					>>> def signal(t):
+					...     U = (1j * sigmax() * B * gamma * t).expm()
+					...     return abs(phi.dag() * U * psi)[0, 0] ** 2
+					>>> plot(ts, [signal(t) for t in ts])
+					```
+				</section>
+
+				<section data-markdown>
+					- Open tools can help us write good and accessible software.
+					- Research is helped by software design that reflect scientific concepts.
+
+					---
+
+					See the source code for this presentation in action at
+					https://goo.gl/XyjygH.
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+				zoomKey: 'shift',
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
