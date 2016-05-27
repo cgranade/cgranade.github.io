@@ -1,8 +1,8 @@
-{%- extends 'html_basic.tpl' -%}
+{%- extends 'basic.tpl' -%}
 
 {% block header %}---
 layout: post
-title: {{nb.metadata.name}}
+title: {{nb.metadata.jekyll.name}}
 ---
 {%- endblock header %}
 
