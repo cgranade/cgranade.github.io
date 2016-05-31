@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+
+<!--
+	ABSTRACT
+	========
+
+	In this talk, I will discuss scientific programming from the perspective
+	of quantum information research. Using the example of the QuTiP library
+	for Python, I will demonstrate how software design can play an important
+	role in research.
+-->
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>QInfer: Bayesian inference for quantum information</title>
+
+		<meta name="author" content="Christopher E. Granade">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/cgranade.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style type="text/css">
+			.reveal section img {
+				border: none;
+				box-shadow: none;
+				background: none;
+			}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1 style="font-size: 175%"><strong>QInfer</strong>: Bayesian inference for quantum information</h1>
+					<hr>
+					<p>
+						<a href="http://www.cgranade.com">Christopher E. Granade</a> <br>
+						<a href="https://equs.org/">Centre for Engineered Quantum Systems</a>
+					</p>
+
+					<p style="font-size: 80%">
+						<a href="http://www.cgranade.com/research/griffiths/05-2016">
+							http://www.cgranade.com/research/griffiths/05-2016</a>,
+						<cite class="doi"><a href="https://dx.doi.org/10/s87">10/s87</a></cite>,
+						<cite class="doi"><a href="https://dx.doi.org/10/bh6w">10/bh6w</a></cite>
+                        $
+							\newcommand{\ee}{\mathrm{e}}
+							\newcommand{\ii}{\mathrm{i}}
+							\newcommand{\dd}{\mathrm{d}}
+							\newcommand{\id}{&#x1d7d9;}
+							\newcommand{\TT}{\mathrm{T}}
+							\newcommand{\defeq}{\mathrel{:=}}
+							\newcommand{\Tr}{\operatorname{Tr}}
+							\newcommand{\Var}{\operatorname{Var}}
+							\newcommand{\Cov}{\operatorname{Cov}}
+							\newcommand{\rank}{\operatorname{rank}}
+							\newcommand{\expect}{\mathbb{E}}
+							\newcommand{\sket}[1]{|#1\rangle\negthinspace\rangle}
+							\newcommand{\sbraket}[1]{\langle\negthinspace\langle#1\rangle\negthinspace\rangle}
+							\newcommand{\Gini}{\operatorname{Ginibre}}
+							\newcommand{\supp}{\operatorname{supp}}
+							\newcommand{\ket}[1]{\left|#1\right\rangle}
+							\newcommand{\bra}[1]{\left\langle#1\right|}
+							\newcommand{\braket}[1]{\left\langle#1\right\rangle}
+						$
+					</p>
+					
+					<p>
+						joint work with Christopher Ferrie
+					</p>
+					<p style="font-size: 50%">
+						contributions from: <br>
+						Steven Casagrande, Ian Hincks, Jonathan Gross, Michal Kononenko, Thomas Alexander, and Yuval Sanders
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Characterization plays a number of different roles in
+						quantum information experiments.
+					</p>
+
+					<dl>
+						<dt>Calibration</dt>
+						<dd>(Rabi/Ramsey/phase est., crosstalk learning)</dd>
+
+						<dt>Diagnosis and Debugging</dt>
+						<dd>(Tomography)</dd>
+
+						<dt>Verification and Validation</dt>
+						<dd>(RB, quantum Hamiltonian learning)</dd>
+					</dl>
+
+					<p>
+						All of these are examples of <em>parameter estimation</em>.
+					</p>
+				</section>
+
+				<section data-markdown>
+					## Parameter Estimation ##
+
+					Given data $D$, and a model $\vec{x}$,
+					what should we estimate $\vec{x}$ as?
+
+					- Rabi/Ramsey: $\vec{x} = (\omega)$
+					- Crosstalk/Hamiltonian learning: $\vec{x} = \operatorname{vec}(H)$
+					- Tomography: $\vec{x} = \operatorname{vec}(\rho)$
+
+					---
+
+					From an experimental perspective, parameter estimation
+					isn't the point, but a tool to get things done.
+				</section>
+
+
+				<section data-markdown>
+					### **Example**: Ramsey Estimation ###
+
+					Suppose $H = \omega \sigma_z / 2$ for some unknown $\omega$.
+
+					To learn $\omega$:
+
+					- Prepare $\ket{+} \propto \ket{0} + \ket{1}$, measure “click” w/ pr.:
+					$
+						\|\bra{+} \ee^{\ii \omega t \sigma_z / 2} \ket{+}\|^2 = \cos^2(\omega t / 2)
+					$.
+					- Repeat for many “shots” to estimate click pr.
+					- Repeat for many times to estimate signal.
+				</section>
+
+				<section data-markdown>
+					You'll get something that looks a bit like this:
+
+					![](figures/rabi-example-signal.png)
+				</section>
+
+				<section data-markdown>
+					What's $\omega$? Fourier transform and look at the peak.
+
+					![](figures/rabi-example-spectrum.png)
+				</section>
+
+				<section>
+					<p style="line-height: 70%">
+						We can do better.<br>
+						<span style="font-size: 60%">
+							<strong>Ex.:</strong>
+							Sergeevich <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/c4vv95">10/c4vv95</a></cite>,
+							Ferrie <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tfx">10/tfx</a></cite>, 
+							Hall and Wiseman <cite class="doi"><a href="https://dx.doi.org/10/bh6v">10/bh6v</a></cite>
+						</span>
+					</p>
+
+					<img src="figures/rabi-example-posterior.png" width="90%">
+				</section>
+
+				<section>
+					<p>
+						Our goal is to make useful tools for parameter estimation
+						that work <em>in practice</em>, in a statistically-principled
+						fashion.
+					</p>
+
+					<p>
+						Make it easier to get experiments done:
+					</p>
+
+					<ul>
+						<li>Reduce data collection costs</li>
+						<li>Provide accurate estimates</li>
+						<li>Support reproducible research practices.</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>
+						Our theoretical basis will be
+					</p>
+
+					<h3>Bayesian Inference with Particle Filtering.</h3>
+
+					<p>
+						Represent our beliefs about the model by a set of
+						hypotheses $\{\vec{x}_i\}$, along with their weights
+						$\{w_i\}$.
+					</p>
+
+					<hr>
+
+					\begin{align*}
+						\text{Estimate: } \hat{x} &amp; = \sum_i w_i \vec{x}_i \\
+						\text{Update: } w_i' &amp; \propto w_i \times \Pr(D | \vec{x}_i)
+					\end{align*}
+				</section>
+
+				<section data-background='figures/impovrishment.png'>
+				</section>
+
+				<section>
+					<p>
+						Numerical stability is provided by <em>resampling</em>:
+					</p>
+
+					<ul>
+						<li>Contract hypotheses towards center of mass</li>
+						<li>Convolve with Gaussian</li>
+					</ul>
+
+					<p>
+						Preserves estimates and errors of hypotheses $\{\vec{x}\}$,
+						while restoring stability of the approximation.
+					</p>
+				</section>
+
+				<section data-background="#fff" data-background-video="figures/multicos-distributions.mp4">					
+				</section>
+
+				<section data-markdown>
+					- Statistically principled: approximates Bayesian
+					  posteriors.
+					- Very general approach.
+					- Provides rich error reporting, model selection and other
+					  diagnostics.
+				</section>
+
+				<section>
+					<h3><code class="python">&gt;&gt;&gt; import qinfer </code></h3>
+
+					<p>
+						Implements particle filtering, with support for common
+						quantum information models:
+					</p>
+
+					<ul>
+						<li>Hamiltonian learning / phase estimation</li>
+						<li>Randomized benchmarking</li>
+						<li>State and process tomography</li>
+					</ul>
+				</section>
+
+				<section data-markdown>
+					### Scientific Software is for People, not Computers ###
+
+					Thus, **QInfer** is:
+
+					- **Accessible**: written in Python,
+					  can be called from Python, Julia, MATLAB.
+					- **Open source**: can be modified or reproduced.
+					- **Legible**: documented, lots of examples, good coding
+					  practices.
+				</section>
+
+				<section data-markdown>
+					### Installing **QInfer** ###
+
+					```bash
+					$ pip install qinfer
+					```
+
+					Works on Python 2.7, 3.3, 3.4, and 3.5 with the Anaconda
+					Distribution.
+				</section>
+
+				<section data-markdown>
+					### Using **QInfer**: Simple Estimation ###
+
+					```python
+					# Make the data...
+					true_omega = 70.3
+					n_shots = 100
+
+					ts = np.pi * np.arange(1, 101) / (2 * 100.0);
+
+					signal = np.sin(true_omega * ts / 2) ** 2;
+					counts = np.random.binomial(n=n_shots, p=ideal_signal)
+
+					# ...and then process it.
+					data = np.column_stack([counts, ts, n_shots * np.ones(len(ts))])
+					est_mean, est_cov = qi.simple_est_prec(data, freq_min=0, freq_max=100)
+					```
+				</section>
+
+				<section data-markdown>
+					### Using **QInfer** from MATLAB 2016a ###
+
+					```matlab
+					% Make the data...
+					true_omega = 70.3;
+					n_shots = 400;
+
+					ts = pi * (1:1:100) / (2 * 100);
+
+					signal = sin(true_omega * ts / 2) .^ 2;
+					counts = binornd(n_shots, signal);
+
+					% ... and then process it.
+					setenv MKL_NUM_THREADS 1
+					data = py.numpy.column_stack({counts ts ...
+						n_shots * ones(1, size(ts, 2))});
+					est = py.qinfer.simple_est_prec(data, ...
+						pyargs('freq_min', 0, 'freq_max', 100));
+					```
+				</section>
+
+				<section data-markdown>
+					### Using **QInfer** from Julia ###
+
+					```julia
+					# Make the data...
+					true_omega = 70.3
+					n_shots = 100
+
+					ts = pi * (1:1:100) / (2 * 100)
+
+					signal = sin(true_omega * ts / 2) .^ 2
+					counts = map(p -> rand(Binomial(n_shots, p)), signal);
+
+					# ...and then process it.
+					@pyimport numpy as np
+					@pyimport qinfer as qi
+
+					data = [counts'; ts'; n_shots * ones(length(ts))']'
+					est_mean, est_cov = qi.simple_est_prec(data, freq_min=0, freq_max=100)
+					```
+
+				</section>
+
+				<section data-markdown>
+					### Breaking it Down ###
+
+					**QInfer** is built up of several main components:
+
+					- ``Model``: Specifies a model for what parameters describe
+						an experiment.
+					- ``Distribution``: Specifies what is known about those
+						parameters at the start.
+					- ``SMCUpdater``: Uses sequential Monte Carlo to update
+						knowledge based on data.
+					- ``Heuristic``: Selects new experiments to perform.
+				</section>
+
+				<section data-markdown>
+					### **QInfer** Concepts: Models ###
+
+					Parameter esimation problems are specified as **models**,
+					defining parameters of interest, what data looks like, etc.
+
+					```python
+					>>> SimplePrecessionModel()
+					>>> BinomialModel(RandomizedBenchmarkingModel())
+					>>> BinomialModel(TomographyModel(basis))
+					```
+				</section>
+
+				<section data-markdown>
+					### **QInfer** Concepts: Models ###
+
+					Models expose two very important functionalities:
+
+					- ``simulate_experiment``: Simulates data $d$
+						from an experiment $e$, according
+						to a set of model parameters $\vec{x}$.
+					- ``likelihood``: Returns the probability $\Pr(d | \vec{x}; e)$
+						of observing $d$ in an experiment $e$
+						given model parameters $\vec{x}$.
+				</section>
+
+				<section>
+					<pre><code class="python" data-trim>
+outcomes = np.array([1])
+modelparams = np.array([w])
+expparams = ts
+
+L = SimplePrecessionModel().likelihood(
+	outcomes, modelparams, expparams
+)
+plt.plot(ts, L[0, 0, :])
+					</code></pre>
+
+					<img src="figures/rabi-example-liketens.png" width="60%">
+				</section>
+
+				<section data-markdown>
+					### **QInfer** Concepts: Distributions ###
+
+					```python
+					>>> UniformDistribution([0, omega_max])
+					```
+					Represents that $\omega \in [0, \omega_\max]$.
+
+					Distributions can also be combined in different ways:
+					```python
+					>>> ProductDistribution(
+					...     NormalDistribution([0.9, 0.1 ** 2]),
+					...     UniformDistribution([0, 1]),
+					...     ConstantDistribution(0)
+					... )
+					```
+				</section>
+
+				<section data-markdown>
+					### Using **QInfer**: Updating ###
+
+					Typically, once you have a model and a prior, learning
+					parameters then proceeds by looping over data:
+
+					```python
+					>>> updater = SMCUpdater(model, n_particles, prior)
+					>>> for idx in range(n_measurements):
+					...     experiment = # select the next experiment
+					...     datum = # make a measurement
+					...     updater.update(datum, experiment)
+					>>> est = updater.est_mean()
+					```
+				</section>
+
+				<section data-markdown>
+					### **QInfer** Concepts: Heuristics ###
+
+					*Heuristics* can be used to design measurements.
+
+					For example, $t_k = ab^k$ is optimal for non-adaptive
+					Rabi/Ramsey/phase estimation.
+
+					```
+					>>> heuristic = ExpSparseHeuristic(scale=a, base=b)
+					```
+
+					**QInfer** implements heuristics as functions which provide
+					new experiments.
+				</section>
+
+				<section data-markdown>
+					### Updater Loops Revisited ###
+
+					For instance, using a heuristic ``heuristic_class`` and
+					simulating data, we can flesh out the updater loop.
+
+					```python
+					>>> updater = SMCUpdater(model, n_particles, prior)
+					>>> heuristic = heuristic_class(updater)
+					>>> for idx in range(n_measurements):
+					...     experiment = heuristic()
+					...     datum = model.simulate_experiment(true_model, experiment)
+					...     updater.update(datum, experiment)
+					>>> est = updater.est_mean()
+					```
+				</section>
+
+				<section data-markdown>
+					### Tomography Updater Loop ###
+
+					```python
+					from qutip import *
+
+					I, X, Y, Z = qeye(2), sigmax(), sigmay(), sigmaz()
+
+					basis = pauli_basis(1)
+					prior = GinibreReditDistribution(basis)
+
+					model = BinomialModel(qi.tomography.TomographyModel(basis))
+					updater = SMCUpdater(model, 2000, prior)
+					heuristic = RandomPauliHeuristic(updater,
+						other_fields={'n_meas': 40}
+					)
+
+					for idx_exp in xrange(50):
+					    experiment = heuristic()
+					    datum = model.simulate_experiment(true_state, experiment)
+					    updater.update(datum, experiment)
+				    ```
+				</section>
+
+				<section data-markdown>
+					### **QInfer** Concepts: Performance Testing ###
+
+					In both of these examples, we assumed that the true model
+					was known. This lets us quickly assess how well **QInfer**
+					works for a given model.
+
+					```python
+					>>> performance = perf_test_multiple(
+					...     n_trials=400,
+					...     model=BinomialModel(SimplePrecessionModel()),
+					...     n_particles=2000,
+					...     prior=UniformDistribution([0, 1]),
+					...     n_exp=200,
+					...     heuristic_class=partial(
+					...         ExpSparseHeuristic, other_fields={'n_meas': 40}
+					...     )
+					... )
+					```
+				</section>
+
+				<section data-background="#fff"
+				         data-background-size="80%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+				         data-background-image="figures/rabi-performance.png">
+				</section>
+
+				
+				<section data-background="#fff"
+				         data-background-size="80%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+				         data-background-image="figures/rabi-performance-hist.png">
+				</section>
+
+				<section data-markdown>
+					### Diffusive Models ###
+
+					**QInfer** also supports time-dependent parameter estimation
+					by adding an update rule to hypothesis positions as well as
+					weights:
+
+					$$
+						\vec{x}(t_{k + 1}) - \vec{x}(t_k) \sim \mathcal{N}(0, \sigma^2).
+					$$
+				</section>
+
+				<section data-background="#fff"
+				         data-background-size="80%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+				         data-background-image="figures/rabi-random-walk.png">
+				</section>
+
+				<section>
+					<p>
+						Diffusive estimation can still work even if the underlying trajectory
+						is deterministic.
+					</p>
+
+					<img src="figures/diffusive-coin-two-tone-crop.png">
+
+					<p>
+						 For example, suppose a coin bias evolves as $\Pr(p) = \frac12 (\cos^2(\omega_1 t / 2) + \cos^2(\omega_2 t) / 2))$.
+					</p>
+				</section>
+
+				<section data-background="#fff" data-background-video="figures/diffusive-tracking.mp4">
+				</section>
+
+				<section data-markdown>
+					Our hope is that **QInfer** will thus be a useful tool for theory and experiment alike.
+
+					---
+
+					- Source: https://github.com/QInfer/python-qinfer
+					- Try it out online: https://goo.gl/zWt9Du 
+
+					*Version 1.0 coming soon.*
+				</section>
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+				zoomKey: 'shift',
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
