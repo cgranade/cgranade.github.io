@@ -29,11 +29,15 @@
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<style type="text/css">
+		<style type="text/css" media="screen">
 			.reveal section img {
 				border: none;
 				box-shadow: none;
 				background: none;
+			}
+
+			.contrast-bg h3 {
+				background: rgba(240, 241, 235, 255);
 			}
 		</style>
 
@@ -271,10 +275,10 @@
 					Thus, **QInfer** is:
 
 					- **Accessible**: written in Python,
-					  can be called from Python, Julia, MATLAB.
-					- **Open source**: can be modified or reproduced.
-					- **Legible**: documented, lots of examples, good coding
-					  practices.
+					  usable from Python, Julia, MATLAB.
+					- **Open source**: modifiable and reproducible.
+					- **Portable**: Windows/Linux/OS X.
+					- **Legible**: [mostly] well-documented (guide &amp; examples).
 				</section>
 
 				<section data-markdown>
@@ -292,6 +296,9 @@
 					### Using **QInfer**: Simple Estimation ###
 
 					```python
+					import numpy as np
+					import qinfer as qi
+
 					# Make the data...
 					true_omega = 70.3
 					n_shots = 100
@@ -333,6 +340,9 @@
 					### Using **QInfer** from Julia ###
 
 					```julia
+					@pyimport numpy as np
+					@pyimport qinfer as qi
+
 					# Make the data...
 					true_omega = 70.3
 					n_shots = 100
@@ -343,8 +353,6 @@
 					counts = map(p -> rand(Binomial(n_shots, p)), signal);
 
 					# ...and then process it.
-					@pyimport numpy as np
-					@pyimport qinfer as qi
 
 					data = [counts'; ts'; n_shots * ones(length(ts))']'
 					est_mean, est_cov = qi.simple_est_prec(data, freq_min=0, freq_max=100)
@@ -441,6 +449,30 @@ plt.plot(ts, L[0, 0, :])
 					```
 				</section>
 
+				<section data-markdown
+						 data-background="#fff"
+				         data-background-size="120%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+						 data-background-image="figures/rb-combined-desaturated.png">
+					### Using **QInfer**: Updating ###
+
+					The updated distribution provides estimates,
+					error bars, and plots.
+
+					```python
+					>>> mean, cov, extra = qi.simple_est_rb(
+					...     data, p_min=0.8, return_all=True
+					... )
+					>>> print(mean[0], "±", np.sqrt(cov)[0, 0])
+					0.991188359708 ± 0.0012933975599
+					>>> print(np.sqrt(np.diag(cov)))
+					>>> extra['updater'].plot_posterior_marginal(idx_param=0)
+					>>> extra['updater'].plot_covariance(corr=True)
+					```
+
+				</section>
+
 				<section data-markdown>
 					### **QInfer** Concepts: Heuristics ###
 
@@ -531,6 +563,7 @@ plt.plot(ts, L[0, 0, :])
 				         data-background-size="80%"
 				         data-background-position="center"
 				         data-background-repeat="no-repeat"
+				         data-background-transition="slide"
 				         data-background-image="figures/rabi-performance-hist.png">
 				</section>
 
