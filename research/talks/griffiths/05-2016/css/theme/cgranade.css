@@ -8,6 +8,8 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300|Source+Code+Pro:400,700);
 
 
+html { background-color: inherit; } 
+
 .reveal a {
   line-height: 1.3em; }
 
