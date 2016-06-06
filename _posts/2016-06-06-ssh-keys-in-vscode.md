@@ -125,7 +125,30 @@ select `Add Key`. Browse to where you saved `id_rsa.ppk` and select it.
 You'll be prompted to unlock your key. Upon doing so, your unlocked key will then
 be made available in Pageant until you log out or quit Pageant.
 
-## Step 3. Configure Environment Variables ##
+## Step 3. Add SSH Server Fingerprints ##
+
+Despite the name, this is a short step. Whenever you log into an
+SSH server, PuTTY will check that the server's *fingerprint* is correct.
+This is a short cryptographic string identifying that server, such that checking
+the fingerprint helps against man-in-the-middle attacks. If you haven't logged
+into a server with PuTTY before, however, it has no idea how to check the fingerprint,
+and will fail to login. Since VS Code ignores these errors, Git support will silently
+fail unless you first attempt to log into the SSH server offered by your
+Git host. To do so, we'll use PowerShell one last time. Run one of the following
+commands below, depending on which hosting provider you use.
+
+    PS > & 'C:\Program Files (x86)\PuTTY\plink.exe' git@github.com
+    PS > & 'C:\Program Files (x86)\PuTTY\plink.exe' git@bitbucket.org
+    
+In either case, you'll be prompted to add the server's fingerprint to the registry.
+If you are confident that your traffic is not being intercepted, select `y` at
+this prompt. Neither GitHub nor Bitbucket actually allows logins via SSH,
+so you'll get an error, but this is OK: you've gotten far enough to see the server's
+fingerprint, and that's all we needed. To check, you can run the commands above
+again, and note that you are no longer prompted to add the fingerprint, but instead
+fail immediately.
+
+## Step 4. Configure Environment Variables ##
 
 We're almost done. All that's left is to point Git for Windows at PuTTY
 and Pageant, rather than its own built-in SSH client. Since VS Code uses
