@@ -6,7 +6,7 @@ highlighter:      pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 title : cgranade::space
-tagline: 'TODO'
+tagline: 'Quantum, stats, programming, and some rants'
 description:
     Postdoctoral researcher at the University of Sydney
 url: http://www.cgranade.com
