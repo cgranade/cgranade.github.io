@@ -7,27 +7,37 @@
  * Modifications ┬⌐ 2016 Christopher Granade.
  */
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300|Source+Code+Pro:400,700);
-.reveal strong {
+.reveal strong, .reveal em, .reveal dt {
   color: #fff; }
-
 .reveal a {
   line-height: 1.3em; }
-
 .reveal code {
   font-family: "Source Code Pro", monospace; }
-
 .reveal cite.doi a {
   font-family: "Source Sans Pro";
   font-weight: 200; }
-
 .reveal cite.doi a::before {
   content: "doi ";
   font-variant: small-caps; }
-
 .reveal .light-figure {
   color: #000; }
   .reveal .light-figure h1, .reveal .light-figure h2, .reveal .light-figure h3, .reveal .light-figure h4, .reveal .light-figure h5, .reveal .light-figure h6 {
     color: #000; }
+.reveal .comment {
+  color: #888;
+  text-align: right;
+  right: 0;
+  position: absolute; }
+.reveal .comment::before {
+  font-family: "Source Code Pro";
+  content: "Γ½╜";
+  position: relative;
+  top: -0.1em;
+  left: -0.35em; }
+.reveal section img {
+  border: none !important;
+  box-shadow: none !important;
+  background: none !important; }
 
 /*********************************************
  * GLOBAL STYLES
