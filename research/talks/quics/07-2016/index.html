@@ -40,10 +40,15 @@
 			}
 
 			.show-foot-pbt #foot-pbt,
+			.show-foot-how #foot-how,
+			.show-foot-lfpe #foot-lfpe,
+			.show-foot-lw #foot-lw,
+			.show-foot-smc #foot-smc,
 			.show-foot-better #foot-better,
 			.show-foot-title-foot #foot-title-foot,
 			.show-foot-condensation #foot-condensation,
-			.show-foot-qinfer #foot-qinfer {
+			.show-foot-qinfer #foot-qinfer,
+			.show-foot-rfpe #foot-rfpe {
 				opacity: 1 !important;
 				transition: all 2s;
 				z-index: 2;
@@ -83,9 +88,30 @@
 				</a>
 			</p>
 
+			<p class="hideable-foot" id="foot-how">
+				Ferrie, Granade, Cory <cite class="doi"><a href="https://dx.doi.org/10/tfx">10/tfx</a></cite>
+			</p>
+
 			<p class="hideable-foot" id="foot-pbt">
 				Granade, Combes, Cory <cite class="doi"><a href="https://dx.doi.org/10/bhdw">10/bhdw</a></cite>
 			</p>
+
+			<p class="hideable-foot" id="foot-rfpe">
+				Wiebe and Granade <cite class="doi"><a href="https://dx.doi.org/10/bk9d">10/bk9d</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-lw">
+				Liu and West <cite class="doi"><a href="https://dx.doi.org/10/8c2">10/8c2</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-smc">
+				Doucet <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bmch">10/bmch</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-lfpe">
+				Ferrie and Granade <cite class="doi"><a href="https://dx.doi.org/10/tdj">10/tdj</a></cite>
+			</p>
+
 
 			<!-- <p class="hideable-foot" id="foot-better">
 				Sergeevich <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/c4vv95">10/c4vv95</a></cite>,
@@ -250,7 +276,7 @@
 					$$
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-state="show-foot-how">
 					### **Example**: $x = (\omega)$ ###
 
 					Can analytically find posterior for Gaussian priors,
@@ -393,7 +419,7 @@
 					</p>
 				</section>
 
-				<section>
+				<section data-state="show-foot-rfpe">
 					<h2>Rejection Filtering (ReJF)</h2>
 
 					<p>
@@ -456,7 +482,7 @@
 				</section>
 
 
-				<section>
+				<section data-state="show-foot-rfpe">
 					<h3><strong>Example:</strong> Phase Estimation, $x = (\phi)$</h3>
 
 					<img src="./figures/pe-error.png" width="80%">
@@ -476,7 +502,7 @@
 					</p>
 				</section>
 
-				<section>
+				<section data-state="show-foot-lw">
 					<h2>Liu-West Resampler</h2>
 
 					<p>
@@ -543,7 +569,7 @@
 					$
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-state="show-foot-smc">
 					## Particle Filter ##
 
 					- Draw $N$ initial samples $\vec{x}_i$ from the prior $\Pr(\vec{x})$.
@@ -634,7 +660,7 @@
 					- Accept $\vec{x}$ if $d = d'$.
 				</section>
 
-				<section data-markdown>
+				<section data-markdown data-state="show-foot-lfpe">
 					### Likelihood-Free Particle Filtering ###
 
 					Can also use weak simulation to approximate likelihoods
