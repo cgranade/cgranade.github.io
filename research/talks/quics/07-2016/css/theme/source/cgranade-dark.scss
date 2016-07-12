@@ -20,7 +20,7 @@
 
 // Override theme settings (see ../template/settings.scss)
 $mainFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
-$mainColor: #eee;
+$mainColor: #ddd;
 $headingFont: 'Source Sans Pro', sans-serif;
 $headingColor: #fff;
 $headingTextShadow: none;
@@ -30,6 +30,10 @@ $backgroundColor: #000;
 $linkColor: #e00;
 $linkColorHover: lighten( $linkColor, 20% );
 $selectionBackgroundColor: #26351C;
+
+.reveal strong {
+    color: #fff;
+}
 
 .reveal a {
   line-height: 1.3em;

@@ -7,6 +7,9 @@
  * Modifications ┬⌐ 2016 Christopher Granade.
  */
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300|Source+Code+Pro:400,700);
+.reveal strong {
+  color: #fff; }
+
 .reveal a {
   line-height: 1.3em; }
 
@@ -37,7 +40,7 @@ body {
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;
   font-size: 36px;
   font-weight: normal;
-  color: #eee; }
+  color: #ddd; }
 
 ::selection {
   color: #fff;
@@ -238,7 +241,7 @@ body {
 .reveal section img {
   margin: 15px 0px;
   background: rgba(255, 255, 255, 0.12);
-  border: 4px solid #eee;
+  border: 4px solid #ddd;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15); }
 
 .reveal a img {

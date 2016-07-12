@@ -58,6 +58,21 @@
 				transition: all 2s;
 				z-index: 2;
 			}
+
+			.comment {
+				color: #888;
+				text-align: right;
+				right: 0;
+				position: absolute;
+			}
+
+			.comment::before {
+				font-family: "Source Code Pro";
+				content: "⫽";
+				position: relative;
+				top: -0.1em;
+				left: -0.35em;
+			}
 		</style>
 
 		<!-- Printing and PDF exports -->
@@ -238,15 +253,25 @@
 					Each posterior $\Pr(\vec{x} | d; e)$ encodes our uncertainty about
 					$x$.
 
-					$$
-						\expect[(\hat{x} - \vec{x})^\TT (\hat{x} - \vec{x})] = \Tr \Cov(\vec{x})
-					$$
+					**Scalar case**: let $\delta = x - \hat{x}$ be error in $\hat{x}$.
+					What should we expect squared-error to be?
 
-					---
+					\begin{align}
+						\expect[\delta^2 | d; e] &amp; = \int \delta^2 \Pr(\vec{x} | d; e) \dd\vec{x} \\\\
+			            &amp; = \expect[(x - \hat{x})^2 | d; e] \\\\
+                        &amp; = \expect[x^2 | d; e]  - 2 \expect[x| d; e] \hat{x} + \hat{x}^2 \\\\
+                        &amp; = \expect[x^2 | d; e]  - \hat{x}^2.
+					\end{align}
 
-					Can use to make *adaptive* decisions:
+					This is the **variance** $\mathbb{V}[x \mid d; e]$.
+
+					**Vector case**: $\Cov(\vec{x} | d; e) \defeq \expect[(\vec{x} - \hat{x}) (\vec{x} - \hat{x})^\TT | d; e]$.
+				</section>
+
+				<section data-markdown>
+					We can use our posteriors to make *adaptive* decisions:
 					$$
-						e_* = \operatorname{arg min}_e \expect_d[\Tr \Cov(\vec{x} | d; e)]
+						e_* = \operatorname{arg min}_e \expect_d[\mathbb{V}(x | d; e)]
 					$$
 				</section>
 
@@ -280,7 +305,7 @@
 
 					---
 
-					Efficient if we can sample from $p(\vec{x})$.
+					Efficient *if* we can sample from $p(\vec{x})$.
 
 					How do we do that for $p(\vec{x}) = \Pr(\vec{x} | d; e)$?
 				</section>
@@ -301,64 +326,139 @@
 				</section>
 
 				<section>
-					<p data-markdown>
-						**Next problem**: likelihood $\to 0$ with large data
-						sets.
-					</p>
+					<h3>Rejection Sampling Isn't Enough</h3>
 
-					<p class="fragment" data-markdown>
-						**Next answer**: *resample* instead of drawing
-						from initial prior.
+					<p>
+						Let $D = {d_1, \dots, d_k}$ be a set of data.<br>
+						A prior sample $\vec{x}$ is accepted with
+					</p>
+					<p>
+						$$
+							\Pr(D | \vec{x}) = \prod_{d \in D} \Pr(d | \vec{x})
+							\overset{k \to \infty}{\longrightarrow} 0.
+						$$
 					</p>
 				</section>
 
+				<section>
+					<h3><strong>Example:</strong> Biased Coin $x = (p)$</h3>
+					<p>
+						Consider $\Pr(H | p) = p$, $d \in \{H, T\}$.
+					</p>
+
+					<p>
+						If $p \approx 0.5$, $\Pr(d_1, \dots, d_k | p) \approx 1 / 2^k$.
+					</p>
+
+					<p>
+						We will reject all but exponentially few samples!
+					</p>
+
+					<div class="fragment">
+						<hr>
+
+						<p data-markdown>
+							**Solution**: draw new samples
+							after each datum instead of rejecting with the full data set at once.
+						</p>
+					</div>
+				</section>
+
 				<section data-markdown>
-					After each datum $d$, match moments to a Gaussian, draw new samples
-					from that Gaussian.
+					### Gaussian Resampling ###
+
+					For each datum $d$, use rejection sampling to approximate posterior
+					moments:
 
 					- $\bar{x} \gets \expect[\vec{x} | d]$.
 					- $\Sigma \gets \operatorname{Cov}[\vec{x} | d] = \expect[\vec{x} \vec{x}^\TT | d] - \bar{x} \bar{x}^\TT$.
+
+					---
+
+					At the next iteration, draw prior samples from Gaussian with these moments:
+					$$
+						\vec{x} | d \sim \mathcal{N}(\bar{x}, \Sigma)
+					$$
 				</section>
 
-				<section data-markdown>
-					## Welford's Algorithm ##
+				<section>
+					<h2>Welford's Algorithm</h2>
 					
-					Can compute $\bar{x}$, $\Sigma$ from
-					one sample at a time. Numerically stable.
+					<p>
+						Can compute $\bar{x}$, $\Sigma$ from
+						one sample at a time. Numerically stable.
+					</p>
 
-					- $n, \bar{x}, M_2 \gets 0$.
-					- **For** each sample $x$:
-						- $n \gets n + 1$
-						- $\Delta \gets x - \mu$
-						- $\bar{x} \gets \bar{x} + \Delta / n$
-						- $M_2 \gets M_2 + \Delta (x - \bar{x})$
-					- **Return** mean $\bar{x}$, variance $M_2 / (n - 1)$.
+					<ul style="width: 80%">
+						<li>$n, \bar{x}, M_2 \gets 0$.</li>
+						<li><strong>For</strong> each sample $x$:</li>
+						<ul>
+							<li>
+								$n \gets n + 1$
+								<span class="comment">Record # of samples</span>
+							</li>
+							<li>
+								$\Delta \gets x - \mu$
+								<span class="comment">Diff to running mean</span>
+							</li>
+							<li>
+								$\bar{x} \gets \bar{x} + \Delta / n$
+								<span class="comment">Update running mean</span>
+							</li>
+							<li>
+								$M_2 \gets M_2 + \Delta (x - \bar{x})$
+								<span class="comment">Update running var</span>
+							</li>
+							<li><strong>Return</strong> mean $\bar{x}$, variance $M_2 / (n - 1)$.</li>
+						</ul>
+					</ul>
 
-					Vector case is similar.
+					<p>
+						Vector case is similar.
+					</p>
 				</section>
 
-				<section data-markdown>
-					## Rejection Filtering (ReJF) ##
+				<section>
+					<h2>Rejection Filtering (ReJF)</h2>
 
-					**Input**: Prior mean $\bar{x}$, prior covariance $\Sigma$,
+					<p>
+					    <strong>Input:</strong>
+					    Prior mean $\bar{x}$, prior covariance $\Sigma$,
 						number of attempts $m$.
+					<p>
 
-					- **For** each datum $d$ and experiment $e$:
-						- $n, \bar{x}', M_2 \gets 0$
-						- **While** $n < m$:
-							- $\vec{x} \sim \mathcal{N}(\bar{x}, \Sigma)$.
-							- Accept $\vec{x}$ w/ $\Pr(d | \vec{x}; e)$.
-							- **If** accepted, update $n$, $\bar{x}'$, $M_2$.
-						- $\bar{x} \gets \bar{x}'$, $\Sigma \gets M_2 / (n - 1)$.
+					<ul style="width: 80%">
+						<li><strong>For</strong> each datum $d$ and experiment $e$:</li>
+						<ul>
+							<li>
+								$n, \bar{x}', M_2 \gets 0$
+								<span class="comment">Initialize Welford.</span>
+							</li>
+							<li><strong>While</strong> $n < m$:</li>
+							<ul>
+								<li>Draw $\vec{x} \sim \mathcal{N}(\bar{x}, \Sigma)$.</li>
+								<li>Accept $\vec{x}$ w/ $\Pr(d | \vec{x}; e)$.</li>
+								<li><strong>If</strong> accepted, update $n$, $\bar{x}'$, $M_2$.</li>
+							</ul>
+							<li>
+								$\bar{x} \gets \bar{x}'$, $\Sigma \gets M_2 / (n - 1)$.
+								<span class="comment">
+									Est. moments.
+								</span>
+							</li>
+						</ul>
+					</ul>
 				</section>
 
 				<section data-markdown>
 					## Advantages of RejF ##
 
+					- Accept pr based on a single datum
+					  ⇒ likelihood $\not\to 0$.
 					- Easy to implement
 					- Never needed to remember each accepted $x$!
 						- Very low-memory (constant # of
-						  accumulator registers), ideal for FPGA use.
+						  registers), ideal for FPGA use.
 					- Easily parallelizable
 				</section>
 
@@ -394,29 +494,93 @@
 					</p>
 
 					<p class="fragment" data-markdown>
-						We can solve this by using a more general approach
-						to resampling and filtering.
+						We can solve this by using a more general approach:
+
+						- Weaken Gaussian assumption.
+						- Generalize the rejection sampling step.
 					</p>
 				</section>
 
+				<section>
+					<h2>Liu-West Resampler</h2>
+
+					<p>
+						If we remember each sample $\vec{x}$, we can use them to
+						relax RejF assumptions.
+					</p>
+
+					<p>
+						<strong>Input:</strong>
+						$a, h \in [0, 1]$ s.t. $a^2 + h^2 = 1$,
+						distribution $p(\vec{x})$.
+					</p>
+
+					<ul>
+						<li>
+							Approximate $\bar{x} \gets \expect[\vec{x}]$, $\Sigma \gets \operatorname{Cov}(\vec{x})$
+						</li>
+						<li>Draw <em>parent</em> $\vec{x}$ from $p(\vec{x})$.</li>
+						<li>Draw $\vec{\epsilon} \sim \mathcal{N}(0, \Sigma)$.</li>
+						<li>
+							<strong>Return</strong>
+							new sample $\vec{x}' \gets a \vec{x} + (1 - a) \bar{x} + h \vec{\epsilon}$.
+						</li>
+					</ul>
+				</section>
+
 				<section data-markdown>
-					## Liu-West Resampler ##
+					### Why Does Liu-West Work? ###
 
-					If we remember each sample $\vec{x}$, we can use them to
-					relax RejF assumptions.
-
-					To draw new $\vec{x}'$ from $p(\vec{x})$, let
-					$a^2 + h^2 = 1$, then:
-
-					- Approximate $\bar{x} \gets \expect[\vec{x}]$, $\Sigma \gets \operatorname{Cov}(\vec{x})$.
-					- Draw $\vec{x}$ from original approx of $p(\vec{x})$.
-					- Draw $\vec{\epsilon} \sim \mathcal{N}(0, h \Sigma)$.
-					- **Return** $\vec{x}' \gets a \vec{x} + (1 - a) \bar{x} + \vec{\epsilon}$.
+					\begin{align}
+						\vec{x}'          &amp; \gets a \vec{x} + (1 - a) \bar{x} + h \vec{\epsilon} \\\\
+						\expect[\vec{x}'] &amp; = [a + (1 - a)] \bar{x} \\\\
+						\Cov(\vec{x}')    &amp; = (a^2 + h^2) \Cov(\vec{x}). \\\\
+						\Longrightarrow a^2 + h^2 &amp; = 1 \text{ preserves } \expect[\vec{x}], \Cov(\vec{x}).
+					\end{align}
 
 					---
 
+					Mixes original approximation with $1 - a$ of a Gaussian
+					matching moments.
+
 					- $a \to 0$: RejF (assumed density) approx
 					- $a \to 1$: Bootstrap
+					- $a = 0.98$: typical case (2% Gaussian).
+				</section>
+
+				<section data-markdown>
+					### From Samples to Particles ###
+
+					Define a particle $(w_i, \vec{x}_i)$ as
+					a sample $\vec{x}_i$ and a weight $w_i \in [0, 1]$.
+
+					- $\expect[\vec{x}] = \sum_i w_i \vec{x}_i$
+					- $\Cov(\vec{x}) =
+					  \sum_i w_i \vec{x}_i \vec{x}_i^\TT - \expect[\vec{x}]\expect^\TT[\vec{x}]$
+
+					- $\expect[f(\vec{x})] = \sum_i w_i f(\vec{x}_i)$
+
+					---
+
+					Corresponds to
+					$
+						p(\vec{x}) \approx \sum_i w_i \delta(\vec{x} - \vec{x}_i).
+					$
+				</section>
+
+				<section data-markdown>
+					## Particle Filter ##
+
+					- Draw $N$ initial samples $\vec{x}_i$ from the prior $\Pr(\vec{x})$.
+					- Assign initial weights $w_i = 1 / N$ to be uniform
+					  over each sample $\vec{x}_i$.
+					- Instead of rej. sampling, update weights by
+					$$
+					    w_i \mapsto w_i \times \Pr(d | \vec{x}_i; e).
+					$$
+					- Renormalize (set $\sum_i w_i = 1$).
+					- Periodically use Liu-West to draw new $\\{\vec{x}_i\\}$
+					  with uniform weights.
 				</section>
 
 				<section>
@@ -426,25 +590,6 @@
 					</p>
 
 					<img src="figures/impovrishment.png">
-				</section>
-
-				<section data-markdown>
-					## Particle Filter ##
-
-					- Assign a *weight* $w_i$ to each sample $\vec{x}_i$.
-					- Instead of rej. sampling, update weights by
-					$$
-					    w_i \mapsto w_i \times \Pr(d | \vec{x}_i; e).
-					$$
-					- Renormalize (set $\sum_i w_i = 1$).
-					- Periodically use Liu-West to draw new $\\{\vec{x}_i\\}$.
-
-					---
-
-					Corresponds to
-					$
-						p(\vec{x}) \approx \sum_i w_i \delta(\vec{x} - \vec{x}_i).
-					$
 				</section>
 
 
