@@ -30,7 +30,7 @@
   position: absolute; }
 .reveal .comment::before {
   font-family: "Source Code Pro";
-  content: "Γ½╜";
+  content: "\2afd";
   position: relative;
   top: -0.1em;
   left: -0.35em; }
