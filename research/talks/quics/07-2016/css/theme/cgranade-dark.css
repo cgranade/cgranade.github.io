@@ -15,22 +15,27 @@
   font-family: "Source Code Pro", monospace; }
 .reveal cite.doi a {
   font-family: "Source Sans Pro";
-  font-weight: 200; }
+  font-weight: 400; }
 .reveal cite.doi a::before {
-  content: "doi ";
-  font-variant: small-caps; }
+  content: "DOI 10/";
+  /* font-variant: small-caps; */
+  font-size: 65%;
+  font-weight: 500; }
+.reveal cite.arxiv a {
+  font-family: "Source Sans Pro";
+  font-weight: 100; }
 .reveal .light-figure {
   color: #000; }
   .reveal .light-figure h1, .reveal .light-figure h2, .reveal .light-figure h3, .reveal .light-figure h4, .reveal .light-figure h5, .reveal .light-figure h6 {
     color: #000; }
-.reveal .comment {
-  color: #888;
+.reveal .right-note, .reveal .comment {
   text-align: right;
   right: 0;
-  position: absolute; }
+  position: absolute;
+  color: #888; }
 .reveal .comment::before {
   font-family: "Source Code Pro";
-  content: "\2afd";
+  content: "\2afd;";
   position: relative;
   top: -0.1em;
   left: -0.35em; }

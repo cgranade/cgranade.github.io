@@ -31,6 +31,12 @@ $linkColor: #e00;
 $linkColorHover: lighten( $linkColor, 20% );
 $selectionBackgroundColor: #26351C;
 
+@mixin pull-right() {
+    text-align: right;
+    right: 0;
+    position: absolute;
+}
+
 .reveal {
     strong, em, dt {
         color: #fff;
@@ -42,14 +48,26 @@ $selectionBackgroundColor: #26351C;
     code {
         font-family: "Source Code Pro", monospace;
     }
-    cite.doi a {
-      font-family: "Source Sans Pro";
-      font-weight: 200;
+
+    cite.doi {
+        a {
+            font-family: "Source Sans Pro";
+            font-weight: 400;
+        }
+
+        a::before {
+            content: "DOI 10/";
+            /* font-variant: small-caps; */
+            font-size: 65%;
+            font-weight: 500;
+        }
     }
 
-    cite.doi a::before {
-      content: "doi ";
-      font-variant: small-caps;
+    cite.arxiv {
+        a {
+            font-family: "Source Sans Pro";
+            font-weight: 100;
+        }
     }
 
     .light-figure {
@@ -59,11 +77,9 @@ $selectionBackgroundColor: #26351C;
         }
     }
 
-    .comment {
+    .right-note, .comment {
+        @include pull-right();
         color: #888;
-        text-align: right;
-        right: 0;
-        position: absolute;
     }
 
     .comment::before {
