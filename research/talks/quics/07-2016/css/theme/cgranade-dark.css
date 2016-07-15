@@ -21,6 +21,14 @@
   /* font-variant: small-caps; */
   font-size: 65%;
   font-weight: 500; }
+.reveal cite.hdl a {
+  font-family: "Source Sans Pro";
+  font-weight: 400; }
+.reveal cite.hdl a::before, .reveal cite.hdl a span {
+  content: "HDL ";
+  /* font-variant: small-caps; */
+  font-size: 65%;
+  font-weight: 500; }
 .reveal cite.arxiv a {
   font-family: "Source Sans Pro";
   font-weight: 100; }
@@ -30,12 +38,15 @@
     color: #000; }
 .reveal .right-note, .reveal .comment {
   text-align: right;
-  right: 0;
+  right: 1em;
   position: absolute;
-  color: #888; }
+  color: #888;
+  font-weight: normal; }
+  .reveal .right-note em, .reveal .comment em {
+    color: #888; }
 .reveal .comment::before {
   font-family: "Source Code Pro";
-  content: "\2afd;";
+  content: "\2afd";
   position: relative;
   top: -0.1em;
   left: -0.35em; }
@@ -43,6 +54,18 @@
   border: none !important;
   box-shadow: none !important;
   background: none !important; }
+.reveal dl {
+  width: 90%; }
+.reveal dl.border-dl {
+  border-bottom: 1px solid #444; }
+  .reveal dl.border-dl dt {
+    border-top: 1px solid #444; }
+.reveal .thanks::before {
+  content: "\1F496 "; }
+.reveal .thanks::after {
+  content: " \1F496"; }
+.reveal .thanks::before, .reveal .thanks::after {
+  color: #e00; }
 
 /*********************************************
  * GLOBAL STYLES

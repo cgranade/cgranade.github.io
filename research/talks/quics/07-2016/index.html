@@ -83,10 +83,10 @@
 			-->
 			<p class="hideable-foot" id="foot-title-foot">
 				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br>
-				<cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>,
+				<!-- <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>,
 				<cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>,
 				<cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>,
-				<cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite><br>
+				<cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite><br> -->
 				<a href="http://www.cgranade.com/research/talks/quics/07-2016">
 					www.cgranade.com/research/talks/quics/07-2016
 				</a>
@@ -177,10 +177,10 @@
 						$
 					</p>
 					
-					<p>
+					<!-- <p>
 						joint work with<br>
 						Nathan Wiebe • Christopher Ferrie • D. G. Cory
-					</p>
+					</p> -->
 				</section>
 
 				<section>
@@ -189,6 +189,9 @@
 					</p>
 
 					<dl>
+						<dt>Metrology</dt>
+						<dd>Learning magnetic fields, etc.</dd>
+
 						<dt>Calibration</dt>
 						<dd>Static field / pulse power / crosstalk, etc.</dd>
 
@@ -234,6 +237,47 @@
 
 					Hamiltonian learning is a special case of *parameter estimation*:
 					given data $D$, what is $\vec{x}$?
+
+					---
+
+					We want an approach that can work even for *large* quantum devices.
+				</section>
+
+				<section>
+					<p>
+						To get there, we consider several different approaches to
+						parameter estimation.
+					</p>
+
+					<dl style="font-size: 85%" class="border-dl">
+						<dt>
+							Analytic
+							<span class="right-note">
+								Sergeevich <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/c4vv95">c4vv95</a></cite>
+							</span><br>&nbsp;
+							<span class="right-note">
+								Ferrie, Granade, and Cory <cite class="doi"><a href="https://dx.doi.org/10/tfx">tfx</a></cite>
+							</span>
+						</dt>
+						<dt>
+							Rejection filter
+							<span class="right-note">
+								Wiebe and Granade <cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite>
+							</span>
+						</dt>
+						<dt>
+							Particle filter
+							<span class="right-note">
+								Doucet <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bmch">bmch</a></cite>
+							</span>
+						</dt>
+						<dt>
+							Likelihood-free particle filter
+							<span class="right-note">
+								Ferrie and Granade <cite class="doi"><a href="https://dx.doi.org/10/tdj">tdj</a></cite>
+							</span>
+						</dt>
+					</dl>
 				</section>
 
 				<section data-markdown>
@@ -430,8 +474,8 @@
 								$M_2 \gets M_2 + \Delta (x - \bar{x})$
 								<span class="comment">Update running var</span>
 							</li>
-							<li><strong>Return</strong> mean $\bar{x}$, variance $M_2 / (n - 1)$.</li>
 						</ul>
+						<li><strong>Return</strong> mean $\bar{x}$, variance $M_2 / (n - 1)$.</li>
 					</ul>
 
 					<p>
@@ -440,7 +484,7 @@
 				</section>
 
 				<section data-state="show-foot-rfpe">
-					<h2>Rejection Filtering (ReJF)</h2>
+					<h2>Rejection Filtering (RejF)</h2>
 
 					<p>
 					    <strong>Input:</strong>
@@ -457,7 +501,10 @@
 							</li>
 							<li><strong>While</strong> $n < m$:</li>
 							<ul>
-								<li>Draw $\vec{x} \sim \mathcal{N}(\bar{x}, \Sigma)$.</li>
+								<li>
+									Draw $\vec{x} \sim \mathcal{N}(\bar{x}, \Sigma)$.
+									<span class="comment">Sample f/ prior.</span>
+								</li>
 								<li>Accept $\vec{x}$ w/ $\Pr(d | \vec{x}; e)$.</li>
 								<li><strong>If</strong> accepted, update $n$, $\bar{x}'$, $M_2$.</li>
 							</ul>
@@ -629,54 +676,69 @@
 				</section>
 
 				<section>
-					<h3>Useful for Hamiltonian models...</h3>
+					<h4>Useful for Hamiltonian models...</h4>
 
-					<dl style="width: 90%; font-size: 80%">
-						<dt>Rabi/Ramsey/Phase est.</dt>
-						<dd>
-							Granade <em>et al.</em>
-							<cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>
-						</dd>
+					<dl style="font-size: 80%" class="border-dl">
+						<dt>Rabi/Ramsey/Phase est.
+							<span class="right-note">
+								Granade <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>
+							</span class="right-note">
+						</dt>
 
-						<dt>Swap spectroscopy</dt>
-						<dd>
-							Stenberg <em>et al.</em>
-							<cite class="doi"><a href="https://dx.doi.org/10/7nw">7nw</a></cite>
-						</dd>
+						<dt>Swap spectroscopy
+							<span class="right-note">
+								Stenberg <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/7nw">7nw</a></cite>
+							</span>
+						</dt>
 					</dl>
 
-					<h3 style="padding-top: 0.5em;">
+					<h4 style="padding-top: 0.5em;">
 						...as well as other QIP tasks.
-					</h3>
+					</h4>
 
-					<dl style="width: 90%; font-size: 80%">
-						<dt>Tomography</dt>
-						<dd>
-							Huszár and Holsby
-							<cite class="doi"><a href="https://dx.doi.org/10/s86">s86</a></cite>,
-							
-							Struchalin <em>et al.</em>
-							<cite class="doi"><a href="https://dx.doi.org/10/bmg5">bmg5</a></cite>,
-							<br>
+					<dl style="font-size: 80%" class="border-dl">
+						<dt>Tomography
+							<span class="right-note">
+								Huszár and Holsby
+								<cite class="doi"><a href="https://dx.doi.org/10/s86">s86</a></cite>
+							</span><br>&nbsp;
+							<span class="right-note">					
+								Struchalin <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/bmg5">bmg5</a></cite>
+							</span><br>&nbsp;
+							<span class="right-note">					
+								Ferrie
+								<cite class="doi"><a href="https://dx.doi.org/10/7nt">7nt</a></cite>							
+							</span><br>&nbsp;
+							<span class="right-note">
+								Granade <em>et al.</em>						
+								<cite class="doi"><a href="https://dx.doi.org/10/bhdw">bhdw</a></cite>,
+								<cite class="arxiv"><a href="https://arxiv.org/abs/1605.05039">1605.05039</a></cite>
+							</span>
+						</dt>
 
-							Ferrie
-							<cite class="doi"><a href="https://dx.doi.org/10/7nt">7nt</a></cite>,
+						<dt>Randomized benchmarking
+							<span class="right-note">
+								Granade <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/zmz">zmz</a></cite>
+							</span>
+						</dt>
 
-							Granade <em>et al.</em>						
-							<cite class="doi"><a href="https://dx.doi.org/10/bhdw">bhdw</a></cite>
-						</dd>
+						<dt>Continuous measurement
+							<span class="right-note">
+								Chase and Geremia
+								<cite class="doi"><a href="https://dx.doi.org/10/chk4q7">chk4q7</a></cite>
+							</span>
+						</dt>
 
-						<dt>Randomized Benchmarking</dt>
-						<dd>
-							Granade <em>et al.</em>
-							<cite class="doi"><a href="https://dx.doi.org/10/zmz">zmz</a></cite>
-						</dd>
-
-						<dt>Continuous meas.</dt>
-						<dd>
-							Chase and Geremia
-							<cite class="doi"><a href="https://dx.doi.org/10/chk4q7">chk4q7</a></cite>
-						</dd>
+						<dt>Interferometry/metrology
+							<span class="right-note">
+								Granade
+								<cite class="hdl"><a href="https://dx.doi.org/10012/9217"><span>10012/</span>9217</a></cite>
+							</span>
+						</dt>
 					</dl>
 				</section>
 
@@ -825,42 +887,45 @@
 				<section>
 					<h3>Going Further</h3>
 
-					<dl>
-						<dt>Time-dependence</dt>
-						<dd>
-							Adding timestep update allows learning stochastic
-							processes.
+					<dl class="border-dl">
+						<dt>Time-dependence
 							<span class="right-note">
 								Isard and Blake
 								<cite class="doi"><a href="https://dx.doi.org/10/cc76f6">cc76f6</a></cite>
 							</span>
+						</dt>
+						<dd>
+							Adding timestep update allows learning stochastic
+							processes.
 						</dd>
 
-						<dt>Model selection / structured models</dt>
-						<dd>
-							Using acceptance ratio or normalizations
-							enables comparing models.
+						<dt>Model selection							
 							<span class="right-note">
 								Ferrie
 								<cite class="doi"><a href="https://dx.doi.org/10/7nt">7nt</a></cite>
 							</span>
+						</dt>
+						<dd>
+							Using acceptance ratio or normalizations
+							enables comparing models.
 						</dd>
 					
-						<dt>Quantum algorithms for filtering</dt>
-						<dd>
-							Rejection filtering can be quantized using
-							Harrow <em>et al.</em>
-							<cite class="doi"><a href="https://dx.doi.org/10/bcz3hc">bcz3hc</a></cite>.
+						<dt>Quantum filtering
 							<span class="right-note">
 								Wiebe and Granade
 								<cite class="arxiv"><a href="http://arxiv.org/abs/1512.03145">1512.03145</a></cite>
 							</span>
+						</dt>
+						<dd>
+							Rejection filtering can be quantized using
+							Harrow <em>et al.</em>
+							<cite class="doi"><a href="https://dx.doi.org/10/bcz3hc">bcz3hc</a></cite>.
 						</dd>
 					</dl>
 				</section>
 
-				<section data-markdown>
-					# 💖 Thank you! 💖 #
+				<section>
+					<h1 class="thanks">Thank you!</h1>
 				</section>
 
 
