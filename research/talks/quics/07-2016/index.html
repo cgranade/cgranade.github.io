@@ -54,10 +54,25 @@
 			.show-foot-qinfer #foot-qinfer,
 			.show-foot-rfpe #foot-rfpe,
 			.show-foot-thanks-ian #foot-thanks-ian,
+			.show-foot-thanks-hpd #foot-thanks-hpd,
 			.show-foot-thesis #foot-thesis {
 				opacity: 1 !important;
 				transition: all 2s;
 				z-index: 2;
+			}
+
+			.two-col-container {
+				width: 100%;
+			}
+
+			.left-col {
+				float: left;
+				width: 70%;
+			}
+
+			.right-col {
+				float: right;
+				width: 30%;
 			}
 		</style>
 
@@ -137,6 +152,11 @@
 			<p class="hideable-foot" id="foot-thesis">
 				Granade
 				<cite class="hdl"><a href="https://dx.doi.org/10012/9217"><span>10012/</span>9217</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-thanks-hpd">
+				<em>figure</em>: Ferrie
+				<cite class="doi"><a href="https://dx.doi.org/10/tb4">tb4</a></cite>
 			</p>
 
 <!-- 
@@ -655,10 +675,13 @@
 					- Assign initial weights $w_i = 1 / N$ to be uniform
 					  over each sample $\vec{x}_i$.
 					- Instead of rej. sampling, update weights by
-					$$
-					    w_i \mapsto w_i \times \Pr(d | \vec{x}_i; e).
-					$$
-					- Renormalize (set $\sum_i w_i = 1$).
+					\begin{align}
+						\tilde{w}_i &amp; = w_i \times \Pr(d | \vec{x}_i; e)
+					\end{align}
+					- Renormalize.
+					\begin{align}
+						w_i &amp; \mapsto \tilde{w}_i / \sum_i \tilde{w}_i
+					\end{align}
 					- Periodically use Liu-West to draw new $\\{\vec{x}_i\\}$
 					  with uniform weights.
 				</section>
@@ -675,55 +698,6 @@
 				<section data-background="#fff" data-background-video="figures/multicos-distributions.mp4">					
 				</section>
 
-				<section data-markdown data-state="show-foot-rohl">
-					### **Example**: $\vec{x} = (\omega, T_2)$ ###
-
-					![](figures/unknown-t2.png)
-				</section>
-
-				<section data-state="show-foot-thesis">
-					<h3><strong>Example</strong>: $\vec{x} =$ COSY / Crosstalk</h3>
-
-					<p>\(
-						H(\omega_1, \omega_2, J) = \frac12 \left(
-							\omega_1 \sigma_z \otimes \id + 
-							\omega_2 \id \otimes \sigma_z +
-							J \sigma_z \otimes \sigma_z
-						\right)
-					\)</p>
-
-					<img src="figures/cosy-pulses.png">
-				</section>
-
-				<section data-state="show-foot-thesis">
-					<h3><strong>Example</strong>: $\vec{x} =$ COSY / Crosstalk</h3>
-
-					<img src="figures/cosy-loss.png" width="80%">
-				</section>
-
-				<!-- <section data-state="show-foot-thanks-ian"
-						 data-background="figures/estimator-sim.png"
-						 data-background-size="80%"
-						 data-background-transition="slide">
-
-				    <h3 
-						 style="position: relative; top: -3.5em;"
-					><strong>Example</strong>: $\vec{x} =$ NV Hamiltonian</h3>
-
-					<p style="position: relative; top: 6em;">
-						Estimated Hamiltonian reproduces experimental
-						data.
-					</p>
-
-				</section> -->
-
-				<section data-markdown data-state="show-foot-qinfer">
-					#### **QInfer**: Particle Filter Implementation for Quantum Info ####
-
-					We provide an open-source implementation for use in experiment and theory alike.
-
-					Written in Python, works with MATLAB and Julia.
-				</section>
 
 				<section>
 					<h4>Useful for Hamiltonian models...</h4>
@@ -792,11 +766,86 @@
 					</dl>
 				</section>
 
+
+				<section data-markdown data-state="show-foot-rohl">
+					### **Example**: $\vec{x} = (\omega, T_2)$ ###
+
+					![](figures/unknown-t2.png)
+				</section>
+
+				<section data-state="show-foot-thesis">
+					<h3><strong>Example</strong>: $\vec{x} =$ COSY / Crosstalk</h3>
+
+					<p>\(
+						H(\omega_1, \omega_2, J) = \frac12 \left(
+							\omega_1 \sigma_z \otimes \id + 
+							\omega_2 \id \otimes \sigma_z +
+							J \sigma_z \otimes \sigma_z
+						\right)
+					\)</p>
+
+					<img src="figures/cosy-pulses.png">
+				</section>
+
+				<section data-state="show-foot-thesis">
+					<h3><strong>Example</strong>: $\vec{x} =$ COSY / Crosstalk</h3>
+
+					<img src="figures/cosy-loss.png" width="80%">
+				</section>
+
+				<!-- <section data-state="show-foot-thanks-ian"
+						 data-background="figures/estimator-sim.png"
+						 data-background-size="80%"
+						 data-background-transition="slide">
+
+				    <h3 
+						 style="position: relative; top: -3.5em;"
+					><strong>Example</strong>: $\vec{x} =$ NV Hamiltonian</h3>
+
+					<p style="position: relative; top: 6em;">
+						Estimated Hamiltonian reproduces experimental
+						data.
+					</p>
+
+				</section> -->
+
+				<section data-state="show-foot-thanks-hpd">
+					<h3>Error Bars</h3>
+
+					<p>
+						Particle filters also yield <em>credible regions</em> $X_\alpha$ s.t.
+						$$
+							\Pr(\vec{x} \in X_\alpha | d; e) \ge \alpha.
+						$$
+					</p>
+
+					<img src="figures/nc.png" class="stretch">
+
+					<p>
+						E.g.: Posterior covariance ellipse, convex hull, MVEE.
+					</p>
+
+				</section>
+
+				<section data-markdown data-state="show-foot-qinfer">
+					#### **QInfer**: Particle Filter Implementation for Quantum Info ####
+
+					We provide an open-source implementation for use in experiment and theory alike.
+
+					Written in Python, works with MATLAB and Julia.
+				</section>
+
 				<section data-markdown>
 					### Limitations of Particle Filtering ###
 
-					- Requires classically simulating likelihoods
-					  for each of many (~ks) particles.
+					\begin{align}
+						\tilde{w}_i &amp; = w_i \times \Pr(d | \vec{x}_i; e) \\\\
+						w_i &amp; \mapsto \tilde{w}_i / \sum_i \tilde{w}_i
+					\end{align}
+
+					- $\Pr(d | \vec{x}_i; e)$ is a *simulation*.
+					- Need to
+					  simulate for each particle (~1000s calls/datum).
 
 					Let's do better: use *quantum* simulation instead.
 				</section>
@@ -805,6 +854,8 @@
 					### Two Kinds of Simulation ###
 
 					![](figures/simulators.png)
+
+					Weak simulators produce *plausible datasets*.
 				</section>
 
 				<section data-markdown>
@@ -821,8 +872,16 @@
 				<section data-markdown data-state="show-foot-lfpe">
 					### Likelihood-Free Particle Filtering ###
 
-					Can also use weak simulation to approximate likelihoods
+					Can also use frequencies $f$ from weak simulation to
+					approximate likelihoods
 					in particle filtering.
+
+					$$
+						\widehat{\Pr}(d | \vec{x}; e) =
+							\frac{f(d | \vec{x}; e)}{k}
+					$$
+
+					$k$: number of weak simulation calls used.
 				</section>
 
 				<section data-markdown
@@ -871,6 +930,8 @@
 					### Quantum Interactivity ### 
 					
 					![](figures/iqle.png)
+
+					Perform weak simulations on trusted device only.
 				</section>
 
 				<section>
@@ -888,6 +949,15 @@
 						<li>Let $t = 1 / |\vec{x}_- - \vec{x}_-'|$.</li>
 						<li><strong>Return</strong> $e = (\vec{x}_-, t)$.</li>
 					</ul>
+
+					<div class="fragment">
+						<hr>
+
+						<p>
+							Adaptively chooses experiments such that<br>
+							$t |\vec{x}_- - \vec{x}_-'| \approx\,$ constant.
+						</p>
+					</div>
 				</section>
 
 				<section data-markdown>
@@ -938,6 +1008,17 @@
 					<h3>Going Further</h3>
 
 					<dl class="border-dl">
+						<dt>Hyperparameterization
+							<span class="right-note">
+								Granade <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>
+							</span>
+						</dt>
+						<dd>
+							$\Pr(d | y) = \expect_x[\Pr(d | x) \Pr(x | y)]$.<br>
+							Allows composing w/ noise, inhomogeneity, etc.
+						</dd>
+
 						<dt>Time-dependence
 							<span class="right-note">
 								Isard and Blake
