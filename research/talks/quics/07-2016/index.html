@@ -52,7 +52,9 @@
 			.show-foot-title-foot #foot-title-foot,
 			.show-foot-condensation #foot-condensation,
 			.show-foot-qinfer #foot-qinfer,
-			.show-foot-rfpe #foot-rfpe {
+			.show-foot-rfpe #foot-rfpe,
+			.show-foot-thanks-ian #foot-thanks-ian,
+			.show-foot-thesis #foot-thesis {
 				opacity: 1 !important;
 				transition: all 2s;
 				z-index: 2;
@@ -132,6 +134,16 @@
 				Ferrie and Granade <cite class="doi"><a href="https://dx.doi.org/10/tdj">tdj</a></cite>
 			</p>
 
+			<p class="hideable-foot" id="foot-thesis">
+				Granade
+				<cite class="hdl"><a href="https://dx.doi.org/10012/9217"><span>10012/</span>9217</a></cite>
+			</p>
+
+<!-- 
+			<p class="hideable-foot" id="foot-thanks-ian">
+				Collaboration w/ Hincks, Wang, Mirkamali, and Moussa.
+			</p>
+ -->
 
 			<!-- <p class="hideable-foot" id="foot-better">
 				Sergeevich <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/c4vv95">c4vv95</a></cite>,
@@ -664,15 +676,53 @@
 				</section>
 
 				<section data-markdown data-state="show-foot-rohl">
-					### **Example**: $x = (\omega, T_2)$ ###
+					### **Example**: $\vec{x} = (\omega, T_2)$ ###
 
 					![](figures/unknown-t2.png)
 				</section>
+
+				<section data-state="show-foot-thesis">
+					<h3><strong>Example</strong>: $\vec{x} =$ COSY / Crosstalk</h3>
+
+					<p>\(
+						H(\omega_1, \omega_2, J) = \frac12 \left(
+							\omega_1 \sigma_z \otimes \id + 
+							\omega_2 \id \otimes \sigma_z +
+							J \sigma_z \otimes \sigma_z
+						\right)
+					\)</p>
+
+					<img src="figures/cosy-pulses.png">
+				</section>
+
+				<section data-state="show-foot-thesis">
+					<h3><strong>Example</strong>: $\vec{x} =$ COSY / Crosstalk</h3>
+
+					<img src="figures/cosy-loss.png" width="80%">
+				</section>
+
+				<!-- <section data-state="show-foot-thanks-ian"
+						 data-background="figures/estimator-sim.png"
+						 data-background-size="80%"
+						 data-background-transition="slide">
+
+				    <h3 
+						 style="position: relative; top: -3.5em;"
+					><strong>Example</strong>: $\vec{x} =$ NV Hamiltonian</h3>
+
+					<p style="position: relative; top: 6em;">
+						Estimated Hamiltonian reproduces experimental
+						data.
+					</p>
+
+				</section> -->
 
 				<section data-markdown data-state="show-foot-qinfer">
 					#### **QInfer**: Particle Filter Implementation for Quantum Info ####
 
 					We provide an open-source implementation for use in experiment and theory alike.
+
+					Written in Python, works with MATLAB and Julia.
 				</section>
 
 				<section>
