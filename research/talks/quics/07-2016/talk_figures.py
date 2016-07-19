@@ -85,3 +85,49 @@ class UnknownT2Model(qi.Model):
         
         # Now we concatenate over outcomes.
         return qi.Model.pr0_to_likelihood_array(outcomes, pr0)
+
+    
+class COSYModel(qi.Model):
+    @property
+    def n_modelparams(self):
+        return 3
+    @property
+    def is_n_outcomes_constant(self):
+        return True
+    
+    def n_outcomes(self, expparams):
+        return 2
+    @staticmethod
+    def are_models_valid(modelparams):
+        J, w1, w2 = modelparams.T
+        return np.all([
+            w1 >= 0,
+            w1 <= 1,
+            w2 >= 0,
+            w2 <= 1,
+            J >= 0,
+            J <= 1
+        ], axis=0)
+    
+    @property
+    def expparams_dtype(self):
+        return [('t', 'float', 2)]
+    
+    def likelihood(self, outcomes, modelparams, expparams):
+        super(COSYModel, self).likelihood(outcomes, modelparams, expparams)
+        
+        J, w1, w2 = modelparams.T[:, :, np.newaxis]
+        t1, t2    = expparams['t'].T
+        
+        pr0 = np.zeros((modelparams.shape[0], expparams.shape[0]))
+        pr0[:, :] = np.abs(
+            np.cos(J * (t1 + t2)) *
+            np.cos(t1 * w1 / 2) *
+            np.cos(t2 * w2 / 2) +
+            
+            1j * np.sin(J * (t1 + t2)) *
+            np.sin(t1 * w1 / 2) *
+            np.sin(t2 * w2 / 2)
+        )**2
+                
+        return qi.Model.pr0_to_likelihood_array(outcomes, pr0)
