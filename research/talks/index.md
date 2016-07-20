@@ -8,13 +8,19 @@ description: ""
 
 ## August 2016 ##
 
-- *TBA*, to be presented as an invited talk at [Quantum Machine Learning](https://www.perimeterinstitute.ca/conferences/quantum-machine-learning), hosted by the [Perimter Institute for Theoretical Physics](https://www.perimeterinstitute.ca/).
+- *Rejection and Particle Filtering for Hamiltonian Learning*, to be presented as an invited talk at [Quantum Machine Learning](https://www.perimeterinstitute.ca/conferences/quantum-machine-learning), hosted by the [Perimter Institute for Theoretical Physics](https://www.perimeterinstitute.ca/).
 
 # Previous Talks #
 
+## 2016 ##
+
+- *Rejection and Particle Filtering for Hamiltonian Learning*, presented as a [seminar](quics/07-2016/) at [QuICS] on 21 July 2016.
+- [QInfer: Bayesian inference for quantum information](http://qinfer.org), presented as a [seminar](griffiths/05-2016) in May 2016, and as a [talk](lfqis-2016/) at [LFQIS 2016](http://lfqis.net/).
+
 ## 2015 ##
 
-- [Practical Bayesian Tomography](../pbt/), presented as a [talk](iqc/09-2015) at [IQC](https://iqc.uwaterloo.ca) on 14 September 2015, as a [seminar](quics/09-2015) at [QuICS](https://quics.umd.edu/) on 23 September 2015, and as a [seminar](msr/10-2015) at Microsoft Research in October 2015.
+- [Quantum Bootstrapping](ipdf/10-2015/), presented as a talk at the IPDF Workshop in October 2015.
+- [Practical Bayesian Tomography](../pbt/), presented as a [talk](iqc/09-2015) at [IQC](https://iqc.uwaterloo.ca) on 14 September 2015, as a [seminar](quics/09-2015) at [QuICS](https://quics.umd.edu/) on 23 September 2015, as a [seminar](msr/10-2015) at Microsoft Research in October 2015, and as a [talk](sqip-workshop/12-2015/) at the SQIP Workshop in December 2015.
 - [Assessing and Controlling Quantum Information Processing Devices](lfqis-2015/), presented as a talk at LFQIS 2015.
 
 ## 2014 ##
