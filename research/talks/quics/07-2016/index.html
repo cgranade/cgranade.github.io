@@ -27,10 +27,19 @@
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
 		<style type="text/css" media="screen">
+			/*
+				Calibration to local projector.
+				Largely, this consists of darkening a few colors, as
+				their projector is quite bright for a small room.
+			*/
+			.reveal {
+				color: #bbb;
+			}
+
 			.hideable-foot {
 				display: block;
 				opacity: 0;
-				font-size: 90% !important;
+				font-size: 95% !important;
 				position: absolute;
 				bottom: 0em;
 				right: 0.5em;
@@ -281,7 +290,8 @@
 					<div class="fragment" data-markdown>
 						---
 
-						We want an approach that can work even for *large* quantum devices.
+						We want an approach that can work for small and large quantum devices
+						alike.
 					</div>
 				</section>
 
