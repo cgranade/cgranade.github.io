@@ -14,7 +14,7 @@ description: ""
 
 ## 2016 ##
 
-- *Rejection and Particle Filtering for Hamiltonian Learning*, presented as a [seminar](quics/07-2016/) at [QuICS] on 21 July 2016.
+- *Rejection and Particle Filtering for Hamiltonian Learning*, presented as a [seminar](quics/07-2016/) at [QuICS](http://quics.umd.edu/events/rejection-and-particle-filtering-hamiltonian-learning) on 21 July 2016.
 - [QInfer: Bayesian inference for quantum information](http://qinfer.org), presented as a [seminar](griffiths/05-2016) in May 2016, and as a [talk](lfqis-2016/) at [LFQIS 2016](http://lfqis.net/).
 
 ## 2015 ##
