@@ -55,6 +55,7 @@
 			.show-foot-rfpe #foot-rfpe,
 			.show-foot-thanks-ian #foot-thanks-ian,
 			.show-foot-thanks-hpd #foot-thanks-hpd,
+			.show-foot-fast-pe #foot-fast-pe,
 			.show-foot-thesis #foot-thesis {
 				opacity: 1 !important;
 				transition: all 2s;
@@ -157,6 +158,11 @@
 			<p class="hideable-foot" id="foot-thanks-hpd">
 				<em>figure</em>: Ferrie
 				<cite class="doi"><a href="https://dx.doi.org/10/tb4">tb4</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-fast-pe">
+				Svore <em>et al.</em>
+				<cite class="arxiv"><a href="https://arxiv.org/abs/1304.0741">1304.0741</a></cite>
 			</p>
 
 <!-- 
@@ -348,21 +354,16 @@
 
 				<section data-markdown>
 					Each posterior $\Pr(\vec{x} | d; e)$ encodes our uncertainty about
-					$x$.
+					$x$. What should we expect squared-error to be?
 
-					**Scalar case**: let $\delta = x - \hat{x}$ be error in $\hat{x}$.
-					What should we expect squared-error to be?
+					**Scalar case**:
+					$
+						\expect[(x - \hat{x})^2 | d; e] = 
+                        \mathbb{V}[x \mid d; e].
+					$
 
-					\begin{align}
-						\expect[\delta^2 | d; e] &amp; = \int \delta^2 \Pr(\vec{x} | d; e) \dd\vec{x} \\\\
-			            &amp; = \expect[(x - \hat{x})^2 | d; e] \\\\
-                        &amp; = \expect[x^2 | d; e]  - 2 \expect[x| d; e] \hat{x} + \hat{x}^2 \\\\
-                        &amp; = \expect[x^2 | d; e]  - \hat{x}^2.
-					\end{align}
-
-					This is the **variance** $\mathbb{V}[x \mid d; e]$.
-
-					**Vector case**: $\Cov(\vec{x} | d; e) \defeq \expect[(\vec{x} - \hat{x}) (\vec{x} - \hat{x})^\TT | d; e]$.
+					**Vector case**: $\expect[(\vec{x} - \hat{x}) (\vec{x} - \hat{x})^\TT | d; e]
+					= \Cov(\vec{x} | d; e)$.
 				</section>
 
 				<section data-markdown>
@@ -383,15 +384,26 @@
 
 				<section>
 					<p data-markdown>
-						**Problem**: exactly finding $\hat{x}$ is intractable
-						in general.
+						**Problem**: may be intractable to analytically compute $$
+							\hat{x} \defeq
+							\int \Pr(\vec{x} | d; e) \dd\vec{x} =
+							\int \frac{
+								\Pr(d | \vec{x}; e)
+							}{
+								\int \Pr(d | \vec{x}; e) \Pr(\vec{x}) \dd\vec{x}
+							} \Pr(\vec{x}) \dd\vec{x}.
+						$$
 					</p>
 
-					<p class="fragment" data-markdown>
+					<div class="fragment" data-markdown>
+						---
+
 						**Answer**: numerically approximate $\int f(\vec{x}) \Pr(\vec{x} | d)\dd\vec{x}$.
-					</p>
-				</section>
 
+						*Efficient* to use Monte Carlo integration if we can sample from $\Pr(\vec{x})$.
+					</div>
+				</section>
+<!-- 
 				<section data-markdown>
 					## Monte Carlo Integration ##
 
@@ -405,7 +417,7 @@
 					Efficient *if* we can sample from $p(\vec{x})$.
 
 					How do we do that for $p(\vec{x}) = \Pr(\vec{x} | d; e)$?
-				</section>
+				</section> -->
 
 				<section data-markdown>
 					## Rejection Sampling ##
@@ -414,12 +426,20 @@
 					function $\Pr(d | \vec{x}; e)$, how do we sample
 					from posterior for datum $d$?
 
-					- $\vec{x} \sim \Pr(\vec{x})$.
-					- $u \sim \operatorname{Uniform}(0, 1)$.
-					- If $u \le \Pr(d | \vec{x}; e)$, yield sample $\vec{x}$.
-					  Otherwise, reject $\vec{x}$.
+					- Draw $\vec{x} \sim \Pr(\vec{x})$.
+					- Accept $\vec{x}$ with $\Pr(d | \vec{x}; e)$.
+					  Otherwise, reject it.
 
 					Accepted samples are distributed according to posterior.
+				</section>
+
+				<section data-markdown
+						 data-background="#000"
+				         data-background-size="80%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+						 data-background-image="figures/rejs-example.png"
+						 >
 				</section>
 
 				<section>
@@ -461,57 +481,49 @@
 					</div>
 				</section>
 
-				<section data-markdown>
-					### Gaussian Resampling ###
+				<section>
+					<div data-markdown>
+						### Gaussian Resampling ###
 
-					For each datum $d$, use rejection sampling to approximate posterior
-					moments:
+						For each datum $d$, use rejection sampling to approximate posterior
+						moments:
 
-					- $\bar{x} \gets \expect[\vec{x} | d]$.
-					- $\Sigma \gets \operatorname{Cov}[\vec{x} | d] = \expect[\vec{x} \vec{x}^\TT | d] - \bar{x} \bar{x}^\TT$.
+						- $\bar{x} \gets \expect[\vec{x} | d]$.
+						- $\Sigma \gets \operatorname{Cov}[\vec{x} | d] = \expect[\vec{x} \vec{x}^\TT | d] - \bar{x} \bar{x}^\TT$.
+					</div>
 
-					---
+					<div data-markdown class="fragment">
+						---
 
-					At the next iteration, draw prior samples from Gaussian with these moments:
-					$$
-						\vec{x} | d \sim \mathcal{N}(\bar{x}, \Sigma)
-					$$
+						At the next iteration, draw prior samples from Gaussian with these moments:
+						$$
+							\vec{x} \mid d \sim \mathcal{N}(\bar{x}, \Sigma)
+						$$
+					</div>
 				</section>
 
 				<section>
-					<h2>Welford's Algorithm</h2>
-					
 					<p>
 						Can compute $\bar{x}$, $\Sigma$ from
-						one sample at a time. Numerically stable.
+						one sample at a time by accumulating
+					</p>
+					<p>
+						$$
+							x_{\Sigma} = \sum x
+							\text{ and }
+							x^2_{\Sigma} = \sum x^2.
+						$$
 					</p>
 
-					<ul style="width: 80%">
-						<li>$n, \bar{x}, M_2 \gets 0$.</li>
-						<li><strong>For</strong> each sample $x$:</li>
-						<ul>
-							<li>
-								$n \gets n + 1$
-								<span class="comment">Record # of samples</span>
-							</li>
-							<li>
-								$\Delta \gets x - \mu$
-								<span class="comment">Diff to running mean</span>
-							</li>
-							<li>
-								$\bar{x} \gets \bar{x} + \Delta / n$
-								<span class="comment">Update running mean</span>
-							</li>
-							<li>
-								$M_2 \gets M_2 + \Delta (x - \bar{x})$
-								<span class="comment">Update running var</span>
-							</li>
-						</ul>
-						<li><strong>Return</strong> mean $\bar{x}$, variance $M_2 / (n - 1)$.</li>
-					</ul>
+					<p>
+						\begin{align}
+							\bar{x} &amp; = x_{\Sigma} / n_{\text{accept}} \\
+							\Sigma &amp; = x^2_{\Sigma} / n_{\text{accept}} - \bar{x}^2.
+						\end{align}
+					</p>
 
 					<p>
-						Vector case is similar.
+						<em>Welford's algorithm</em>: numerically-stable modification.
 					</p>
 				</section>
 
@@ -560,9 +572,10 @@
 						- Very low-memory (constant # of
 						  registers), ideal for FPGA use.
 					- Easily parallelizable
+					- “Reset rule” can abort from approximation failures.
 				</section>
 
-				<section>
+				<section data-state="show-foot-fast-pe">
 					<h3><strong>Example:</strong> Phase Estimation, $x = (\phi)$</h3>
 
 					<p>
@@ -573,11 +586,36 @@
 					<img src="./figures/pe-circuit-crop.png">
 
 					<p>
-						If $\theta = 0$, same likelihood as Ramsey/Rabi, with $\phi = \omega$, $M = t$.
+						$\theta = 0 \Rightarrow$ freq. est likelihood, w/ $\phi = \omega$, $M = t$.
 					</p>
 
+					<dl style="font-size: 65%">
+						<dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
+							Applications
+						</h4></dd>
 
-					<!-- show rfpe results, connect pe problem back to larmor -->
+						<dt>Interferometry / metrology
+							<span class="right-note">
+								Higgins <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/crwd6w">crwd6w</a></cite>
+							</span>
+						</dt>
+
+						<dt>Gate calibration / robust PE
+							<span class="right-note">
+								Kimmel <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/bmrg">bmrg</a></cite>
+							</span>
+						</dt>
+
+						<dt>Quantum simulation and chemistry
+							<span class="right-note">
+								Reiher <em>et al.</em>
+								<cite class="arxiv"><a href="https://arxiv.org/abs/1605.03590">1605.03590
+								</a></cite>
+							</span>
+						</dt>
+					</dl>
 				</section>
 
 
@@ -668,34 +706,51 @@
 					$
 				</section>
 
-				<section data-markdown data-state="show-foot-smc">
-					## Particle Filter ##
-
-					- Draw $N$ initial samples $\vec{x}_i$ from the prior $\Pr(\vec{x})$.
-					- Assign initial weights $w_i = 1 / N$ to be uniform
-					  over each sample $\vec{x}_i$.
-					- Instead of rej. sampling, update weights by
-					\begin{align}
-						\tilde{w}_i &amp; = w_i \times \Pr(d | \vec{x}_i; e)
-					\end{align}
-					- Renormalize.
-					\begin{align}
-						w_i &amp; \mapsto \tilde{w}_i / \sum_i \tilde{w}_i
-					\end{align}
-					- Periodically use Liu-West to draw new $\\{\vec{x}_i\\}$
-					  with uniform weights.
-				</section>
-
 				<section>
 					<p>
-						Resampling provides numerical stability
-						with less particles.
+						Particles can represent distributions using either<br>
+						<span style="color: #D55E00;">weights</span> or
+						<span style="color: #56B4E9;">positions</span>.
 					</p>
 
-					<img src="figures/impovrishment.png">
+					<img src="figures/impovrishment.png" class="stretch">
 				</section>
 
-				<section data-background="#fff" data-background-video="figures/multicos-distributions.mp4">					
+
+				<section data-state="show-foot-smc">
+					<h2>Particle Filter</h2>
+
+					<ul>
+						<li>
+							Draw $N$ initial samples $\vec{x}_i$ from the prior $\Pr(\vec{x})$
+							w/ uniform weights.
+						</li>
+
+						<li>
+							Instead of rej. sampling, update <span style="color: #D55E00;">weights</span>
+							by
+							\begin{align}
+								\tilde{w}_i &amp; = w_i \times \Pr(d | \vec{x}_i; e)
+							\end{align}
+						</li>
+						<li>
+							Renormalize.
+							\begin{align}
+								w_i &amp; \mapsto \tilde{w}_i / \sum_i \tilde{w}_i
+							\end{align}
+						</li>
+
+						<li>
+							Periodically use Liu-West to draw new $\{\vec{x}_i\}$
+					  		with uniform weights.
+					  		<span class="comment">
+					  			Store posterior in <span style="color: #56B4E9;">positions</span>.
+					  		</span>
+					  	</li>
+					</ul>
+				</section>
+
+				<section data-background="#000" data-background-video="figures/multicos-distributions.mp4">					
 				</section>
 
 
@@ -836,7 +891,7 @@
 				</section>
 
 				<section data-markdown>
-					### Limitations of Particle Filtering ###
+					### Simulation Costs and Particle Filtering ###
 
 					\begin{align}
 						\tilde{w}_i &amp; = w_i \times \Pr(d | \vec{x}_i; e) \\\\
@@ -846,6 +901,7 @@
 					- $\Pr(d | \vec{x}_i; e)$ is a *simulation*.
 					- Need to
 					  simulate for each particle (~1000s calls/datum).
+					- Infeasible for large quantum models.
 
 					Let's do better: use *quantum* simulation instead.
 				</section>
@@ -1058,6 +1114,44 @@
 				<section>
 					<h1 class="thanks">Thank you!</h1>
 				</section>
+
+				<section>
+					<h2>Welford's Algorithm</h2>
+					
+					<p>
+						Can compute $\bar{x}$, $\Sigma$ from
+						one sample at a time. Numerically stable.
+					</p>
+
+					<ul style="width: 80%">
+						<li>$n, \bar{x}, M_2 \gets 0$.</li>
+						<li><strong>For</strong> each sample $x$:</li>
+						<ul>
+							<li>
+								$n \gets n + 1$
+								<span class="comment">Record # of samples</span>
+							</li>
+							<li>
+								$\Delta \gets x - \mu$
+								<span class="comment">Diff to running mean</span>
+							</li>
+							<li>
+								$\bar{x} \gets \bar{x} + \Delta / n$
+								<span class="comment">Update running mean</span>
+							</li>
+							<li>
+								$M_2 \gets M_2 + \Delta (x - \bar{x})$
+								<span class="comment">Update running var</span>
+							</li>
+						</ul>
+						<li><strong>Return</strong> mean $\bar{x}$, variance $M_2 / (n - 1)$.</li>
+					</ul>
+
+					<p>
+						Vector case is similar.
+					</p>
+				</section>
+
 
 
 			</div>
