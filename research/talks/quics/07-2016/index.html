@@ -268,17 +268,21 @@
 					<img src="figures/rabi-example-spectrum.png" width="90%">
 				</section>
 
-				<section data-markdown>
-					We can do better.
+				<section>
+					<div data-markdown>
+						We can do better.
 
-					# $H = H(\vec{x})$. # 
+						# $H = H(\vec{x})$. # 
 
-					Hamiltonian learning is a special case of *parameter estimation*:
-					given data $D$, what is $\vec{x}$?
+						Hamiltonian learning is a special case of *parameter estimation*:
+						given data $D$, what is $\vec{x}$?
+					</div>
 
-					---
+					<div class="fragment" data-markdown>
+						---
 
-					We want an approach that can work even for *large* quantum devices.
+						We want an approach that can work even for *large* quantum devices.
+					</div>
 				</section>
 
 				<section>
@@ -341,7 +345,7 @@
 
 					Estimate $\hat{x} = \expect[\vec{x} | d; e] = \int \vec{x} \Pr(\vec{x} | d; e)\dd \vec{x}$.
 
-					- **Optimal** for mean-squared error.
+					- **Optimal** for mean&mdash;squared error.
 				</section>
 
 				<section data-background="#000"
@@ -426,9 +430,8 @@
 					function $\Pr(d | \vec{x}; e)$, how do we sample
 					from posterior for datum $d$?
 
-					- Draw $\vec{x} \sim \Pr(\vec{x})$.
-					- Accept $\vec{x}$ with $\Pr(d | \vec{x}; e)$.
-					  Otherwise, reject it.
+					- Draw $\vec{x} \sim \Pr(\vec{x})$, 
+					  accept $\vec{x}$ w/ $\Pr(d | \vec{x}; e)$.
 
 					Accepted samples are distributed according to posterior.
 				</section>
@@ -446,39 +449,29 @@
 					<h3>Rejection Sampling Isn't Enough</h3>
 
 					<p>
-						Let $D = {d_1, \dots, d_k}$ be a set of data.<br>
-						A prior sample $\vec{x}$ is accepted with
+						Let $D = {d_1, \dots, d_k}$ be a set of data.
 					</p>
 					<p>
 						$$
-							\Pr(D | \vec{x}) = \prod_{d \in D} \Pr(d | \vec{x})
+							\Pr(\text{accept} | \vec{x}) = \Pr(D | \vec{x}) = \prod_{d \in D} \Pr(d | \vec{x})
 							\overset{k \to \infty}{\longrightarrow} 0.
 						$$
 					</p>
-				</section>
 
-				<section>
-					<h3><strong>Example:</strong> Biased Coin $x = (p)$</h3>
+					<hr>
+
+					<h4><strong>Example:</strong> Biased Coin $x = (p)$</h4>
 					<p>
-						Consider $\Pr(H | p) = p$, $d \in \{H, T\}$.
+						$\Pr(H | p) = p$, $d \in \{H, T\}$.
 					</p>
 
 					<p>
-						If $p \approx 0.5$, $\Pr(d_1, \dots, d_k | p) \approx 1 / 2^k$.
+						$p \approx 0.5 \Longrightarrow \Pr(d_1, \dots, d_k | p) \approx 1 / 2^k$.
 					</p>
 
 					<p>
-						We will reject all but exponentially few samples!
+						We will accept exponentially few samples!
 					</p>
-
-					<div class="fragment">
-						<hr>
-
-						<p data-markdown>
-							**Solution**: draw new samples
-							after each datum instead of rejecting with the full data set at once.
-						</p>
-					</div>
 				</section>
 
 				<section>
@@ -499,6 +492,8 @@
 						$$
 							\vec{x} \mid d \sim \mathcal{N}(\bar{x}, \Sigma)
 						$$
+
+						Keeps $\Pr(\text{accept}) \approx \text{constant}$.
 					</div>
 				</section>
 
@@ -890,20 +885,50 @@
 					Written in Python, works with MATLAB and Julia.
 				</section>
 
-				<section data-markdown>
-					### Simulation Costs and Particle Filtering ###
+				<section>
+					<h3>Assessing Performance</h3>
 
-					\begin{align}
-						\tilde{w}_i &amp; = w_i \times \Pr(d | \vec{x}_i; e) \\\\
-						w_i &amp; \mapsto \tilde{w}_i / \sum_i \tilde{w}_i
-					\end{align}
+					<dl>
+						<dt>
+							Risk: <span class="right-note">
+								average error <strong>given</strong> $\color{white}{\vec{x}}$
+							</span>
+						</dt>
 
-					- $\Pr(d | \vec{x}_i; e)$ is a *simulation*.
-					- Need to
-					  simulate for each particle (~1000s calls/datum).
-					- Infeasible for large quantum models.
+						<dt>
+							Bayes risk: <span class="right-note">
+								average error <strong>over</strong> $\color{white}{\vec{x}}$
+							</span>
+						</dt>
+					</dl>
 
-					Let's do better: use *quantum* simulation instead.
+					<div data-markdown class="fragment">
+						---
+
+						- Exact $\hat{x}$ optimal for Bayes risk / squared error.
+						- Difficult to *prove* particle filter risk; find in special
+						  cases or by running many trials.
+					</div>
+				</section>
+
+				<section>
+					<h3>Simulation Costs</h3>
+
+					<p style="font-size: 140%">
+						\begin{align}
+							\tilde{w}_i &amp; = w_i \times \color{red}{\Pr(d | \vec{x}_i; e)} \\
+							w_i &amp; \mapsto \tilde{w}_i / \sum_i \tilde{w}_i
+						\end{align}
+					</p>
+
+					<div data-markdown>
+						- $\Pr(d | \vec{x}_i; e)$ is a *simulation*.
+						- Need to
+						  simulate for each particle (~1000s calls/datum).
+						- Infeasible for large quantum models.
+
+						Let's do better: use *quantum* simulation instead.
+					</div>
 				</section>
 
 				<section data-markdown>
