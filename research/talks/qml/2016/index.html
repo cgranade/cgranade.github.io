@@ -56,6 +56,8 @@
 			.show-foot-rfpe #foot-rfpe,
 			.show-foot-thanks-ian #foot-thanks-ian,
 			.show-foot-thanks-hpd #foot-thanks-hpd,
+			.show-foot-thanks-bayes-neon #foot-thanks-bayes-neon,
+			.show-foot-thanks-statistics-neon #foot-thanks-statistics-neon,
 			.show-foot-fast-pe #foot-fast-pe,
 			.show-foot-thesis #foot-thesis {
 				opacity: 1 !important;
@@ -166,6 +168,23 @@
 				<cite class="arxiv"><a href="https://arxiv.org/abs/1304.0741">1304.0741</a></cite>
 			</p>
 
+			<p class="hideable-foot" id="foot-thanks-statistics-neon">
+				<!--
+					A note about the word "neon": this is not technically correct in
+					the chemical sense, but is the word that the artist chose to describe
+					their work, and so I choose it here out of deference to that description.
+				-->
+				background: neon by
+				<a href="http://oresttataryn.com/">Orest Tataryn</a>
+			</p>
+
+			<p class="hideable-foot" id="foot-thanks-bayes-neon">
+				background: photo by <a href="https://commons.wikimedia.org/wiki/File:Bayes%27_Theorem_MMB_01.jpg">
+					mattbuck
+				</a>,
+				h/t Wiebe
+			</p>
+
 <!-- 
 			<p class="hideable-foot" id="foot-thanks-ian">
 				Collaboration w/ Hincks, Wang, Mirkamali, and Moussa.
@@ -217,7 +236,7 @@
 						<p style="font-size: 180%">$$
 							\ket{\psi(t)} = \ee^{\ii H t} \ket{\psi(0)}
 						$$</p>
-						
+
 						<p>
 							A <span style="color: white;">Hamiltonian</span> <em>generates dynamics</em>.
 						</p>
@@ -271,10 +290,16 @@
 					<img src="figures/rabi-example-spectrum.png" width="90%">
 				</section>
 
-				<section>
+				<section
+					data-background-image="figures/statistics-neon.jpeg"
+					data-background-size="105%"
+					data-state="show-foot-thanks-statistics-neon"
+				>
 					<div data-markdown>
 						We can do better.
+					</div>
 
+					<div class="fragment" data-markdown>
 						# $H = H(\vec{x})$. # 
 
 						Hamiltonian learning is a special case of *parameter estimation*:
@@ -339,6 +364,12 @@
 								Ferrie and Granade <cite class="doi"><a href="https://dx.doi.org/10/tdj">tdj</a></cite>
 							</span>
 						</dt>
+						<dt>
+							Quantum bootstrapping
+							<span class="right-note">
+								Wiebe, Granade and Cory <cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>
+							</span>
+						</dt>
 					</dl>
 				</section>
 
@@ -352,7 +383,11 @@
 					Basis for both maximum-likelihood and Bayesian methods.
 				</section>
 
-				<section>
+				<section
+					data-background-image="figures/bayes-neon.jpg"
+					data-background-size="110%"
+					data-state="show-foot-thanks-bayes-neon"
+				>
 					<h3><strong>Aside:</strong> Why Bayesian?</h3>
 
 					<p>
@@ -474,7 +509,8 @@
 
 						**Answer**: numerically approximate $\int f(\vec{x}) \Pr(\vec{x} | d)\dd\vec{x}$.
 
-						*Efficient* to use Monte Carlo integration if we can sample from $\Pr(\vec{x})$.
+						*Efficient* to use Monte Carlo integration if we can sample from
+						the posterior $\Pr(\vec{x} | d; e)$.
 					</div>
 				</section>
 <!-- 
@@ -598,7 +634,7 @@
 					<p>
 					    <strong>Input:</strong>
 					    Prior mean $\bar{x}$, prior covariance $\Sigma$,
-						number of attempts $m$.
+						number of samples $m$ to accept.
 					<p>
 
 					<ul style="width: 80%">
@@ -1267,6 +1303,7 @@ $ pip install qinfer
 						 data-transition="fade-in">
 				</section>
 
+				<!-- 
 				<section data-markdown data-state="show-foot-qhl">
 					### Quantum Hamiltonian Learning ###
 
@@ -1278,13 +1315,13 @@ $ pip install qinfer
 
 					![](figures/qle-line-ising.png)
 				</section>
+				-->
 
 				<section data-markdown>
-					We can do more with access to a *trusted*
-					simulator.
+					### Quantum Hamiltonian Learning ###
 
-
-					### Quantum Interactivity ### 
+					We can learn large Hamiltonians by
+					using likelihood-free filtering w/ interactivity.
 					
 					![](figures/iqle.png)
 
@@ -1292,35 +1329,9 @@ $ pip install qinfer
 				</section>
 
 				<section>
-					<p>
-						We design experiments using the
-					</p>
+					<h3><strong>Example:</strong> Ising on Complete Graph</h3>
 
-					<h3><strong>PGH</strong>: Particle Guess Heuristic</h3>
-
-					<ul>
-						<li>
-							Draw $\vec{x}_-, \vec{x}_-'$ from current
-					  		posterior.
-					  	</li>
-						<li>Let $t = 1 / |\vec{x}_- - \vec{x}_-'|$.</li>
-						<li><strong>Return</strong> $e = (\vec{x}_-, t)$.</li>
-					</ul>
-
-					<div class="fragment">
-						<hr>
-
-						<p>
-							Adaptively chooses experiments such that<br>
-							$t |\vec{x}_- - \vec{x}_-'| \approx\,$ constant.
-						</p>
-					</div>
-				</section>
-
-				<section data-markdown>
-					### **Example**: Ising on Complete Graph ###
-
-					![](figures/iqle-complete-ising.png)
+					<img src="figures/iqle-complete-ising.png" class="stretch">
 				</section>
 
 				<section data-markdown data-state="show-foot-qhl-noise">
@@ -1330,11 +1341,24 @@ $ pip install qinfer
 				</section>
 
 				<section data-state="show-foot-qbs">
+					<h3>Quantum Bootstrapping</h3>
+
 					<p>
-						One important approximation: physical locality.
+						One important approximation f/ physical insight:<br>
+						<em>information locality</em>.
 					</p>
 
-					<img src="./figures/qbs-lightcones.png" width="65%">
+					<div class="fragment">
+						<p>
+							Allows using <em>small</em> trusted device to
+							learn large Hamiltonians.
+						</p>
+					</div>
+
+				</section>
+
+				<section>
+					<img src="./figures/qbs-lightcones.png" class="stretch">
 
 					<p>
 						Approximation quality can be bounded if
@@ -1359,6 +1383,29 @@ $ pip install qinfer
 					<h4>50 qubit Ising chain, 8 qubit simulator, 4 qubit observable</h4>
 
 					<img src="./figures/qbs-error-per-scan.png" width="60%">
+				</section>
+
+				<section>
+					<h3>
+						Filtering
+					</h3>
+
+					<ul>
+						<li>
+							Practical solution for
+							current experimental tasks.
+						</li>
+
+						<li>
+							Enables learning large Hamiltonians using quantum
+							resources.
+						</li>
+
+						<li>
+							Physical insight gives new statistical
+							algorithm for even larger systems.
+						</li>
+					</ul>
 				</section>
 
 				<section>
@@ -1453,6 +1500,33 @@ $ pip install qinfer
 						Vector case is similar.
 					</p>
 				</section>
+
+				<section>
+					<p>
+						We design experiments using the
+					</p>
+
+					<h3><strong>PGH</strong>: Particle Guess Heuristic</h3>
+
+					<ul>
+						<li>
+							Draw $\vec{x}_-, \vec{x}_-'$ from current
+					  		posterior.
+					  	</li>
+						<li>Let $t = 1 / |\vec{x}_- - \vec{x}_-'|$.</li>
+						<li><strong>Return</strong> $e = (\vec{x}_-, t)$.</li>
+					</ul>
+
+					<div class="fragment">
+						<hr>
+
+						<p>
+							Adaptively chooses experiments such that<br>
+							$t |\vec{x}_- - \vec{x}_-'| \approx\,$ constant.
+						</p>
+					</div>
+				</section>
+
 
 
 
