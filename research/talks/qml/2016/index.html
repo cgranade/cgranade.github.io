@@ -661,9 +661,14 @@
 							</li>
 						</ul>
 					</ul>
-				</section>
 
+					<p class="fragment">
+						Easy to implement and embed in control hardware.
+					</p>
+				</section>
+<!-- 
 				<section data-markdown>
+
 					## Advantages of RejF ##
 
 					- Accept pr based on a single datum
@@ -675,7 +680,7 @@
 					- Easily parallelizable
 					- “Reset rule” can abort from approximation failures.
 				</section>
-
+ -->
 				<section data-state="show-foot-fast-pe">
 					<h3><strong>Example:</strong> Phase Estimation, $x = (\phi)$</h3>
 
@@ -687,8 +692,12 @@
 					<img src="./figures/pe-circuit-crop.png">
 
 					<p>
-						$\theta = 0 \Rightarrow$ freq. est likelihood, w/ $\phi = \omega$, $M = t$.
+						$\Pr(1 | \phi; M, \theta) = \cos^2(M [\phi - \theta])$
 					</p>
+
+					<!-- <p>
+						$\theta = 0 \Rightarrow$ freq. est likelihood, w/ $\phi = \omega$, $M = t$.
+					</p> -->
 
 					<dl style="font-size: 65%">
 						<dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
