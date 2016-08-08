@@ -292,14 +292,14 @@
 
 				<section
 					data-background-image="figures/statistics-neon.jpeg"
-					data-background-size="105%"
+					data-background-size="112%"
 					data-state="show-foot-thanks-statistics-neon"
 				>
-					<div data-markdown>
+					<div data-markdown style="position: relative; top: -1em;">
 						We can do better.
 					</div>
 
-					<div class="fragment" data-markdown>
+					<div class="fragment" data-markdown  style="position: relative; bottom: -1em;">
 						# $H = H(\vec{x})$. # 
 
 						Hamiltonian learning is a special case of *parameter estimation*:
@@ -464,14 +464,10 @@
 
 						At each step, $p(\vec{x})$ also encodes our uncertainty.
 
-						**Scalar case**:
 						$
 							\expect[(x - \hat{x})^2 | d; e] = 
 	                        \mathbb{V}[x \mid d; e].
 						$
-
-						**Vector case**: $\expect[(\vec{x} - \hat{x}) (\vec{x} - \hat{x})^\TT | d; e]
-						= \Cov(\vec{x} | d; e)$.
 					</div>
 				</section>
 
@@ -1030,7 +1026,7 @@
 
 				<section data-markdown
 						 data-background="#000"
-				         data-background-size="85%"
+				         data-background-size="80%"
 				         data-background-position="center"
 				         data-background-repeat="no-repeat"
 						 data-background-image="figures/rabi-random-walk.png"
@@ -1041,9 +1037,15 @@
 					<div data-markdown>
 						### Software Implementation ###
 
-						We provide **QInfer**, an open-source implementation for use in quantum information, useful for experiment and theory alike.
+						We provide **QInfer**, an open-source implementation for use in quantum information.
 
 						Written in Python, works with MATLAB and Julia.
+					</div>
+
+					<div class="fragment" data-markdown>
+						---
+
+						Puts focus on algorithms and experiments, not implementations.
 					</div>
 
 <!-- 					<div class="fragment">
