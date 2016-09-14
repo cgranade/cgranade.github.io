@@ -24,9 +24,22 @@
 
 ## Academic Contributions ##
 
+### Invited Talks ###
+
+- [*Rejection and Particle Filtering for Hamiltonian Learning*](http://www.cgranade.com/research/talks/qml/2016/). Presented as an invited talk at the [Quantum Machine Learning](https://www.perimeterinstitute.ca/conferences/quantum-machine-learning) conference, Perimeter Institute, September 2016.
+
 ### Papers, Essays and Publications ###
 
 #### 2016 ####
+
+- *Explaining quantum correlations through evolution of causal models*, Robin Harper, Robert J. Chapman, Christopher Ferrie, **Christopher E. Granade**, Richard Kueng, Daniel Naoumenko, Steven T. Flammia and Alberto Peruzzo.
+  > [arXiv:1608.03281](https://scirate.com/arxiv/1608.03281)
+
+- *Practical adaptive quantum tomography*, **Christopher E. Granade**, Christopher Ferrie and Steven T. Flammia.
+  > [arXiv:1605.05039](https://scirate.com/arxiv/1605.05039) | supplemental material [doi:10/bhfk](https://dx.doi.org/10/bhfk)
+
+- *Efficient Bayesian Phase Estimation*, Nathan Wiebe, **Christopher E. Granade**. Physical Review Letters **117** 010503.
+  > [doi:10.1103/PhysRevLett.117.010503](https://dx.doi.org/10.1103/PhysRevLett.117.010503) | [arXiv:1508.00869](https://scirate.com/arxiv/1508.00869)
 
 - *Practical Bayesian Tomography*, **Christopher E. Granade**, Joshua Combes and D. G. Cory. New Journal of Physics **18** 033024.
   > [doi:10.1088/1367-2630/18/3/033024](https://dx.doi.org/10.1088/1367-2630/18/3/033024) | [literate source code](http://nbviewer.jupyter.org/gist/cgranade/9b3f8c4c8173eebf5f35) | [arXiv:1509.03770](https://scirate.com/arxiv/1509.03770)
@@ -41,9 +54,6 @@
 
 - *Accounting for Classical Hardware in the Control of Quantum Devices*, Ian N. Hincks, **Christopher E. Granade**, Troy W. Borneman, D. G. Cory. Physical Review Applied **4** 024012.
    > [doi:10.1103/PhysRevApplied.4.024012](https://dx.doi.org/10.1103/PhysRevApplied.4.024012) | [arXiv:1409.8178](https://scirate.com/arxiv/1409.8178)
-
-- *Efficient Bayesian Phase Estimation*, Nathan Wiebe, **Christopher E. Granade**.
-  > [arXiv:1508.00869](https://scirate.com/arxiv/1508.00869)
 
 - *Quantum Inspired Training for Boltzmann Machines*, Nathan Wiebe, Ashish Kapoor, **Christopher E. Granade**, Krysta M Svore.
   > [arXiv:1507.02642](https://scirate.com/arxiv/1507.02642)
