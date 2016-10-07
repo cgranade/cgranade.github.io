@@ -165,9 +165,9 @@ title: Learning Multiexponential Models with QInfer
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>With all of the boring distractions out of the way, we can now focus on defining a model for dihedral RB. As noted by <a href="https://dx.doi.org/10/brjj">Dugas <em>et al.</em> 10/brjj</a>, similar to the standard randomized benchmarking model, the probability of getting a "+1" measurement in a dihedral RB experiment is given by
-\begin{align<em>}
+\begin{align}
     \Pr(+1 | m, b_1, b_2) &amp; = (-1)^{b_1} A p_0^m + \left((-1)^{b_1 + b_2} B_1 + (-1)^{b_2} B_2\right) p_1^m + C,
-\end{align</em>}
+\end{align}
 where $m$ is the length of the sequence being measured, $b_1, b_2 \in \{0, 1\}$ are bits describing the final measurement, and where $A, B_1, B_2, C$ are the state preparation and measurement (SPAM) constants analgous to $A$ and $B$ in traditional RB.
 Since this specifies the probability of each possible observation, we call the above function the <em>likelihood functuion</em> for dihedral RB.</p>
 <p>Having specified the likelihood, we can think of it as specifying a six-dimensional model $\vec{x} = (p_0, p_1, A, B_1, B_2, C)$ with three experiment parameters $\vec{e} = (m, b_1, b_2)$. In particular, measurments in this model consist of:</p>
