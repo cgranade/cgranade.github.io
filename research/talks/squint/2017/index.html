@@ -34,6 +34,7 @@
             }
 
             .show-foot-pbt #foot-pbt,
+            .show-foot-arb #foot-arb,
             .show-foot-how #foot-how,
             .show-foot-rohl #foot-rohl,
             .show-foot-qhl #foot-qhl,
@@ -160,6 +161,10 @@
                 Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>
             </p>
 
+            <p class="hideable-foot" id="foot-arb">
+                Granade, Ferrie, Cory <cite class="doi"><a href="https://dx.doi.org/10/zmz">zmz</a></cite>
+            </p>
+
             <p class="hideable-foot" id="foot-qhl">
                 Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>
             </p>
@@ -173,6 +178,7 @@
             </p>
 
             <p class="hideable-foot" id="foot-pbt">
+                Huszár and Houlsby <cite class="doi"><a href="https://dx.doi.org/10/s86">s86</a></cite>;
                 Granade, Combes, Cory <cite class="doi"><a href="https://dx.doi.org/10/bhdw">bhdw</a></cite>
             </p>
 
@@ -644,6 +650,7 @@ est_mean, est_cov = qi.simple_est_prec(data,
                          data-background-position="center"
                          data-background-repeat="no-repeat"
                          data-background-image="figures/rb-custom-updater.png"
+                         data-state="show-foot-arb"
                          >
                 </section>
 
@@ -666,7 +673,7 @@ est_mean, est_cov = qi.simple_est_prec(data,
                     new experiments.
                 </section>
 
-                <section>
+                <section data-state="show-foot-pbt">
                     <h3><strong>Example</strong>: Tomography in <span class="wordmark">QInfer</span></h3>
 
                     <pre><code data-trim class="python" style="overflow-x: hidden;"">
@@ -696,7 +703,7 @@ est_mean, est_cov = qi.simple_est_prec(data,
                          >
                 </section>
 
-                <section data-state="show-foot-pbt">
+                <section>
                     <h2><span class="wordmark">QInfer</span> 💖 <strong>QuTiP</strong></h2>
 
                     <p>
