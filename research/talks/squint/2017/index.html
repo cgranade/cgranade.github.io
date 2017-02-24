@@ -90,6 +90,31 @@
                 color: red;
                 font-weight: 600;
             }
+
+            h6.bg-rule {
+                position: relative;
+                z-index: 1;
+                
+                color: #888;
+                font-variant: small-caps;
+            }
+
+            /* https://gist.github.com/ericrasch/2045198 */
+            .bg-rule:before {
+                border-top: 1.5px solid #888;
+                content: "";
+                margin: 0 auto; /* this centers the line to the full width specified */
+                position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+                top: 60%; left: 0; right: 0; bottom: 0;
+                width: 90%;
+                z-index: -2;
+            }
+
+            .bg-rule span { 
+                /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+                background: #000; 
+                padding: 0 15px; 
+            }
         </style>
 
         <!-- Printing and PDF exports -->
@@ -251,12 +276,13 @@
                         $
                     </p>
                     
-                    <p style="font-size: 80%">
-                        joint work with<br>
+                    <h6 class="bg-rule"><span>joint work with</span></h6>
+                    <p style="font-size: 80%; position: relative; top: -0.8em">                        
                         Christopher Ferrie,
-                        Steven Casagrande, Ian Hincks, Jonathan Gross, <br>
-                        Michal Kononenko,
-                        Thomas Alexander, and Yuval Sanders
+                        Ian Hincks, Steven Casagrande, <br>
+                        Thomas Alexander,
+                        Jonathan Gross, Michal Kononenko,
+                        and Yuval Sanders
                     </p>
                 </section>
 
@@ -283,19 +309,23 @@
                 </section>
 
 
-                <section data-markdown>
-                    ### **Example**: Ramsey Estimation ###
+                <section>
+                    <h3><strong>Example</strong>: Ramsey Estimation</h3>
 
-                    Suppose $H = \omega \sigma_z / 2$ for some unknown $\omega$.
+                    <p>
+                        Suppose $H = \omega \sigma_z / 2$ for some unknown $\omega$.
+                    </p>
 
-                    To learn $\omega$:
+                    <h6 class="bg-rule"><span>measurement procedure</span></h6>
 
-                    - Prepare $\ket{+} \propto \ket{0} + \ket{1}$, measure “click” w/ pr.:
-                    $
-                        \|\bra{+} \ee^{\ii \omega t \sigma_z / 2} \ket{+}\|^2 = \cos^2(\omega t / 2)
-                    $.
-                    - Repeat for many “shots” to estimate click pr.
-                    - Repeat for many times to estimate signal.
+                    <div data-markdown>
+                        - Prepare $\ket{+} \propto \ket{0} + \ket{1}$, measure “click” w/ pr.:
+                        $
+                            \|\bra{+} \ee^{\ii \omega t \sigma_z / 2} \ket{+}\|^2 = \cos^2(\omega t / 2)
+                        $.
+                        - Repeat for many “shots” to estimate click pr.
+                        - Repeat for many times to estimate signal.
+                    </div>
                 </section>
 
                 <section>
@@ -802,22 +832,22 @@ for idx_experiment in range(500):
                 </section>
 
                 <section>
-                    <h3>Conclusions</h3>
-
                     <p>
                         <span class="wordmark">QInfer</span>
                         is a useful tool for theory <em>and</em> experiment alike,
                         providing practical tools for learning from quantum systems.
                     </p>
 
-                    <div data-markdown>
-                        ---
+                    <p>
+                        <em>Version 1.0 out now.</em>
+                    </p>
 
+                    <h6 class="bg-rule"><span>more resources</span></h6>
+
+                    <div data-markdown>
                         - Source: https://github.com/QInfer/python-qinfer
                         - Docs: http://docs.qinfer.org
                         - Try it out online: https://goo.gl/zWt9Du 
-
-                        *Version 1.0 out now.*
                     </div>
                 </section>
 
