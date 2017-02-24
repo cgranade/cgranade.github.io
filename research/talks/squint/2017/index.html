@@ -1,13 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-<!--
-    ABSTRACT
-    ========
-
-    Many tasks in quantum information rely on accurate knowledge of a system's Hamiltonian, including calibrating control, characterizing devices, and verifying quantum simulators. In this talk, we pose the problem of learning Hamiltonians as an instance of parameter estimation. We then solve this problem with Bayesian inference, and describe how rejection and particle filtering provide efficient numerical algorithms for learning Hamiltonians. Finally, we discuss how filtering can be combined with quantum resources to verify quantum systems beyond the reach of classical simulators.
--->
-
     <head>
         <meta charset="utf-8">
 
@@ -65,6 +58,8 @@
                 z-index: 2;
             }
 
+
+            /** TODO: move these to cgranade-dark.scss. **/
             .two-col-container {
                 width: 100%;
             }
@@ -89,6 +84,11 @@
             .wordmark:first-letter {
                 color: red;
                 font-weight: 600;
+            }
+
+
+            hr {
+                border-color: #888;
             }
 
             h6.bg-rule {
@@ -486,6 +486,7 @@
                     - **Portable**: Windows/Linux/OS X.
                     - **Legible**: well-documented (guide &amp; examples).
                     - **Expressive**: represents the scientific concepts.
+                    - **Extensible**: not limited to built-in applications.
                     </div>
                 </section>
 
@@ -627,8 +628,8 @@ est_mean, est_cov = qi.simple_est_prec(data,
 ...     expparams = np.array(
 ...         [(seq_lengths[idx_exp], n_shots)],
 ...         dtype=model.expparams_dtype)
-...     # Pass the counts data and the measurment description
-...     # to the updater.
+...     # Pass the counts data and the measurment
+...     # description to the updater.
 ...     updater.update(counts[idx_exp], expparams)
 ... # Print estimates and error bars.
 ... print(updater.est_mean(),
@@ -666,23 +667,23 @@ est_mean, est_cov = qi.simple_est_prec(data,
                 </section>
 
                 <section>
-                    <h3>Example: Tomography in <span class="wordmark">QInfer</span></h3>
+                    <h3><strong>Example</strong>: Tomography in <span class="wordmark">QInfer</span></h3>
 
                     <pre><code data-trim class="python" style="overflow-x: hidden;"">
-basis = pauli_basis(1)
-prior = GinibreReditDistribution(basis)
-model = TomographyModel(basis)
-true_state = prior.sample()
-
-updater = SMCUpdater(model, 8000, prior)
-heuristic = RandomPauliHeuristic(updater)
-
-for idx_experiment in range(500):
-    experiment = heuristic()
-    datum = model.simulate_experiment(
-        true_state, experiment
-    )
-    updater.update(datum, experiment)
+>>> basis = pauli_basis(1)
+>>> prior = GinibreReditDistribution(basis)
+>>> model = TomographyModel(basis)
+>>> true_state = prior.sample()
+>>> 
+>>> updater = SMCUpdater(model, 8000, prior)
+>>> heuristic = RandomPauliHeuristic(updater)
+>>> 
+>>> for idx_experiment in range(500):
+...     experiment = heuristic()
+...     datum = model.simulate_experiment(
+...         true_state, experiment
+...     )
+...     updater.update(datum, experiment)
                     </code></pre>
                 </section>
 
