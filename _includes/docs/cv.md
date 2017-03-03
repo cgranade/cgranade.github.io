@@ -30,7 +30,18 @@
 
 ### Papers, Essays and Publications ###
 
+#### 2017 ####
+
+- *Logical randomized benchmarking*, Joshua Combes, **Christopher E. Granade**, Christopher Ferrie, Steven T. Flammia.
+  > [arXiv:1702.03688](https://scirate.com/arxiv/1702.03688)
+
 #### 2016 ####
+
+- *Structured filtering*, **Christopher E. Granade**, Nathan Wiebe.
+  > [arXiv:1612.00762](https://scirate.com/arxiv/1612.00762)
+
+- *QInfer: Statistical inference software for quantum applications*, **Christopher E. Granade**, Christopher Ferrie, Ian Hincks, Steven Casagrande, Thomas Alexander, Jonathan Gross, Michal Kononenko, Yuval Sanders.
+  > [arXiv:1610.00336](https://scirate.com/arxiv/1610.00336)
 
 - *Explaining quantum correlations through evolution of causal models*, Robin Harper, Robert J. Chapman, Christopher Ferrie, **Christopher E. Granade**, Richard Kueng, Daniel Naoumenko, Steven T. Flammia and Alberto Peruzzo.
   > [arXiv:1608.03281](https://scirate.com/arxiv/1608.03281)
