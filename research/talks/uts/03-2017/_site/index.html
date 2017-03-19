@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Structured Filtering</title>
+
+		<meta name="author" content="Christopher E. Granade">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+
+ 		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="css/theme/cgranade-dark.css" id="theme">
+
+
+		<style type="text/css" media="screen">
+			.hideable-foot {
+				display: block;
+				opacity: 0;
+				font-size: 90% !important;
+				position: absolute;
+				bottom: 0em;
+				right: 0.5em;
+				text-align: right;
+				transition: all 2s;
+				z-index: 1;
+			}
+
+			.show-foot-pbt #foot-pbt,
+			.show-foot-how #foot-how,
+			.show-foot-rohl #foot-rohl,
+			.show-foot-qhl #foot-qhl,
+			.show-foot-qhl-noise #foot-qhl-noise,
+			.show-foot-qbs #foot-qbs,
+			.show-foot-lfpe #foot-lfpe,
+			.show-foot-lw #foot-lw,
+			.show-foot-smc #foot-smc,
+			.show-foot-better #foot-better,
+			.show-foot-title-foot #foot-title-foot,
+			.show-foot-condensation #foot-condensation,
+			.show-foot-qinfer #foot-qinfer,
+			.show-foot-rfpe #foot-rfpe,
+			.show-foot-thanks-ian #foot-thanks-ian,
+			.show-foot-thanks-hpd #foot-thanks-hpd,
+			.show-foot-thanks-bayes-neon #foot-thanks-bayes-neon,
+			.show-foot-thanks-statistics-neon #foot-thanks-statistics-neon,
+			.show-foot-fast-pe #foot-fast-pe,
+			.show-foot-thesis #foot-thesis {
+				opacity: 1 !important;
+				transition: all 2s;
+				z-index: 2;
+			}
+
+			.two-col-container {
+				width: 100%;
+			}
+
+			.left-col {
+				float: left;
+				width: 70%;
+			}
+
+			.right-col {
+				float: right;
+				width: 30%;
+			}
+
+            .wordmark {
+                display: inline-block;
+                font-family: "Source Sans Pro";
+                color: white;
+                font-weight: 300;
+            }
+
+            .wordmark:first-letter {
+                color: red;
+                font-weight: 600;
+            }
+
+
+            hr {
+                border-color: #888;
+            }
+
+            h6.bg-rule {
+                position: relative;
+                z-index: 1;
+                
+                color: #888;
+                font-variant: small-caps;
+            }
+
+            /* https://gist.github.com/ericrasch/2045198 */
+            .bg-rule:before {
+                border-top: 1.5px solid #888;
+                content: "";
+                margin: 0 auto; /* this centers the line to the full width specified */
+                position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+                top: 60%; left: 0; right: 0; bottom: 0;
+                width: 90%;
+                z-index: -2;
+            }
+
+            .bg-rule span { 
+                /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+                background: #000; 
+                padding: 0 15px; 
+            }
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!--
+				This is an awful hack. Don't use it if you can help it.
+				See https://www.raymondcamden.com/2014/04/01/Adding-an-Absolutely-Positioned-Header-to-Revealjs/ for why it "works".
+			-->
+			<p class="hideable-foot" id="foot-title-foot">
+				<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br>
+				<!-- <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>,
+				<cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>,
+				<cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>,
+				<cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite><br> -->
+				<a href="http://www.cgranade.com/research/talks/uts/03-2017">
+					www.cgranade.com/research/talks/uts/03-2017
+				</a> • <a href="https://arxiv.org/abs/1612.00762">
+					1612.00762
+				</a>
+			</p>
+
+			<p class="hideable-foot" id="foot-how">
+				Ferrie, Granade, Cory <cite class="doi"><a href="https://dx.doi.org/10/tfx">tfx</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-rohl">
+				Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-qhl">
+				Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>
+			</p>
+			
+			<p class="hideable-foot" id="foot-qbs">
+				Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-qhl-noise">
+				Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tdk">tdk</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-pbt">
+				Granade, Combes, Cory <cite class="doi"><a href="https://dx.doi.org/10/bhdw">bhdw</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-rfpe">
+				Wiebe and Granade <cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-lw">
+				Liu and West <cite class="doi"><a href="https://dx.doi.org/10/8c2">8c2</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-smc">
+				Doucet <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bmch">bmch</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-lfpe">
+				Ferrie and Granade <cite class="doi"><a href="https://dx.doi.org/10/tdj">tdj</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-thesis">
+				Granade
+				<cite class="hdl"><a href="https://dx.doi.org/10012/9217"><span>10012/</span>9217</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-thanks-hpd">
+				<em>figure</em>: Ferrie
+				<cite class="doi"><a href="https://dx.doi.org/10/tb4">tb4</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-fast-pe">
+				Svore <em>et al.</em>
+				<cite class="arxiv"><a href="https://arxiv.org/abs/1304.0741">1304.0741</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-thanks-statistics-neon">
+				<!--
+					A note about the word "neon": this is not technically correct in
+					the chemical sense, but is the word that the artist chose to describe
+					their work, and so I choose it here out of deference to that description.
+				-->
+				background: neon by
+				<a href="http://oresttataryn.com/">Orest Tataryn</a>
+			</p>
+
+			<p class="hideable-foot" id="foot-thanks-bayes-neon">
+				background: photo by <a href="https://commons.wikimedia.org/wiki/File:Bayes%27_Theorem_MMB_01.jpg">
+					mattbuck
+				</a>,
+				h/t Wiebe
+			</p>
+
+<!-- 
+			<p class="hideable-foot" id="foot-thanks-ian">
+				Collaboration w/ Hincks, Wang, Mirkamali, and Moussa.
+			</p>
+ -->
+
+			<!-- <p class="hideable-foot" id="foot-better">
+				Sergeevich <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/c4vv95">c4vv95</a></cite>,
+				Ferrie <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tfx">tfx</a></cite>, 
+				Hall and Wiseman <cite class="doi"><a href="https://dx.doi.org/10/bh6v">bh6v</a></cite>
+			</p> -->
+
+			<p class="hideable-foot" id="foot-condensation">
+				Isard and Blake <cite class="doi"><a href="https://dx.doi.org/10/cc76f6">cc76f6</a></cite>
+			</p>
+
+			<p class="hideable-foot" id="foot-qinfer">
+				<a href="http://qinfer.org">qinfer.org</a>
+			</p>
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-state="show-foot-title-foot">
+					<h1 style="font-size: 175%">Structured Filtering</h1>
+					<hr>
+					<p>
+						<a href="http://www.cgranade.com">Christopher Granade</a> <br>
+					</p>
+					<p style="font-size: 80%; position: relative; top: -0.6em;">
+						<a href="https://equs.org/">Centre for Engineered Quantum Systems</a><br>
+						<a href="https://sydney.edu.au/">University of Sydney</a>
+					</p>
+					
+					<h6 class="bg-rule"><span>joint work with</span></h6>
+                    <p style="font-size: 80%; position: relative; top: -0.8em">    
+						Nathan Wiebe
+					</p>
+				</section>
+
+				<section>
+					<h2><a href="https://twitter.com/search?q=%23bayesorbust">#bayesorbust</a></h2>
+
+					<p>
+						Bayesian inference is widely applied in a range of applications.
+					</p>
+
+					<p>
+						In particular, quantum is near to my ♥.
+					</p>
+
+					<hr>
+
+					<p>
+						We need good numerical implementations of statistical inference
+						to get quantum research done!
+					</p>
+				</section>
+
+				<section>
+					<h2>Quantum Mechanics as a Probability Theory</h2>
+
+					<dl>
+						<dt>Preparations</dt>
+						<dd>Complex norm-1 vectors $\ket{\psi}$.</dd>
+
+						<dt>Measurements</dt>
+						<dd>Dual vectors $\bra{\phi} = \ket{\phi}^\dagger$.
+
+						<dt>Operations</dt>
+						<dd>Unitary matrices $U$.</dd>
+					</dl>
+
+					<p>
+						If we <em>prepare</em> $\ket{\psi}$ then we will <em>measure</em>
+						$\ket{\phi}$ with probability given by <em>Born's Rule</em>:
+						$$
+							\Pr(\phi | \psi) = |\braket{\phi | \psi}|^2 = \braket{\phi | \psi} \braket{\psi | \phi}.
+						$$
+					</p>
+
+				</section>
+
+				<section>
+					<h2>Quantum Dynamics</h2>
+
+					<p>
+						States <em>evolve</em> in time according to matrices
+						$H$ called <em>Hamiltonians</em>.
+					</p>
+
+					<p style="font-size: 180%">$$
+						\ket{\psi(t)} = \ee^{\ii H t} \ket{\psi(0)}
+					$$</p>
+
+					<hr>
+
+					<p>
+						<strong>Example</strong> (Zeeman)<strong>:</strong>
+						$
+							H = \gamma B \diag(1, -1) / 2
+						$, where $B$ is a magnetic field.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Learning Hamiltonians is critical to a range of tasks:
+					</p>
+
+					<dl>
+						<dt>Metrology</dt>
+						<dd>Learning $B$, etc.</dd>
+
+						<dt>Calibration</dt>
+						<dd>Static field / pulse power / crosstalk, etc.</dd>
+
+						<dt>Debugging/Diagnosis</dt>
+						<dd>Decoherence estimation, other noise finding</dd>
+
+						<dt>Verification/Validation</dt>
+						<dd>Analog and digital quantum simulation</dd>
+					</dl>
+				</section>
+
+				<section data-markdown>
+					### **Example**: Ramsey Estimation ###
+
+					Suppose $H = \omega \diag(1, -1) / 2$ for some unknown $\omega$.
+
+					Traditional approach:
+
+					- Prepare $\ket{+} \propto \ket{0} + \ket{1}$, measure “click” w/ pr.:
+					$
+						\|\bra{+} \ee^{\ii \omega t \diag(1, -1) / 2} \ket{+}\|^2 = \cos^2(\omega t / 2)
+					$.
+					- Repeat for many “shots” to estimate click pr.
+					- Repeat for many times to estimate signal.
+				</section>
+
+				<section>
+					You'll get something that looks a bit like this:
+
+					<img src="figures/rabi-example-signal.png" class="stretch">
+				</section>
+
+				<section>
+					What's $\omega$? Fourier transform and look at the peak.
+
+					<img src="figures/rabi-example-spectrum.png" width="90%">
+				</section>
+
+
+
+                <section>
+                    We can do better.
+
+                    <img src="figures/rabi-example-posterior.png" width="90%">
+                </section>   
+
+				<section
+					data-background-image="figures/statistics-neon.jpeg"
+					data-background-size="112%"
+					data-state="show-foot-thanks-statistics-neon"
+				>
+					<div data-markdown style="position: relative; top: -1em;">
+						How?
+					</div>
+
+					<div class="fragment" data-markdown  style="position: relative; bottom: -1em;">
+						# $H = H(\vec{x})$. #
+
+						Hamiltonian learning is a special case of *parameter estimation*:
+						given data $D$, what is $\vec{x}$?
+					</div>
+				</section>
+
+				<section data-markdown>
+					### The Likelihood Function ###
+
+					Born's Rule
+					  defines probability $\Pr(d | \omega; t)$ for every
+					  outcome $d$, model $\omega$ and experiment $t$.
+
+					In previous example,
+					$d = \ket{+}$ gives
+					$$\begin{aligned}
+						\Pr(+ | \omega; t) &amp; =
+				  			\|\bra{+} \ee^{\ii \omega t \sigma_z / 2} \ket{+}\|^2 \\\\
+					  	&amp; = \cos^2(\omega t / 2).
+					\end{aligned}$$
+
+					Basis for both maximum-likelihood and Bayesian methods.
+				</section>
+
+				<section
+					data-background-image="figures/bayes-neon.jpg"
+					data-background-size="110%"
+					data-state="show-foot-thanks-bayes-neon"
+				>
+					<h3><strong>Aside:</strong> Why Bayesian?</h3>
+
+					<p>
+						Frequentist methods work. Bayesian methods also work.
+						<br>
+						Methodology should follow the question of interest.
+					</p>
+
+					<div class="fragment">
+
+						<h6 class="code-caption">
+							Example
+						</h6>
+						<blockquote>
+							What should I believe the properties of my system are,
+							given my experience and a set of observations?
+						</blockquote>
+
+						<p>
+							Bayesian question, hence Bayesian answer.
+						</p>
+
+					</div>
+
+				</section>
+
+				<section data-markdown>
+					### Bayesian Parameter Estimation ###
+
+					The likelihood tells us what we learn from data:
+
+					$$
+						\Pr(\vec{x} | d; e) = \frac{\Pr(d | \vec{x}; e)}{\Pr(d | e)} \Pr(\vec{x})
+					$$
+
+					---
+
+					Estimate $\hat{x} = \expect[\vec{x} | d; e] = \int \vec{x} \Pr(\vec{x} | d; e)\dd \vec{x}$.
+
+					- **Optimal** for mean&mdash;squared error.
+				</section>
+
+				<section data-background="#000"
+				         data-background-size="60%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+						 data-background-image="figures/bayesian-pe-flowchart.png">
+				</section>
+
+				<section>
+					<h3>Inference as an Iterative Algorithm</h3>
+
+					<p>
+						<strong>Input:</strong>
+							Prior $\Pr(\vec{x})$,
+							data set $D$,
+							likelihood $\Pr(d | \vec{x}; e)$
+					</p>
+
+					<ul style="width: 80%">
+						<li>$p(\vec{x}) \gets \Pr(\vec{x})$</li>
+						<li><strong>For</strong> each datum $d \in D$ and experiment $e$:
+						<ul>
+							<li>
+								Update based on $d$:<br>
+								$p(\vec{x}) \gets \Pr(d | \vec{x}; e) p(\vec{x}) / \Pr(d)$.
+							</li>
+						</ul>
+						<li><strong>Return</strong> $\hat{x} = \int \vec{x}\,p(\vec{x})\,\dd\vec{x}$.
+					</ul>
+
+					<div class="fragment" data-markdown>
+						---
+
+						At each step, $p(\vec{x})$ also encodes our uncertainty.
+
+						$
+							\expect[(x - \hat{x})^2 | d; e] = 
+	                        \mathbb{V}[x \mid d; e].
+						$
+					</div>
+				</section>
+
+				<section data-markdown>
+					We can use our posteriors to make *adaptive* decisions:
+					$$
+						e_* = \operatorname{arg min}_e \expect_d[\mathbb{V}(x | d; e)]
+					$$
+				</section>
+
+				<section data-markdown data-state="show-foot-how">
+					### **Example**: $x = (\omega)$ ###
+
+					Can analytically find posterior for Gaussian priors,
+					use to adaptively choose $t_k$.
+
+					![](./figures/how-t2.png)
+				</section>
+
+				<section>
+					<p data-markdown>
+						**Problem**: may be intractable to analytically compute $$
+							\hat{x} \defeq
+							\int \Pr(\vec{x} | d; e) \dd\vec{x} =
+							\int \frac{
+								\Pr(d | \vec{x}; e)
+							}{
+								\int \Pr(d | \vec{x}; e) \Pr(\vec{x}) \dd\vec{x}
+							} \Pr(\vec{x}) \dd\vec{x}.
+						$$
+					</p>
+
+					<div class="fragment" data-markdown>
+						---
+
+						**Answer**: numerically approximate $\int f(\vec{x}) \Pr(\vec{x} | d)\dd\vec{x}$
+						using Monte Carlo integration.
+					</div>
+				</section>
+
+				<section data-markdown>
+					## Monte Carlo Integration ##
+
+					$$
+						\int f(\vec{x}) p(\vec{x})\dd\vec{x} \approx \frac{1}{N} \sum_i f(\vec{x}_i)
+						\text{ for } \left\\{\vec{x}_i\right\\} \sim p(\vec{x})
+					$$
+
+					---
+
+					Efficient *if* we can sample from $p(\vec{x})$.
+
+					How do we do that for $p(\vec{x}) = \Pr(\vec{x} | d; e)$?
+				</section>
+
+				<section data-markdown>
+					## Rejection Sampling ##
+
+					Given samples from $\Pr(\vec{x})$ and likelihood
+					function $\Pr(d | \vec{x}; e)$, how do we sample
+					from posterior for datum $d$?
+
+					- Draw $\vec{x} \sim \Pr(\vec{x})$, 
+					  accept $\vec{x}$ w/ $\Pr(d | \vec{x}; e)$.
+
+					Accepted samples are distributed according to posterior.
+				</section>
+
+				<section data-markdown
+						 data-background="#000"
+				         data-background-size="80%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+						 data-background-image="figures/rejs-example.png"
+						 >
+				</section>
+
+				<section>
+					<h3>Rejection Sampling Isn't Enough</h3>
+
+					<p>
+						Let $D = {d_1, \dots, d_k}$ be a set of data.
+					</p>
+					<p>
+						$$
+							\Pr(\text{accept} | \vec{x}) = \Pr(D | \vec{x}) = \prod_{d \in D} \Pr(d | \vec{x})
+							\overset{k \to \infty}{\longrightarrow} 0.
+						$$
+					</p>
+
+					<hr>
+
+					<h4><strong>Example:</strong> Biased Coin $x = (p)$</h4>
+					<p>
+						$\Pr(H | p) = p$, $d \in \{H, T\}$.
+					</p>
+
+					<p>
+						$p \approx 0.5 \Longrightarrow \Pr(d_1, \dots, d_k | p) \approx 1 / 2^k$.
+					</p>
+
+					<p>
+						We will accept exponentially few samples!
+					</p>
+				</section>
+
+				<section>
+					<div data-markdown>
+						### Gaussian Resampling ###
+
+						For each datum $d$, use rejection sampling to approximate posterior
+						moments:
+
+						- $\bar{x} \gets \expect[\vec{x} | d]$.
+						- $\Sigma \gets \operatorname{Cov}[\vec{x} | d] = \expect[\vec{x} \vec{x}^\TT | d] - \bar{x} \bar{x}^\TT$.
+					</div>
+
+					<div data-markdown class="fragment">
+						---
+
+						At the next iteration, draw prior samples from Gaussian with these moments:
+						$$
+							\vec{x} \mid d \sim \mathcal{N}(\bar{x}, \Sigma)
+						$$
+
+						Keeps $\Pr(\text{accept}) \approx \text{constant}$.
+					</div>
+				</section>
+
+				<section>
+					<p>
+						Can compute $\bar{x}$, $\Sigma$ from
+						one sample at a time by accumulating
+					</p>
+					<p>
+						$$
+							x_{\Sigma} = \sum x
+							\text{ and }
+							x^2_{\Sigma} = \sum x^2.
+						$$
+					</p>
+
+					<p>
+						\begin{align}
+							\bar{x} &amp; = x_{\Sigma} / n_{\text{accept}} \\
+							\Sigma &amp; = x^2_{\Sigma} / n_{\text{accept}} - \bar{x}^2.
+						\end{align}
+					</p>
+
+					<p>
+						<em>Welford's algorithm</em>: numerically-stable modification.
+					</p>
+				</section>
+
+				<section data-state="show-foot-rfpe">
+					<h2>Rejection Filtering (RejF)</h2>
+
+					<p>
+					    <strong>Input:</strong>
+					    Prior mean $\bar{x}$, prior covariance $\Sigma$,
+						number of samples $m$ to accept.
+					<p>
+
+					<ul style="width: 80%">
+						<li><strong>For</strong> each datum $d$ and experiment $e$:</li>
+						<ul>
+							<li>
+								$n, \bar{x}', M_2 \gets 0$
+								<span class="comment">Initialize Welford.</span>
+							</li>
+							<li><strong>While</strong> $n < m$:</li>
+							<ul>
+								<li>
+									Draw $\vec{x} \sim \mathcal{N}(\bar{x}, \Sigma)$.
+									<span class="comment">Sample f/ prior.</span>
+								</li>
+								<li>Accept $\vec{x}$ w/ $\Pr(d | \vec{x}; e)$.</li>
+								<li><strong>If</strong> accepted, update $n$, $\bar{x}'$, $M_2$.</li>
+							</ul>
+							<li>
+								$\bar{x} \gets \bar{x}'$, $\Sigma \gets M_2 / (n - 1)$.
+								<span class="comment">
+									Est. moments.
+								</span>
+							</li>
+						</ul>
+					</ul>
+
+					<p class="fragment">
+						Easy to implement and embed in control hardware.
+					</p>
+				</section>
+<!-- 
+				<section data-markdown>
+
+					## Advantages of RejF ##
+
+					- Accept pr based on a single datum
+					  ⇒ likelihood $\not\to 0$.
+					- Easy to implement
+					- Never needed to remember each accepted $x$!
+						- Very low-memory (constant # of
+						  registers), ideal for FPGA use.
+					- Easily parallelizable
+					- “Reset rule” can abort from approximation failures.
+				</section>
+ -->
+				<!-- <section data-state="show-foot-fast-pe">
+					<h3><strong>Example:</strong> Phase Estimation, $x = (\phi)$</h3>
+
+					<p>
+						Prepare state $\ket{\phi}$ s. t. $U\ket{\phi} = \ee^{\ii \phi}\ket{\phi}$,
+						measure to learn $\phi$.
+					</p>
+
+					<img src="./figures/pe-circuit-crop.png">
+
+					<p>
+						$\Pr(1 | \phi; M, \theta) = \cos^2(M [\phi - \theta])$
+					</p>
+
+					<! - - <p>
+						$\theta = 0 \Rightarrow$ freq. est likelihood, w/ $\phi = \omega$, $M = t$.
+					</p> - - >
+
+					<dl style="font-size: 65%">
+						<dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
+							Applications
+						</h4></dd>
+
+						<dt>Interferometry / metrology
+							<span class="right-note">
+								Higgins <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/crwd6w">crwd6w</a></cite>
+							</span>
+						</dt>
+
+						<dt>Gate calibration / robust PE
+							<span class="right-note">
+								Kimmel <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/bmrg">bmrg</a></cite>
+							</span>
+						</dt>
+
+						<dt>Quantum simulation and chemistry
+							<span class="right-note">
+								Reiher <em>et al.</em>
+								<cite class="arxiv"><a href="https://arxiv.org/abs/1605.03590">1605.03590
+								</a></cite>
+							</span>
+						</dt>
+					</dl>
+				</section> -->
+
+
+				<section data-state="show-foot-rfpe">
+					<h3><strong>Example:</strong> Phase Estimation, $x = (\phi)$</h3>
+
+					<img src="./figures/pe-error.png" width="80%">
+				</section>
+
+				<section>
+					<p  data-markdown>
+						**Drawback**: RejF requires posterior after each datum
+						to be $\approx$ Gaussian.
+					</p>
+
+					<p class="fragment" data-markdown>
+						We can solve this by using a more general approach:
+
+						- Weaken Gaussian assumption.
+						- Generalize the rejection sampling step.
+					</p>
+				</section>
+
+				<section data-state="show-foot-lw">
+					<h2>Liu&ndash;West Resampler</h2>
+
+					<p>
+						If we remember each sample $\vec{x}$, we can use them to
+						relax RejF assumptions.
+					</p>
+
+					<p>
+						<strong>Input:</strong>
+						$a, h \in [0, 1]$ s.t. $a^2 + h^2 = 1$,
+						distribution $p(\vec{x})$.
+					</p>
+
+					<ul>
+						<li>
+							Approximate $\bar{x} \gets \expect[\vec{x}]$, $\Sigma \gets \operatorname{Cov}(\vec{x})$
+						</li>
+						<li>Draw <em>parent</em> $\vec{x}$ from $p(\vec{x})$.</li>
+						<li>Draw $\vec{\epsilon} \sim \mathcal{N}(0, \Sigma)$.</li>
+						<li>
+							<strong>Return</strong>
+							new sample $\vec{x}' \gets a \vec{x} + (1 - a) \bar{x} + h \vec{\epsilon}$.
+						</li>
+					</ul>
+				</section>
+
+				<section data-markdown>
+					### Why Does Liu&ndash;West Work? ###
+
+					\begin{align}
+						\vec{x}'          &amp; \gets a \vec{x} + (1 - a) \bar{x} + h \vec{\epsilon} \\\\
+						\expect[\vec{x}'] &amp; = [a + (1 - a)] \bar{x} \\\\
+						\Cov(\vec{x}')    &amp; = (a^2 + h^2) \Cov(\vec{x}). \\\\
+						\Longrightarrow a^2 + h^2 &amp; = 1 \text{ preserves } \expect[\vec{x}], \Cov(\vec{x}).
+					\end{align}
+
+					---
+
+					Mixes original approximation with $1 - a$ of a Gaussian
+					matching moments.
+
+					- $a \to 0$: RejF (assumed density) approx
+					- $a \to 1$: Bootstrap
+					- $a = 0.98$: typical case (2% Gaussian).
+				</section>
+
+				<section data-markdown>
+					### From Samples to Particles ###
+
+					Define a particle $(w_i, \vec{x}_i)$ as
+					a sample $\vec{x}_i$ and a weight $w_i \in [0, 1]$.
+
+					- $\expect[\vec{x}] = \sum_i w_i \vec{x}_i$
+					- $\Cov(\vec{x}) =
+					  \sum_i w_i \vec{x}_i \vec{x}_i^\TT - \expect[\vec{x}]\expect^\TT[\vec{x}]$
+
+					- $\expect[f(\vec{x})] = \sum_i w_i f(\vec{x}_i)$
+
+					---
+
+					Corresponds to
+					$
+						p(\vec{x}) \approx \sum_i w_i \delta(\vec{x} - \vec{x}_i).
+					$
+				</section>
+
+				<section>
+					<p>
+						Particles can represent distributions using either<br>
+						<span style="color: #D55E00;">weights</span> or
+						<span style="color: #56B4E9;">positions</span>.
+					</p>
+
+					<img src="figures/impovrishment.png" class="stretch">
+				</section>
+
+
+				<section data-state="show-foot-smc">
+					<h2>Particle Filter</h2>
+
+					<ul>
+						<li>
+							Draw $N$ initial samples $\vec{x}_i$ from the prior $\Pr(\vec{x})$
+							w/ uniform weights.
+						</li>
+
+						<li>
+							Instead of rej. sampling, update <span style="color: #D55E00;">weights</span>
+							by
+							\begin{align}
+								\tilde{w}_i &amp; = w_i \times \Pr(d | \vec{x}_i; e)
+							\end{align}
+						</li>
+						<li>
+							Renormalize.
+							\begin{align}
+								w_i &amp; \mapsto \tilde{w}_i / \sum_i \tilde{w}_i
+							\end{align}
+						</li>
+
+						<li>
+							Periodically use Liu&ndash;West to draw new $\{\vec{x}_i\}$
+					  		with uniform weights.
+					  		<span class="comment">
+					  			Store posterior in <span style="color: #56B4E9;">positions</span>.
+					  		</span>
+					  	</li>
+					</ul>
+				</section>
+
+				<section data-background="#000" data-background-video="figures/multicos-distributions.mp4">					
+				</section>
+
+				<section>
+					<h3>Liu&ndash;West Revisited</h3>
+
+					<p>
+						We made one very critical assumption in motivating LW:
+						<strong>unimodality</strong>.
+					</p>
+
+					<p>
+						How well does LW fare when we relax this assumption?
+					</p>
+				</section>
+
+				<section data-markdown
+						 data-background="#fff"
+				         data-background-size="80%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+						 data-background-image="figures/lw-resampling-failure.png"
+						 >
+				</section>
+
+				<section>
+					<h3>Clustering</h3>
+
+					<p>
+						How do we infer when the posterior is multimodal?
+						Use $k$-means to identify posterior modes as clusters, resample
+						each independently.
+					</p>
+				</section>
+
+				<section data-markdown
+						 data-background="#fff"
+				         data-background-size="80%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+						 data-background-image="figures/lw-resampling-success.png"
+						 >
+				</section>
+
+				<section>
+					<h3>Resampling and Invariants</h3>
+
+					<p>
+						This works because Liu&ndash;West preserves
+						first two moments <em>of each cluster</em>
+						as invariants.
+					</p>
+
+					<p>
+						$$
+							\begin{aligned}
+								\expect[x]    &amp; = \expect_{\text{cluster}}[\expect[x | \text{cluster}]] \\
+								\mathbb{V}[x] &amp; = \expect_{\text{cluster}}[\mathbb{V}[x | \text{cluster}]] +
+							                          \mathbb{V}_{\text{cluster}}[\expect[x | \text{cluster}]]
+						    \end{aligned}
+	    	            $$
+					</p>
+
+					<p>
+						Thus, if do not reweight each cluster, we also preserve first moments
+						over <em>entire</em> posterior.
+					</p>
+				</section>
+
+				<section>
+					<h2>Weighted $k$-Means</h2>
+
+					<p>
+						<strong>Input</strong> vectors $\{\vec{x}_i\}$, weights $\{w_i\}$, # of clusters $k$.
+					</p>
+
+					<ul style="width: 80%">
+						<li>
+							Guess cluster means $\{\vec{\mu}_j\}$.
+							<span class="comment">E.g. use $k$-means++.</span>
+						</li>
+						<li>
+							Label each vector $\vec{x}_i$ by $\ell_i$, the index of the closest $\vec{\mu}_j$.
+						</li>
+						<li><strong>For</strong> each iteration:</li>
+						<ul>
+							<li>
+								$\vec{\mu}_j \gets \sum^{(j)} w_i \vec{x}_i / \sum^{(j)} w_i$ for each $j$,
+								with $\sum^{(j)}$ the sum restricted to cluster $j$.
+							</li>
+							<li>
+								Relabel each vector.
+							</li>
+							<li>
+								If no labels changed, <strong>return</strong>.
+							</li>
+						</ul>
+					</ul>
+				</section>
+
+				<section>
+					<p>
+						Critical that we use <em>weighted</em> variant.
+
+						TODO: show weighted / un-weighted figures.
+					</p>
+				</section>
+
+				<section>
+					<h3>How Many Clusters?</h3>
+
+					<p>
+						We use <em>model selection</em> with the <em>Bayes factor</em> to learn $k$
+						from future data.
+					</p>
+
+					<p>
+						$$\begin{aligned}
+							\operatorname{BF}(k_1, k_2) &amp; = \frac{\Pr(\vec{x} | D, k_1)}{\Pr(\vec{x} | D, k_2)}
+						\end{aligned}$$
+					</p>
+
+					<hr>
+
+					<ul>
+						<li>Can directly approximate from normalization records.</li>
+						<li>
+							Each $\Pr(\vec{x} | D, k)$ is independently a particle filter with
+							$k$-means clustered resampling.
+						</li>
+						<li>
+							Can even represent each hypothesis $k$ by <em>mixture</em> of $k$
+							different single-mode particle filters.
+						</li>
+					</ul>
+
+				</section>
+
+				<section>
+					<h3>Graphical Notation for Model Selection and Mixtures</h3>
+
+					<img
+						data-src="figures/graphical-notation.png"
+					>
+
+					<table style="width: 80%">
+						<tr>
+							<td><span style="color: #d55e00">&#x25A0;</span></td>
+							<td>Local particle filter</td>
+						</tr>
+
+						<tr>
+							<td><span style="color: #cc79a7">&#x25CF;</span></td>
+							<td>Model selection</td>
+						</tr>
+
+						<tr>
+							<td><span style="color: #56b4e9">&#x25B2;</span></td>
+							<td>Mixture between clusters</td>
+						</tr>
+
+						<!-- <dt>&#x25CF;</dt>
+						<dt>&#x25B2;</dt> -->
+					</table>
+				</section>
+
+				<section>
+					<h3>Resampling as Splitting Rule</h3>
+
+					<p>
+						We thus will <em>split</em> each particle filter
+						at each resampling step, up to a maximum depth,
+						entertaining different hypotheses about $k$.
+					</p>
+
+					<img
+						data-src="figures/splitting-move.png"
+					>
+				</section>
+
+				<section>
+					<h3>Pruning</h3>
+
+					<p>
+						Naïvely, splitting leads to exponential growth in tree
+						size. We can <em>prune</em> away branches that do not agree with
+						data, however, to reduce tree size.
+					</p>
+
+					<img
+						data-src="figures/pruning-rules.png"
+					>
+				</section>
+
+				<section>
+					<h3><strong>Example:</strong> Randomized Gap Estimation</h3>
+
+					<p>
+						Parameters of interest are a vector $\vec{x} = (\lambda_0, \lambda_1, \lambda_2)$,
+						where $\lambda_0$ is known to be precisely zero.
+					</p>
+
+					<p>$$
+						\Pr(1 | \vec{x}; t) \propto \sum_{i > j} \cos^2([\lambda_i - \lambda_j] t / 2).
+					$$</p>
+
+					<hr>
+
+					<ul>
+						<li>Four possible assignments of $\lambda_1, \lambda_2$ for each data set.</li>
+						<li>Ideal test case as degeneracy is known analytically.
+						<li>Can analyze without incorporating degeneracy to test effectiveness.</li>
+					</ul>
+				</section>
+
+				<section data-background="#fff" data-background-video="figures/rge-example-final.mp4">					
+				</section>
+
+				<section data-background="#fff"
+				         data-background-size="60%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+						 data-background-image="figures/final-tree.png">
+				</section>
+
+				<section>
+					<h2>Advantages of Structured Filtering</h2>
+
+					<ul>
+						<li>Significant generalization over traditional filters.</li>
+						<li>Describes structure of posterior modes (incl. region estimation!).</li>
+						<li>Naturally includes more general model selection.</li>
+						<li class="fragment">...also, it works really well.</li>
+					</ul>
+				</section>
+
+				<section data-background="#000"
+				         data-background-size="60%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+						 data-background-image="figures/rge-mean.png">
+				</section>
+
+
+				<section>
+					<h1 class="thanks">Thank you!</h1>
+				</section>
+
+				<section>
+					<h2>Welford's Algorithm</h2>
+					
+					<p>
+						Can compute $\bar{x}$, $\Sigma$ from
+						one sample at a time. Numerically stable.
+					</p>
+
+					<ul style="width: 80%">
+						<li>$n, \bar{x}, M_2 \gets 0$.</li>
+						<li><strong>For</strong> each sample $x$:</li>
+						<ul>
+							<li>
+								$n \gets n + 1$
+								<span class="comment">Record # of samples</span>
+							</li>
+							<li>
+								$\Delta \gets x - \mu$
+								<span class="comment">Diff to running mean</span>
+							</li>
+							<li>
+								$\bar{x} \gets \bar{x} + \Delta / n$
+								<span class="comment">Update running mean</span>
+							</li>
+							<li>
+								$M_2 \gets M_2 + \Delta (x - \bar{x})$
+								<span class="comment">Update running var</span>
+							</li>
+						</ul>
+						<li><strong>Return</strong> mean $\bar{x}$, variance $M_2 / (n - 1)$.</li>
+					</ul>
+
+					<p>
+						Vector case is similar.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						We design experiments using the
+					</p>
+
+					<h3><strong>PGH</strong>: Particle Guess Heuristic</h3>
+
+					<ul>
+						<li>
+							Draw $\vec{x}_-, \vec{x}_-'$ from current
+					  		posterior.
+					  	</li>
+						<li>Let $t = 1 / |\vec{x}_- - \vec{x}_-'|$.</li>
+						<li><strong>Return</strong> $e = (\vec{x}_-, t)$.</li>
+					</ul>
+
+					<div class="fragment">
+						<hr>
+
+						<p>
+							Adaptively chooses experiments such that<br>
+							$t |\vec{x}_- - \vec{x}_-'| \approx\,$ constant.
+						</p>
+					</div>
+				</section>
+
+
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+		    'HTML-CSS': {
+				preferredFont: null,
+				webFont: 'Gyre-Pagella'
+			},
+			TeX: {
+				Macros: {
+					ee: "{\\mathrm{e}}",
+					ii: "{\\mathrm{i}}",
+					dd: "{\\mathrm{d}}",
+					id: "{\u{1d7d9}}",
+					TT: "{\\mathrm{T}}",
+					defeq: "{\\mathrel{:=}}",
+					Tr: "{\\operatorname{Tr}}",
+					Var: "{\\operatorname{Var}}",
+					Cov: "{\\operatorname{Cov}}",
+					rank: "{\\operatorname{rank}}",
+					expect: "{\\mathbb{E}}",
+					sket: ["{|#1\\rangle\\negthinspace\\rangle}", 1],
+					sbraket: ["{\\langle\\negthinspace\\langle#1\\rangle\\negthinspace\\rangle}", 1],
+					Gini: "{\\operatorname{Ginibre}}",
+					supp: "{\\operatorname{supp}}",
+					ket: ["{\\left|#1\\right\\rangle}", 1],
+					bra: ["{\\left\\langle#1\\right|}", 1],
+					braket: ["{\\left\\langle#1\\right\\rangle}", 1],
+					diag: "\\operatorname{diag}"
+				}
+			}
+		  });
+		</script>
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+				zoomKey: 'shift',
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
