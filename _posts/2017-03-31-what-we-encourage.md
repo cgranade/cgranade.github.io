@@ -38,7 +38,7 @@ One critical component common to each of these examples is that they use the con
 
 In this discussion, of course, we also cannot afford to elide that open science in general and open source in particular also helps to remove elements of gatekeeping that can be used to preclude participation. In current practice, the expense of performing physics research, be it theory or experiment, naturally concentrates decision-making power in a smaller number of individuals. Though the effects of this concentration can be mitigated to some degree, it is also important to reduce the areas in which cognative biases can hide from critical examination. Reducing barriers to entry can provide a way to do so.
 
-<abbr title="Not only does he have a point, he actually got to it eventually!">I posit that these self-same barriers to entry are, perhaps ironically, one of the largest impediments to the adoption of open science methodologies in physics.</abbr> Take, for instance, [the advice offered to me](http://academia.stackexchange.com/a/86538/70648) in response to a question about how to adopt better open science methods when posting to the arXiv:
+<abbr title="Not only does he have a point, he actually got to it eventually!">I posit</abbr> that these self-same barriers to entry are, perhaps ironically, one of the largest impediments to the adoption of open science methodologies in physics. Take, for instance, [the advice offered to me](http://academia.stackexchange.com/a/86538/70648) in response to a question about how to adopt better open science methods when posting to the arXiv:
 
 > For the sake of persistent archiving you should put all ancillary material at a sustainably archived website specifically designed to preserve scholarly communications material e.g. Zenodo https://zenodo.org/ or Dryad http://datadryad.org/ or Figshare https://figshare.com/
 
@@ -102,4 +102,4 @@ By the way, why PowerShell? It may seem like an odd choice for encouraging open 
 
 ## Concluding Remarks ##
 
-<abbr title="Long post is long…">In this post, I've described a few ways that what we encourage can have dramatic negative or hopefully positive effects on research culture and practice.</abbr> These examples all speak to how thinking not only critically but also systematically can provide a path forward for doing the best science that we can.
+<abbr title="Long post is long…">In this post</abbr>, I've described a few ways that what we encourage can have dramatic negative or hopefully positive effects on research culture and practice. These examples all speak to how thinking not only critically but also systematically can provide a path forward for doing the best science that we can.
