@@ -32,6 +32,12 @@
 
 #### 2017 ####
 
+- *QInfer: Statistical inference software for quantum applications*, **Christopher E. Granade**, Christopher Ferrie, Ian Hincks, Steven Casagrande, Thomas Alexander, Jonathan Gross, Michal Kononenko, Yuval Sanders. Quantum **1** 5.
+  > [doi:10.22331/q-2017-04-25-5](https://doi.org/10.22331/q-2017-04-25-5) | [arXiv:1610.00336](https://scirate.com/arxiv/1610.00336)
+
+- *Tailored codes for small quantum memories*, Alan Robertson, **Christopher E. Granade**, Stephen D. Bartlett, Steven T. Flammia.
+  > [arXiv:1703.08179](https://arxiv.org/abs/1703.08179)
+
 - *Logical randomized benchmarking*, Joshua Combes, **Christopher E. Granade**, Christopher Ferrie, Steven T. Flammia.
   > [arXiv:1702.03688](https://scirate.com/arxiv/1702.03688)
 
@@ -39,9 +45,6 @@
 
 - *Structured filtering*, **Christopher E. Granade**, Nathan Wiebe.
   > [arXiv:1612.00762](https://scirate.com/arxiv/1612.00762)
-
-- *QInfer: Statistical inference software for quantum applications*, **Christopher E. Granade**, Christopher Ferrie, Ian Hincks, Steven Casagrande, Thomas Alexander, Jonathan Gross, Michal Kononenko, Yuval Sanders.
-  > [arXiv:1610.00336](https://scirate.com/arxiv/1610.00336)
 
 - *Explaining quantum correlations through evolution of causal models*, Robin Harper, Robert J. Chapman, Christopher Ferrie, **Christopher E. Granade**, Richard Kueng, Daniel Naoumenko, Steven T. Flammia and Alberto Peruzzo.
   > [arXiv:1608.03281](https://scirate.com/arxiv/1608.03281)
