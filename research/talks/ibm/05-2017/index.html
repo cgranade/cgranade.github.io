@@ -1,0 +1,1614 @@
+<!doctype html>
+<!--
+    
+    ABSTRACT
+    ========
+
+    In this talk, I will discuss how to relax design constraints in quantum information processing in two distinct ways.
+    First, I discuss using principled approaches to statistical inference to make more efficient use of data gathered from quantum devices.
+    Second, I discuss how to use efficient heuristics for experiment design to achieve practical control in modern experimental systems.
+    Together, these approaches provide a practical path forward to more challenging and exciting experimental quantum computing tasks.
+
+-->
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>The Good, the Bad and the Practical</title>
+
+        <meta name="author" content="Christopher E. Granade">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+        <link rel="stylesheet" href="css/theme/cgranade-dark.css" id="theme">
+
+
+        <style type="text/css" media="screen">
+            .reveal cite.googl a {
+            font-family: "Source Sans Pro";
+            font-weight: 400; }
+            .reveal cite.googl a::before {
+            content: "goo.gl/";
+            /* font-variant: small-caps; */
+            font-size: 65%;
+            font-weight: 500; }
+
+            .hideable-foot {
+                display: block;
+                opacity: 0;
+                font-size: 90% !important;
+                position: absolute;
+                bottom: 0em;
+                right: 0.5em;
+                text-align: right;
+                transition: all 2s;
+                z-index: 1;
+            }
+
+            .show-foot-pbt #foot-pbt,
+            .show-foot-arb #foot-arb,
+            .show-foot-how #foot-how,
+            .show-foot-rohl #foot-rohl,
+            .show-foot-qhl #foot-qhl,
+            .show-foot-qhl-noise #foot-qhl-noise,
+            .show-foot-qbs #foot-qbs,
+            .show-foot-lfpe #foot-lfpe,
+            .show-foot-lw #foot-lw,
+            .show-foot-smc #foot-smc,
+            .show-foot-qrej #foot-qrej,
+            .show-foot-better #foot-better,
+            .show-foot-title-foot #foot-title-foot,
+            .show-foot-condensation #foot-condensation,
+            .show-foot-qinfer #foot-qinfer,
+            .show-foot-rfpe #foot-rfpe,
+            .show-foot-structf #foot-structf,
+            .show-foot-hh #foot-hh,
+            .show-foot-improved-hh #foot-improved-hh,
+            .show-foot-thanks-ian #foot-thanks-ian,
+            .show-foot-thanks-hpd #foot-thanks-hpd,
+            .show-foot-thanks-bayes-neon #foot-thanks-bayes-neon,
+            .show-foot-thanks-statistics-neon #foot-thanks-statistics-neon,
+            .show-foot-fast-pe #foot-fast-pe,
+            .show-foot-blameless #foot-blameless,
+            .show-foot-thesis #foot-thesis {
+                opacity: 1 !important;
+                transition: all 2s;
+                z-index: 2;
+            }
+
+
+            /** TODO: move these to cgranade-dark.scss. **/
+            .two-col-container {
+                width: 100%;
+            }
+
+            .left-col {
+                float: left;
+                width: 70%;
+            }
+
+            .right-col {
+                float: right;
+                width: 30%;
+            }
+
+            .wordmark {
+                display: inline-block;
+                font-family: "Source Sans Pro";
+                color: white;
+                font-weight: 300;
+            }
+
+            .wordmark:first-letter {
+                color: red;
+                font-weight: 600;
+            }
+
+
+            hr {
+                border-color: #888;
+            }
+
+            h6.bg-rule {
+                position: relative;
+                z-index: 1;
+                
+                color: #888;
+                font-variant: small-caps;
+            }
+
+            /* https://gist.github.com/ericrasch/2045198 */
+            .bg-rule:before {
+                border-top: 1.5px solid #888;
+                content: "";
+                margin: 0 auto; /* this centers the line to the full width specified */
+                position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+                top: 60%; left: 0; right: 0; bottom: 0;
+                width: 90%;
+                z-index: -2;
+            }
+
+            .bg-rule span { 
+                /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+                background: #000; 
+                padding: 0 15px; 
+            }
+        </style>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!--
+                This is an awful hack. Don't use it if you can help it.
+                See https://www.raymondcamden.com/2014/04/01/Adding-an-Absolutely-Positioned-Header-to-Revealjs/ for why it "works".
+            -->
+            <p class="hideable-foot" id="foot-title-foot">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br>
+                <!-- <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>,
+                <cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>,
+                <cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>,
+                <cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite><br> -->
+                <a href="http://www.cgranade.com/research/talks/ibm/05-2017">
+                    www.cgranade.com/research/talks/ibm/05-2017
+                </a>
+            </p>
+
+            <p class="hideable-foot" id="foot-how">
+                Ferrie, Granade, Cory <cite class="doi"><a href="https://dx.doi.org/10/tfx">tfx</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-rohl">
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qinfer">
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b5x8">b5x8</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-hh">
+                Stenberg <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b59p">b59p</a></cite>,
+                Robertson and Granade (<em>in preparation</em>)
+            </p>
+            
+            <p class="hideable-foot" id="foot-improved-hh">
+                Robertson and Granade (<em>in preparation</em>)
+            </p>
+
+            <p class="hideable-foot" id="foot-arb">
+                Granade, Ferrie, Cory <cite class="doi"><a href="https://dx.doi.org/10/zmz">zmz</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qhl">
+                Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>
+            </p>
+            
+            <p class="hideable-foot" id="foot-qbs">
+                Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qhl-noise">
+                Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tdk">tdk</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-pbt">
+                Huszár and Houlsby <cite class="doi"><a href="https://dx.doi.org/10/s86">s86</a></cite>;
+                Granade, Combes, Cory <cite class="doi"><a href="https://dx.doi.org/10/bhdw">bhdw</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-rfpe">
+                <span style="font-variant: small-caps">theory</span>
+                Wiebe and Granade <cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite>,
+                
+                <span style="font-variant: small-caps">expr</span>
+                Paesani <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b59r">b59r</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-sgqt">
+                <span style="font-variant: small-caps">theory</span>
+                Ferrie <cite class="doi"><a href="https://dx.doi.org/10/bchr">bchr</a></cite>,
+                
+                <span style="font-variant: small-caps">expr</span>
+                Chapman <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b59v">b59v</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-paqt">
+                Granade <em>et al.</em> <cite class="arxiv"><a href="https://arxiv.org/abs/1605.05039">1605.05039</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-lw">
+                Liu and West <cite class="doi"><a href="https://dx.doi.org/10/8c2">8c2</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-smc">
+                Doucet <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bmch">bmch</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-lfpe">
+                Ferrie and Granade <cite class="doi"><a href="https://dx.doi.org/10/tdj">tdj</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-thesis">
+                Granade
+                <cite class="hdl"><a href="https://dx.doi.org/10012/9217"><span>10012/</span>9217</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-thanks-hpd">
+                <em>figure</em>: Ferrie
+                <cite class="doi"><a href="https://dx.doi.org/10/tb4">tb4</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-blameless">
+                joint work w/ Kimmel and Wiebe
+            </p>
+
+            <p class="hideable-foot" id="foot-fast-pe">
+                Svore <em>et al.</em>
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1304.0741">1304.0741</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qrej">
+                Wiebe and Granade
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1512.03145">1512.03145</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-structf">
+                Granade and Wiebe
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1612.00762">1612.00762</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-thanks-statistics-neon">
+                <!--
+                    A note about the word "neon": this is not technically correct in
+                    the chemical sense, but is the word that the artist chose to describe
+                    their work, and so I choose it here out of deference to that description.
+                -->
+                background: neon by
+                <a href="http://oresttataryn.com/">Orest Tataryn</a>
+            </p>
+
+            <p class="hideable-foot" id="foot-thanks-bayes-neon">
+                background: photo by <a href="https://commons.wikimedia.org/wiki/File:Bayes%27_Theorem_MMB_01.jpg">
+                    mattbuck
+                </a>,
+                h/t Wiebe
+            </p>
+
+<!-- 
+            <p class="hideable-foot" id="foot-thanks-ian">
+                Collaboration w/ Hincks, Wang, Mirkamali, and Moussa.
+            </p>
+ -->
+
+            <!-- <p class="hideable-foot" id="foot-better">
+                Sergeevich <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/c4vv95">c4vv95</a></cite>,
+                Ferrie <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tfx">tfx</a></cite>, 
+                Hall and Wiseman <cite class="doi"><a href="https://dx.doi.org/10/bh6v">bh6v</a></cite>
+            </p> -->
+
+            <p class="hideable-foot" id="foot-condensation">
+                Isard and Blake <cite class="doi"><a href="https://dx.doi.org/10/cc76f6">cc76f6</a></cite>
+            </p>
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <!-- TITLE SLIDE ######################################### -->
+
+                <section data-state="show-foot-title-foot" id="title-slide">
+                    <h1 style="font-size: 175%">
+                        The Good, the Bad, and the Practical
+                    </h1>
+                    <hr>
+                    <p>
+                        <a href="http://www.cgranade.com">Christopher E. Granade</a> <br>
+                        <a href="https://equs.org/">Centre for Engineered Quantum Systems</a>
+                        $
+                            \newcommand{\ee}{\mathrm{e}}
+                            \newcommand{\ii}{\mathrm{i}}
+                            \newcommand{\dd}{\mathrm{d}}
+                            \newcommand{\id}{&#x1d7d9;}
+                            \newcommand{\TT}{\mathrm{T}}
+                            \newcommand{\defeq}{\mathrel{:=}}
+                            \newcommand{\Tr}{\operatorname{Tr}}
+                            \newcommand{\Var}{\operatorname{Var}}
+                            \newcommand{\Cov}{\operatorname{Cov}}
+                            \newcommand{\rank}{\operatorname{rank}}
+                            \newcommand{\expect}{\mathbb{E}}
+                            \newcommand{\sket}[1]{|#1\rangle\negthinspace\rangle}
+                            \newcommand{\sbraket}[1]{\langle\negthinspace\langle#1\rangle\negthinspace\rangle}
+                            \newcommand{\Gini}{\operatorname{Ginibre}}
+                            \newcommand{\supp}{\operatorname{supp}}
+                            \newcommand{\ket}[1]{\left|#1\right\rangle}
+                            \newcommand{\bra}[1]{\left\langle#1\right|}
+                            \newcommand{\braket}[1]{\left\langle#1\right\rangle}
+                        $
+                    </p>
+                </section>
+
+                <!-- INTRODUCTION ######################################## -->
+
+                <section>
+                    <p>
+                        Characterization plays a number of different roles in
+                        quantum information experiments.
+                    </p>
+
+                    <dl>
+                        <dt>Calibration and Metrology</dt>
+                        <dd>(Rabi/Ramsey est., crosstalk learning)</dd>
+
+                        <dt>Diagnosis and Debugging</dt>
+                        <dd>(Tomography)</dd>
+
+                        <dt>Verification and Validation</dt>
+                        <dd>(RB, quantum Hamiltonian learning)</dd>
+
+                        <dt>Algorithms</dt>
+                        <dd>(Phase est.)</dd>
+                    </dl>
+
+                    <p>
+                        Let's look at an example.
+                    </p>
+                </section>
+
+                <section>
+                    <h3><strong>Example:</strong> Iterative Phase Estimation</h3>
+
+					<p>
+						Prepare state $\ket{\phi}$ s. t. $U\ket{\phi} = \ee^{\ii \phi}\ket{\phi}$,
+						measure to learn $\phi$.
+					</p>
+
+					<img src="./figures/pe-circuit-crop.png">
+
+					<p>
+						$\Pr(1 | \phi; M, \theta) = \cos^2(M [\phi - \theta])$
+					</p>
+
+					<!-- <p>
+						$\theta = 0 \Rightarrow$ freq. est likelihood, w/ $\phi = \omega$, $M = t$.
+					</p> -->
+
+					<dl style="font-size: 65%">
+						<dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
+							Applications
+						</h4></dd>
+
+						<dt>Interferometry / metrology
+							<span class="right-note">
+								Higgins <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/crwd6w">crwd6w</a></cite>
+							</span>
+						</dt>
+
+						<dt>Gate calibration / robust PE
+							<span class="right-note">
+								Kimmel <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/bmrg">bmrg</a></cite>
+							</span>
+						</dt>
+
+						<dt>Quantum simulation and chemistry
+							<span class="right-note">
+								Reiher <em>et al.</em>
+								<cite class="arxiv"><a href="https://arxiv.org/abs/1605.03590">1605.03590
+								</a></cite>
+							</span>
+						</dt>
+					</dl>
+                </section>
+
+                <section>
+                    <p>
+                        Phase estimation is both a <strong>statistical</strong> problem
+                        and a <strong>control</strong> problem:
+                    </p>
+
+                    <h6 class="code-caption">
+                        Statistical Inference
+                    </h6>
+                    <blockquote>
+                        Given a set of <strong>observations</strong> $D$, what should
+                        we report as our <strong>estimate</strong> of $\phi$?
+                    </blockquote>            
+
+                    <h6 class="code-caption">
+                        Experiment Design
+                    </h6>
+                    <blockquote>
+                        What should we <strong>choose</strong> as our next $M$ in order to get the best
+                        estimate of $\phi$?
+                    </blockquote>
+                </section>
+
+                <section>
+                    <h3>Practicality is a Functional Constraint</h3>
+
+                    <blockquote>
+                        …<strong>phase estimation</strong>
+                        constitutes the <strong>outer most loop</strong> of the quantum
+                        [chemistry] simulation and hence is a major driver of the cost of the
+                        simulation…
+                    </blockquote>
+                    <h6 class="code-caption" style="text-align: right; width: 90%; top: -0.5em;">
+                        &mdash;
+                        Reiher <em>et al.</em>
+                        <cite class="arxiv"><a href="https://arxiv.org/abs/1605.03590">1605.03590
+                        </a></cite><br>
+                        <em style="font-size: 60%; line-height: 60%; top: -0.8em; position: relative;">
+                            Elucidating reaction mechanisms on quantum computers
+                        </em>
+                    </h6>
+                    
+                    Improvements to statistical inference and experiment design can make or
+                    break practicality of quantum applications.
+                </section>
+
+                <section>
+                    <h3>Practicality is a Design Cycle</h3>
+                    <p>
+                        Accurate characterization feeds back into design cycle by
+                        enabling more efficient architectures.
+                    </p>
+
+                    <!-- https://arxiv.org/abs/1702.01763 -->
+
+                    <dl style="font-size: 65%">
+						<dt>Gate calibration w/ robust phase est.
+							<span class="right-note">
+								Rudinger <em>et al.</em>
+								<cite class="arxiv"><a href="https://arxiv.org/abs/1702.01763">1702.01763</a></cite>
+							</span>
+						</dt>
+                        <dd>
+                            Robust to additive errors at cost of more samples per measurement.
+                        </dd>
+
+					    <dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
+							Other Examples
+						</h4></dd>
+
+						<dt>In-situ characterization of QECC
+							<span class="right-note">
+								Combes <em>et al.</em>
+								<cite class="arxiv"><a href="https://arxiv.org/abs/1405.5656">1405.5656</a></cite>
+							</span>
+						</dt>
+                        <dd>
+                            Learns error models from error-correction syndromes.
+                        </dd>
+
+						<dt>Logical randomized benchmarking
+							<span class="right-note">
+								Combes <em>et al.</em>
+								<cite class="arxiv"><a href="https://arxiv.org/abs/1702.03688">1702.03688
+								</a></cite>
+							</span>
+						</dt>
+                        <dd>
+                            Rigorously learns errors on logical qubits.
+                        </dd>
+
+                        <dt>Tailored QECC
+							<span class="right-note">
+								Robertson <em>et al.</em>
+								<cite class="arxiv"><a href="https://arxiv.org/abs/1703.08179">1703.08179
+								</a></cite>
+							</span>
+						</dt>
+                        <dd>
+                            Uses experimental characterization to improve memory thresholds.
+                        </dd>
+					</dl>
+                </section>
+
+                <section>
+                    <p>
+                        So what do we mean by <em>practical</em>?
+                    </p>
+
+                    <p>
+                        We want solutions that are:
+                    </p>
+
+                    <ul>
+                        <li>Well-understood
+                        <li>Generic
+                        <li>Efficient
+                        <li>Compatible w/ modern hardware
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        How does this apply to phase estimation?
+                    </p>
+
+                    <h6 class="bg-rule"><span>practical statistics</span></h6>
+                    <h3>Rejection Filtering for Phase Estimation</h3>
+
+                    <p>
+                        We develop new FPGA-compatible
+                        filtering algorithms for Bayesian inference.
+                    </p>
+
+                    <h6 class="bg-rule"><span>practical experiment design</span></h6>
+                    <h3>Particle Guess Heuristic</h3>
+
+                    <p>
+                        Choosing $M = \lfloor 1.25 / \mathbb{V}(\phi) \rfloor$
+                        yields nearly Heisenberg scaling.
+                    </p>
+                </section>
+
+                <section data-state="show-foot-rfpe">
+                    <p>
+                        Together, our statistical inference and heuristic design methods
+                        dramatically outperform existing techniques.
+                    </p>
+
+					<img src="./figures/pe-error.png" width="70%">
+                </section>
+
+                <section>
+                    <p>
+                        Using sound statistical principles and efficient heuristics,
+                        we improve dramatically over state-of-the-art:
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>Nearly-optimal</strong>:
+                            $M \approx 3.3 / \epsilon > \pi / \epsilon$.
+                        </li>
+
+                        <li>
+                            Advantages relax design constraints for given
+                            error budget, qubit count, etc.
+                        </li>
+
+                        <li>
+                            Compatible w/ modern hardware platforms (e.g.: FPGA controls).
+                        </li>
+                </section>
+
+                <section>                    
+                    <p>
+                        We encounter very similar problems for learning
+                        time-independent magnetic fields.
+                    </p>
+
+                    <h3><strong>Example:</strong> Ramsey Estimation</h3>
+
+                    <p>
+                        Suppose $H = \omega \sigma_z / 2$ for some unknown $\omega$.
+                    </p>
+
+                    <h6 class="bg-rule"><span>measurement procedure</span></h6>
+
+                    <div data-markdown>
+                        - Prepare $\ket{+} \propto \ket{0} + \ket{1}$, measure “click” w/ pr.:
+                        $
+                            \|\bra{+} \ee^{\ii \omega t \sigma_z / 2} \ket{+}\|^2 = \cos^2(\omega t / 2)
+                        $.
+                        - Repeat for many “shots” to estimate click pr.
+                        - Repeat for many times to estimate signal.
+                    </div>
+                </section>
+
+                <section>
+                    You'll get something that looks a bit like this:
+
+                    <img src="figures/rabi-example-signal.png" width="90%">
+                </section>
+
+                <section>
+                    What's $\omega$? Fourier transform and look at the peak.
+
+                    <img src="figures/rabi-example-spectrum.png" width="90%">
+                </section>
+
+                <section>
+                    We can do better.
+
+                    <img src="figures/rabi-example-posterior.png" width="90%">
+                </section>  
+
+                <section>
+                    <p>
+                        We can also incorporate more realistic <em>models</em> directly
+                        into the problem for more practical applications.
+                    </p>
+
+                    <dl style="font-size: 65%">
+					    <dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
+							NV Centers
+						</h4></dd>
+
+						<dt>Hyperfine couplings w/ sublinear amplifiers
+							<span class="right-note">
+                                Granade
+                                <cite class="hdl"><a href="https://dx.doi.org/10012/9217"><span>10012/</span>9217</a></cite>,
+                                joint w/ Hincks
+							</span>
+						</dt>
+
+						<dt>NV Hamiltonians w/ quantum resources
+							<span class="right-note">
+								Wang <em>et al.</em>
+								<cite class="doi"><a href="https://doi.org/10/b59q">b59q</a></cite>
+							</span>
+						</dt>
+
+						<dt>Vector hyperfine couplings w/ drifting apparatus
+							<span class="right-note">
+								Hincks <em>et al.</em>
+								(<em>in preparation</em>)
+							</span>
+						</dt>
+					</dl>
+                </section>
+
+                <section
+                    data-background-image="figures/statistics-neon.jpeg"
+                    data-background-size="112%"
+                    data-state="show-foot-thanks-statistics-neon"
+                >
+                    <div data-markdown style="position: relative; top: -4em;">
+                        These examples suggest a path forward towards practical tools for quantum information processing:
+                    </div>
+
+                    <div class="fragment" data-markdown style="position: relative; bottom: -1em;">
+                        Phase and Hamiltonian learning are both special cases of *parameter estimation*.
+                        If we used the best statistical methods we can, we can relax constraints elsewhere.
+                    </div>
+                </section>
+
+
+                <section>
+                    <h2>Parameter Estimation</h2>
+
+                    <p>
+                        Given data $D$, and a model $\vec{x}$,
+                        what should we estimate $\vec{x}$ as?
+                    </p>
+
+                    <h6 class="bg-rule"><span>examples</span></h6>
+
+                    <dl style="font-size: 65%; position: relative; top: -1em;">
+						<dt>Rabi / Ramsey
+							<span class="right-note">
+                                Granade
+                                <cite class="hdl"><a href="https://dx.doi.org/10012/9217"><span>10012/</span>9217</a></cite>
+							</span>
+						</dt>
+                        <dd>
+                             $\vec{x} = (\omega)$
+                        </dd>
+
+						<dt>Crosstalk/Hamiltonian learning
+							<span class="right-note">
+								Wiebe <em>et al.</em>
+								<cite class="doi"><a href="https://doi.org/10/7nx">7nx</a></cite>
+							</span>
+						</dt>
+                        <dd>
+                            $\vec{x} = \operatorname{vec}(H)$
+                        </dd>
+
+						<dt>RB
+							<span class="right-note">
+								Granade <em>et al.</em>
+								<cite class="doi"><a href="https://doi.org/10/zmz">zmz</a></cite>
+							</span>
+						</dt>
+                        <dd>
+                            $\vec{x} = (p, A, B)$
+                        </dd>
+
+                        <dt>Multiexponential RB (<span style="font-weight: 400; color: #888;">dihedral, leakage, etc.</span>)
+							<span class="right-note">
+								Granade
+                                <cite class="googl">
+                                    <a href="https://goo.gl/OL1OpL">OL1OpL</a>
+                                </cite>
+							</span>
+						</dt>
+                        <dd>
+                            $\vec{x} = (\vec{p}, \vec{A}, \vec{B})$
+                        </dd>
+
+                        <dt>Tomography
+							<span class="right-note">
+								Granade <em>et al.</em>
+                                <cite class="doi">
+                                    <a href="https://doi.org/bhdw">bhdw</a>
+                                </cite>
+							</span>
+						</dt>
+                        <dd>
+                            $\vec{x} = \operatorname{vec}(\rho)$
+                        </dd>
+
+                        <dt>Spectral density estimation
+							<span class="right-note">
+								Ferrie <em>et al.</em>
+								(<em>in preparation</em>)
+							</span>
+                        </dt>
+                        <dd>
+                            $\vec{x} = (\alpha, A, \omega_{\mathrm{ir}})$, $S(\omega) = A / (\omega^\alpha + \omega_{\text{ir}})$
+                        </dd>
+					</dl>
+                </section>
+
+                <section>
+                    <p>
+                        From an experimental perspective, parameter estimation
+                        isn't the point, but a tool to get things done.
+                    </p>
+                    
+                    <hr>
+
+                    <p>
+                        Our goal is thus to make useful tools for <em>practical</em>
+                        parameter estimation.
+                    </p>
+
+                    <p>
+                        We use principled statistics and heuristic design
+                        to make it easier to get experiments done:
+                    </p>
+
+                    <ul>
+                        <li>Reduce data collection costs</li>
+                        <li>Provide accurate estimates</li>
+                        <li>Enable sharing methods and data with collaborators.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    We proceed by building principled<br><strong>statistical algorithms and implementations</strong>, <br>
+                    then using this platform to build
+                    <br>
+                    <strong>experiment design heuristics</strong>.
+                </section>
+
+                <section>
+                    <h1>Algorithms and Implementations</h1>
+                </section>
+
+                <section 
+                    data-background-image="figures/bayes-neon.jpg"
+                    data-background-size="110%"
+                    data-state="show-foot-thanks-bayes-neon"
+                >
+                    <h3>Particle Filtering</h3>
+
+                    <p>
+                        Represent our beliefs about the model by a set of
+                        hypotheses $\{\vec{x}_i\}$, along with their weights
+                        $\{w_i\}$.
+                    </p>
+
+                    <hr>
+
+                    \begin{align*}
+                        \text{Estimate: } \hat{x} &amp; = \sum_i w_i \vec{x}_i \\
+                        \text{Update: } w_i' &amp; \propto w_i \times \Pr(D | \vec{x}_i)
+                    \end{align*}
+                </section>
+
+                <section
+                    data-background="#000"
+                    data-background-image='figures/impovrishment.png'
+                    data-background-position="center"
+                    data-background-repeat="no-repeat"
+                    data-background-size="90%">
+                </section>
+
+                <section data-state="show-foot-lw">
+                    <p>
+                        Numerical stability is provided by <em>resampling</em>:
+                    </p>
+
+                    <ul>
+                        <li>Contract hypotheses towards center of mass</li>
+                        <li>Convolve with Gaussian</li>
+                    </ul>
+
+                    <p>
+                        Preserves estimates and errors of hypotheses $\{\vec{x}\}$,
+                        while restoring stability of the approximation.
+                    </p>
+                </section>
+
+                <section data-background="#000" data-background-video="figures/multicos-distributions.mp4">                 
+                </section>
+
+                <section data-markdown>
+                    - Statistically principled: approximates Bayesian
+                      posteriors, makes dependence on prior *explicit*.
+                    - Very general *and extensible* approach.
+                    - Provides rich error reporting, model selection and other
+                      diagnostics.
+                    
+                </section>
+
+
+                <section data-state="show-foot-qinfer">
+                    <p>
+                        Our implementation‚ <span class="wordmark">QInfer</span>, supports common
+                        quantum information models:
+                    </p>
+
+                    <ul>
+                        <li>Hamiltonian learning / phase estimation</li>
+                        <li>Randomized benchmarking</li>
+                        <li>State and process tomography</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Software is for People, not Computers</h3>
+
+                    Thus, <span class="wordmark">QInfer</span> is:
+
+                    <div data-markdown>
+                    - **Accessible**: written in Python,
+                      usable from Python, Julia, MATLAB.
+                    - **Open source**: modifiable and reproducible.
+                    - **Portable**: Windows/Linux/OS X.
+                    - **Legible**: well-documented (guide &amp; examples).
+                    - **Expressive**: represents the scientific concepts.
+                    - **Extensible**: not limited to built-in applications.
+                    </div>
+                </section>
+
+                <section>
+                    <h3>Getting Started</h3>
+
+                    <h6 class="code-caption">
+                        Installation
+                    </h6>
+                    <pre><code data-trim style='font-size: 140%;' class="bash">
+$ pip install qinfer
+                    </code></pre>
+
+                    For Julia, we need one additional step:
+                    
+                    <pre><code data-trim style='font-size: 140%;' class="julia">
+julia> Pkg.add("PyCall")
+                    </code></pre>                   
+                </section>
+
+                <section>
+                    <h3>Using <span class="wordmark">QInfer</span>: Simple Estimation</h3>
+                    
+                    <h6 class="code-caption">
+                        Make the data...
+                    </h6>
+                    <pre><code data-trim class="python">
+import numpy as np
+true_omega = 70.3
+n_shots = 100
+
+ts = np.pi * np.arange(1, 101) / (2 * 100.0);
+
+signal = np.sin(true_omega * ts / 2) ** 2;
+counts = np.random.binomial(n=n_shots, p=ideal_signal)
+                    </code></pre>
+
+                    <h6 class="code-caption">
+                        ...then process it.
+                    </h6>
+                    <pre><code data-trim class="python">
+import qinfer as qi
+data = np.column_stack([
+    counts, ts, n_shots * np.ones(len(ts))
+])
+est_mean, est_cov = qi.simple_est_prec(
+    data, freq_min=0, freq_max=100
+)
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Interoperability</h3>
+
+                    <h6 class="code-caption">
+                        MATLAB 2016a
+                    </h6>
+                    <pre><code data-trim class="matlab">
+setenv MKL_NUM_THREADS 1
+data = py.numpy.column_stack({counts ts ...
+    n_shots * ones(1, size(ts, 2))});
+est = py.qinfer.simple_est_prec(data, ...
+    pyargs('freq_min', 0, 'freq_max', 100));
+                    </code></pre>
+
+                    <h6 class="code-caption">
+                        Julia
+                    </h6>
+                    <pre><code data-trim class="julia">
+@pyimport numpy as np
+@pyimport qinfer as qi
+
+data = [counts'; ts'; 
+    n_shots * ones(length(ts))']'
+est_mean, est_cov = qi.simple_est_prec(data,
+    freq_min=0, freq_max=100)
+                    </code></pre>
+
+                </section>
+<!--
+                <section>
+                    <h3><span class="wordmark">QInfer</span> Concepts</h3>
+
+                    <p>
+                        Let's break the RB example down and customize it.
+                    </p>
+
+                    <div class="fragment">
+                        <h6 class="code-caption">
+                            Model:
+                            <span class="right-note" style="right: 2.6em">
+                                Measurements and parameters of interest.
+                            </span>
+                        </h6>
+                        <pre><code data-trim class='python' style="font-size: 110%">
+>>> model = qi.BinomialModel(
+...     qi.RandomizedBenchmarkingModel()
+... )
+                        </code></pre>
+                    </div>                  
+
+                    <div class="fragment">
+                        <h6 class="code-caption">
+                            Prior:
+                            <span class="right-note" style="right: 2.6em">
+                                Previous knowledge about model.
+                            </span>
+                        </h6>
+                        <pre><code data-trim class='python' style="font-size: 110%">
+>>> prior = qi.PostselectedDistribution(
+...     qi.ProductDistribution(
+...         # Use a uniform distribution over $p$.
+...         qi.UniformDistribution([0.8, 1]),
+...         # Tight normal over $A,\,B$.
+...         qi.MultivariateNormalDistribution(
+...             np.array([0.498, 0.499]),
+...             np.diag([0.004, 0.002]) ** 2
+...         )
+...     # Require that parameters are valid for RB.
+...     ), model)
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section>
+                    
+                    <div>                       
+                        <h6 class="code-caption">
+                            Updater Loop:
+                            <span class="right-note" style="right: 2.6em">
+                                Incorporate observations <em>online</em>.
+                            </span>
+                        </h6>
+                        <pre><code data-trim class="python" style="overflow-x: hidden;">
+>>> updater = qi.smc.SMCUpdater(model, 8000, prior)
+>>> for idx_exp in range(n_exp):
+...     # Describe the measurement as a sequence length
+...     # and a number of shots at that length.
+...     expparams = np.array(
+...         [(seq_lengths[idx_exp], n_shots)],
+...         dtype=model.expparams_dtype)
+...     # Pass the counts data and the measurment
+...     # description to the updater.
+...     updater.update(counts[idx_exp], expparams)
+... # Print estimates and error bars.
+... print(updater.est_mean(),
+...     updater.est_covariance_mtx())
+                        </code></pre>
+                    </div>
+                </section>
+-->
+                <section data-markdown
+                         data-background="#000"
+                         data-background-size="100%"
+                         data-background-position="center"
+                         data-background-repeat="no-repeat"
+                         data-background-image="figures/rb-custom-updater.png"
+                         data-state="show-foot-arb"
+                         >
+                </section>
+
+<!--
+                <section>
+                    <h3>More <span class="wordmark">QInfer</span> Concepts: Heuristics</h3>
+
+                    <div data-markdown>
+                        *Heuristics* can be used to design measurements.
+
+                        For example, $t_k = ab^k$ is optimal for non-adaptive
+                        Rabi/Ramsey/phase estimation.
+
+                        ```python
+                        >>> heuristic = ExpSparseHeuristic(scale=a, base=b)
+                        ```
+                    </div>
+
+                    <span class="wordmark">QInfer</span>
+                    implements heuristics as functions which provide
+                    new experiments.
+                </section>
+-->
+
+                <section data-state="show-foot-pbt">
+                    <h3><strong>Example</strong>: Tomography in <span class="wordmark">QInfer</span></h3>
+
+                    <pre><code data-trim class="python" style="overflow-x: hidden;">
+>>> basis = pauli_basis(1)
+>>> prior = GinibreReditDistribution(basis)
+>>> model = TomographyModel(basis)
+>>> true_state = prior.sample()
+>>> 
+>>> updater = SMCUpdater(model, 8000, prior)
+>>> heuristic = RandomPauliHeuristic(updater)
+>>> 
+>>> for idx_experiment in range(500):
+...     experiment = heuristic()
+...     datum = model.simulate_experiment(
+...         true_state, experiment
+...     )
+...     updater.update(datum, experiment)
+                    </code></pre>
+                </section>
+
+                <section data-markdown
+                         data-background="#000"
+                         data-background-size="75%"
+                         data-background-position="center"
+                         data-background-repeat="no-repeat"
+                         data-background-image="figures/state-tomography.png"
+                         >
+                </section>
+
+                <section>
+                    <h2><span class="wordmark">QInfer</span> 💖 <strong>QuTiP</strong></h2>
+
+                    <p>
+                        Tomography support in <span class="wordmark">QInfer</span> is backed by
+                        the quantum object representation and prior
+                        distributions
+                        provided by <strong>QuTiP</strong>
+                        4.0.
+                    </p>
+
+                    <pre><code class="python" data-trim>
+>>> modelparams = basis.state_to_modelparams(rho)
+>>> rho = basis.modelparams_to_state(rho)
+>>> cov_superop = basis.covariance_mtx_to_superop(
+...     updater.est_covariance_mtx()
+... )
+                    </code></pre>
+
+                    <p>
+                        Makes it easy to integrate with other QIP concepts: fidelity, Schatten and diamond norms, etc.
+                    </p>
+                </section>
+
+                <section data-state="show-foot-condensation">
+                    <h3>Diffusive Models</h3>
+
+                    <p>
+                        <span class="wordmark">QInfer</span>
+                        also supports time-dependent parameter estimation
+                        by adding an update rule to hypothesis positions as well as
+                        weights:
+
+                        $$
+                            \vec{x}(t_{k + 1}) - \vec{x}(t_k) \sim \mathcal{N}(0, \sigma^2).
+                        $$
+                    </p>
+                </section>
+
+                <section data-background="#000"
+                         data-background-size="70%"
+                         data-background-position="center"
+                         data-background-repeat="no-repeat"
+                         data-background-image="figures/rabi-random-walk.png">
+                </section>
+
+                <!--
+                <section>
+                    <h3>Other <span class="wordmark">QInfer</span> Features</h3>
+
+                    <ul style="width: 90%">
+                        <li>
+                            Plotting/visualization
+                            <span class="right-note">
+                                e.g.: posterior covariance.
+                            </span>
+                        </li>
+
+                        <li>
+                            Numerical evaluation of
+                            Cramér–Rao bounds.
+                            <!- - </span> - ->
+                        </li>
+
+                        <li>
+                            Region estimation
+                            <span class="right-note">
+                                e.g.: convex hull.
+                            </span>
+                        </li>
+
+                        <li>
+                            Testing of robustness to
+                            approximation errors.
+                        </li>
+
+                        <li>
+                            Parallelization
+                            <span class="right-note">
+                                Multi-core, or multi-node.
+                            </span>
+                        </li>
+
+                        <li>
+                            Jupyter Utilities
+                            <span class="right-note">
+                                e.g.: progress reporting.
+                            </span>
+                        </li>
+                    </ul>
+                </section>
+                -->
+
+                <section>
+                    <p>
+                        We can also build new algorithmic approaches using ideas from
+                        particle filtering.
+                    </p>
+                </section>
+
+                <section data-state="show-foot-rfpe">
+                    <h3>Rejection Filtering</h3>
+
+                    <p>
+                        Using $a = 0$ resampling, need only keep one particle in memory at a time.
+                    </p>
+
+                    <ul>
+                        <li>Extremely easy to implement.</li>
+                        <li>Ideal for embedded characterization algorithms.</li>
+                    </ul>
+                </section>
+
+                <section data-state="show-foot-rfpe">
+					<h2>Rejection Filtering (RejF)</h2>
+
+					<p>
+					    <strong>Input:</strong>
+					    Prior mean $\bar{x}$, prior covariance $\Sigma$,
+						number of samples $m$ to accept.
+					<p>
+
+					<ul style="width: 80%">
+						<li><strong>For</strong> each datum $d$ and experiment $e$:</li>
+						<ul>
+							<li>
+								$n, \bar{x}', M_2 \gets 0$
+								<span class="comment">Initialize Welford.</span>
+							</li>
+							<li><strong>While</strong> $n < m$:</li>
+							<ul>
+								<li>
+									Draw $\vec{x} \sim \mathcal{N}(\bar{x}, \Sigma)$.
+									<span class="comment">Sample f/ prior.</span>
+								</li>
+								<li>Accept $\vec{x}$ w/ $\Pr(d | \vec{x}; e)$.</li>
+								<li><strong>If</strong> accepted, update $n$, $\bar{x}'$, $M_2$.</li>
+							</ul>
+							<li>
+								$\bar{x} \gets \bar{x}'$, $\Sigma \gets M_2 / (n - 1)$.
+								<span class="comment">
+									Est. moments.
+								</span>
+							</li>
+						</ul>
+					</ul>
+				</section>
+
+
+                
+                <section data-state="show-foot-qrej">
+                    <h3>Quantum Rejection Filtering</h3>
+
+                    <h6 class="code-caption">
+                        <strong>Def:</strong>
+                        Quantum Bayes Update
+                    </h6>
+                    <blockquote style="font-style: normal;">
+                        $$
+                            \sum_x \sqrt{\Pr(x)} \ket{x} \mapsto
+                            \sum_x \sqrt{\Pr(x | d)} \ket{x}.
+                        $$
+                    </blockquote>
+
+                    <ul>
+                        <li>Nonlinear, thus cannot be implemented with unitary only.</li>
+                        <li>HHL algorithm implements using postselection on ancilla.</li>
+                        <li>Rejection filtering allows recovering from postselection errors.</li>
+                    </ul>
+
+                    <p>
+                        Gives quantum algorithm for performing Bayesian inference.
+                    </p>
+
+                </section>
+
+                <section data-state="show-foot-structf">
+                    <h3>Structured Filtering</h3>
+
+                    <p>
+                        Uses machine learning techniques such as clustering to learn the
+                        <em>structure</em> of a parameter estimation problem.
+                    </p>
+
+                    <p>
+                        Critical for <em>multi-modal</em> and <em>degenerate</em> problems.
+                    </p>
+
+                    <h6 class="bg-rule"><span>key idea</span></h6>
+
+                    <p>
+                        Instead of resampling <em>globally</em>, split a particle
+                        filter into modes and resample <em>locally</em>.
+                    </p>
+                </section>
+
+                <section>
+					<h3>Graphical Notation for Model Selection and Mixtures</h3>
+
+					<img
+						data-src="figures/graphical-notation.png"
+					>
+
+					<table style="width: 80%">
+						<tr>
+							<td><span style="color: #d55e00">&#x25A0;</span></td>
+							<td>Local particle filter</td>
+						</tr>
+
+						<tr>
+							<td><span style="color: #cc79a7">&#x25CF;</span></td>
+							<td>Model selection</td>
+						</tr>
+
+						<tr>
+							<td><span style="color: #56b4e9">&#x25B2;</span></td>
+							<td>Mixture between clusters</td>
+						</tr>
+
+						<!-- <dt>&#x25CF;</dt>
+						<dt>&#x25B2;</dt> -->
+					</table>
+				</section>
+
+                <section data-background="#fff" data-background-video="figures/rge-example-final.mp4">					
+				</section>
+
+				<section data-background="#fff"
+				         data-background-size="60%"
+				         data-background-position="center"
+				         data-background-repeat="no-repeat"
+						 data-background-image="figures/final-tree.png">
+				</section>
+
+                <section>
+                    <h1>Experiment Design Heuristics</h1>
+                </section>
+
+                <section>
+                    <h3>Statistical Inference and Experiment Design</h3>
+
+                    <p>
+                        Principled approaches to parameter estimation reduce
+                        demands on experiment design.
+                    </p>
+
+                    <ul>
+                        <li>Even in worst case, data is still data.</li>
+                        <li>Variety in experiment design useful to decorrelated
+                            different parameters — rewards randomness.</li>
+                        <li>Need to be able to embed in hardware.</li>
+                    </ul>
+
+                    <p>
+                        Thus, heuristics.
+                    </p>
+                </section>
+
+                
+                <section data-state="show-foot-sgqt">
+                    <h3><strong>Example:</strong> Self-Guided Tomography</h3>
+
+                    <p>
+                        Express tomography
+                        as an <em>optimization</em> problem.
+                    </p>
+
+                    <blockquote>
+                        Which state $\ket{\hat{\phi}}$ has the greatest overlap
+                        with the unknown true state $\ket{\phi}$?
+                    </blockquote>
+
+                    Estimate objective function $|\braket{\hat{\phi} | \phi}|$
+                    by measuring in the basis $\bra{\hat{\phi}}$.
+
+                    Can then solve using stochastic optimization.
+                </section>
+
+                <section data-state="show-foot-paqt">
+                    <h3>Optimization as Heuristic</h3>
+
+                    <p>
+                        The path a stochastic optimizer takes to its maximum overlap
+                        then describes a sequence of measurements.
+                    </p>
+
+                    <h6 class="code-caption">
+                        Practical Adaptive Quantum Tomography
+                    </h6>
+                    <blockquote>
+                        Use a stochastic optimizer to heuristically choose measurements,
+                        then postprocess with Bayesian inference to report principled estimate.
+                    </blockquote>
+                </section>
+
+                <section
+                    data-background="#000"
+                    data-background-image='figures/mixed-qutrit-infid.png'
+                    data-background-position="center"
+                    data-background-repeat="no-repeat"
+                    data-background-size="90%">
+                </section>
+
+                <section data-state="show-foot-qhl">
+                    <h3><strong>Example:</strong> Particle Guess Heuristic</h3>
+
+                    <h6 class="code-caption">
+                        Quantum Hamiltonian Learning
+                    </h6>
+                    <blockquote>
+                        We wish to learn $H$ given access to $e^{-i (H - H_-) t}$ for
+                        some time $t$ and hypothesis $H_-$.
+                    </blockquote>
+
+                    <ul>
+                        <li>Pick two hypotheses $H_-, H_-'$ by sampling from current posterior.</li>
+                        <li>Pick $t = 1 / |H_- - H_-'|$.</li>
+                    </ul>
+
+                    <p>
+                        Ensures $t |H - H_-|$ is approximately constant, such that
+                        Loschmidt echo is preserved.
+                    </p>
+                </section>
+
+                <section data-state="show-foot-qhl">
+					<h3><strong>Application:</strong> Complete $n$-Qubit Ising</h3>
+
+					<img src="figures/iqle-complete-ising.png" class="stretch">
+				</section>
+
+                <section data-state="show-foot-blameless">
+                    <h3><strong>Application:</strong> Blameless Tomography</h3>
+
+                    <p>
+                        Useful for separating preparation and measurement errors in tomography,
+                        with the Kimmel <em>et al.</em> / LMR algorithm.
+                    </p>
+
+                    TODO: figure
+                </section>
+
+                <section
+                    data-background="#000"
+                    data-background-image='figures/pgh-bounds-comparison.png'
+                    data-background-position="center"
+                    data-background-repeat="no-repeat"
+                    data-background-size="60%">
+                </section>
+
+                <section data-state="show-foot-qbs">
+                    <h3><strong>Application:</strong> Quantum Bootstrapping</h3>
+
+                    <p>
+                        Using physical insight such as the Lieb–Robinson bound, can extend
+                        benefits even to systems ~50 qubits.
+                    </p>
+
+					<img src="./figures/qbs-lightcones.png" class="stretch">
+                </section>
+
+				<section>
+					<h4>50 qubit Ising chain, 8 qubit simulator, 4 qubit observable</h4>
+
+					<img src="./figures/qbs-error-per-scan.png" width="60%">
+				</section>
+
+                <section data-state="show-foot-hh">
+                    <h3>Going Further with Hyperheuristics</h3>
+
+                    <p>
+                        Heuristics are useful, but how do we select the most appropriate
+                        heuristic for an experiment?
+                    </p>
+
+                    <blockquote>
+                        Given a family of heuristics $e(\vec{h})$ parameterized by a vector
+                        $\vec{h}$, repeatedly simulate experiments to choose $\vec{h}$
+                        that minimizes the <strong>risk (average error)</strong> incurred.
+                    </blockquote>
+
+                </section>
+
+                <section>
+                    <h3>Assessing Risk with <span class="wordmark">QInfer</span></h3>
+
+                    <dl>
+                        <dt>
+                            Risk: <span class="right-note">
+                                average error <strong>given</strong> $\color{white}{\vec{x}}$
+                            </span>
+                        </dt>
+
+                        <dt>
+                            Bayes risk: <span class="right-note">
+                                average error <strong>over</strong> $\color{white}{\vec{x}}$
+                            </span>
+                        </dt>
+                    </dl>
+
+                    <div class="fragment">
+                        <hr>
+
+                        <ul>
+                            <li>Exact $\hat{x}$ optimal for Bayes risk / squared error.</li>
+                            <li>Difficult to <em>prove</em>; can find numerically.</li>
+                        </ul>
+
+
+                        <h6 class="code-caption">
+                            Performance Testing
+                        </h6>
+                        <pre><code class="python" data-trim>
+>>> perf = perf_test_multiple(
+...     n_trials=50, n_exp=50, n_particles=1000,
+...     model=SimplePrecessionModel(),
+...     prior=UniformDistribution([0, 1]),
+...     heuristic_class=ExpSparseHeuristic
+... )
+                        </code></pre>
+
+                        <p>
+                            Returns error, timing, and diagnostics for each
+                            different trial.
+                        </p>
+                    </div>
+                </section>
+
+                <section data-state="show-foot-improved-hh">
+                    <p>
+                        Combined with novel opimization algorithms, can automatically find
+                        appropriate heuristics based on design constraints.
+                    </p>
+
+                    <p>
+                        <img data-src="figures/hh-opt-petta-median.png" width="65%">
+                    </p>
+                </section>
+
+                <section>
+                    <p>
+                        Together, principled statistical methods and heuristic experiment design
+                        offer a powerful approach to relaxing design constraints in QIP.
+                    </p>
+                </section>
+
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            'HTML-CSS': {
+                preferredFont: null,
+                webFont: 'Gyre-Pagella'
+            },
+            TeX: {
+                Macros: {
+                    ee: "{\\mathrm{e}}",
+                    ii: "{\\mathrm{i}}",
+                    dd: "{\\mathrm{d}}",
+                    id: "{\u{1d7d9}}",
+                    TT: "{\\mathrm{T}}",
+                    defeq: "{\\mathrel{:=}}",
+                    Tr: "{\\operatorname{Tr}}",
+                    Var: "{\\operatorname{Var}}",
+                    Cov: "{\\operatorname{Cov}}",
+                    rank: "{\\operatorname{rank}}",
+                    expect: "{\\mathbb{E}}",
+                    sket: ["{|#1\\rangle\\negthinspace\\rangle}", 1],
+                    sbraket: ["{\\langle\\negthinspace\\langle#1\\rangle\\negthinspace\\rangle}", 1],
+                    Gini: "{\\operatorname{Ginibre}}",
+                    supp: "{\\operatorname{supp}}",
+                    ket: ["{\\left|#1\\right\\rangle}", 1],
+                    bra: ["{\\left\\langle#1\\right|}", 1],
+                    braket: ["{\\left\\langle#1\\right\\rangle}", 1]
+                }
+            }
+          });
+        </script>
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                progress: true,
+                history: true,
+                center: true,
+                zoomKey: 'shift',
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/math/math.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
