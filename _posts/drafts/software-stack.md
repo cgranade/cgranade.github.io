@@ -348,6 +348,7 @@ The easiest way to fix this is to close and re-open your PowerShell session.
 
 Notice that we've also installed ``poshgit`` (short for PowerShell Git) with this command, as that handles a lot of nice Git-related tasks within PowerShell.
 To add posh-git to your prompt, please see the [instructions provided with posh-git](https://github.com/dahlbyk/posh-git/#using-posh-git).
+One of the more useful effects of adding posh-git to your prompt is that posh-git will then look at your setting for ``$Env:GIT_SSH`` and automatically manage your PuTTY configuration for you.
 
 On Ubuntu, run the following in your favorite shell:
 
