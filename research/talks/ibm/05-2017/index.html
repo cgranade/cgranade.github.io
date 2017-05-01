@@ -874,7 +874,7 @@
                 </section>
 
                 <section>
-                    <h3>Software is for People, not Computers</h3>
+                    <h3>Software is for People, not Just Computers</h3>
 
                     Thus, <span class="wordmark">QInfer</span> is:
 
@@ -1225,7 +1225,7 @@ est_mean, est_cov = qi.simple_est_prec(data,
 						<ul>
 							<li>
 								$n, \bar{x}', M_2 \gets 0$
-								<span class="comment">Initialize Welford.</span>
+								<span class="comment">Initialize registers.</span>
 							</li>
 							<li><strong>While</strong> $n < m$:</li>
 							<ul>
@@ -1370,7 +1370,7 @@ est_mean, est_cov = qi.simple_est_prec(data,
                         with the unknown true state $\ket{\phi}$?
                     </blockquote>
 
-                    Estimate objective function $|\braket{\hat{\phi} | \phi}|$
+                    Estimate objective function $\left|\braket{\hat{\phi} | \phi}\right|^2$
                     by measuring in the basis $\bra{\hat{\phi}}$.
 
                     Can then solve using stochastic optimization.
