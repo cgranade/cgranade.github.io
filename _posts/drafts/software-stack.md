@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Software Tools for Writing Reproducible Papers: Part I"
+title: "Software Tools for Writing Reproducible Papers"
 ---
 
 ### Preamble ###
@@ -331,7 +331,7 @@ In following these tutorials, we recommend starting by using the command line as
 In any case, let's go on and install Git.
 We will install Secure Shell (SSH) while we're at it, since this is a very common and powerful way of interfacing with Git hosting providers such as [GitHub](https://github.com/), [Bitbucket](http://bitbucket.com/), and [GitLab](https://about.gitlab.com/).
 Notably, SSH is also very useful for other research tasks such as managing cluster resources and running Jupyter Notebooks on remote servers, such that in installing SSH we get access to another general-purpose tool.
-`1
+
 On Windows, run the following in an Administrator PowerShell session:
 
 ```powershell
