@@ -71,6 +71,20 @@ Microsoft offers PowerShell easy-to-install packages for Linux and macOS / OS X 
 For most Windows users, we don't need to install PowerShell, but we will need to install a package manager to help us install a couple things later.
 If you don't already have [Chocolatey](https://chocolatey.org/), go on and install it now, following [their instructions](https://chocolatey.org/install).
 
+Similarly, we will use the package manager [Homebrew](https://brew.sh) for macOS / OS X.
+The quickest way to install it is to run the following command in `Terminal`:
+```bash
+$ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+Also, be sure to restart your `Terminal` window after the installation.
+Then, we install powershell with the following two commands:
+```bash
+$ brew tap caskroom/cask
+$ brew cask install powershell
+```
+The first command installs the [Homebrew Cask](https://caskroom.github.io) extension for programs distributed as binaries.
+
+
 ### Aside: Why PowerShell? ###
 
 As a brief aside, why PowerShell?
@@ -111,8 +125,12 @@ From an Administrator session of PowerShell (right-click on PowerShell in the St
 PS> choco install miktex
 ```
 
-### (macOS / OS X only) TODO ###
+### (macOS / OS X only)  MacTeX ###
 
+Installing [MacTeX](http://www.tug.org/mactex/) is similarly straightforward using Homebrew Cask (which we should have installed earlier):
+```bash
+$ brew cask install mactex
+```
 ## Jupyter ##
 
 Moving on, let's take a few seconds to get Jupyter up and running.
@@ -153,6 +171,10 @@ Notably, many other good examples exist, such as Atom; we focus on VS Code here 
 With that aside, let's start by installing.
 
 If you're running on Ubuntu or macOS / OS X, let's download Visual Studio Code from the [VS Code website](https://code.visualstudio.com/Download).
+Alternatively for macOS / OS X, you can use Homebrew Cask
+```bash
+$ brew cask install visual-studio-code
+```
 On Ubuntu, we only need to install VS Code manually the first time; after that, Code can be managed using Ubuntu Software Center in the same manner as built-in packages.
 Meanwhile, the macOS / OS X version is installed by dragging the downloaded app into Applications.
 
@@ -358,6 +380,11 @@ $ sudo apt install openssh git # TODO: verify
 This may warn that some or all of the needed packages are already installed— if so, that's fine.
 
 On macOS / OS X, SSH is pre-installed by default. To install Git, run ``git`` at the terminal and follow the installation prompts. 
+However, the versions of ssh and git distributed with macOS / OS X are often outdated.
+Homebrew to the rescue:
+```bash
+$ brew install ssh git
+```
 
 Note that posh-git also partially works on PowerShell for Linux and macOS / OS X, but does not yet properly handle setting command-line prompts.
 
@@ -449,8 +476,11 @@ To install ``latexdiff`` on Ubuntu, we can again rely on ``apt``:
 ```bash
 $ sudo apt install latexdiff
 ```
-
-- TODO: how does one install latexdiff on macOS / OS X?
+For macOS / OS X, the easiest way to install latexdiff is to use the package manager of MacTeX.
+Either use `Tex Live Utiliy`, a GUI program distributed with MacTeX or run the following command in a shell
+```bash
+sudo tlmgr install latexdiff
+```
 
 For ``rcs-latexdiff``, I recommend the [*fork* maintained by Ian Hincks](https://github.com/ihincks/rcs-latexdiff/).
 We can use the Python-specific package manager ``pip`` to automatically download Ian's Git repository for ``rcs-latexdiff`` and run its installer:
