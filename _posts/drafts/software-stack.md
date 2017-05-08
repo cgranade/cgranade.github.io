@@ -77,7 +77,7 @@ The quickest way to install it is to run the following command in `Terminal`:
 $ /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 Also, be sure to restart your `Terminal` window after the installation.
-Then, we install powershell with the following two commands:
+Then, we install PowerShell with the following two commands:
 ```bash
 $ brew tap caskroom/cask
 $ brew cask install powershell
@@ -154,9 +154,8 @@ PS> choco install anaconda3
 
 On Linux and macOS / OS X, the process is [not much more complicated](https://nbviewer.jupyter.org/github/QuinnPhys/PythonWorkshop-science/blob/master/lecture-0-scicomp-tools-part0.ipynb#Python-with-the-Anaconda-Distribution-(30-Minutes)).
 
-To get started using Juyter Notebook, we suggest the following tutorials:
+To get started using Juyter Notebook, we suggest the following tutorial:
 - [EQuS Workshop on Python for Quantum Information Science: Lecture 2](https://nbviewer.jupyter.org/github/QuinnPhys/PythonWorkshop-science/blob/master/lecture-2-python-general.ipynb#Jupyter-Notebook-(30-Minutes))
-- TODO: maor
 
 ## Editor ##
 
@@ -375,7 +374,7 @@ One of the more useful effects of adding posh-git to your prompt is that posh-gi
 On Ubuntu, run the following in your favorite shell:
 
 ```bash
-$ sudo apt install openssh git # TODO: verify
+$ sudo apt install ssh git
 ```
 This may warn that some or all of the needed packages are already installed— if so, that's fine.
 
@@ -402,10 +401,24 @@ Since the details depend on your choice of provider, we won't detail them here, 
 Rather, we suggest following documentation for the hosting provider of your choice in order to get up and running.
 
 In any case, as promised above, we can now use Git to download and install the LaTeX packages that we require.
-To get ``{revquantum}``. run the following commands in PowerShell:
+To get ``{revquantum}``, we'll run the included PowerShell installer.
+Note that, due to a bug that installer (currently being fixed), this will fail unless you already have [Pandoc](johnmacfarlane.net/pandoc/) installed.
+Thus, we'll go on and work around that bug for now by installing Pandoc (besides, it's useful in writing responses to referees, as I'll discuss in a future post):
+```bash
+# macOS
+$ brew install pandoc
+# Ubuntu
+$ sudo apt install pandoc
+# Windows
+PS> choco install pandoc
+```
+I sincerely apologize for this bug, and will have it fixed soon.
+In any case, and having apologized for introducing additional requirements, let's go on and install the packages themselves:
 ```powershell
-PS> git clone https://github.com/cgogolin/quantum-journal.git
+PS> git clone https://github.com/cgranade/revquantum.git
 PS> cd revquantum
+PS> # Only run the following on Windows, as Unblock-File isn't needed
+PS> # on Linux and macOS / OS X.
 PS> Unblock-File Install.ps1 # Marks that the installer is safe to run.
 PS> ./Install.ps1
 ```
@@ -414,6 +427,8 @@ Installing the ``{quantumarticle}`` document class proceeds similarly:
 ```powershell
 PS> git clone https://github.com/cgogolin/quantum-journal.git
 PS> cd quantum-journal
+PS> # Only run the following on Windows, as Unblock-File isn't needed
+PS> # on Linux and macOS / OS X.
 PS> Unblock-File install.ps1 # NB: "install" is spelled with a lower-case i here!
 PS> ./install.ps1
 ```
@@ -479,7 +494,8 @@ $ sudo apt install latexdiff
 For macOS / OS X, the easiest way to install latexdiff is to use the package manager of MacTeX.
 Either use `Tex Live Utiliy`, a GUI program distributed with MacTeX or run the following command in a shell
 ```bash
-sudo tlmgr install latexdiff
+$ sudo tlmgr update --self
+$ sudo tlmgr install latexdiff
 ```
 
 For ``rcs-latexdiff``, I recommend the [*fork* maintained by Ian Hincks](https://github.com/ihincks/rcs-latexdiff/).
@@ -629,6 +645,7 @@ In the meantime, even in lieu of these features, I hope that this description is
 
 ## Acknowledgements ##
 
+- A huge thanks to [Daniel Suess](https://www.qc.uni-freiburg.de/team/daniel_suess) for writing the install instructions on macOS / OS X! ★♥★
 - Thanks to [Olivia Guest](https://twitter.com/o_guest) for [suggestions on Git tutorials](https://twitter.com/o_guest/status/857641108729466883).
 - Thanks to Ben Barigola, Sarah Kaiser, and Chris Ferrie for feedback on drafts and for help testing.
 - Thanks to Chris Ferrie for [nerdsniping me](https://twitter.com/cgranade/status/857130965969358853) into writing this post.
