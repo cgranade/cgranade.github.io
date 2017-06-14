@@ -485,6 +485,10 @@
                             I'm also self-interested, so I'll highlight my own efforts.
                         </li>
                         <li>
+                            A lot of this represents research currently in development;
+                            it's not perfect.
+                        </li>
+                        <li>
                             This talk is aspirational, not judgmental.
                         </li>
                     </ul>
@@ -523,9 +527,37 @@
                         Models collaboration on a project as a <em>directed acyclic graph</em>.
                     </p>
 
+                    <p>
+                        <img data-src="figures/qinfer-git-log.png" width="50%">
+                    </p>
+                </section>
+
+                <section>
+                    <h3><strong>Git</strong> as Formalism</h3>
+
                     <ul>
-                        <li>TODO: </li>
+                        <li>
+                            <strong>Commits</strong>:
+                            Communication as unit of collaboration.
+                        </li>
+                        <li>
+                            <strong>Diff/Merge</strong>:
+                            Overwriting changes as intentional decision, not race condition.
+                        </li>
+                        <li>
+                            <strong>Branches</strong>:
+                            Independent or isolated work for later consolidation.
+                        </li>
+                        <li>
+                            <strong>Tags</strong>:
+                            Mark milestones (<em>e.g.:</em> arXiv posting, journal resubmission)
+                        </li>
                     </ul>
+
+                    <p>
+                        Formalism supports explicit decisions about how and what to share,
+                        making collaboration easier and more robust.
+                    </p>
                 </section>
 
                 <section>
@@ -559,12 +591,39 @@
                     <h3><strong>Jupyter:</strong> Literate Programming</h3>
 
                     <p>
-
+                        Multi-lingual platform for mixing prose, equations, plots and code.
                     </p>
 
                     <p>
                         TODO: screenshot
                     </p>
+                </section>
+                
+                <section>
+                    <h3><strong>Jupyter</strong> as Community</h3>
+
+                    <p>
+                        Lots of additional tools for working with Jupyter:
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>nbviewer</strong>:
+                            View notebooks online w/ no installation required.
+                        </li>
+                        <li>
+                            <strong>binder</strong>:
+                            <em>Run</em> Python notebooks w/o installaton.
+                        </li>
+                        <li>
+                            <strong>nbconvert</strong>:
+                            Format as TeX, PDF, web pages, blog posts, etc.
+                        </li>
+                        <li>
+                            <strong>Additional languages</strong>:
+                            F#, JavaScript, Scala, PARI/GP, MATLAB (yes, really)
+                        </li>
+                    </ul>
                 </section>
 
                 <section>
@@ -582,11 +641,159 @@
                 </section>
 
                 <section>
-                    <h3><strong>PoShTeX:</strong> Managed Builds for Reproducibility</h3>
+                    <h6 class="code-caption">System-Wide</h6>
+                    <pre><code class="bash" data-trim>
+# Ubuntu
+$ sudo apt install texlive
+# macOS / OS X
+$ brew cask install mactex
+# Windows
+PS> choco install miktex
+                    </code></pre>
+
+                    <h6 class="code-caption">Language-Specific</h6>
+                    <pre><code class="bash" data-trim>
+# Python
+$ pip install qinfer
+# Julia
+Julia> Pkg.add("PyCall")
+# R
+> install.packages("ggplot2")
+# PowerShell
+PS> Install-Module posh-git
+                    </code></pre>
                 </section>
 
                 <section>
-                    <h3><strong>Bayesian inference:</strong> Objective Reasoning about Subjectivity</h3>
+                    <p>
+                        Provides a valuable tool for specifying computing
+                        <em>environments</em>.
+                    </p>
+
+                    <h6 class="code-caption">environment.yml</h6>
+                    <pre><code class="yaml" data-trim>
+# Install:
+#     $ conda env create -f environment.yml
+name: sgqt
+channels:
+    - conda-forge
+dependencies:
+    - python=3.6
+    - notebook
+    - qutip
+    - matplotlib
+    - pip:
+        - InstrumentKit
+        - qinfer
+        - PyDAQmx
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>
+                        Reproducible research means a lot of files to manage (source code,
+                        TeX, package environments, READMEs).
+                        <br>
+                        Thus need tools to help manage sharing and redistributing.
+                    </p>
+
+                    <h3><strong>PoShTeX:</strong> Managed Builds for Reproducibility</h3>
+
+                    <p>
+                        Uses PowerShell package management to support lightweight
+                        <em>manifests</em> for arXiv submission.
+                    </p>
+                </section>
+
+                <section>
+                    <h6 class="code-caption">Export-ArXiv.ps1</h6>
+                    <pre><code class="yaml" data-trim>
+Export-ArXivArchive @{
+    ProjectName = "sgqt_mixed";
+    TeXMain = "notes/sgqt_mixed.tex";
+    AdditionalFiles = @{
+        "notes/revquantum.sty" = "/";
+        "figures/*.pdf" = "figures/";
+        "README.md" = "anc/";
+        "src/*.yml" = "anc/";
+        "data/*.hdf5" = "anc/";
+    };
+    Notebooks = @(
+        "src/do-experiment.ipynb"
+    )
+}
+                    </code></pre>
+
+                    <p data-markdown>
+                        Produces ``sgqt_mixed.zip``, including supplemental material in a form
+                        suitable for uploading to arXiv.
+                    </p>
+                </section>
+
+                <section>
+                    <h3><strong>Bayesian Inference:</strong> Objective Reasoning a/ Subjectivity</h3>
+
+                    <p>
+                        We are <em>subjective</em> agents.
+                        With enough caution
+                        (preregistration, bootstrapping, etc.), we can report <em>objective</em>
+                        results.
+                    </p>
+
+                    <h6 class="bg-rule"><span>alternative</span></h6>
+
+                    <p>
+                        Use Bayes' rule to formally and objectively reason <em>about</em>
+                        our subjective beliefs.
+                    </p>
+
+                    $$
+                        \Pr(\text{model} | \text{data}) =
+                            \frac{\Pr(\text{data} | \text{model})}{\Pr(\text{data})} \Pr(\text{model})
+                    $$
+                </section>
+
+                <section>
+                    <p>
+                        Practitioners with different <em>priors</em> $\Pr(\text{model})$ will disagree
+                        about the <em>posterior</em> $\Pr(\text{model} | \text{data})$, but will agree
+                        on the process.
+                    </p>
+
+                    <ul>
+                        <li>
+                            Isolates and documents points of disagreement, encouraging honest reporting
+                            of subjective bias.
+                        </li>
+                        <li>
+                            Reproducible research makes it easier to substitute different priors,
+                            repeat analysis.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Software Tools for Bayesian Inference</h3>
+
+                    <p>
+                        TODO: flesh out
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong class="wordmark">QInfer</strong>:
+                            Online Bayesian inference for QIP experiments and theory.
+                        </li>
+                        <li>
+                            <strong>PyMC3</strong>
+                        </li>
+                        <li>
+                            <strong>Stan</strong>
+                        </li>
+                        <li>
+                            <strong>Edward</strong>
+                        </li>
+                    </ul>
                 </section>
 
                 <section>
@@ -594,10 +801,20 @@
                 </section>
 
                 <section>
-                    <h3>Version Control Hosting</h3>
+                    <h3><strong>Git Hosting</strong>: GitHub, BitBucket, GitLab, …</h3>
 
+                    <ul>
+                        <li>Use of Git as a <em>protocol</em> reduces monopolization.</li>
+                        <li>
+                            Version control as social media: visibility for software outputs,
+                            research groups, institutions.
+                        </li>
+                    </ul>
+
+                    <hr>
+                    
                     <p>
-                        TODO: deemphasizes bibliometrics by providing other ways to contribute
+                        Esp. important for fighting bibliometrics, rewarding non-traditional research.
                     </p>
                 </section>
 
@@ -605,8 +822,26 @@
                     <h3>Transferrable Skills Development</h3>
                     
                     <p>
-                        TODO: giving researchers an "out" reduces impact of gatekeeping, coercion.
+                        Problematic / toxic environments exist, can be reinforced if students' skills are
+                        too specialized.
                     </p>
+
+                    <p>
+                        Thus, focusing on <em>transferrable</em> skills can reduce institutionalization of toxic
+                        environments.
+                    </p>
+
+                    <h6 class="bg-rule"><span>examples</span></h6>
+
+                    <ul>
+                        <li>
+                            Python vs MATLAB: Widely-adopted platform and reliance on general
+                            CS theory promotes skill development.
+                        </li>
+                        <li>
+                            TODO: 
+                        </li>
+                    </ul>
                 </section>
 
                 <section>
