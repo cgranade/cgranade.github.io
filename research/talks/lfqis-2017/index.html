@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Humanitarian QIP</title>
+
+        <meta name="author" content="Christopher E. Granade">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+        <link rel="stylesheet" href="css/theme/cgranade-dark.css" id="theme">
+
+
+        <style type="text/css" media="screen">
+            .reveal cite.googl a {
+            font-family: "Source Sans Pro";
+            font-weight: 400; }
+            .reveal cite.googl a::before {
+            content: "goo.gl/";
+            /* font-variant: small-caps; */
+            font-size: 65%;
+            font-weight: 500; }
+
+            .hideable-foot {
+                display: block;
+                opacity: 0;
+                font-size: 90% !important;
+                position: absolute;
+                bottom: 0em;
+                right: 0.5em;
+                text-align: right;
+                transition: all 2s;
+                z-index: 1;
+            }
+
+            .show-foot-pbt #foot-pbt,
+            .show-foot-pbt-review #foot-pbt-review,
+            .show-foot-rb #foot-rb,
+            .show-foot-arb #foot-arb,
+            .show-foot-how #foot-how,
+            .show-foot-rohl #foot-rohl,
+            .show-foot-qhl #foot-qhl,
+            .show-foot-qhl-noise #foot-qhl-noise,
+            .show-foot-qbs #foot-qbs,
+            .show-foot-lfpe #foot-lfpe,
+            .show-foot-lw #foot-lw,
+            .show-foot-smc #foot-smc,
+            .show-foot-qrej #foot-qrej,
+            .show-foot-better #foot-better,
+            .show-foot-title-foot #foot-title-foot,
+            .show-foot-condensation #foot-condensation,
+            .show-foot-qinfer #foot-qinfer,
+            .show-foot-rfpe #foot-rfpe,
+            .show-foot-structf #foot-structf,
+            .show-foot-hh #foot-hh,
+            .show-foot-improved-hh #foot-improved-hh,
+            .show-foot-thanks-ian #foot-thanks-ian,
+            .show-foot-thanks-hpd #foot-thanks-hpd,
+            .show-foot-thanks-bayes-neon #foot-thanks-bayes-neon,
+            .show-foot-thanks-statistics-neon #foot-thanks-statistics-neon,
+            .show-foot-fast-pe #foot-fast-pe,
+            .show-foot-blameless #foot-blameless,
+            .show-foot-thesis #foot-thesis {
+                opacity: 1 !important;
+                transition: all 2s;
+                z-index: 2;
+            }
+
+
+            /** TODO: move these to cgranade-dark.scss. **/
+            .two-col-container {
+                width: 100%;
+            }
+
+            .left-col {
+                float: left;
+                width: 70%;
+            }
+
+            .right-col {
+                float: right;
+                width: 30%;
+            }
+
+            .wordmark {
+                display: inline-block;
+                font-family: "Source Sans Pro";
+                color: white;
+                font-weight: 300;
+            }
+
+            .wordmark:first-letter {
+                color: red;
+                font-weight: 600;
+            }
+
+
+            hr {
+                border-color: #888;
+            }
+
+            h6.bg-rule {
+                position: relative;
+                z-index: 1;
+                
+                color: #888;
+                font-variant: small-caps;
+            }
+
+            /* https://gist.github.com/ericrasch/2045198 */
+            .bg-rule:before {
+                border-top: 1.5px solid #888;
+                content: "";
+                margin: 0 auto; /* this centers the line to the full width specified */
+                position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+                top: 60%; left: 0; right: 0; bottom: 0;
+                width: 90%;
+                z-index: -2;
+            }
+
+            .bg-rule span { 
+                /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+                background: #000; 
+                padding: 0 15px; 
+            }
+
+            blockquote .MathJax {
+                font-style: normal;
+            }
+
+            span.cite-label {
+                font-variant: small-caps;
+                font-family: "Source Sans Pro";
+                color: white;
+                background-color: #888;
+                font-size: 70%;
+                padding: 3px;
+                padding-top: 0px;
+                line-height: 0.2em;
+                position: relative;
+                top: -0.1em;
+                margin-left: 1.5em;
+            }
+        </style>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!--
+                This is an awful hack. Don't use it if you can help it.
+                See https://www.raymondcamden.com/2014/04/01/Adding-an-Absolutely-Positioned-Header-to-Revealjs/ for why it "works".
+            -->
+            <p class="hideable-foot" id="foot-title-foot">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br>
+                <!-- <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>,
+                <cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>,
+                <cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>,
+                <cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite><br> -->
+                <a href="http://www.cgranade.com/research/talks/ibm/05-2017">
+                    www.cgranade.com/research/talks/ibm/05-2017
+                </a>
+            </p>
+
+            <p class="hideable-foot" id="foot-how">
+                Ferrie, Granade, Cory <cite class="doi"><a href="https://dx.doi.org/10/tfx">tfx</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-rohl">
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qinfer">
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b5x8">b5x8</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-hh">
+                Stenberg <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b59p">b59p</a></cite>,
+                Robertson and Granade (<em>in preparation</em>)
+            </p>
+            
+            <p class="hideable-foot" id="foot-improved-hh">
+                Robertson and Granade (<em>in preparation</em>)
+            </p>
+
+            <p class="hideable-foot" id="foot-arb">
+                Granade, Ferrie, Cory <cite class="doi"><a href="https://dx.doi.org/10/zmz">zmz</a></cite>
+            </p>
+            
+            <p class="hideable-foot" id="foot-rb">
+                Magesan, Gambetta, Emerson <cite class="doi"><a href="https://dx.doi.org/10/tfz">tfz</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qhl">
+                Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>
+            </p>
+            
+            <p class="hideable-foot" id="foot-qbs">
+                Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qhl-noise">
+                Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tdk">tdk</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-pbt">
+                Huszár and Houlsby <cite class="doi"><a href="https://dx.doi.org/10/s86">s86</a></cite>;
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bhdw">bhdw</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-pbt-review">
+                <span class="cite-label">review</span>
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bhdw">bhdw</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-rfpe">
+                <span class="cite-label">theory</span>
+                Wiebe and Granade <cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite>
+                
+                <span class="cite-label">expr</span>
+                Paesani <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b59r">b59r</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-sgqt">
+                <span class="cite-label">theory</span>
+                Ferrie <cite class="doi"><a href="https://dx.doi.org/10/bchr">bchr</a></cite>
+                
+                <span class="cite-label">expr</span>
+                Chapman <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b59v">b59v</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-paqt">
+                Granade <em>et al.</em> <cite class="arxiv"><a href="https://arxiv.org/abs/1605.05039">1605.05039</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-lw">
+                Liu and West <cite class="doi"><a href="https://dx.doi.org/10/8c2">8c2</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-smc">
+                Doucet <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bmch">bmch</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-lfpe">
+                Ferrie and Granade <cite class="doi"><a href="https://dx.doi.org/10/tdj">tdj</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-thesis">
+                Granade
+                <cite class="hdl"><a href="https://dx.doi.org/10012/9217"><span>10012/</span>9217</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-thanks-hpd">
+                <em>figure</em>: Ferrie
+                <cite class="doi"><a href="https://dx.doi.org/10/tb4">tb4</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-blameless">
+                Kimmel <em>et al.</em>
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1608.00281">1608.00281</a></cite>,
+                joint work w/ Kimmel and Wiebe
+            </p>
+
+            <p class="hideable-foot" id="foot-fast-pe">
+                Svore <em>et al.</em>
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1304.0741">1304.0741</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qrej">
+                Wiebe and Granade
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1512.03145">1512.03145</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-structf">
+                Granade and Wiebe
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1612.00762">1612.00762</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-thanks-statistics-neon">
+                <!--
+                    A note about the word "neon": this is not technically correct in
+                    the chemical sense, but is the word that the artist chose to describe
+                    their work, and so I choose it here out of deference to that description.
+                -->
+                background: neon by
+                <a href="http://oresttataryn.com/">Orest Tataryn</a>
+            </p>
+
+            <p class="hideable-foot" id="foot-thanks-bayes-neon">
+                background: photo by <a href="https://commons.wikimedia.org/wiki/File:Bayes%27_Theorem_MMB_01.jpg">
+                    mattbuck
+                </a>,
+                h/t Wiebe
+            </p>
+
+<!-- 
+            <p class="hideable-foot" id="foot-thanks-ian">
+                Collaboration w/ Hincks, Wang, Mirkamali, and Moussa.
+            </p>
+ -->
+
+            <!-- <p class="hideable-foot" id="foot-better">
+                Sergeevich <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/c4vv95">c4vv95</a></cite>,
+                Ferrie <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tfx">tfx</a></cite>, 
+                Hall and Wiseman <cite class="doi"><a href="https://dx.doi.org/10/bh6v">bh6v</a></cite>
+            </p> -->
+
+            <p class="hideable-foot" id="foot-condensation">
+                Isard and Blake <cite class="doi"><a href="https://dx.doi.org/10/cc76f6">cc76f6</a></cite>
+            </p>
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <!-- TITLE SLIDE ######################################### -->
+
+                <section id="title-slide">
+                    <h1 style="font-size: 175%">
+                        Humanitarian QIP
+                    </h1>
+                    <hr>
+                    <p>
+                        <a href="http://www.cgranade.com">Christopher E. Granade</a> <br>
+                        <a href="https://equs.org/">Centre for Engineered Quantum Systems</a>
+                        $
+                            \newcommand{\ee}{\mathrm{e}}
+                            \newcommand{\ii}{\mathrm{i}}
+                            \newcommand{\dd}{\mathrm{d}}
+                            \newcommand{\id}{&#x1d7d9;}
+                            \newcommand{\TT}{\mathrm{T}}
+                            \newcommand{\defeq}{\mathrel{:=}}
+                            \newcommand{\Tr}{\operatorname{Tr}}
+                            \newcommand{\Var}{\operatorname{Var}}
+                            \newcommand{\Cov}{\operatorname{Cov}}
+                            \newcommand{\rank}{\operatorname{rank}}
+                            \newcommand{\expect}{\mathbb{E}}
+                            \newcommand{\sket}[1]{|#1\rangle\negthinspace\rangle}
+                            \newcommand{\sbraket}[1]{\langle\negthinspace\langle#1\rangle\negthinspace\rangle}
+                            \newcommand{\Gini}{\operatorname{Ginibre}}
+                            \newcommand{\supp}{\operatorname{supp}}
+                            \newcommand{\ket}[1]{\left|#1\right\rangle}
+                            \newcommand{\bra}[1]{\left\langle#1\right|}
+                            \newcommand{\braket}[1]{\left\langle#1\right\rangle}
+                        $
+                    </p>
+                </section>
+
+                <!-- INTRODUCTION ######################################## -->
+                
+                <section>
+                    <p>
+                        Building a quantum computer is <strong>hard</strong>.
+                    </p>
+
+                    <p>
+                        So why do we do it?
+                    </p>
+
+                    <div class="fragment">
+                        <hr>
+
+                        <ul>
+                            <li>We're paid to?</li>
+                            <li>It's fun?</li>
+                            <li>Because it's (<em>not</em>) there?</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <p>
+                        All good answers, but not the whole story either.
+                    </p>
+
+                    <h6 class="bg-rule"><span>proposal</span></h6>
+
+                    <p>
+                        Let's answer in the affirmative by building a quantum computer
+                        <em>for humans</em>.
+                    </p>
+
+                    <p>
+                        Esp. important for <em>publicly funded</em> research.
+                    </p>
+                </section>
+
+                <section>
+                    <h6 class="code-caption">
+                        Humanitarian:
+                    </h6>
+                    <blockquote>
+                        <span style="font-style: normal">
+                            adj;
+                        </span>
+                        Relating to or characteristic of people who work to improve the lives and living conditions of other people.
+                    </blockquote>
+                    <h6 class="code-caption" style="text-align: right; width: 90%; top: -0.5em;">
+                        &mdash;
+                        Merriam&ndash;Webster
+                    </h6>
+
+                    <hr>
+
+                    <p>
+                        What would a humanitarian paper look like?
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>Accessible</strong>    
+                        </li>
+                        <li>
+                            <strong>Practical</strong>
+                        </li>
+                        <li>
+                            <strong>Reproducible</strong> / <strong>Reusable</strong>:
+                            in public interest
+                        </li>
+                        <li>
+                            <strong>Honest</strong>
+                            (<em>e.g.:</em> not plagarized)
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        A paper isn't just a final output, though, but a <strong>process</strong>.
+                    </p>
+
+                    <p>
+                        If we're building a quantum computer <em>for humans</em>,
+                        that process must also be in public interest.
+                    </p>
+
+                    <ul>
+                        <li>No harassment or hatred.</li>
+                        <li>Not just the part of the public already privileged.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        This is <strong>difficult</strong>. What tools can help?
+                    </p>
+
+                    <p>
+                        In this talk, I will summarize a range of <em>technical</em>
+                        and <em>social</em> tools for helping ensure that research helps
+                        <em>people</em>.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Disclaimers</h3>
+
+                    <ul>
+                        <li>
+                            I'm going with what I know, hence focus on numerics/experiment vs pure theory.
+                        </li>
+                        <li>
+                            I'm also self-interested, so I'll highlight my own efforts.
+                        </li>
+                        <li>
+                            This talk is aspirational, not judgmental.
+                        </li>
+                    </ul>
+
+                    <div class="fragment">
+                        <hr>
+
+                        <p>
+                            With that in mind, let's forge ahead and try to do the best science we can.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h1>Technical Tools for Humanitarian QIP</h1>
+                </section>
+
+                <section>
+                    <h3>Humanitarianism as Functional Requirements</h3>
+
+                    <p>
+                        We need technical tools which make it easier to:
+                    </p>
+
+                    <ul>
+                        <li>Collaborate without gatekeeping.</li>
+                        <li>Share and reuse experimental data, theoretical results, and numerical tools.</li>
+                        <li>Support and manage research resources.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3><strong>Git:</strong> Formal Support for Collaboration</h3>
+
+                    <p>
+                        Models collaboration on a project as a <em>directed acyclic graph</em>.
+                    </p>
+
+                    <ul>
+                        <li>TODO: </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3><strong>Git Annex and LFS:</strong> </h3>
+
+                    <p>
+                        (see Sarah's talk)
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Python, Julia, R, …</h3>
+
+                    <ul>
+                        <li>Open-source languages for scientific computation</li>
+                        <li>Interoperable w/ native code (C/C++, etc.)</li>
+                        <li>Robust toolchains for polyglot projects</li>
+                    </ul>
+
+                    <h6 class="bg-rule"><span>contrast with</span></h6>
+
+                    <h3>MATLAB, Mathematica, Igor, …</h3>
+
+                    <ul>
+                        <li>Closed/expensive: discourages reuse.</li>
+                        <li>Monolithic development environments: difficult to integrate.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3><strong>Jupyter:</strong> Literate Programming</h3>
+
+                    <p>
+
+                    </p>
+
+                    <p>
+                        TODO: screenshot
+                    </p>
+                </section>
+
+                <section>
+                    <h3><strong>Package Management</strong></h3>
+
+                    <p>
+                        Makes it easier to:
+                    </p>
+
+                    <ul>
+                        <li>Distribute and reuse research outputs.</li>
+                        <li>Install/use third-party tools.</li>
+                        <li>Specify software environments for reproducible works.</li> 
+                    </ul>
+                </section>
+
+                <section>
+                    <h3><strong>PoShTeX:</strong> Managed Builds for Reproducibility</h3>
+                </section>
+
+                <section>
+                    <h3><strong>Bayesian inference:</strong> Objective Reasoning about Subjectivity</h3>
+                </section>
+
+                <section>
+                    <h1>Social Tools for Humanitarian QIP</h1>
+                </section>
+
+                <section>
+                    <h3>Version Control Hosting</h3>
+
+                    <p>
+                        TODO: deemphasizes bibliometrics by providing other ways to contribute
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Transferrable Skills Development</h3>
+                    
+                    <p>
+                        TODO: giving researchers an "out" reduces impact of gatekeeping, coercion.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Better Journals</h3>
+
+                    <p>
+                        TODO: allowing incremental results decreases reward for hype, gatekeeping.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Open Refereeing?</h3>
+                </section>
+
+                <section>
+                    <h3>Codes of Conduct</h3>
+                </section>
+
+                <section>
+                    <h3>Statistics and Site Surveys</h3>
+                </section>
+
+                <section>
+                    <p>
+                        TODO: conclude
+                    </p>
+                </section>
+
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            'HTML-CSS': {
+                preferredFont: null,
+                webFont: 'Gyre-Pagella'
+            },
+            TeX: {
+                Macros: {
+                    ee: "{\\mathrm{e}}",
+                    ii: "{\\mathrm{i}}",
+                    dd: "{\\mathrm{d}}",
+                    id: "{\u{1d7d9}}",
+                    TT: "{\\mathrm{T}}",
+                    defeq: "{\\mathrel{:=}}",
+                    Tr: "{\\operatorname{Tr}}",
+                    Var: "{\\operatorname{Var}}",
+                    Cov: "{\\operatorname{Cov}}",
+                    rank: "{\\operatorname{rank}}",
+                    expect: "{\\mathbb{E}}",
+                    sket: ["{|#1\\rangle\\negthinspace\\rangle}", 1],
+                    sbraket: ["{\\langle\\negthinspace\\langle#1\\rangle\\negthinspace\\rangle}", 1],
+                    Gini: "{\\operatorname{Ginibre}}",
+                    supp: "{\\operatorname{supp}}",
+                    ket: ["{\\left|#1\\right\\rangle}", 1],
+                    bra: ["{\\left\\langle#1\\right|}", 1],
+                    braket: ["{\\left\\langle#1\\right\\rangle}", 1]
+                }
+            }
+          });
+        </script>
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                progress: true,
+                history: true,
+                center: true,
+                zoomKey: 'shift',
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/math/math.js', async: true }
+                ]
+            });
+
+        </script>
+
+    </body>
+</html>
