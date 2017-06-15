@@ -14,6 +14,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
         <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/asciinema-player.css">
 
         <!-- Code syntax highlighting -->
         <link rel="stylesheet" href="lib/css/zenburn.css">
@@ -521,6 +522,44 @@
                 </section>
 
                 <section>
+                    <h3>Command Line</h3>
+
+                    <p>
+                        If it can be automated, it can be <em>shared</em>.
+                        Automation is a resource for collaboration and reproducibility.
+                    </p>
+                </section>
+
+                <section>
+                    <asciinema-player
+                        src="tex.json"
+                        rows="24"
+                        font-size="medium"
+                        speed="1.5"
+                        >
+                    </script>
+                </section>
+
+                <section>
+                    <p>
+                        Can easily communicate the same process by providing a few commands:
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+                        $ cd tex-example
+                        $ pdflatex example.tex
+                        $ bibtex example
+                        $ pdflatex example.tex
+                        $ pdflatex example.tex
+                    </code></pre>
+
+                    <p>
+                        Commmand line thus makes it easy to share <em>research processes</em>
+                        with collaborators, broad community.
+                    </p>
+                </section>
+
+                <section>
                     <h3><strong>Git:</strong> Formal Support for Collaboration</h3>
 
                     <p>
@@ -594,8 +633,10 @@
                         Multi-lingual platform for mixing prose, equations, plots and code.
                     </p>
 
+                    <img data-src="figures/jupyter-header.png">
+
                     <p>
-                        TODO: screenshot
+                        TODO: better screenshot
                     </p>
                 </section>
                 
@@ -797,6 +838,20 @@ Export-ArXivArchive @{
                 </section>
 
                 <section>
+                    <h3><strong>Example:</strong> <span class="wordmark">QInfer</span> is for People</h3>
+
+                    <div data-markdown>
+                    - **Accessible**: written in Python,
+                      usable from Python, Julia, MATLAB.
+                    - **Open source**: modifiable and reproducible.
+                    - **Portable**: Windows/Linux/OS X.
+                    - **Legible**: well-documented (guide &amp; examples).
+                    - **Expressive**: represents the scientific concepts.
+                    - **Extensible**: not limited to built-in applications.
+                    </div>
+                </section>
+
+                <section>
                     <h1>Social Tools for Humanitarian QIP</h1>
                 </section>
 
@@ -845,24 +900,152 @@ Export-ArXivArchive @{
                 </section>
 
                 <section>
+                    <h3><strong>Example</strong>: Functional Programming</h3>
+                    
+                    <p>
+                        Path to learn functional languages (e.g.: Haskell, F♯)
+                        from Python.
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+                        $ python
+                        >>> from functools import partial, reduce
+                        >>> from operator import mul
+                        >>> product = partial(reduce, mul)
+                        >>> product([1, 2, 3])
+                        6
+                        $ ghci # Haskell
+                        Prelude> let product = foldl (*) 1
+                        Prelude> product [1; 2; 3]
+                        6
+                        $ fsharpi # F♯
+                        > let inline product xs = Seq.reduce (*) xs;;
+                        > product [1; 2; 3];;
+                        val it : int = 6
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3><strong>Example</strong>: Functional Programming (con'd)</h3>
+
+                    <p>
+                        Similar benefits for Julia and R.
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+                        $ julia
+                        julia> partial(f, x) = ((xs...) -> f(x, xs...)
+                        julia> product = partial(reduce, *)
+                        julia> product([1, 2, 3])
+                        6
+
+                        $ R
+                        > install.packages('functional')
+                        > library(functional)
+                        > product <- Curry(Reduce, `*`)
+                        > product(list(1, 2, 3))
+                        [1] 6
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3><strong>Example</strong>: Object-Oriented Programming</h3>
+                    
+                    <p>
+                        Can also learn other general concepts as transferrable
+                        skills. 
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+$ python
+>>> class Foo(object):
+...     def hello(self):
+...         print("Hello")
+>>> foo = Foo()
+>>> foo.hello()
+Hello
+$ csharp
+csharp> class Foo {
+>  public void Hello() {System.Console.WriteLine("Hello");}
+> }
+csharp> var foo = new Foo()
+csharp> foo.Hello()
+Hello
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3><strong>Example</strong>: Object-Oriented Programming (con'd)</h3>
+
+                    <pre><code class="bash" data-trim>
+$ jshell
+-> class Foo {
+>>   public void hello() {
+>>     System.out.println("Hello");
+>>   }
+>> }
+-> Foo foo = new Foo();
+-> foo.hello();
+Hello
+
+                    </code></pre>
+                </section>
+
+                <section>
                     <h3>Better Journals</h3>
 
                     <p>
-                        TODO: allowing incremental results decreases reward for hype, gatekeeping.
+                        Focus on <em>bibliometrics</em> and <em>impact</em>: 
+                    </p>
+
+                    <ul>
+                        <li>Encourages hype, discourages incremental or practical results.</li>
+                        <li>Focus on "demonstrations" enables gatekeeping.</li>
+                        <li>Referee process discourages reusability and reproducibility.</li>
+                        <li>Hides institutional biases behind citation counts.</li>
+                    </ul>
+
+                    <p>
+                        Journals that encourage reproducible results, downplay impact
+                        can be a valuable tool to encourage our humanitarian goals.
                     </p>
                 </section>
 
                 <section>
                     <h3>Open Refereeing?</h3>
-                </section>
 
-                <section>
-                    <h3>Codes of Conduct</h3>
+                    <p>
+                        Can we go further in deanonymizing referee process?
+                    </p>
+
+                    <ul>
+                        <li>
+                            Makes it more difficult for referees to harass or abuse
+                            ECRs.
+                        </li>
+                        <li>
+                            Also makes it harder for ECRs to challenge established
+                            groups.
+                        </li>
+                    </ul>
                 </section>
 
                 <section>
                     <h3>Statistics and Site Surveys</h3>
+
+                    <p>
+                        In assessing technical or social tools.
+                    </p>
                 </section>
+                
+                <section>
+                    <h3>Codes of Conduct</h3>
+
+                    <p>
+                        
+                    </p>
+                </section>
+
 
                 <section>
                     <p>
@@ -877,6 +1060,7 @@ Export-ArXivArchive @{
 
         <script src="lib/js/head.min.js"></script>
         <script src="js/reveal.js"></script>
+        <script src="js/asciinema-player.js"></script>
 
         <script type="text/x-mathjax-config">
           MathJax.Hub.Config({
@@ -933,6 +1117,16 @@ Export-ArXivArchive @{
                     { src: 'plugin/math/math.js', async: true }
                 ]
             });
+
+            Reveal.addEventListener( 'slidechanged', function( event ) {
+                for (element of event.currentSlide.getElementsByTagName("asciinema-player")) {
+                    element.play();
+                }
+                for (element of event.previousSlide.getElementsByTagName("asciinema-player")) {
+                    element.pause();
+                    element.currentTime = 0;
+                }
+            } );
 
         </script>
 
