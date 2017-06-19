@@ -151,6 +151,10 @@
                 top: -0.1em;
                 margin-left: 1.5em;
             }
+
+            .black-text, .black-text em, .black-text strong, .black-text h3 {
+                color: #000;
+            }
         </style>
 
         <!-- Printing and PDF exports -->
@@ -560,6 +564,26 @@
                 </section>
 
                 <section>
+                    <p>
+                        Writing command-line interfaces easier than graphical tools;
+                        reduces barrier to tool creation.
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+                        $ cat hello.py # Displays contents of hello.py.
+                        import click
+                        @click.command()
+                        @click.option('--loud', is_flag=True)
+                        def main(loud):
+                            print("HELLO WORLD!" if loud else "Hello.")
+                        main()
+                        
+                        $ python hello.py --loud
+                        HELLO WORLD!
+                    </code></pre>
+                </section>
+
+                <section>
                     <h3><strong>Git:</strong> Formal Support for Collaboration</h3>
 
                     <p>
@@ -816,23 +840,22 @@ Export-ArXivArchive @{
                 <section>
                     <h3>Software Tools for Bayesian Inference</h3>
 
-                    <p>
-                        TODO: flesh out
-                    </p>
-
                     <ul>
                         <li>
                             <strong class="wordmark">QInfer</strong>:
                             Online Bayesian inference for QIP experiments and theory.
                         </li>
                         <li>
-                            <strong>PyMC3</strong>
+                            <strong><a href="http://pymc-devs.github.io/pymc3/">PyMC3</a></strong>:
+                            Markov-Chain Monte Carlo implementation.
                         </li>
                         <li>
-                            <strong>Stan</strong>
+                            <strong><a href="http://mc-stan.org/">Stan</a> / <a href="https://pystan.readthedocs.io/en/latest/">PyStan</a></strong>:
+                            Hamiltonian Monte Carlo implementation.
                         </li>
                         <li>
-                            <strong>Edward</strong>
+                            <strong><a href="http://edwardlib.org/">Edward</a></strong>:
+                            Bayesian modeling and criticism.
                         </li>
                     </ul>
                 </section>
@@ -855,7 +878,7 @@ Export-ArXivArchive @{
                     <h1>Social Tools for Humanitarian QIP</h1>
                 </section>
 
-                <section>
+                <section data-background="#fff" class="black-text">
                     <h3><strong>Git Hosting</strong>: GitHub, BitBucket, GitLab, …</h3>
 
                     <ul>
@@ -865,6 +888,18 @@ Export-ArXivArchive @{
                             research groups, institutions.
                         </li>
                     </ul>
+
+                    <img data-src="figures/github-social-profile.png">
+                </section>
+
+                <section data-background="#fff" class="black-text">
+                    <h3><strong>Example</strong>: Pull Requests</h3>
+
+                    <img data-src="figures/github-pull-requests-header.png">
+
+                    <p>
+                        Formalises internal or unsolicited collaboration.
+                    </p>
 
                     <hr>
                     
@@ -894,7 +929,7 @@ Export-ArXivArchive @{
                             CS theory promotes skill development.
                         </li>
                         <li>
-                            TODO: 
+                            Industry best-practices: version control, continuous integration.
                         </li>
                     </ul>
                 </section>
@@ -1034,15 +1069,98 @@ Hello
                     <h3>Statistics and Site Surveys</h3>
 
                     <p>
-                        In assessing technical or social tools.
+                        In applying technical or social tools, need good feedback
+                        to ensure that they work as intended.
                     </p>
+
+                    <dl style="font-size: 65%">
+					    <dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
+							Cultural assessments
+						</h4></dd>
+						<dt>Citation disparity
+							<span class="right-note">
+                                Caplar <em>et al.</em>
+                                <cite class="doi"><a href="https://dx.doi.org/10/b8rn">b8rn</a></cite>
+							</span>
+						</dt>
+
+						<dt>Pull request assessments
+							<span class="right-note">
+                                Terrell <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/b8rp">b8rp</a></cite>
+							</span>
+						</dt>
+
+					    <dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
+							Site surveys
+						</h4></dd>
+						<dt>American Physical Society
+							<span class="right-note">
+								<cite class="googl"><a href="https://goo.gl/2kB6Ev">2kB6Ev</a></cite>
+							</span>
+						</dt>
+                        
+						<dt>Institute of Physics
+							<span class="right-note">
+                                <cite class="googl"><a href="https://goo.gl/j2b156">j2b156</a></cite>
+							</span>
+						</dt>
+					</dl>
+
+                    <p>
+                        Need to incentivize studies which <em>responsibly</em>
+                        assess impact of tools and policies on discrimination and hatred.
+                    </p>
+
                 </section>
-                
+
                 <section>
                     <h3>Codes of Conduct</h3>
 
                     <p>
-                        
+                        Important as <em>dis</em>couragement against scientific misconduct.
+                    </p>
+
+                    <h6 class="code-caption">
+                        Examples of misconduct
+                    </h6>
+                    <blockquote><ul>
+                        <li>Harassment, abuse, violence</li>
+                        <li>Plagarism, misrepresentation of authorship</li>
+                        <li>Discriminatory conduct in general</li>
+                    </ul></blockquote>
+
+                    <ul>
+                        <li>Codes clarify community values, scientific integrity</li>
+                        <li>Formal warnings prevent escalation / institutionalization.</li>
+                        <li>Availability of severe penalties helps address endemic harassment.</li>
+                        <li>Matches industry best-practices.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        Codes of conduct can come in a variety of forms:
+                    </p>
+
+                    <ul>
+                        <li>
+                            Contributor covenants
+                        </li>
+                        <li>
+                            Journal / professional society ethics
+                        </li>
+                        <li>
+                            Workplace conduct
+                        </li>
+                        <li>
+                            Conference / event conduct
+                        </li>
+                    </ul>
+
+                    <p>
+                        <em>e.g.:</em>
+                        Contributor Convenant, Geek Feminism Code of Conduct, ACM Code of Ethics
                     </p>
                 </section>
 
