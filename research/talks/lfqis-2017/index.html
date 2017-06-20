@@ -185,8 +185,8 @@
                 <cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>,
                 <cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>,
                 <cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite><br> -->
-                <a href="http://www.cgranade.com/research/talks/ibm/05-2017">
-                    www.cgranade.com/research/talks/ibm/05-2017
+                <a href="http://www.cgranade.com/research/talks/lfqis-2017">
+                    www.cgranade.com/research/talks/lfqis-2017
                 </a>
             </p>
 
@@ -342,7 +342,7 @@
 
                 <!-- TITLE SLIDE ######################################### -->
 
-                <section id="title-slide">
+                <section id="title-slide" data-state="show-foot-title-foot">
                     <h1 style="font-size: 175%">
                         Humanitarian QIP
                     </h1>
@@ -484,7 +484,7 @@
 
                     <ul>
                         <li>
-                            I'm going with what I know, hence focus on numerics/experiment vs pure theory.
+                            I'm going with what I know, hence focus on numerics/experiment vs “pure” theory.
                         </li>
                         <li>
                             I'm also self-interested, so I'll highlight my own efforts.
@@ -495,6 +495,10 @@
                         </li>
                         <li>
                             This talk is aspirational, not judgmental.
+                        </li>
+                        <li>
+                            Focus here is on form and process of results, not topics and applications.
+                            (<em>e.g.</em> is Shor's algorithm ethically sound?)
                         </li>
                     </ul>
 
@@ -526,7 +530,32 @@
                 </section>
 
                 <section>
+                    <h3>Cognitive Load</h3>
+
+                    <blockquote>
+                        I only understand simple things.
+                    </blockquote>
+                    <h6 class="code-caption" style="text-align: right; width: 90%; top: -0.5em;">
+                        &mdash;
+                        Some random <abbr title="Me.">troll</abbr>.
+                    </h6>
+
+                    <p>
+                        Reusable and composable tools can help reduce cognative load.
+                    </p>
+
+                    <p>
+                        Complicated research management problems can be decomposed into
+                        easily-understood subtasks.
+                    </p>
+                </section>
+
+                <section>
                     <h3>Command Line</h3>
+
+                    <p>
+                        Decomposition can be expressed using command line.
+                    </p>
 
                     <p>
                         If it can be automated, it can be <em>shared</em>.
@@ -556,11 +585,35 @@
                         $ pdflatex example.tex
                         $ pdflatex example.tex
                     </code></pre>
+                </section>
 
+                <section>
                     <p>
-                        Commmand line thus makes it easy to share <em>research processes</em>
+                        Commmand lines thus makes it easy to share <em>research processes</em>
                         with collaborators, broad community.
                     </p>
+
+                    <h3><strong>Example</strong></h3>
+
+                    <h6 class="code-caption">
+                        compile.sh / compile.ps1
+                    </h6>
+                    <pre><code class="bash" data-trim>
+                        pdflatex example.tex
+                        bibtex example
+                        pdflatex example.tex
+                        pdflatex example.tex
+                    </code></pre>
+
+                    <p>
+                        Scripts can then be used as commands in their own right.
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+                        $ cd tex-example
+                        $ ./compile.sh # Bash
+                        PS> ./compile.ps1 # PowerShell
+                    </code></pre>
                 </section>
 
                 <section>
@@ -569,18 +622,67 @@
                         reduces barrier to tool creation.
                     </p>
 
-                    <pre><code class="bash" data-trim>
-                        $ cat hello.py # Displays contents of hello.py.
+                    <h3><strong>Example</strong>: Writing Commands in Python</h3>
+
+                    <h6 class="code-caption">
+                        hello.py
+                    </h6>
+                    <pre><code class="python" data-trim>
                         import click
                         @click.command()
                         @click.option('--loud', is_flag=True)
                         def main(loud):
                             print("HELLO WORLD!" if loud else "Hello.")
                         main()
-                        
+                    </code></pre>
+
+                    <pre><code class="bash" data-trim>
                         $ python hello.py --loud
                         HELLO WORLD!
                     </code></pre>
+                </section>
+
+                <section
+                    data-background-color="#fff"
+                    data-background-image="https://imgs.xkcd.com/comics/standards.png"
+                    data-background-size="65%"
+                >
+                </section>
+
+                <section>
+                    <h3>Which Command-Line?</h3>
+
+                    <p>
+                        Lots of good options!
+                    </p>
+
+                    <dl>
+                        <dt>
+                            Bash
+                            <span class="right-note">
+                                Standard on Linux / macOS
+                            </span>
+                        </dt>
+
+                        <dt>
+                            Xonsh
+                            <span class="right-note">
+                                Based on Python
+                            </span>
+                        </dt>
+
+                        <dt>
+                            Zsh
+                            <span class="right-note">
+                                Very customizable / powerful
+                            </span>
+                        </dt>
+                    </dl>
+
+                    <p>
+                        Personally, I prefer <strong>PowerShell</strong>,
+                        owing to cross-platform compatability.
+                    </p>
                 </section>
 
                 <section>
@@ -658,10 +760,6 @@
                     </p>
 
                     <img data-src="figures/jupyter-header.png">
-
-                    <p>
-                        TODO: better screenshot
-                    </p>
                 </section>
                 
                 <section>
@@ -1164,13 +1262,35 @@ Hello
                     </p>
                 </section>
 
-
-                <section>
-                    <p>
-                        TODO: conclude
-                    </p>
+                <section
+                    data-background-color="#fff"
+                    data-background-iframe="https://lfqis.github.io/2017/code-of-conduct/"
+                >
                 </section>
 
+                <section>
+                    <h3>Reducing Barriers to Entry</h3>
+
+                    <p>
+                        None of this matters if it's too hard to use.
+                        How can we reduce barriers to humanitarian research methods?
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>cookiecutter</strong>:
+                            Template creation of new projects.
+                        </li>
+                        <li>
+                            <strong>Software Carpentry / EPQIS / etc</strong>:
+                            Better training in technical tools.
+                        </li>
+                        <li>
+                            <strong>Code of Conduct templates</strong>:
+                            Standard templates for common applications.
+                        </li>
+                    </ul>
+                </section>
 
             </div>
 
