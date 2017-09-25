@@ -3,9 +3,7 @@ layout: page
 title: About Me
 ---
 
-I am Christopher Granade, a postdoctoral researcher in theoretical physics
-studying at the [University of Sydney](https://sydney.edu.au/)'s [Centre for
-Engineered Quantum Systems](https://equs.org/).
+I am Christopher Granade, a research software development engineer working in the [Quantum Architectures and Computation (QuArC) Group](https://www.microsoft.com/en-us/research/group/microsoft-quantum-redmond-quarc/) at [Microsoft Research](https://www.microsoft.com/en-us/research/).
 
 **2015**: PhD, Physics (quantum information), [Institute for Quantum Computing](https://iqc.uwaterloo.ca).
 
