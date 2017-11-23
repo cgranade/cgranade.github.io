@@ -10,7 +10,7 @@ tagline: 'Quantum, stats, programming, and some rants'
 description:
     Research SDE at Microsoft Research
 url: http://www.cgranade.com
-baseurl: /
+baseurl: http://www.cgranade.com/blog/
 
 author :
   name : Christopher Granade
