@@ -4,7 +4,7 @@ https://keybase.io/cgranade
 
 I hereby claim:
 
-  * I am an admin of http://www.cgranade.com
+  * I am an admin of https://www.cgranade.com
   * I am cgranade (https://keybase.io/cgranade) on keybase.
   * I have a public key with fingerprint 7950 2540 D90E 791F A91F  6AFC 7B70 49DA 0677 5403
 

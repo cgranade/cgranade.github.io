@@ -6,7 +6,7 @@ description: ""
 
 [**Christopher E. Granade**](/)<sup>[1](#affil-iqc), [2](#affil-uw-phys)</sup>
 
- > [PDF](http://www.cgranade.com/downloads/cgranade-thesis.pdf)
+ > [PDF](https://www.cgranade.com/downloads/cgranade-thesis.pdf)
 
 PhD thesis, defended 26 February 2015. 
 

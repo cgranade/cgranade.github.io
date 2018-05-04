@@ -26,7 +26,7 @@
 
 ### Invited Talks ###
 
-- [*Rejection and Particle Filtering for Hamiltonian Learning*](http://www.cgranade.com/research/talks/qml/2016/). Presented as an invited talk at the [Quantum Machine Learning](https://www.perimeterinstitute.ca/conferences/quantum-machine-learning) conference, Perimeter Institute, September 2016.
+- [*Rejection and Particle Filtering for Hamiltonian Learning*](https://www.cgranade.com/research/talks/qml/2016/). Presented as an invited talk at the [Quantum Machine Learning](https://www.perimeterinstitute.ca/conferences/quantum-machine-learning) conference, Perimeter Institute, September 2016.
 
 ### Papers, Essays and Publications ###
 
@@ -125,11 +125,11 @@ New Journal of Physics (Fast Track Communications) **17** 022005.
 
 #### 2009 ####
 - *Why Complexity Matters* (senior undergraduate Honors thesis).
-    > [PDF](http://www.cgranade.com/research/papers/why-complexity-matters.pdf)
+    > [PDF](https://www.cgranade.com/research/papers/why-complexity-matters.pdf)
 
 #### 2008 ####
 - *Ease and Toil: Analyzing Sudoku*, with Seth Chadwick and Rachel Krieg.
-    > [PDF](http://www.cgranade.com/research/papers/ease-and-toil.pdf)
+    > [PDF](https://www.cgranade.com/research/papers/ease-and-toil.pdf)
 
 ### Academic Projects ###
 

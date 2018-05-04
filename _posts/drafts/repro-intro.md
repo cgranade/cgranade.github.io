@@ -21,7 +21,7 @@ After all, if a reproducible writing process doesn't work well without an arduou
 To do so, I be used a Mac Book Pro (10.11.1 El Capitan, mid-2012, Retina), as to use a system as distinct as possible from my previous efforts.
 Indeed, since my goal is to make something accessible, it has to work across platforms.
 Without further ado, then, let's dive in to how I set up the new laptop for paper writing.
-As per the instructions in the [previous post](http://www.cgranade.com) (thank you again to Daniel Seuss for contributing the macOS / OS X part of that post), I installed the following tools on the new development machine:
+As per the instructions in the [previous post](https://www.cgranade.com) (thank you again to Daniel Seuss for contributing the macOS / OS X part of that post), I installed the following tools on the new development machine:
 
 - Homebrew: Package manager for Mac
   ```bash

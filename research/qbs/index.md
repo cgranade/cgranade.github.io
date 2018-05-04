@@ -8,7 +8,7 @@ description: ""
 
  > [arXiv:1409.1524](https://scirate.com/arxiv/1409.1524)
  
-Presented as a talk at [LFQIS 2014](http://lfqis.net/), and at the [University of Sydney](http://www.cgranade.com/research/talks/usydney-2014/). Presented as a poster at [QIP 2015](http://quantum-lab.org/qip2015/).
+Presented as a talk at [LFQIS 2014](http://lfqis.net/), and at the [University of Sydney](https://www.cgranade.com/research/talks/usydney-2014/). Presented as a poster at [QIP 2015](http://quantum-lab.org/qip2015/).
 
 ## Abstract ##
 

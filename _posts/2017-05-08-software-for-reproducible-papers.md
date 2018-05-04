@@ -21,7 +21,7 @@ Thanks for reading! ♥
 
 ## Introduction ##
 
-In [my previous post](http://www.cgranade.com/blog/2017/03/31/what-we-encourage.html), I detailed some of the ways our software tools and social structures encourage some actions and discourage others.
+In [my previous post](https://www.cgranade.com/blog/2017/03/31/what-we-encourage.html), I detailed some of the ways our software tools and social structures encourage some actions and discourage others.
 Especially when it comes to tasks such as writing reproducible papers that both offer to significantly improve research culture, but are somewhat challening in their own right, it's critical to ensure that we positively encourage doing things a bit better than we've done them before.
 That said, though my previous post spilled quite a few pixels on the what and the why of such encouragements, and of what support we need for reproducible research practices, I said very little about *how* one could practically do better.
 
@@ -576,7 +576,7 @@ The rest is a call to the PoShTeX command ``Export-ArXivArchive``, which produce
 That description takes the form of a PowerShell *hashtable*, indicated by ``@{}``.
 This is very similar to JavaScript or JSON objects, to Python ``dict``s, etc.
 Key/value pairs in a PowerShell hashtable are separated by ``;``, such that each line of the argument to ``Export-ArXivArchive`` specifies a key in the manifest.
-These keys are documented more throughly on the [PoShTeX documentation site](http://www.cgranade.com/posh-tex/), but let's run through them a bit now.
+These keys are documented more throughly on the [PoShTeX documentation site](https://www.cgranade.com/posh-tex/), but let's run through them a bit now.
 First is ``ProjectName``, which is used to determine the name of the final ZIP file.
 Next is ``TeXMain``, which specifies the path to the root of the TeX source that should be compiled to make the final arXiv-ready manuscript.
 
