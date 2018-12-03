@@ -5,8 +5,6 @@ title: "Getting PoSh with Q#"
 
 _This post is a part of the [Q# Advent Calendar](https://blogs.msdn.microsoft.com/visualstudio/2018/11/15/q-advent-calendar-2018/), and is made available under the [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/). Full source code for this post is available [on GitHub](https://gist.github.com/cgranade/ae96f866edae67c6550a93cf463a8f43)._
 
-# Getting PoSh with Q# #
-
 When we program a quantum computer, at the end of the day, we are interested in asking classical questions about classical data.
 This is a large part of [why we designed the Q# language](https://blogs.msdn.microsoft.com/visualstudio/2018/11/15/why-do-we-need-q/) to treat quantum computers as accelerators, similar to how one might use a graphics card or a field-programmable gate array (FPGA) to speed up the execution of classical algorithms.
 
