@@ -3,6 +3,8 @@ layout: post
 title: This is Not a Qubit
 ---
 
+## The Map is Not The Territory ##
+
 There's a classic observation in philosophy that "the map is not the territory."
 Though it sounds obvious enough to take entirely for granted, this observation reminds us that there is a difference between the world around us and how we choose to _represent_ that world on a map.
 Depending on what we want to use the map for, we abstract away many different properties of the real world, such as reducing the amount of detail that we include (we clearly can't include every object in the real world in our maps).
@@ -54,10 +56,15 @@ It might be then tempting to conclude that `left` and `right` _are_ the state $\
 To resolve this, it helps to think a bit more about what a quantum state is in the context of a quantum program.
 For starters, if I give you a copy of the state of a quantum register at any point in a quantum program, you can predict what the rest of that quantum program will do.
 Implicit in the word "copy," however, is that the state of a quantum register is a _classical_ description of that register.
-That classical description lets you simulate what that register will do, but it also lets you prepare new qubits in the same way, using techniques like the Shende–Bullock–Markov algorithm (offered in Q# as the [`Microsoft.Quantum.Preparation.PrepareArbitraryState`](https://docs.microsoft.com/qsharp/api/qsharp/microsoft.quantum.preparation.preparearbitrarystate) operation).
+After all, you can't copy a register of qubits, so the fact that we **can** copy the state is a dead giveaway that state vectors are a kind of classical model.
+That classical model is a pretty useful one, to be fair; it not only lets you simulate what a register of qubits will do, but also lets you prepare new qubits in the same way, using techniques like the Shende–Bullock–Markov algorithm (offered in Q# as the [`Microsoft.Quantum.Preparation.PrepareArbitraryState`](https://docs.microsoft.com/qsharp/api/qsharp/microsoft.quantum.preparation.preparearbitrarystate) operation).
 
+Put differently, while the No-Cloning Theorem tells us that we can't copy the data encoded by a quantum register into a second register, we can definitely copy the set of steps we used to do that encoding, then use that recipe to prepare a second register.
 Perhaps instead of saying the map is not the territory, then, we should say that the cake is not the recipe!
 While I can use a recipe to prepare a new cake, and to understand what should happen if I follow a particular set of steps, it's difficult to eat an abstract concept like a recipe and definitely not very tasty.
+It's also pretty difficult to turn one cake into two, but not that hard to bake a second cake following the same recipe.
+
+## The Cake is Not a Lie ##
 
 Thinking of a quantum state as a kind of recipe I can use to prepare qubits, then, what good is a quantum program?
 To answer that, let's look at one more example in Q#:
