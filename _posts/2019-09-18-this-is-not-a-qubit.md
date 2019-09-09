@@ -10,14 +10,14 @@ We may even add things to our map that don't actually exist in the world, but th
 In all cases, we make these choices so that our model of the world (a map) lets us predict what will happen when walk around the world.
 We can use those predictions to trade off different possible routes, guess at what might be an interesting place to visit, and so forth.
 
-<img src="/assets/figures/this-is-not-a-qubit.md" />
+<img src="/assets/figures/this-is-not-a-qubit.png" />
 
 The lesson learned from separating maps from the world becomes far less obvious, however, when we are working with realities and abstractions that are less familiar to us.
 It's quite easy, for instance, for both newcomers and experienced quantum physicists to accidentally conflate a register of qubits with the model we use to predict what that register will do.
 In particular, if we want to simulate how a quantum program transforms data stored in a register of qubits, we can write down a _state vector_ for that register, then use a simulator to propagate that state vector through the unitary matrices for each instruction in our program.
 
 As an example, we can use tools like Q# and the Quantum Development Kit to understand how a quantum program can cause two qubits in a quantum register to become entangled.
-Using IQ# with Jupyter Notebook, we might something like the following ((run online)[https://mybinder.org/v2/gist/cgranade/df78c32014986d77b054abf33c45b9d6/master]):
+Using IQ# with Jupyter Notebook, we might something like the following ([run online](https://mybinder.org/v2/gist/cgranade/df78c32014986d77b054abf33c45b9d6/master)):
 
 ```Q#
 In [1]: open Microsoft.Quantum.Diagnostics;
