@@ -79,7 +79,7 @@ In [3]: open Microsoft.Quantum.Diagnostics;
 ...     }
 ```
 
-If we were to run this one, the simulator would dump out a state with $2^10 = 1,024$ amplitudes, but it's much easier to read and understand what that program does by looking at the Q# source itself.
+If we were to run this one, the simulator would dump out a state with $2^{10} = 1,024$ amplitudes, but it's much easier to read and understand what that program does by looking at the Q# source itself.
 From that perspective, a quantum program can help us understand a computational task by compressing it down from a description purely in terms of state vectors, focusing back on what we actually want to achieve using a quantum device.
 The simplest and by far the most effective way to both achieve this compression is to simply write down the instructions we need to send to a quantum device to prepare our qubits in a particular state.
 Thus, instead of writing $\ket{+}$, for instance, we write down the program `H(q)`.
