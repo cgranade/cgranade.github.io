@@ -32,7 +32,7 @@ If you don't already have an Azure subscription, you can get [$200 worth of free
 Note that if you're at a university or other research instutition, they may also have purchased an Azure subscription already.
 
 In either case, I've put together a template to help you get started, so let's go on and get started.
-Go to https://github.com/cgranade/quantum-research-template, and you should see a button labeled "Use this template."
+Go to [https://github.com/cgranade/quantum-research-template](https://github.com/cgranade/quantum-research-template), and you should see a button labeled "Use this template."
 
 <img src="/assets/figures/github-use-template.png" />
 
@@ -43,7 +43,7 @@ It will take a few moments, but then you'll have a repo all setup with the start
 Next, let's go to Visual Studio Online and use your new repository to setup an **environment**.
 The template you copied in the previous step comes with instructions that Visual Studio Online can use to install LaTeX, Python, the .NET Core SDK, and other software that's helpful for doing quantum research.
 
-Go to http://online.visualstudio.com/ and click "Get Started."
+Go to [http://online.visualstudio.com/](http://online.visualstudio.com/) and click "Get Started."
 Sign in with the account you use to get to your Azure subscription, and you'll be taken to the main Visual Studio Online portal.
 Note that you may be prompted to create a plan if you haven't already done so.
 This tells Visual Studio Online what subscription you want to use with your new environment; handy if you have multiple subscriptions.
