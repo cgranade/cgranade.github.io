@@ -7,8 +7,8 @@ title: "Reproducible Research with Q#"
 
 ## Introduction ##
 
-Almost three years ago, [I wrote here about the importance of reproducible research](), and about tools that can be used to make it easier to perform research in a way that makes reproduciblity **easy**.
-Making it easy to do research in a reproducible fashion is critical --- not just to avoid the gatekeeping that all too often comes along with research, but also because people are much more likely to do the things that we [encourage them to do]().
+Almost three years ago, [I wrote here about the importance of reproducible research](https://www.cgranade.com/blog/2017/05/08/software-for-reproducible-papers.html), and about tools that can be used to make it easier to perform research in a way that makes reproduciblity **easy**.
+Making it easy to do research in a reproducible fashion is critical --- not just to avoid the gatekeeping that all too often comes along with research, but also because people are much more likely to do the things that we [encourage them to do](https://www.cgranade.com/blog/2017/03/31/what-we-encourage.html).
 Though reproducible research is critical throughout science, it's also near and dear to my own heart given the importance to quantum computing.
 
 Looking back at my post, a lot can change in three years.
@@ -21,12 +21,12 @@ Let's start with the punchline, though: **the only software you need to get star
 
 ## Reproducible Research with Visual Studio Online
 
-As a member of the team that [launched the Quantum Development Kit and the Q# language two years ago](), I'm particularly excited for how Q# has helped enable quantum computing research by making it easier to [develop and test quantum algorithms](), [estimate resource costs](), and once [Azure Quantum]() launches, even to [run quantum programs on hardware]().
-Thanks to the [recent launch of Visual Studio Online](), you can now do all of that from your browser.
+As a member of the team that [launched the Quantum Development Kit and the Q# language two years ago](https://devblogs.microsoft.com/qsharp/a-second-year-of-q/), I'm particularly excited for how Q# has helped enable quantum computing research by making it easier to [develop and test quantum algorithms](https://docs.microsoft.com/quantum/techniques/testing-and-debugging), [estimate resource costs](https://docs.microsoft.com/quantum/machines/resources-estimator), and once [Azure Quantum](https://azure.com/quantum/) launches, even to [run quantum programs on hardware](https://myignite.techcommunity.microsoft.com/sessions/84347?source=sessions).
+Thanks to the [recent launch of Visual Studio Online](https://online.visualstudio.com/), you can now do all of that from your browser.
 To get started with Visual Studio Online, you'll need two things:
 
-- A [GitHub]() account
-- An [Azure]() subscription
+- A [GitHub](https://github.com/) account
+- An [Azure](http://azure.com/) subscription
 
 If you don't already have an Azure subscription, you can get [$200 worth of free credits](https://azure.microsoft.com/en-us/free/) to help you get started.
 Note that if you're at a university or other research instutition, they may also have purchased an Azure subscription already.
@@ -52,7 +52,7 @@ In any case, press "Create environment," give your new environment a name and th
 
 <!-- TODO: screenshot -->
 
-Once you do all that, time to grab a coffee (or, if you're [Chris Ferrie](), a couple coffees).
+Once you do all that, time to grab a coffee (or, if you're [Chris Ferrie](https://csferrie.com/), a couple coffees).
 By the time you get back, your new environment should be up and running, with everything installed from the template.
 
 You can then write Q# code, run it, and embed the code directly into your paper.
@@ -120,13 +120,13 @@ This is also a problem for very different reasons in many other areas of computi
 In particular, the past few years have seen an explosion in the use of containers to isolate application dependencies for each other, and to deploy software in a robust way.
 
 We can use that same idea to help out with research!
-Much like Python's [virtual environments]() or Anaconda's [conda envs](), containers can be used to manage side-by-side software installations, letting you use different versions of software packages for different projects.
+Much like Python's [virtual environments](https://virtualenv.pypa.io/en/stable/) or Anaconda's [conda envs](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html), containers can be used to manage side-by-side software installations, letting you use different versions of software packages for different projects.
 
 The Quantum Development Kit uses this concept, for instance, to package everything you need to use IQ# in Jupyter Notebooks into a single container.
 The [instructions on the IQ# repository](https://github.com/microsoft/iqsharp/blob/master/images/iqsharp-base/Dockerfile) tell Docker, a popular container engine, how to build that container by installing different other packages into the IQ# container.
 
 Once you have a container like one built to use IQ# and the Quantum Development Kit, there's any number of different ways you can use it to do awesome stuff.
-If you've used the [zero-install version of the quantum katas](), for instance, that uses the IQ# container together with a really neat open-source service called [Binder]().
+If you've used the [zero-install version of the quantum katas](http://aka.ms/online-quantum-katas), for instance, that uses the IQ# container together with a really neat open-source service called [Binder](https://mybinder.org/).
 When you use Binder with a project, that launches a new VM for you, builds a new container from the IQ# container, and forwards the Jupyter Notebook server running in the new container over to you.
 While that is fairly complicated, it means a really straightforward experience for you when you try out different research, tutorials, or other content hosted on Binder.
 
@@ -135,9 +135,9 @@ While that is fairly complicated, it means a really straightforward experience f
 ### Getting a Bit More Remote
 
 It turns out that Visual Studio Code can make use of the same kinds of container technology to help you develop your research.
-If you noticed, there's a folder called `.devcontainer` in the [Quantum Development Kit samples](), the [quantum katas](), the [Q# libraries](), and even in the template you just used above.
+If you noticed, there's a folder called `.devcontainer` in the [Quantum Development Kit samples](https://github.com/Microsoft/Quantum), the [quantum katas](https://github.com/Microsoft/Quantumkatas), the [Q# libraries](https://github.com/microsoft/QuantumLibraries/), and even in the template you just used above.
 These folders specify what containers to use when developing on those projects.
-Once you [have the right extension installed](), when you open one of those repositories, that builds a new container from the instructions in `.devcontainer`.
+Once you [have the right extension installed](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack), when you open one of those repositories, that builds a new container from the instructions in `.devcontainer`.
 Most of Visual Studio Code then runs _inside_ that new container; only the graphical interface is running on your normal operating system.
 
 From the standpoint of reproducibility, that's great, as it means that all the software you use for a project is specified in one place, irrespective of what you might have installed on your normal OS.
