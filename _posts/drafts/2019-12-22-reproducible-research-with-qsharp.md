@@ -3,7 +3,7 @@ layout: post
 title: "Reproducible Research with Q#"
 ---
 
-*This post is...*
+*This post is part of the [Q# Advent Calendar 2019](https://devblogs.microsoft.com/qsharp/q-advent-calendar-2019/). Follow the calendar for other great posts!*
 
 ## Introduction ##
 
@@ -34,7 +34,7 @@ Note that if you're at a university or other research instutition, they may also
 In either case, I've put together a template to help you get started, so let's go on and get started.
 Go to https://github.com/cgranade/quantum-research-template, and you should see a button labeled "Use this template."
 
-<!-- TODO: screenshot -->
+<img src="/assets/figures/github-use-template.png" />
 
 When you click that button, you'll be prompted to make your own GitHub repository to help collect your work and share it with your collaborators.
 Go on and give your new repository a name, and press "Create repository from template."
@@ -50,7 +50,7 @@ This tells Visual Studio Online what subscription you want to use with your new 
 
 In any case, press "Create environment," give your new environment a name and then put in the name of the repo you created above.
 
-<!-- TODO: screenshot -->
+<img src="/assets/figures/vso-create-environment.png" />
 
 Once you do all that, time to grab a coffee (or, if you're [Chris Ferrie](https://csferrie.com/), a couple coffees).
 By the time you get back, your new environment should be up and running, with everything installed from the template.
@@ -61,7 +61,18 @@ Go on and try it out!
 Open up `src/Operations.qs` from the side bar, and replace the definition of `HelloQ` with the following Q# code:
 
 ```
-// TODO
+open Microsoft.Quantum.Measurement;
+
+operation HelloQ() : Unit {
+    let randomBit = SampleRandomBit();
+    Message($"Got {randomBit}!");
+}
+
+operation SampleRandomBit() : Result {
+    using (q = Qubit()) {
+        return MResetX(q);
+    }
+}
 ```
 
 Next, open up your TeX manuscript, and try changing some text.
@@ -73,12 +84,14 @@ Press Ctrl+\` or Command+\` to bring up a terminal window, then run the followin
 ```
 $ cd src
 $ dotnet run
+Got One!
 ```
 
 If you prefer Python, that's cool too:
 
 ```
 $ python host.py
+Got 0!
 ```
 
 When you're ready to post to the arXiv, that's just as straightforward:
@@ -101,7 +114,7 @@ Let's see how that all comes together by taking a trip through the various techn
 
 ### Contain Yourself
 
-The first thing to look at is the concept of a **container**.
+The first thing to look at is the concept of a [**container**](https://www.docker.com/resources/what-container).
 Using Q# to do reproducible research, your software stack might look a _little_ different than it did three years ago.
 For example, if you want to use Q# together with great host languages like C# or Python, and then include all of that into a paper written with LaTeX, you may wind up needing a variety of different tools:
 
@@ -129,8 +142,6 @@ Once you have a container like one built to use IQ# and the Quantum Development 
 If you've used the [zero-install version of the quantum katas](http://aka.ms/online-quantum-katas), for instance, that uses the IQ# container together with a really neat open-source service called [Binder](https://mybinder.org/).
 When you use Binder with a project, that launches a new VM for you, builds a new container from the IQ# container, and forwards the Jupyter Notebook server running in the new container over to you.
 While that is fairly complicated, it means a really straightforward experience for you when you try out different research, tutorials, or other content hosted on Binder.
-
-<!-- TODO: Link to https://www.docker.com/resources/what-container for more details.  -->
 
 ### Getting a Bit More Remote
 
