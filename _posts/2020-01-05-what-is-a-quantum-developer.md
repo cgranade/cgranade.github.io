@@ -59,4 +59,4 @@ You'll do amazing things here, and you'll do them your way.
 
 ---
 
-_If you like this post, read more [at my blog](http://www.cgranade.com/blog), or read_ [Learn Quantum Computing with Python and Q#](https://bit.ly/qsharp-book)_, now available in early access from Manning Publications._
+_If you like this post, vote for it on [dev.to](https://dev.to/cgranade/what-is-a-quantum-developer-anyway-38l), or read_ [Learn Quantum Computing with Python and Q#](https://bit.ly/qsharp-book)_, now available in early access from Manning Publications._
