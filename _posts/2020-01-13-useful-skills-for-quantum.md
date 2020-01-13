@@ -41,4 +41,4 @@ Your peers in the quantum community come from all walks of life, not just in ter
 
 ---
 
-_If you like this post, vote for it on [dev.to](https://dev.to/cgranade/what-is-a-quantum-developer-anyway-38l), or read_ [Learn Quantum Computing with Python and Q#](https://bit.ly/qsharp-book)_, now available in early access from Manning Publications._
+_If you like this post, vote for it on [dev.to](https://dev.to/cgranade/some-useful-skills-for-quantum-computing-2hn2), or read_ [Learn Quantum Computing with Python and Q#](https://bit.ly/qsharp-book)_, now available in early access from Manning Publications._
