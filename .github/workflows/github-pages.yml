@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # Needed for the KaTeX plugin to Jekyll.
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '14'
       - uses: helaili/jekyll-action@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           target_branch: 'gh-pages'
+          pre_build_commands: |
+            apk --update add nodejs
