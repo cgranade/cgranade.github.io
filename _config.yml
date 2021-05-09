@@ -3,14 +3,17 @@
 markdown:         kramdown
 highlighter:      rouge
 
+plugins:
+  - jekyll-katex
+
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 title : cgranade::space
 tagline: 'Quantum, stats, programming, and some rants'
 description:
     Research SDE at Microsoft Research
-url: https://www.cgranade.com
-baseurl: https://www.cgranade.com/
+# url: https://www.cgranade.com
+# baseurl: https://www.cgranade.com/
 
 author :
   name : Christopher Granade
