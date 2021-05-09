@@ -5,7 +5,7 @@ title: "Testing GitHub Actions"
 
 Please disregard this post; it is only intended to check that GitHub Actions work correctly with jekyll-katex.
 
-By way of context, it helps to revisit a little bit of what a quantum state is in the first place. Typically, if we have an {% katex inline %}n{% endkatex %}-qubit register, we think of a state {% katex inline %}\ket{\psi}{% endkatex %} of that register as being a _vector_ with {% katex inline %}2^n{% katex inline %} complex elements; one for each possible classical bit string on {% katex inline %}n{% katex inline %} bits.
+By way of context, it helps to revisit a little bit of what a quantum state is in the first place. Typically, if we have an {% katex inline %}n{% endkatex %}-qubit register, we think of a state {% katex inline %}\ket{\psi}{% endkatex %} of that register as being a _vector_ with {% katex inline %}2^n{% endkatex %} complex elements; one for each possible classical bit string on {% katex inline %}n{% endkatex %} bits.
 
 For example, when we write out a state in Dirac notation like {% katex inline %}\ket{00}{% endkatex %}, we could have also written that same state out as a vector on four elements:
 
