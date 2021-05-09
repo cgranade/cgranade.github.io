@@ -8,4 +8,8 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 gem "jekyll", "~> 4.2"
 
-gem "jekyll-katex", "~> 1.0"
+# We use a Git source to gain access to the functionality in
+# https://github.com/linjer/jekyll-katex/pull/34.
+gem "jekyll-katex", git: "https://github.com/hrjakobsen/jekyll-katex"
+
+gem "jekyll-paginate", "~> 1.1"

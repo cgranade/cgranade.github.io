@@ -5,6 +5,7 @@ highlighter:      rouge
 
 plugins:
   - jekyll-katex
+  - jekyll-paginate
 
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
@@ -13,7 +14,7 @@ tagline: 'Quantum, stats, programming, and some rants'
 description:
     Research SDE at Microsoft Research
 url: https://www.cgranade.com
-baseurl: https://www.cgranade.com/
+baseurl: ""
 
 author :
   name : Christopher Granade
@@ -30,3 +31,8 @@ paginate: 5
 paginate_path: "/blog/page:num/"
 
 exclude: ["*.ipynb"]
+
+katex:
+  rendering_options:
+    macros:
+      "\\ket": "\\left|#1\\right\\rangle"
