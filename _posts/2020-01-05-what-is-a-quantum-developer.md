@@ -14,7 +14,7 @@ With this post, I'd like help to demystify things a little bit by talking about 
 ## WHOAMI? ##
 
 But first because everyone's path to quantum development looks different, a little bit about myself can provide some helpful context.
-I'm Chris Granade, a research software development engineer in the Quantum System group at Microsoft.
+I'm Cassandra Granade, a research software development engineer in the Quantum System group at Microsoft.
 Before that, I did a triple-major at the University of Alaska Fairbanks, a Masters degree at the Perimeter Institute, a PhD at the Institute for Quantum Computing, and a postdoc at the University of Sydney.
 Needless to say, learning about quantum computing has been a bit of a thing for me throughout much of my life.
 In my spare time, I'm as liable to be shitposting surreal memes, planning a World of Darkness tabletop campaign, or taking our adorable puppy for a walk to one of Seattle's surprisingly numerous dog-friendly breweries.

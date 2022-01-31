@@ -4,7 +4,7 @@ title: "Characterization, Verification and Control for Large Quantum Systems"
 description: ""
 ---
 
-[**Christopher E. Granade**](/)<sup>[1](#affil-iqc), [2](#affil-uw-phys)</sup>
+[**Cassandra E. Granade**](/)<sup>[1](#affil-iqc), [2](#affil-uw-phys)</sup>
 
  > [PDF](https://www.cgranade.com/downloads/cgranade-thesis.pdf)
 

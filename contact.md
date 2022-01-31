@@ -106,10 +106,6 @@ Biographical Information and Affiliations<br>
 <td><a href="http://en.wikipedia.org/wiki/User:Cgranade">cgranade</a></td>
 </tr>
 <tr>
-<td>Qwiki</td>
-<td><a href="http://qwiki.stanford.edu/wiki/Christopher_Granade">Christopher Granade</a></td>
-</tr>
-<tr>
 <td>Google Code
 </td>
 <td><a href="http://code.google.com/u/cgranade/">cgranade</a></td>

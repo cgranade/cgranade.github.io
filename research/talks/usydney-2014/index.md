@@ -4,7 +4,7 @@ title: "Quantum Bootstrapping"
 description: ""
 ---
 
-**[Christopher Granade](/)<sup>[1](#affil-iqc), [2](#affil-uwphys)</sup>**,
+**[Cassandra Granade](/)<sup>[1](#affil-iqc), [2](#affil-uwphys)</sup>**,
 joint work with
 **[Nathan Wiebe](http://research.microsoft.com/en-us/people/nawiebe/)<sup>[3](#affil-msr)</sup>,
 [Christopher Ferrie](http://csferrie.com/)<sup>[4](#affil-cquic)</sup>, and

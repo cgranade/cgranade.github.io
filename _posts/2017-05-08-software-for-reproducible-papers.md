@@ -240,7 +240,7 @@ Following that strategy, we can now write a very minimal LaTeX template:
 \title{Example paper}
 \date{\today}
 
-\author{Christopher Granade}
+\author{Cassandra Granade}
     \affilEQuSUSyd
     \affilUSydPhys
 

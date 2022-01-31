@@ -32,94 +32,94 @@
 
 #### 2017 ####
 
-- *QInfer: Statistical inference software for quantum applications*, **Christopher E. Granade**, Christopher Ferrie, Ian Hincks, Steven Casagrande, Thomas Alexander, Jonathan Gross, Michal Kononenko, Yuval Sanders. Quantum **1** 5.
+- *QInfer: Statistical inference software for quantum applications*, **Cassandra E. Granade**, Christopher Ferrie, Ian Hincks, Steven Casagrande, Thomas Alexander, Jonathan Gross, Michal Kononenko, Yuval Sanders. Quantum **1** 5.
   > [doi:10.22331/q-2017-04-25-5](https://doi.org/10.22331/q-2017-04-25-5) | [arXiv:1610.00336](https://scirate.com/arxiv/1610.00336)
 
-- *Tailored codes for small quantum memories*, Alan Robertson, **Christopher E. Granade**, Stephen D. Bartlett, Steven T. Flammia.
+- *Tailored codes for small quantum memories*, Alan Robertson, **Cassandra E. Granade**, Stephen D. Bartlett, Steven T. Flammia.
   > [arXiv:1703.08179](https://arxiv.org/abs/1703.08179)
 
-- *Logical randomized benchmarking*, Joshua Combes, **Christopher E. Granade**, Christopher Ferrie, Steven T. Flammia.
+- *Logical randomized benchmarking*, Joshua Combes, **Cassandra E. Granade**, Christopher Ferrie, Steven T. Flammia.
   > [arXiv:1702.03688](https://scirate.com/arxiv/1702.03688)
 
 #### 2016 ####
 
-- *Structured filtering*, **Christopher E. Granade**, Nathan Wiebe.
+- *Structured filtering*, **Cassandra E. Granade**, Nathan Wiebe.
   > [arXiv:1612.00762](https://scirate.com/arxiv/1612.00762)
 
-- *Explaining quantum correlations through evolution of causal models*, Robin Harper, Robert J. Chapman, Christopher Ferrie, **Christopher E. Granade**, Richard Kueng, Daniel Naoumenko, Steven T. Flammia and Alberto Peruzzo.
+- *Explaining quantum correlations through evolution of causal models*, Robin Harper, Robert J. Chapman, Christopher Ferrie, **Cassandra E. Granade**, Richard Kueng, Daniel Naoumenko, Steven T. Flammia and Alberto Peruzzo.
   > [arXiv:1608.03281](https://scirate.com/arxiv/1608.03281)
 
-- *Practical adaptive quantum tomography*, **Christopher E. Granade**, Christopher Ferrie and Steven T. Flammia.
+- *Practical adaptive quantum tomography*, **Cassandra E. Granade**, Christopher Ferrie and Steven T. Flammia.
   > [arXiv:1605.05039](https://scirate.com/arxiv/1605.05039) | supplemental material [doi:10/bhfk](https://dx.doi.org/10/bhfk)
 
-- *Efficient Bayesian Phase Estimation*, Nathan Wiebe, **Christopher E. Granade**. Physical Review Letters **117** 010503.
+- *Efficient Bayesian Phase Estimation*, Nathan Wiebe, **Cassandra E. Granade**. Physical Review Letters **117** 010503.
   > [doi:10.1103/PhysRevLett.117.010503](https://dx.doi.org/10.1103/PhysRevLett.117.010503) | [arXiv:1508.00869](https://scirate.com/arxiv/1508.00869)
 
-- *Practical Bayesian Tomography*, **Christopher E. Granade**, Joshua Combes and D. G. Cory. New Journal of Physics **18** 033024.
+- *Practical Bayesian Tomography*, **Cassandra E. Granade**, Joshua Combes and D. G. Cory. New Journal of Physics **18** 033024.
   > [doi:10.1088/1367-2630/18/3/033024](https://dx.doi.org/10.1088/1367-2630/18/3/033024) | [literate source code](http://nbviewer.jupyter.org/gist/cgranade/9b3f8c4c8173eebf5f35) | [arXiv:1509.03770](https://scirate.com/arxiv/1509.03770)
 
 #### 2015 ####
 
-- *Can small quantum systems learn?*, Nathan Wiebe, **Christopher E. Granade**.
+- *Can small quantum systems learn?*, Nathan Wiebe, **Cassandra E. Granade**.
   > [arXiv:1512.03145](https://scirate.com/arxiv/1512.03145)
 
-- *Bayesian inference via rejection filtering*, Nathan Wiebe, **Christopher E. Granade**, Ashish Kapoor, Krysta M Svore.
+- *Bayesian inference via rejection filtering*, Nathan Wiebe, **Cassandra E. Granade**, Ashish Kapoor, Krysta M Svore.
   > [arXiv:1511.06458](https://scirate.com/arxiv/1511.06458)
 
-- *Accounting for Classical Hardware in the Control of Quantum Devices*, Ian N. Hincks, **Christopher E. Granade**, Troy W. Borneman, D. G. Cory. Physical Review Applied **4** 024012.
+- *Accounting for Classical Hardware in the Control of Quantum Devices*, Ian N. Hincks, **Cassandra E. Granade**, Troy W. Borneman, D. G. Cory. Physical Review Applied **4** 024012.
    > [doi:10.1103/PhysRevApplied.4.024012](https://dx.doi.org/10.1103/PhysRevApplied.4.024012) | [arXiv:1409.8178](https://scirate.com/arxiv/1409.8178)
 
-- *Quantum Inspired Training for Boltzmann Machines*, Nathan Wiebe, Ashish Kapoor, **Christopher E. Granade**, Krysta M Svore.
+- *Quantum Inspired Training for Boltzmann Machines*, Nathan Wiebe, Ashish Kapoor, **Cassandra E. Granade**, Krysta M Svore.
   > [arXiv:1507.02642](https://scirate.com/arxiv/1507.02642)
 
-- *Characterization, Verification and Control for Large Quantum Systems*, **Christopher E. Granade**. PhD Thesis.
+- *Characterization, Verification and Control for Large Quantum Systems*, **Cassandra E. Granade**. PhD Thesis.
   > [UWSpace](https://uwspace.uwaterloo.ca/handle/10012/9217)
 
-- *Estimating the Coherence of Noise*, Joel Wallman, **Christopher E. Granade**, Robin Harper, Steven T. Flammia.
+- *Estimating the Coherence of Noise*, Joel Wallman, **Cassandra E. Granade**, Robin Harper, Steven T. Flammia.
   > [arXiv:1503.07865](https://scirate.com/arxiv/1503.07865)
 
-- *Quantum Bootstrapping via Compressed Quantum Hamiltonian Learning*, Nathan Wiebe, **Christopher E. Granade**, David G. Cory. 
+- *Quantum Bootstrapping via Compressed Quantum Hamiltonian Learning*, Nathan Wiebe, **Cassandra E. Granade**, David G. Cory. 
 New Journal of Physics (Fast Track Communications) **17** 022005.
    > [doi:10.1088/1367-2630/17/2/022005](http://dx.doi.org/10.1088/1367-2630/17/2/022005) | [arXiv:1409.1524](https://scirate.com/arxiv/1409.1524)
 
 #### 2014 ####
 
-- *Accelerated Randomized Benchmarking*, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory. New Journal of Physics **17** 013042.
+- *Accelerated Randomized Benchmarking*, **Cassandra E. Granade**, Christopher Ferrie, D. G. Cory. New Journal of Physics **17** 013042.
     > [doi:10.1088/1367-2630/17/1/013042](http://dx.doi.org/10.1088/1367-2630/17/1/013042) | [arXiv:1404.5275](http://arxiv.org/abs/1404.5275)
 
-- *Quantum Hamiltonian Learning Using Imperfect Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory. Physical Review A **89** 042314.
+- *Quantum Hamiltonian Learning Using Imperfect Quantum Resources*, Nathan Wiebe, **Cassandra E. Granade**, Christopher Ferrie, D. G. Cory. Physical Review A **89** 042314.
     > [arXiv:1311.5269](http://arxiv.org/abs/1311.5269) | [doi:10.1103/PhysRevA.89.042314](http://dx.doi.org/10.1103/PhysRevA.89.042314)
 
-- *Likelihood-Free Methods for Quantum Parameter Estimation*, Christopher Ferrie, **Christopher E. Granade**. Physical Review Letters **112** 130402.
+- *Likelihood-Free Methods for Quantum Parameter Estimation*, Christopher Ferrie, **Cassandra E. Granade**. Physical Review Letters **112** 130402.
     > [arXiv:1304.5828](http://arxiv.org/abs/1304.5828) | [doi:10.1103/PhysRevLett.112.130402](http://dx.doi.org/10.1103/PhysRevLett.112.130402)
 
-- *Tractable Simulation of Quantum Error Correction with Honest Approximations to Realistic Fault Models*, Daniel Puzzuoli, **Christopher E. Granade**, Holger Haas, Ben Criger, Easwar Magesan, D. G. Cory. Physical Review A **89** 022306.
+- *Tractable Simulation of Quantum Error Correction with Honest Approximations to Realistic Fault Models*, Daniel Puzzuoli, **Cassandra E. Granade**, Holger Haas, Ben Criger, Easwar Magesan, D. G. Cory. Physical Review A **89** 022306.
     > [arXiv:1309.4717](http://arxiv.org/abs/1309.4717) | [doi:10.1103/PhysRevA.89.022306](http://dx.doi.org/10.1103/PhysRevA.89.022306)
 
-- *Hamiltonian Learning and Certification Using Quantum Resources*, Nathan Wiebe, **Christopher E. Granade**, Christopher Ferrie, D. G. Cory. Physical Review A **89** 042314.
+- *Hamiltonian Learning and Certification Using Quantum Resources*, Nathan Wiebe, **Cassandra E. Granade**, Christopher Ferrie, D. G. Cory. Physical Review A **89** 042314.
     > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876) | [doi:10.1103/PhysRevA.89.042314](http://dx.doi.org/10.1103/PhysRevA.89.042314)
 
 #### 2012 ####
 
-- *Robust Online Hamiltonian Learning*, **Christopher E. Granade**, Christopher Ferrie, Nathan Wiebe, David G. Cory. New Journal of Physics **14** 103013.
+- *Robust Online Hamiltonian Learning*, **Cassandra E. Granade**, Christopher Ferrie, Nathan Wiebe, David G. Cory. New Journal of Physics **14** 103013.
     > [doi:10.1088/1367-2630/14/10/103013](http://dx.doi.org/10.1088/1367-2630/14/10/103013) | [arXiv:1207.1655](http://arxiv.org/abs/1207.1655)
     
-- *Modeling quantum noise for efficient testing of fault-tolerant circuits*, Easwar Magesan, Daniel Puzzuoli, **Christopher E. Granade**, David G. Cory.
+- *Modeling quantum noise for efficient testing of fault-tolerant circuits*, Easwar Magesan, Daniel Puzzuoli, **Cassandra E. Granade**, David G. Cory.
   Physical Review A **87** 012324.
     > [doi:10.1103/PhysRevA.87.012324](http://dx.doi.org/10.1103/PhysRevA.87.012324) | [arXiv:1206.5407](http://arxiv.org/abs/1206.5407)
 
 #### 2011 ####
 
-- *Adaptive Hamiltonian Estimation Using Bayesian Experimental Design*, Christopher Ferrie, **Christopher E. Granade**, David G. Cory. Bayesian
+- *Adaptive Hamiltonian Estimation Using Bayesian Experimental Design*, Christopher Ferrie, **Cassandra E. Granade**, David G. Cory. Bayesian
   Inference And Maximum Entropy Methods In Science And Engineering: Proceedings of the 31th International Workshop on Bayesian Inference and
   Maximum Entropy Methods in Science and Engineering.
     > [doi:10.1063/1.3703632](http://dx.doi.org/10.1063/1.3703632) | [arXiv:1111.0935](http://arxiv.org/abs/1111.0935)
 
 - *How to best sample a periodic probability distribution, or on the accuracy of Hamiltonian finding strategies*, Christopher Ferrie,
-  **Christopher E. Granade**, David G. Cory. Quantum Information Processing.
+  **Cassandra E. Granade**, David G. Cory. Quantum Information Processing.
     > [doi:10.1007/s11128-012-0407-6](http://dx.doi.org/10.1007/s11128-012-0407-6) | [arXiv:1110.3067](http://arxiv.org/abs/1110.3067)
 
-- *Parallel Information Transfer in a Multi-Node Quantum Information Processor*, Troy W. Borneman, **Christopher E. Granade**, David G. Cory.
+- *Parallel Information Transfer in a Multi-Node Quantum Information Processor*, Troy W. Borneman, **Cassandra E. Granade**, David G. Cory.
   Physics Review Letters **108** 140502.
     > [doi:10.1103/PhysRevLett.108.140502](http://dx.doi.org/10.1103/PhysRevLett.108.140502) | [arXiv:1107.4333](http://arxiv.org/abs/1107.4333)
 
