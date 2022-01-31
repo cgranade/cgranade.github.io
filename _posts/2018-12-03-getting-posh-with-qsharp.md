@@ -110,7 +110,7 @@ This will make a new directory with a C# project file and a single C# source fil
 # ls or dir, both of which are also aliases for Get-ChildItem.
 PS> gci
 
-    Directory: C:\Users\Chris\Source\Repos\QsharpBlog\2018\December\src\posh-die
+    Directory: C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die
 
 Mode                LastWriteTime         Length Name
 ----                -------------         ------ ----
@@ -187,8 +187,8 @@ PS> dotnet build
 Microsoft (R) Build Engine version 15.5.179.9764 for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-  Restore completed in 15.79 ms for C:\Users\Chris\Source\Repos\QsharpBlog\2018\December\src\posh-die\posh-die.csproj.
-  posh-die -> C:\Users\Chris\Source\Repos\QsharpBlog\2018\December\src\posh-die\bin\Debug\netstandard2.0\posh-die.dll
+  Restore completed in 15.79 ms for C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die\posh-die.csproj.
+  posh-die -> C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die\bin\Debug\netstandard2.0\posh-die.dll
 
 Build succeeded.
     0 Warning(s)
@@ -297,8 +297,8 @@ PS> dotnet build
 Microsoft (R) Build Engine version 15.5.179.9764 for .NET Core
 Copyright (C) Microsoft Corporation. All rights reserved.
 
-  Restore completed in 22.01 ms for C:\Users\Chris\Source\Repos\QsharpBlog\2018\December\src\posh-die\posh-die.csproj.
-  posh-die -> C:\Users\Chris\Source\Repos\QsharpBlog\2018\December\src\posh-die\bin\Debug\netstandard2.0\posh-die.dll
+  Restore completed in 22.01 ms for C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die\posh-die.csproj.
+  posh-die -> C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die\bin\Debug\netstandard2.0\posh-die.dll
 
 Build succeeded.
     0 Warning(s)
