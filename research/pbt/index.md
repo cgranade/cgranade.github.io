@@ -4,7 +4,7 @@ title: "Practical Bayesian Tomography"
 description: ""
 ---
 
-**[Christopher Granade](/)<sup>[1](#affil1),[2](#affil2)</sup>, Joshua Combes<sup>[3](#affil3),[4](#affil4),[5](#affil5)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[3](#affil3),[5](#affil5),[6](#affil6),[7](#affil7)</sup>**
+**[Cassandra Granade](/)<sup>[1](#affil1),[2](#affil2)</sup>, Joshua Combes<sup>[3](#affil3),[4](#affil4),[5](#affil5)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[3](#affil3),[5](#affil5),[6](#affil6),[7](#affil7)</sup>**
 
  > [arXiv:1509.03770](https://scirate.com/arxiv/1509.03770).
  

@@ -4,7 +4,7 @@ title: "Accelerated Randomized Benchmarking"
 description: ""
 ---
 
-**[Christopher Granade](/)<sup>[1](#affil-iqc), [2](#affil-uwphys)</sup>**, joint work with [Christopher Ferrie](http://csferrie.com/)<sup>[3](#affil-cquic)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[1](#affil-iqc),[4](#affil-uwchem),[5](#affil-pi)</sup>**
+**[Cassandra Granade](/)<sup>[1](#affil-iqc), [2](#affil-uwphys)</sup>**, joint work with [Christopher Ferrie](http://csferrie.com/)<sup>[3](#affil-cquic)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[1](#affil-iqc),[4](#affil-uwchem),[5](#affil-pi)</sup>**
 
  > [arXiv:1404.5275](http://arxiv.org/abs/1404.5275) | [SciRate](https://scirate.com/arxiv/1404.5275)
 

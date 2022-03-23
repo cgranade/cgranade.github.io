@@ -2,6 +2,6 @@
 pretty: true
 ---
 
-# Christopher Granade\
+# Cassandra Granade\
 Curricula Vitae #
 

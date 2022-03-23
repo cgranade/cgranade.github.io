@@ -4,7 +4,7 @@ title: "Quantum Hamiltonian Learning"
 description: ""
 ---
 
-**[Nathan Wiebe](http://research.microsoft.com/en-us/people/nawiebe/)<sup>[1](#affil1)</sup>, [Chris Granade](/)<sup>[2](#affil2), [3](#affil3)</sup>, [Chris Ferrie](http://csferrie.com/)<sup>[4](#affil4)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[2](#affil2),[5](#affil5),[6](#affil6)</sup>**
+**[Nathan Wiebe](http://research.microsoft.com/en-us/people/nawiebe/)<sup>[1](#affil1)</sup>, [Cassandra Granade](/)<sup>[2](#affil2), [3](#affil3)</sup>, [Chris Ferrie](http://csferrie.com/)<sup>[4](#affil4)</sup> and [D. G. Cory](http://iqc.uwaterloo.ca/iqc-directory/dcory/)<sup>[2](#affil2),[5](#affil5),[6](#affil6)</sup>**
 
  > [arXiv:1309.0876](http://arxiv.org/abs/1309.0876), [arxiv:1311.5269](http://arxiv.org/abs/1311.5269)
  
