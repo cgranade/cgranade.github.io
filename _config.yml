@@ -40,3 +40,7 @@ katex:
 keep_files:
 - .well-known
 - .well-known/webfinger
+
+include:
+- .well-known
+- .well-known/webfinger
