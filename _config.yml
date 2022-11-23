@@ -36,3 +36,7 @@ katex:
   rendering_options:
     macros:
       "\\ket": "\\left|#1\\right\\rangle"
+
+keep_files:
+- .well-known
+- .well-known/webfinger
