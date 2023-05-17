@@ -11,8 +11,7 @@ plugins:
 # so be sure to set them if your theme uses them.
 title : cgranade::space
 tagline: 'Quantum, stats, programming, and some rants'
-description:
-    Research SDE at Microsoft Research
+description: ""
 url: https://www.cgranade.com
 baseurl: /
 
