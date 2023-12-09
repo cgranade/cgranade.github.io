@@ -16,7 +16,9 @@
   
 ## Recent Work History ##
 
-- Research Associate, University of Sydney. March 2015 to present.
+- Owner and Principle at Dual Space Solutions LLC. May 2023 to present. 
+- Senior Research Developer, Microsoft. July 2017 to October 2022.
+- Research Associate, University of Sydney. March 2015 to July 2017.
 - Research Assistant, Institute for Quantum Computing. May 2010 to February 2015.
 - Teaching Assistant, Physics Department, University of Alaska Fairbanks. September 2008 to May 2009.
 - Research Assistant, Computer Science and Artifical Intelligence Laboratory, Massachusetts Institute of Technology. June 2008 to August 2008.
@@ -29,6 +31,58 @@
 - [*Rejection and Particle Filtering for Hamiltonian Learning*](https://www.cgranade.com/research/talks/qml/2016/). Presented as an invited talk at the [Quantum Machine Learning](https://www.perimeterinstitute.ca/conferences/quantum-machine-learning) conference, Perimeter Institute, September 2016.
 
 ### Papers, Essays and Publications ###
+
+#### 2023 ####
+
+- *Periodic plane-wave electronic structure calculations on quantum computers*, Duo Song, Nicholas P. Bauman, Guen Prawiroatmodjo, Bo Peng, **Cassandra E. Granade**, Kevin M. Rosso, Guang Hao Low, Martin Roetteler, Karol Kowalski & Eric J. Bylaska. Mater Theory 7, 2 (2023). 
+  > [https://doi.org/10.1186/s41313-022-00049-5](https://doi.org/10.1186/s41313-022-00049-5)
+
+- *Advances in compilation for quantum hardware--A demonstration of magic state distillation and repeat-until-success protocols*, Brown, N.C., Campora III, J.P., **Cassandra E. Granade**, Heim, B., Wernli, S., Ryan-Anderson, C., Lucchetti, D., Paetznick, A., Roetteler, M., Svore, K. and Chernoguzov, A. 
+  > [arXiv:2310.12106](https://doi.org/10.48550/arXiv.2310.12106)
+
+#### 2022 ####
+
+- *Advancing hybrid quantum–classical computation with real-time execution*, Lubinski, T., **Cassandra E. Granade**, Anderson, A., Geller, A., Roetteler, M., Petrenko, A. and Heim, B. Frontiers in Physics, 10, p.940293.
+  > [https://doi.org/10.3389/fphy.2022.940293](https://doi.org/10.3389/fphy.2022.940293)
+
+#### 2021 ####
+
+- *Learning models of quantum systems from experiments*, Gentile, A.A., Flynn, B., Knauer, S., Wiebe, N., Paesani, S., **Cassandra E. Granade**, Rarity, J.G., Santagati, R. and Laing, A., 2021.  Nature Physics, 17(7), pp.837-843.
+  > [https://doi.org/10.1038/s41567-021-01201-7](https://doi.org/10.1038/s41567-021-01201-7)
+
+#### 2020 ####
+
+- *Toward quantum computing for high-energy excited states in molecular systems: quantum phase estimations of core-level states*, Bauman, N.P., Liu, H., Bylaska, E.J., Krishnamoorthy, S., Low, G.H., **Cassandra E. Granade**, Wiebe, N., Baker, N.A., Peng, B., Roetteler, M. and Troyer, M. Journal of Chemical Theory and Computation, 17(1), pp.201-210.
+  > [https://doi.org/10.1021/acs.jctc.0c00909](https://doi.org/10.1021/acs.jctc.0c00909)
+
+- *Operational, gauge-free quantum tomography*, Di Matteo, O., Gamble, J., **Cassandra E. Granade**, Rudinger, K. and Wiebe, N. Quantum, 4, p.364. 
+  > [https://doi.org/10.22331/q-2020-11-17-364](https://doi.org/10.22331/q-2020-11-17-364)
+
+#### 2019 ####
+
+- *Q# and NWChem: tools for scalable quantum chemistry on quantum computers*, Low, G.H., Bauman, N.P., **Cassandra E. Granade**, Peng, B., Wiebe, N., Bylaska, E.J., Wecker, D., Krishnamoorthy, S., Roetteler, M., Kowalski, K. and Troyer, M.
+  > [arXiv:1904.01131](https://doi.org/10.48550/arXiv.1904.01131)
+
+- *Bayesian ACRONYM Tuning*, Gamble, J., **Cassandra E. Granade** and Wiebe, N.
+  > [arXiv:1902.05940](https://doi.org/10.48550/arXiv.1902.05940)
+
+- *Magnetic-field learning using a single electronic spin in diamond with one-photon readout at room temperature*, Santagati, R., Gentile, A.A., Knauer, S., Schmitt, S., Paesani, S., **Cassandra E. Granade**, Wiebe, N., Osterkamp, C., McGuinness, L.P., Wang, J. and Thompson, M.G. Physical Review X, 9(2), p.021019.
+  > [https://doi.org/10.1103/PhysRevX.9.021019](https://doi.org/10.1103/PhysRevX.9.021019)
+
+#### 2018 ####
+
+- *Statistical inference with quantum measurements: methodologies for nitrogen vacancy centers in diamond*, Hincks, I., **Cassandra E. Granade** and Cory, D.G. New Journal of Physics, 20(1), p.013022.
+  > [https://doi.org/10.1103/PhysRevApplied.8.064004](https://doi.org/10.1103/PhysRevApplied.8.064004)
+
+- *Q# enabling scalable quantum computing and development with a high-level dsl*, Svore, K., Geller, A., Troyer, M., Azariah, J.,**Cassandra E. Granade**, Heim, B., Kliuchnikov, V., Mykhailova, M., Paz, A. and Roetteler, M., 2018, February. In Proceedings of the real world domain specific languages workshop 2018 (pp. 1-10).
+  > [https://doi.org/10.1145/3183895.3183901](https://doi.org/10.1145/3183895.3183901)
+
+- *Bayesian inference for randomized benchmarking protocols*, Hincks, I., Wallman, J.J., Ferrie, C., **Cassandra E. Granade** and Cory, D.G.
+  > [arXiv:1802.00401](https://doi.org/10.48550/arXiv.1802.00401)
+
+- *Bayesian quantum noise spectroscopy*, Ferrie, C., **Cassandra E. Granade**, Paz-Silva, G. and Wiseman, H.M. New Journal of Physics, 20(12), p.123005. 
+  > [https://doi.org/10.1088/1367-2630/aaf207](https://doi.org/10.1088/1367-2630/aaf207)
+
 
 #### 2017 ####
 
