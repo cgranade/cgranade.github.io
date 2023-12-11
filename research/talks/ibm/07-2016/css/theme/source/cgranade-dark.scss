@@ -1,0 +1,168 @@
+/**
+ * Branding™ for reveal.js presentations, modified from
+ * serif.css, in keeping with the original MIT license.
+ *
+ * This theme is Copyright (C) 2012-2013 Owen Versteeg, http://owenversteeg.com - it is MIT licensed.
+ * Modifications © 2016 Cassandra Granade.
+ */
+
+
+// Default mixins and settings -----------------
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+// Pull in Source Sans Pro and Source Code Pro
+// from Google Fonts.
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,300|Source+Code+Pro:300,400,700);
+
+
+
+// Override theme settings (see ../template/settings.scss)
+$mainFont: 'Palatino Linotype', 'Book Antiqua', Palatino, FreeSerif, serif;
+$mainColor: #ddd;
+$headingFont: 'Source Sans Pro', sans-serif;
+$headingColor: #fff;
+$headingTextShadow: none;
+$headingTextTransform: none;
+$headingFontWeight: 300;
+$backgroundColor: #000;
+$linkColor: #e00;
+$linkColorHover: lighten( $linkColor, 20% );
+$selectionBackgroundColor: #26351C;
+
+$dl-border-color: #444;
+
+@mixin pull-right() {
+    text-align: right;
+    right: 1em;
+    position: absolute;
+}
+
+.reveal {
+    strong, em, dt {
+        color: #fff;
+    }
+
+    a {
+      line-height: 1.3em;
+    }
+
+    cite.doi {
+        a {
+            font-family: "Source Sans Pro";
+            font-weight: 400;
+        }
+
+        a::before {
+            content: "DOI 10/";
+            /* font-variant: small-caps; */
+            font-size: 65%;
+            font-weight: 500;
+        }
+    }
+
+    cite.hdl {
+        a {
+            font-family: "Source Sans Pro";
+            font-weight: 400;
+        }
+
+        a::before, a span {
+            content: "HDL ";
+            /* font-variant: small-caps; */
+            font-size: 65%;
+            font-weight: 500;
+        }
+    }
+
+    cite.arxiv {
+        a {
+            font-family: "Source Sans Pro";
+            font-weight: 100;
+        }
+    }
+
+    .light-figure {
+        color: #000;
+        h1, h2, h3, h4, h5, h6 {
+        	color: #000;
+        }
+    }
+
+    .right-note, .comment {
+        @include pull-right();
+        color: #888;
+        font-weight: normal;
+
+        em {
+            color: #888;
+        }
+    }
+
+    .comment::before {
+        font-family: "Source Code Pro";
+        content: "\2afd";
+        position: relative;
+        top: -0.1em;
+        left: -0.35em;
+    }
+
+    section img {
+        border: none !important;
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    dl {
+        width: 90%;
+    }
+
+    dl.border-dl {
+        border-bottom: 1px solid $dl-border-color;
+
+        dt {
+            border-top: 1px solid $dl-border-color;
+        }
+    }
+
+    .code-caption {
+        position: relative;
+        text-align: left;
+        left: 5%;
+        top: 0.5em
+    }
+
+    .thanks::before {
+        content: "\1F496 ";
+    }
+    .thanks::after {
+        content: " \1F496";
+    }
+    .thanks::before, .thanks::after {
+        color: $linkColor;
+    }
+}
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+
+.reveal code {
+    font-family: "Source Code Pro", monospace;
+    font-weight: 300;
+    line-height: 120%;
+    font-size: 120%;
+}
+
+.reveal pre code {
+    overflow-y: hidden;
+
+
+    .hljs-keyword, .hljs-meta {
+        font-weight: 400;
+    }
+}
+
+// Fix for background color in fullscreen mode.
+html { background-color: inherit; }

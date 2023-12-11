@@ -1,0 +1,645 @@
+<!doctype html>
+<!-- foobar2 -->
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Characterization, Verification and Control for Large Quantum Systems</title>
+
+		<meta name="description" content="PhD Defense">
+		<meta name="author" content="Cassandra E. Granade">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style type="text/css">
+		.reveal section img {
+			border: none;
+			box-shadow: none;
+			background: none;
+		}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section data-markdown>
+					Follow along at https://www.cgranade.com/research/thesis/slides/.
+
+					---
+
+					Control slides with ←, → and spacebar.
+					
+					Zoom in and out with shift-click.
+
+					<strong>F</strong> for full-screen.
+				</section>
+
+				<section>
+					<h1 style="font-size: 175%">Characterization, Verification and Control for Large Quantum Systems</h1>
+					<hr>
+					<p>
+						PhD Thesis Defense <br>
+						<a href="https://www.cgranade.com">Cassandra E. Granade</a> <br>
+						<a href="https://uwaterloo.ca/institute-for-quantum-computing/">Institute for Quantum Computing</a>
+					</p>
+
+				</section>
+
+				<section>
+					<p>
+						We want to build a quantum computer.
+					</p>
+
+					<p class="fragment">
+						Thus, we must characterize, verify and control devices at a <em>superclassical</em> scale.
+					</p>
+				</section>
+
+				<section>
+					<h2>Challenges</h2>
+					<h3>Parameter Count</h3>
+					<p>
+						Can't write down result of state or process tomography experiments!
+					</p>
+
+					<h3>Simulation Costs</h3>
+					<p>
+						We don't know how to efficiently simulate quantum systems with classical computers.
+					</p>
+
+				</section>
+
+				<section>
+					<p>
+						Express characterization and control algorithms in
+						terms of <em>simulation</em>, then substitute in
+						quantum simulators.
+					</p>
+
+					<p class="fragment">
+						Yields <em class="fragment highlight-red">semiquantum</em> approaches that
+						avoid classically-infeasible simulation calls.
+					</p>
+				</section>
+
+				<section>
+					<h3>Classical Characterization</h3>
+					<p>
+						We extend and implement <em>particle filters</em> to learn Hamiltonians
+					</p>
+
+					<div class="fragment">
+						<h3>Semiquantum Characterization</h3>
+						<p>
+							We add quantum simulation resources to deal with large Hilbert spaces
+						</p>
+					</div>
+				</section>
+
+
+				<section>
+					<h3>Particle Filter Applications</h3>
+
+					<p>
+						We develop applications to <br>
+
+						<span class="fragment">model selection</span><span class="fragment">,
+						region estimation</span><span class="fragment">, and
+						tracking stochastic processes</span>
+					</p>
+
+					<p>
+						<span class="fragment">We demonstrate in</span><br>
+
+						<span class="fragment">nitrogen-vacancy centers</span><span class="fragment">, and
+						neutron interferometry</span>
+					</p>
+				</section>
+
+				<section>
+					<h3>Classical Control Design</h3>
+					<p>
+						We extend optimal control to include classical models
+					</p>
+
+					<div class="fragment">
+						<h3>Semiquantum Control Design</h3>
+						<p>
+							We recast optimal control as a <em>memetic</em> problem include
+							quantum resources
+						</p>
+					</div>
+				</section>
+
+				<section>
+					<p>Insight from physics also enables more new algorithms.</p>
+
+					<div class="fragment">
+						<h3>
+							Quantum Bootstrapping
+						</h3>
+
+						<p>
+							We use information locality to provide a potentially-scalable
+							characterization and calibration algorithm
+						</p>
+					</div>
+				</section>
+
+				<section>
+					<h2>Bayesian Inference as a Platform</h2>
+				</section>
+
+				<section>
+					$$
+						\Pr(\text{hypothesis} | \text{data}) = \frac{\Pr(\text{data} | \text{hypothesis})}{\Pr(\text{data})} \Pr(\text{hypothesis})
+					$$
+
+					<p class="fragment">
+						<br>
+						Likelihood function $\Pr(\text{data} | \text{hypothesis})$ represents
+						simulation of experimental system.
+					</p>
+				</section>
+
+				<section>
+					<h3>Model Reduction</h3>
+
+					<p>
+						For large systems, $H$ has too many parameters to write down efficiently.
+					</p>
+
+					<p>
+						Let $H = H(\vec{x})$ be a <em>model</em> with less parameters.
+					</p>
+
+					<p class="fragment">
+						<em>Examples:</em> Ising model, 2-local Hamiltonians.
+					</p>
+				</section>
+
+				<section>
+					<h3>Sequential Monte Carlo</h3>
+					<p>
+						Represents distributions by finite sums for efficient numerical implementation.
+					</p>
+
+					\begin{align}
+						\Pr(\vec{x}) & = \sum_i w_i \delta(\vec{x} - \vec{x}_i) \\
+						w_i & \mapsto w_i \times \Pr(\text{data} | \vec{x}_i) / \mathcal{N}
+					\end{align}
+				</section>
+
+				<section>
+					<p>
+						<em>Liu-West Resampling</em> dynamically moves samples to recover numerical stability.
+					</p>
+
+					<p>
+						<img src="figures/impovrishment.png" height="350">
+					</p>
+
+					<p>
+						We extend to include multimodality, postselection and canonicalization
+					</p>
+				</section>
+
+				<section data-background-video="figures/multicos-distributions.mp4">
+					<p class="fragment">
+						$\Pr(1 | \omega_1, \omega_2; t_1, t_2) = \cos^2(\omega_1 t_1 / 2) \cos^2(\omega_2 t_2 / 2)$
+					</p>
+				</section>
+
+				<section>
+					<h3>Near-Optimal Performance for $H = \omega \sigma_z / 2$</h3>
+					<p>
+						<img data-src="figures/knownT2-10000-particles-mse.png"><br>
+						<img data-src="figures/knownT2-n-particles-mse-legend.png">
+					</p>
+				</section>
+
+				<section>
+					<h3>Randomized Benchmarking</h3>
+					<p>
+						Choosing random sequences of Clifford gates effectively
+						<em>twirls</em> errors.
+					</p>
+
+					<figure>
+						<img data-src="figures/rb-0order-deriv.png">
+						<figcaption>
+							<small>Sketch of Magesan <em>et al</em> derivation.</small>
+						</figcaption>
+					</figure>
+				</section>
+
+				<section>
+					<p>
+						Yields simple simulation-free likelihood:
+					</p>
+
+					<p>
+						\begin{equation}
+							\Pr(\text{survival} | m) = A p^m + B
+						\end{equation}
+					</p>
+
+					<p>
+						<small>$p = (d F - 1) / (d - 1)$, $A, B$: preparation and measurement</small>
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/risk-tr-comparison.png">
+					</p>
+
+					<p>
+						<small>Reference: $m\in\{1, 2, \dots, 100\}$, interleaved: $m \in \{1, 2, \dots, 50\}$.</small>
+					</p>
+
+					<p>
+						We use prior information to accelerate learning.<br>
+						Essential for use in optimal control.
+					</p>
+
+					<p class="fragment">
+
+						Bonus: the estimates we obtain have <span class="fragment highlight-red">meaningful error bars</span>.
+					</p>
+				</section>
+
+				<section>
+					<h3>QInfer</h3>
+					<p>
+						Extensible and flexible open-source library for Python.
+					</p>
+
+
+					<div class="fragment">
+						<h3>Easy to Use</h3>
+						<pre><code data-trim class="python">
+import qinfer as qi
+model = qi.BinomialModel(qi.RandomizedBenchmarkingModel())
+prior = qi.UniformDistribution([[0.9, 1], [0.4, 0.5], [0.5, 0.6]])
+updater = qi.smc.SMCUpdater(model, 5000, prior)
+						</code></pre>
+					</div>
+				</section>
+
+				<section>
+					<h3>Quantum Hamiltonian Learning</h3>
+					<p>
+						Replace likelihood calls with <em>quantum likelihood evaluation</em>, using trusted device.
+					</p>
+
+					<p>
+						<img data-src="figures/qle_iqle_circuits.png">
+					</p>
+				</section>
+				
+				<section>
+					<p>
+						Heuristics for experiment design are <em>critical</em>.
+					</p>
+
+					<h3>Particle Guess Heuristic</h3>
+					<ul>
+						<li>Draw $H_-$, $H_-'$ from posterior.</li>
+						<li>Evolve under $H_-$ for $t = 1 / \|H_- - H_-'\|$.</li>
+					</ul>
+
+					<p class="fragment"><em>
+						Simulation-free.
+					</em></p>
+				</section>
+
+				<section>
+					<h3>Scaling for Complete Ising Graph</h3>
+					<figure>
+						<img data-src="figures/complete_scaling.png" height="400">
+					</figure>
+				</section>
+
+				<section>
+					<h3>Scaling with Model Dimension</h3>
+					<p>
+						<img data-src="figures/exp_scale.png" height="500">
+					</p>
+				</section>
+
+				<section>
+					<h3>Number of Parameters?</h3>
+					<p>
+						<img data-src="figures/corner.png">
+					</p>
+				</section>
+
+				<section>
+					<h3>Sequential Monte Carlo and QHL are Robust</h3>
+					
+					We obtain accurate results even with
+					<span class="fragment">sampling error</span><span class="fragment">,
+					imperfect coupling</span><span class="fragment">, and
+					<span class="fragment highlight-red">approximate models</span>.</span>
+				</section>
+
+				<section>
+					<p>
+						Once we have characterized a quantum device, how do we <em>control</em> it?
+					</p>
+
+					<p class="fragment">
+						Gradient-ascent optimal control methods use structure of problem.
+						We want something <em>black box</em>.					
+					</p>
+				</section>
+
+				<section>
+					
+					<p>
+						We use <em>genetic</em> crossover and mutation steps to find
+						optimal control.
+					</p>
+
+					<p>
+						Population-based, ideal for <em>multi-objective</em> case.
+					</p>
+
+
+				</section>
+
+				<section>
+					<p>
+						Implement objective oracle using randomized benchmarking on a quantum simulator.
+					</p>
+					
+					<p>
+						<img data-src="figures/qcp-moqca.png">
+					</p>
+				</section>
+
+				<section>
+					<h3>Pareto Optimality</h3>
+					<p>
+						Find robust pulses by demanding <em>non-domination</em>
+						over hypotheses.
+					</p>
+
+					<p>
+						<img data-src="figures/trivial-pareto-projection.png" height="350">
+					</p>
+
+					<p><small>
+						Example: $
+							\max o(\vec{r}) = \vec{r} \text{ s.t. } \|\vec{r}\|_2 \le 1
+						$
+					</small></p>
+				</section>
+
+				<section>
+					<h3>Memetic Steps</h3>
+					<p>
+						Use simultaneous perturbation stochastic approximation (SPSA)
+						to <em>improve</em> individual pulses $\vec{p}$.
+					</p>
+
+					<p>
+						\begin{align}
+							\vec{\nabla} f \cdot \vec{\Delta} & \approx \frac{f(\vec{p} + \beta \vec{\Delta}) - f(\vec{p} - \beta \vec{\Delta})}{2 \beta} \\
+							       \vec{p} & \mapsto \vec{p} + \alpha \vec{\nabla} f \cdot \vec{\Delta}
+						\end{align}
+					</p>
+
+					<p>
+						<small>$\vec{\Delta}$: random $\pm 1$ vector, $\alpha, \beta$: approximation parameters</small>
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Calculating gradients is hard. Projecting $\vec{\nabla} f$ onto a random vector takes 2 calls.
+					</p>
+
+					<p>
+						$\alpha, \beta \to 0$ as algorithm proceeds; can bound effect of memetic steps to provide
+						prior information to benchmarking oracle.
+					</p>
+				</section>
+
+				<section>
+					<h3>Evolutionary Strategies</h3>
+					<p>
+						Co-evolve mutation rates, memetic parameters to
+						provide stability.
+					</p>
+
+					<p>
+						\[
+							I = (\vec{p}, \sigma_p, \alpha, \beta)
+						\]
+					</p>
+				</section>
+
+				<section>
+					
+					<h3>Example: $\left.\frac{\pi}{2}\right)_x$</h3>
+
+					<p>
+						We consider controls up to $70$ MHz, but we want robustness to $\pm 100$ kHz
+						static field, ringdown distortion, imperfect measurement of distortion.
+					</p>
+
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/example-ga-qcp-view.png" height="450">
+					</p>
+
+					<p>
+						Memetic optimization finds Pareto optimal pulses with fidelity $\ge 0.99$.
+					</p> 
+
+				</section>
+
+				<section>
+					<figure>
+						<img data-src="figures/example-ga-norm-infid-hist-pf.png" height="550">
+					</figure>
+					<p>
+						<small>200 generations, 140 individuals, 5 hypotheses ($\pm 100 \text{kHz}$), noisy evaluation of distortion (~20 dB SNR)</small>
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Adding quantum resources to characterization and control algorithms
+						thus yields semiquantum algorithms.
+					</p>
+
+					<p>
+						We can go further by building on physical insights…
+					</p>
+
+					<h2>Quantum Bootstrapping</h2>
+				</section>
+
+				<section>
+					<p>
+						Quantum Hamiltonian Learning is robust to approximate models.
+					</p>
+					<p>
+						<img data-src="figures/lightcones-vertical-v1.png" height="350">
+					</p>
+					<p>
+						Use information locality (Lieb-Robinson bounds) to bound error incurred by truncating qubits.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/scanning.png" height="400">
+					</p>
+
+					<p>
+						<br>
+						Scan <span style="color: red">observable</span> across <span style="color: blue">trusted</span>
+						register and untrusted device.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						 <img data-src="figures/shaking.png" height="450">
+					</p>
+
+					<p>
+						<br>
+						Perform multiple rounds to reduce Lieb-Robinson velocity by current knowledge
+						of $H$.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/errperexp_v1.png" height="550">
+					</p>
+					<p>
+						<small>50-qubit untrusted device, 8-qubit simulator, 4-qubit observable</small>
+					</p>
+				</section>
+
+				<section>
+					<h3>Control Calibration</h3>
+					<p>
+						Iterate compressed quantum Hamiltonian learning for each control
+						field.
+					</p>
+
+					<p>
+						Pseudoinverse then gives control settings to implement simulation
+						at next iteration.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/histplots_300.png" height="550">
+					</p>
+					<p>
+						<small>50-qubit untrusted device, 8-qubit simulator, 4-qubit observable, 300 measurements/scan</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Conclusions</h2>
+				</section>
+
+				<section data-markdown>
+					## Further Resources ##
+					
+					Available at https://www.cgranade.com/research/thesis/.
+
+					[Bibliography](https://www.zotero.org/cgranade/items/collectionKey/SQBZIC3H) · [Software Libraries](https://www.cgranade.com/research/thesis/#software-resources)
+				</section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+                                zoomKey: 'shift',
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				multiplex: {
+			        // Example values. To generate your own, see the socket.io server instructions.
+
+			        // TODO:
+			        // - Run $ forever plugin/multiplex from the presentation directory.
+			        // - Generate new token from http://berith.cgranade.com:1948/token
+			        // - Save id here, push to GitHub.
+			        // - Add secret here, do not push!!!
+			        id: 'f3d6f929f87f6d6f', // Obtained from socket.io server
+			        url: 'berith.cgranade.com:1948' // Location of socket.io server
+			    },
+
+
+				// Optional reveal.js plugins
+				dependencies: [
+				    { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+				    { src: 'plugin/multiplex/master.js', async: true },
+        			{ src: 'plugin/multiplex/client.js', async: true },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

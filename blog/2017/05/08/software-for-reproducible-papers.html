@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Software Tools for Writing Reproducible Papers &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item active" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Software Tools for Writing Reproducible Papers</h1>
+  <span class="post-date">08 May 2017</span>
+  <h3 id="preamble">Preamble</h3>
+
+<p>This post is a ♯longread primarily intended for graduate students and postdocs, but should hopefully be accessible more broadly.
+Reading through the post should take about an hour, while following the instructions completely may take the better part of a day.</p>
+
+<p>As an important caveat, much of what this post discusses is still experimental, such that you may run into minor issues in following the steps listed below.
+I apologize if this happens, and thank you for your patience.</p>
+
+<p>In any case, if you find this post useful, please cite it in papers that you write using these tools; doing so helps me out and makes it easier for me to write more such advice in the future.</p>
+
+<p>Finally, we note that we have not covered several very important tools here, such as <a href="https://www.reprozip.org/">ReproZip</a>.
+This post is already over 6,000 words long, so we didn’t attempt to run through all possible tools.
+We encourage further exploration, rather than thinking of this post as definitive.</p>
+
+<p>Thanks for reading! ♥</p>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>In <a href="https://www.cgranade.com/blog/2017/03/31/what-we-encourage.html">my previous post</a>, I detailed some of the ways our software tools and social structures encourage some actions and discourage others.
+Especially when it comes to tasks such as writing reproducible papers that both offer to significantly improve research culture, but are somewhat challening in their own right, it’s critical to ensure that we positively encourage doing things a bit better than we’ve done them before.
+That said, though my previous post spilled quite a few pixels on the what and the why of such encouragements, and of what support we need for reproducible research practices, I said very little about <em>how</em> one could practically do better.</p>
+
+<p>This post tries to improve on that by offering a concrete and specific workflow that makes it somewhat easier to write the best papers we can.
+Importantly, in doing so, I will focus on a paper-writing process that I’ve developed for my own use and that works well for me— everyone approaches things differently, so you may disagree (perhaps even vehemently) with some of the choices I describe here.
+Even if so, however, I hope that in providing a specific set of software tools that work well together to support reproducible research, I can at least move the conversation forward and make my little corner of academia ever so slightly better.</p>
+
+<p>Having said what my goals are with this post, it’s worth taking a moment to consider what <em>technical</em> goals we should strive for in developing and configuring software tools for use in our research.
+First and foremost, I have focused on tools that are <em>cross-platform</em>: it is not my place nor my desire to mandate what operating system any particular researcher should use.
+Moreover, we often have to collaborate with people that make dramatically different choices about their software environments.
+Thus, we must be careful what barriers to entry we establish when we use methodologies that do not port well to platforms other than our own.</p>
+
+<p>Next, I have focused on tools which minimize the amount of closed-source software that is required to get research done.
+The conflict between closed-source software and reproducibility is obvious nearly to the point of being self-evident.
+Thus, without being purists about the issue, it is still useful to reduce our reliance on closed-source gatekeepers as much as is reasonable given other constraints.</p>
+
+<p>The last and perhaps least obvious goal that I will adopt in this post is that each tool we develop or adopt here should be useful for more than a single purpose.
+Installing software introduces a new cognative load in understanding how it operates, and adds to the general maintenance cost we pay in doing research.
+While this can be mitigated in part with appropriate use of package management, we should also be careful that we justify each piece of our software infrastructure in terms of what benefits it provides to us.
+In this post, that means specifically that we will choose things that solve more than just the immediate problem at hand, but that support our research efforts more generally.</p>
+
+<p>Without further ado, then, the rest of this post steps through one particular software stack for reproducible research in a piece by piece fashion.
+I have tried to keep this discussion detailed, but not esoteric, in the hopes of making an accessible description.
+In particular, I have not focused at all on how to develop scientific software of how to write reproducible code, but rather how to integrate such code into a high-quality manuscript.
+My advice is thus necessarily specific to what I know, quantum information, but should be readily adapted to other fields.</p>
+
+<p>Following that, I’ll detail the following components of a software stack for writing reproducible research papers:</p>
+
+<ul>
+  <li>Command-line environment: PowerShell</li>
+  <li>TeX / LaTeX distribution: TeX Live and MiKTeX</li>
+  <li>Literate programming environment: Jupyter Notebook</li>
+  <li>Text editor: Visual Studio Code</li>
+  <li>LaTeX template: <code class="language-plaintext highlighter-rouge">{revtex4-1}</code>, <code class="language-plaintext highlighter-rouge">{quantumarticle}</code>, and <code class="language-plaintext highlighter-rouge">{revquantum}</code></li>
+  <li>Project layout</li>
+  <li>Version control: Git</li>
+  <li>arXiv build management: PoShTeX</li>
+</ul>
+
+<h2 id="command-line">Command Line</h2>
+
+<p>Command-line interfaces and scripting languages provide a very powerful paradigm for automating disparate software tools into a single coherent process.
+For our purposes, we will need to automate running TeX, running literate scientific computing notebooks, and packaging the results for publication.
+Since these different software tools were not explicitly designed to work together, it will be easiest for our purposes to use a command-line scripting language to manage the entire process.
+There are many compelling options out there, including celebrated and versatile systems such as <a href="https://www.gnu.org/software/bash/"><code class="language-plaintext highlighter-rouge">bash</code></a>,  <a href="http://www.tcsh.org/Welcome"><code class="language-plaintext highlighter-rouge">tcsh</code></a>, and <a href="http://zsh.sourceforge.net/"><code class="language-plaintext highlighter-rouge">zsh</code></a>, as well as newer tools such as <a href="https://fishshell.com/"><code class="language-plaintext highlighter-rouge">fish</code></a> and <a href="http://xon.sh/"><code class="language-plaintext highlighter-rouge">xonsh</code></a>.
+For this post, however, I will describe how to use Microsoft’s open-source PowerShell instead.</p>
+
+<p>Microsoft offers PowerShell easy-to-install packages for Linux and macOS / OS X on at their <a href="https://github.com/PowerShell/PowerShell#get-powershell">GitHub repository</a>.
+For most Windows users, we don’t need to install PowerShell, but we will need to install a package manager to help us install a couple things later.
+If you don’t already have <a href="https://chocolatey.org/">Chocolatey</a>, go on and install it now, following <a href="https://chocolatey.org/install">their instructions</a>.</p>
+
+<p>Similarly, we will use the package manager <a href="https://brew.sh">Homebrew</a> for macOS / OS X.
+The quickest way to install it is to run the following command in <code class="language-plaintext highlighter-rouge">Terminal</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>/usr/bin/ruby <span class="nt">-e</span> <span class="s2">"</span><span class="si">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="si">)</span><span class="s2">"</span>
+</code></pre></div></div>
+<p>Also, be sure to restart your <code class="language-plaintext highlighter-rouge">Terminal</code> window after the installation.
+Then, we install PowerShell with the following two commands:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew tap caskroom/cask
+<span class="nv">$ </span>brew cask <span class="nb">install </span>powershell
+</code></pre></div></div>
+<p>The first command installs the <a href="https://caskroom.github.io">Homebrew Cask</a> extension for programs distributed as binaries.</p>
+
+<h3 id="aside-why-powershell">Aside: Why PowerShell?</h3>
+
+<p>As a brief aside, why PowerShell?
+One of the long-standing annoyances to getting anything working in a reliable and cross-platform manner is that Windows is just not like Linux or macOS / OS X.
+My interest here is not in saying that Windows is either good or bad, but to solve the problem of how to get things working across that divide in a reliable way.
+Certainly, scripting languages like <code class="language-plaintext highlighter-rouge">bash</code> have been ported to Windows and work well there, but they don’t tend to work in a way that plays well with native tools.
+For instance, it is difficult to get Cygwin Bash to reliably interoperate with commonly-used TeX distributions such as MiKTeX.</p>
+
+<p>Many of these challenges arise from that <code class="language-plaintext highlighter-rouge">bash</code> and other such tools work by manipulating <em>strings</em>, rather than providing a typed programming environment.
+Thus, any cross-platform portability must eventually deal with annoyances such as <code class="language-plaintext highlighter-rouge">/</code> versus <code class="language-plaintext highlighter-rouge">\</code> in file name paths, while leaving slashes invariant in cases such as TeX source.</p>
+
+<p>By contrast, PowerShell can be used as a command-line REPL (read-evaluate-print loop) interface to the more structrued .NET programming environment.
+That way, OS-specific differences such as <code class="language-plaintext highlighter-rouge">/</code> versus <code class="language-plaintext highlighter-rouge">\</code> can be handled as an API, rather than relying on string parsing for everything.
+Moreover, PowerShell comes pre-installed on most recent versions of Windows, making it easier to deal with the comaprative lack of package management on most Windows installations.
+(PowerShell even addresses this by providing some very nice package management features, which we will use in later sections.)</p>
+
+<p>Since PowerShell has recently been open-sourced, we can readily rely on it for our purposes here.</p>
+
+<h2 id="tex">TeX</h2>
+
+<p>For writing a reproducible scientific paper, there’s really no substitute still for TeX.
+Thus, if you don’t have TeX installed already, let’s go on and install that now.</p>
+
+<h3 id="linux-only-tex-live">(Linux only) TeX Live</h3>
+
+<p>We can use Ubuntu’s package manager to easily install TeX Live:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>texlive
+</code></pre></div></div>
+<p>The process will be slightly different on other variants of Linux.</p>
+
+<h3 id="windows-only-miktex">(Windows only) MiKTeX</h3>
+
+<p>Since we installed Chocolatey earlier, it’s quite straightforward to install MiKTeX.
+From an Administrator session of PowerShell (right-click on PowerShell in the Start menu, and press <em>Run as administrator</em>), run the following command:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">choco</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">miktex</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="macos--os-x-only--mactex">(macOS / OS X only)  MacTeX</h3>
+
+<p>Installing <a href="http://www.tug.org/mactex/">MacTeX</a> is similarly straightforward using Homebrew Cask (which we should have installed earlier):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew cask <span class="nb">install </span>mactex
+</code></pre></div></div>
+<h2 id="jupyter">Jupyter</h2>
+
+<p>Moving on, let’s take a few seconds to get Jupyter up and running.
+Put succiently, Jupyter is a powerful infrastructure fo scientific programming in a variety of different languages.
+Indeed, even the name points to the diversity of tools supported, as it originates from a portmanteau of Julia, Python and R.
+Jupyter goes well beyond these three examples, though, and supports a language-agnostic interface for programming in JavaScript, F#, and even MATLAB.</p>
+
+<p>Of particular interest to us is the Jupyter Notebook functionality, previously known as IPython Notebook.
+This tool allows us to write <em>literate</em> documents that intersperse source code, explanations, mathematics, figures and plots.
+As such, Jupyter Notebook is ideal for providing lucid and readable explanations of numerical and experimental results, providing a way to clearly explain a reproducible project.</p>
+
+<p>Though Jupyter is a language-independent framework, the code infrastructure itself is written in Python.
+Thus, the easiest way to get Jupyter in a cross-platform way is to install a distribution of Python, such as Anaconda, that incldues Jupyter as a package.
+Since we want to focus in this post on how to write papers rather than on the programming aspects, we won’t go into detail at the moment on how to <em>use</em> Jupyter; below, we suggest some resources for getting started with Jupyter as a programming tool.
+For now, we focus on getting Jupyter installed and running.</p>
+
+<p>On Windows, we can again rely on Chocolatey:</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">choco</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">anaconda3</span><span class="w">
+</span></code></pre></div></div>
+
+<p>On Linux and macOS / OS X, the process is <a href="https://nbviewer.jupyter.org/github/QuinnPhys/PythonWorkshop-science/blob/master/lecture-0-scicomp-tools-part0.ipynb#Python-with-the-Anaconda-Distribution-(30-Minutes)">not much more complicated</a>.</p>
+
+<p>To get started using Juyter Notebook, we suggest the following tutorial:</p>
+<ul>
+  <li><a href="https://nbviewer.jupyter.org/github/QuinnPhys/PythonWorkshop-science/blob/master/lecture-2-python-general.ipynb#Jupyter-Notebook-(30-Minutes)">EQuS Workshop on Python for Quantum Information Science: Lecture 2</a></li>
+</ul>
+
+<h2 id="editor">Editor</h2>
+
+<p>In keeping with our goals in the introduction, to actually write TeX source code, we don’t want a tool that works <em>only</em> for TeX.
+Rather, we want something general-purpose that is <em>also</em> useful for TeX.
+By doing so, we avoid the all-too-familiar workflow of using a specialized editor for each different part of a scientific project.
+This way, increased familiarity and proficiency with our software tools benefits us across the board.</p>
+
+<p>With that in mind, we’ll follow the example of Visual Studio Code, an open-source and cross-platform text editing and development platform from Microsoft.
+Notably, many other good examples exist, such as Atom; we focus on VS Code here as an example rather than as a recommendation over other tools.</p>
+
+<p>With that aside, let’s start by installing.</p>
+
+<p>If you’re running on Ubuntu or macOS / OS X, let’s download Visual Studio Code from the <a href="https://code.visualstudio.com/Download">VS Code website</a>.
+Alternatively for macOS / OS X, you can use Homebrew Cask</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew cask <span class="nb">install </span>visual-studio-code
+</code></pre></div></div>
+<p>On Ubuntu, we only need to install VS Code manually the first time; after that, Code can be managed using Ubuntu Software Center in the same manner as built-in packages.
+Meanwhile, the macOS / OS X version is installed by dragging the downloaded app into Applications.</p>
+
+<p>Once again, Chocolatey comes to the rescue for Windows users:</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">choco</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">visualstudiocode</span><span class="w">
+</span></code></pre></div></div>
+
+<p>In any case, once we have VS Code installed, let’s install a few extensions that will make our lives much easier in the rest of this post.
+Thankfully, this is quite straightforward due to the use of <em>extension packs</em>.
+Roughly, an extension pack is a special kind of extension that does nothing on its own, but specifies a list of other extensions that should be installed.
+I maintain a rudimentary example of such for use in scientific computing that includes some useful extensions for our purposes here.
+To install it, press <strong>Ctrl+Shift+X</strong> (Windows and Linux) / <strong>⌘+Shift+X</strong> (macOS / OS X) to open the Extensions panel, and search for <code class="language-plaintext highlighter-rouge">cgranade.scicomp-extension-pack</code>.
+Though the full functionality exposed by these extensions is beyond the scope of this post, we’ll explore some important parts as we discuss other parts of our software stack.</p>
+
+<p>For the most part, the extensions installed by the Scientific Computing Extension Pack do not need any configuration.
+The exception is that for MiKTeX on Windows, the LaTeX Workshop extension needs to be configured to run <code class="language-plaintext highlighter-rouge">texify</code> instead of its default build engine of <code class="language-plaintext highlighter-rouge">latexmk</code>.
+To do so press <strong>Ctrl+Shift+P</strong> / <strong>⌘+Shift+P</strong> and type “Settings” until you are offered “Preferences: Open User Settings.”
+Next, copy the following JavaScript Object Notation (JSON) code into your user settings:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"latex-workshop.latex.toolchain"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"command"</span><span class="p">:</span><span class="w"> </span><span class="s2">"texify"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"--synctex"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"--tex-option=</span><span class="se">\"</span><span class="s2">-interaction=nonstopmode</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"--tex-option=</span><span class="se">\"</span><span class="s2">-file-line-error</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"--pdf"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"%DOC%.tex"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+<p>Getting forward and inverse search with SyncTeX working on Windows also takes a slight bit more work, as is documented <a href="http://tex.stackexchange.com/questions/338078/how-to-get-synctex-for-windows-to-allow-atom-pdf-view-to-synch#comment877274_338117">on StackExchange</a>.</p>
+
+<p>This demonstrates one of the really neat features of modern editing platforms, by the way.
+Namely, it’s very easy to share human-readable configuration snippets with others, making it easier to build a common platform with collegues and collaborators.</p>
+
+<h2 id="latex-template">LaTeX Template</h2>
+
+<p>With the slight caveat that this section is the most specific to quantum information processing, we next turn our attention to the <em>raison d’être</em> for this whole endeavor: our LaTeX manuscript itself.
+In doing so, we try to minimize the size of our initial template.
+By minimizing the amount of boilerplate, we reduce the extent to which we introduce bugs in creating new manuscripts.
+More importantly, though, keeping our template minimal reduces how much we have to understand in order to use and maintain it.</p>
+
+<p>That said, we will generally have a lot of LaTeX code shared between projects.
+To keep our manuscript templates minimal and free of boilerplate, then, we can rely on LaTeX’s <em>document class</em> and <em>package</em> functionality to abstract away this shared code.
+For instance, the <a href="https://journals.aps.org/revtex"><code class="language-plaintext highlighter-rouge">{revtex4-1}</code></a> document class abstracts away much of the work involved in formatting a manuscript for physics papers, while the <a href="https://github.com/cgogolin/quantum-journal"><code class="language-plaintext highlighter-rouge">{quantumarticle}</code></a> class does similar for the new Quantum journal.
+Similarly, my own <a href="https://github.com/cgranade/revquantum"><code class="language-plaintext highlighter-rouge">{revquantum}</code></a> package attempts to abstract away much of the LaTeX code that I carry from project to project.</p>
+
+<p>Though <code class="language-plaintext highlighter-rouge">{revquantum}</code> can be downloaded from the Comprehensive TeX Archive Network (CTAN), it will be easier for us to use Git to download the latest version.
+We’ll install Git a bit later on in the post, so we’ll focus on the template for now and will install the required LaTeX packages once we have Git at our disposal.</p>
+
+<p>Following that strategy, we can now write a very minimal LaTeX template:</p>
+
+<div class="language-latex highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">\documentclass</span><span class="na">[aps,pra,twocolumn,notitlepage,superscriptaddress]</span><span class="p">{</span>revtex4-1<span class="p">}</span>
+<span class="k">\usepackage</span><span class="na">[pretty,strict]</span><span class="p">{</span>revquantum<span class="p">}</span>
+
+<span class="k">\newcommand</span><span class="p">{</span><span class="k">\figurefolder</span><span class="p">}{</span>figures<span class="p">}</span>
+
+<span class="nt">\begin{document}</span>
+
+<span class="k">\title</span><span class="p">{</span>Example paper<span class="p">}</span>
+<span class="k">\date</span><span class="p">{</span><span class="k">\today</span><span class="p">}</span>
+
+<span class="k">\author</span><span class="p">{</span>Cassandra Granade<span class="p">}</span>
+    <span class="k">\affilEQuSUSyd</span>
+    <span class="k">\affilUSydPhys</span>
+
+<span class="nt">\begin{abstract}</span>
+    <span class="k">\TODO</span>
+<span class="nt">\end{abstract}</span>
+
+<span class="k">\maketitle</span>
+
+<span class="k">\bibliography</span><span class="p">{</span>biblio<span class="p">}</span>
+
+<span class="nt">\end{document}</span>
+</code></pre></div></div>
+
+<p>Note that this template strips down the preamble (that is, the part of the LaTeX document before <code class="language-plaintext highlighter-rouge">\begin{document}</code>) to just three lines:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">\documentclass[aps,pra,twocolumn,notitlepage,superscriptaddress]{revtex4-1}</code>:
+Declares the document class to be <code class="language-plaintext highlighter-rouge">{revtex4-1}</code> and specifies some reasonable default options.
+Note that if an option isn’t specified for the society, journal or font size, <code class="language-plaintext highlighter-rouge">{revtex4-1}</code> will raise warnings.
+Thus, by specifying a few options, we reduce the number of spurious warnings that we have to sort through.</li>
+  <li><code class="language-plaintext highlighter-rouge">\usepackage[pretty,strict]{revquantum}</code>:
+Includes the <code class="language-plaintext highlighter-rouge">{revquantum}</code> package with modern typesetting options.
+The <code class="language-plaintext highlighter-rouge">strict</code> option instructs <code class="language-plaintext highlighter-rouge">{revquantum}</code> to promote package incompatability warnings to errors, such that the manuscript will refuse to compile if there are issues with <code class="language-plaintext highlighter-rouge">{revtex4-1}</code> compatability.</li>
+  <li><code class="language-plaintext highlighter-rouge">\newcommand{\figurefolder}{.}</code>:
+We’ll see more about this in the rest of the post, but roughly this command lets us abstract away details of our project structure from our LaTeX source.
+That in turn will make it much easier to rearrange the project folder as need be, as only minimal changes will be required in the LaTeX source itself.</li>
+</ul>
+
+<h2 id="project-layout">Project Layout</h2>
+
+<p>Now that we have a reasonable template in place for our paper, let’s proceed to make and layout a folder for our project.
+The project folder needs to have somewhere to store the TeX source we use in typesetting the paper, and will likely need somewhere to store figures as well.
+Assuming we have either numerics or an experiment in our paper, we will also need somewhere to put our Jupyter Notebooks and any other source files that they rely upon.</p>
+
+<p>Putting these needs together, my projects often wind up looking something like this:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">project/</code>
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">tex/</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">project.tex</code>:
+Main TeX source file.</li>
+          <li><code class="language-plaintext highlighter-rouge">project.bib</code>:
+Bibliography for main TeX source.</li>
+          <li><code class="language-plaintext highlighter-rouge">revquantum.sty</code>:
+A copy of the <code class="language-plaintext highlighter-rouge">{revquantum}</code> package.
+We will download and build <code class="language-plaintext highlighter-rouge">{revquantum}</code> later in this post.</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">fig/</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">*.pdf</code>:
+PDF-formatted figures for use in the main body.</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">src/</code>
+        <ul>
+          <li><code class="language-plaintext highlighter-rouge">project.ipynb</code>:
+Main literate notebook for the project.</li>
+          <li><code class="language-plaintext highlighter-rouge">*.py</code>:
+One or two miscellaneous Python modules needed for the main notebook.</li>
+        </ul>
+      </li>
+      <li><code class="language-plaintext highlighter-rouge">data/</code>:
+Folder for experimental data generated by <code class="language-plaintext highlighter-rouge">src/project.ipynb</code>. <br />
+<strong>NB:</strong> do <strong>not</strong> use NumPy’s <code class="language-plaintext highlighter-rouge">*.npz</code> format for uploading data to arXiv as ancillary material, as this is not supported by arXiv.
+Consider using HDF5 or similar instead.
+If your data set is moderately-sized (&gt; 6 MiB), then consider uploading to an external service such as <a href="https://figshare.com/">Figshare</a> instead of arXiv— this also makes it easier to use other data storage formats.</li>
+      <li><code class="language-plaintext highlighter-rouge">.gitignore</code>:
+A list of files, folders, and patterns to be excluded from version control.
+Don’t worry about this for now, we’ll deal with it below.</li>
+      <li><code class="language-plaintext highlighter-rouge">README.md</code>:
+Brief instructions on how to use the ancillary files provided with the paper.</li>
+      <li><code class="language-plaintext highlighter-rouge">environment.yml</code> or <code class="language-plaintext highlighter-rouge">requirements.txt</code>:
+Software dependencies needed by the project.
+How these files work is fairly specific to programming in Python, so we won’t go into the details here, but they make it easy for both collaborators and readers to quickly set up the software environment they need to run your code.
+For more details, please see the documentation for <a href="https://pip.pypa.io/en/stable/"><code class="language-plaintext highlighter-rouge">pip</code></a> and <a href="https://conda.io/docs/using/envs.html"><code class="language-plaintext highlighter-rouge">conda env</code></a>.</li>
+      <li><code class="language-plaintext highlighter-rouge">Export-ArXiv.ps1</code>:
+Build manifest for exporting the paper to an arXiv-formatted ZIP archive.
+Later in the post, we’ll detail what this file should contain and how to use it.
+For now, just make a blank text file with this name.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>As with everything else in this post, you may want to layout your project differently than I’ve suggested here.
+For instance, we included a copy of <code class="language-plaintext highlighter-rouge">revquantum.sty</code> above, since that’s not part of the “standard” set of packages installed on arXiv; if you depend on any other custom packages or classes, those would also appear in your layout.
+If you have more than one or two other source files in <code class="language-plaintext highlighter-rouge">src/</code>, you may also want to make a package and distribute it separately from your paper.
+You may also have additional files that you need to include, such as <a href="https://instrumentkit.readthedocs.io/en/latest/apiref/config.html">instrument configuration files</a>.
+It’s also common to have other folders like <code class="language-plaintext highlighter-rouge">notes/</code> to keep rough or unfinished derivations, or <code class="language-plaintext highlighter-rouge">refereeing/</code> to draft correspondance with referees and editors once you submit your paper.</p>
+
+<p>What’s essential, though, is that no matter how you layout your project, you use the layout as consistantly as possible.
+Doing so ensures that a file you need can always be found in the least surprising place, minimizing the amount of thought you have to spare on searching your folder structure.
+Importantly, if this means you need to change your layout as your project itself changes, that is a fine and useful thing to do.
+Your layout should, above all else, work for you and your collaborators with as little friction and additional thought as is reasonable.</p>
+
+<h2 id="version-control">Version Control</h2>
+
+<p>Once you’ve made a project folder, we need to be able to track how it changes over time and to share it with collaborators.
+Though file-synchronization tools such as <a href="http://dropbox.com/">Dropbox</a>, <a href="https://www.google.com/drive/">Google Drive</a>, and <a href="https://onedrive.live.com/">OneDrive</a> are commonly used for this task, they introduce a lot of additional maintenance costs that we would like to avoid.
+For instance, it’s very difficult to collaborate using such services— conflicting edits are normally applied with preference only to whichever edits happened last, making it easy to accidently lose important edits.
+Similarly, it’s hard to look at a source file and understand <em>why</em> a particular set of changes was made, such that it’s again too easy to accidentally undo edits from collaborators.</p>
+
+<p>In keeping with the goals laid out at the start of the post, then, we’ll adopt <em>distributed version control</em> as a tool to enable collaboration and version tracking.
+In particular, we will use Git in no small part due to its popularity, such that we can build off a large set of community-developed tools and services.
+Git is a very useful tool in general, such that we again avoid overly-specialized software infrastructure.</p>
+
+<p>I won’t lie: there is a learning curve to Git, such that initially it will take substantially longer to do research backed by Git than by file-synchronization tools.
+In fairly short order, however, learning Git pays for itself both by avoiding common pitfalls introduced by file-synchronization tools and by providing powerful automation for other tasks outside the synchronization model.
+Both the learning curve and the power of Git stem from the same source, in that Git is extremely reticent to erase any set of changes, no matter how insignificant.
+For instance, if two contradictory sets of changes are made to a file, Git will demand that you explicitly specify how to merge them, rather than automatically overwritting changes that may be significant.</p>
+
+<p>We won’t cover how to use Git in this post, but rather will focus on how to install it and configure it for setting up a reproducible paper.
+In lieu, we recommend the following tutorials:</p>
+
+<ul>
+  <li><a href="https://nbviewer.jupyter.org/github/QuinnPhys/PythonWorkshop-science/blob/master/lecture-1-scicomp-tools-part1.ipynb">EPQIS Workshop: Lecture 1</a></li>
+  <li><a href="http://try.github.com/">GitHub: Try Git</a></li>
+  <li><a href="http://swcarpentry.github.io/git-novice/">Software Carpentry: Version Control with Git</a></li>
+  <li><a href="https://mozfellows-hack.github.io/friendly-github-intro/">Mozilla Science Lab: A Friendly GitHub Intro Workshop</a></li>
+</ul>
+
+<p>In following these tutorials, we recommend starting by using the command line as much as possible, as this helps build the volcabulary needed when working with graphical interfaces to Git.</p>
+
+<p>In any case, let’s go on and install Git.
+We will install Secure Shell (SSH) while we’re at it, since this is a very common and powerful way of interfacing with Git hosting providers such as <a href="https://github.com/">GitHub</a>, <a href="http://bitbucket.com/">Bitbucket</a>, and <a href="https://about.gitlab.com/">GitLab</a>.
+Notably, SSH is also very useful for other research tasks such as managing cluster resources and running Jupyter Notebooks on remote servers, such that in installing SSH we get access to another general-purpose tool.</p>
+
+<p>On Windows, run the following in an Administrator PowerShell session:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">choco</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">git</span><span class="w"> </span><span class="nx">putty</span><span class="w"> </span><span class="nx">poshgit</span><span class="w">
+</span></code></pre></div></div>
+<p>If you haven’t already done so, you’ll need to set PuTTY to be the SSH implementation used by Git for Windows.
+From within PowerShell, run the following:</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="p">[</span><span class="n">Environment</span><span class="p">]::</span><span class="nx">SetEnvironmentVariable</span><span class="p">(</span><span class="s2">"GIT_SSH"</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Get-Command</span><span class="w"> </span><span class="nx">plink.exe</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Select-Object</span><span class="w"> </span><span class="nt">-ExpandProperty</span><span class="w"> </span><span class="nx">Definition</span><span class="p">),</span><span class="w"> </span><span class="s2">"User"</span><span class="p">)</span><span class="w">
+</span></code></pre></div></div>
+<p>If this doesn’t work, it’s likely because <code class="language-plaintext highlighter-rouge">Get-Command plink.exe</code> was unable to find the <code class="language-plaintext highlighter-rouge">plink.exe</code> command that comes with PuTTY.
+This can happen, for instance, if the <code class="language-plaintext highlighter-rouge">$Env:PATH</code> environment variable was changed by <code class="language-plaintext highlighter-rouge">choco install</code> but not in your current PowerShell session.
+The easiest way to fix this is to close and re-open your PowerShell session.</p>
+
+<p>Notice that we’ve also installed <code class="language-plaintext highlighter-rouge">poshgit</code> (short for PowerShell Git) with this command, as that handles a lot of nice Git-related tasks within PowerShell.
+To add posh-git to your prompt, please see the <a href="https://github.com/dahlbyk/posh-git/#using-posh-git">instructions provided with posh-git</a>.
+One of the more useful effects of adding posh-git to your prompt is that posh-git will then look at your setting for <code class="language-plaintext highlighter-rouge">$Env:GIT_SSH</code> and automatically manage your PuTTY configuration for you.</p>
+
+<p>On Ubuntu, run the following in your favorite shell:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>ssh git
+</code></pre></div></div>
+<p>This may warn that some or all of the needed packages are already installed— if so, that’s fine.</p>
+
+<p>On macOS / OS X, SSH is pre-installed by default. To install Git, run <code class="language-plaintext highlighter-rouge">git</code> at the terminal and follow the installation prompts. 
+However, the versions of ssh and git distributed with macOS / OS X are often outdated.
+Homebrew to the rescue:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>brew <span class="nb">install </span>ssh git
+</code></pre></div></div>
+
+<p>Note that posh-git also partially works on PowerShell for Linux and macOS / OS X, but does not yet properly handle setting command-line prompts.</p>
+
+<p>Once everything is installed, simply run <code class="language-plaintext highlighter-rouge">git init</code> from within your project folder to turn your project into a Git repository.
+Use <code class="language-plaintext highlighter-rouge">git add</code> and <code class="language-plaintext highlighter-rouge">git commit</code>, either at the command line or using your editor’s Git support, to add your initial project folder to your local repository.</p>
+
+<p>The next steps from here depend somewhat on which Git hosting provider you wish to use, but proceed roughly in four steps:</p>
+
+<ul>
+  <li>Create a new repository on your hosting provider.</li>
+  <li>Configure your SSH private and public keys for use with your hosting provider.</li>
+  <li>Add your hosting provider as a <code class="language-plaintext highlighter-rouge">git remote</code> to your local project.</li>
+  <li>Use <code class="language-plaintext highlighter-rouge">git push</code> to upload your local repository to the new remote.</li>
+</ul>
+
+<p>Since the details depend on your choice of provider, we won’t detail them here, though some of the tutorials provided above may be useful.
+Rather, we suggest following documentation for the hosting provider of your choice in order to get up and running.</p>
+
+<p>In any case, as promised above, we can now use Git to download and install the LaTeX packages that we require.
+To get <code class="language-plaintext highlighter-rouge">{revquantum}</code>, we’ll run the included PowerShell installer.
+Note that, due to a bug that installer (currently being fixed), this will fail unless you already have <a href="johnmacfarlane.net/pandoc/">Pandoc</a> installed.
+Thus, we’ll go on and work around that bug for now by installing Pandoc (besides, it’s useful in writing responses to referees, as I’ll discuss in a future post):</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># macOS</span>
+<span class="nv">$ </span>brew <span class="nb">install </span>pandoc
+<span class="c"># Ubuntu</span>
+<span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>pandoc
+<span class="c"># Windows</span>
+PS&gt; choco <span class="nb">install </span>pandoc
+</code></pre></div></div>
+<p>I sincerely apologize for this bug, and will have it fixed soon.
+In any case, and having apologized for introducing additional requirements, let’s go on and install the packages themselves:</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">git</span><span class="w"> </span><span class="nx">clone</span><span class="w"> </span><span class="nx">https://github.com/cgranade/revquantum.git</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">cd</span><span class="w"> </span><span class="nx">revquantum</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="c"># Only run the following on Windows, as Unblock-File isn't needed</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="c"># on Linux and macOS / OS X.</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">Unblock-File</span><span class="w"> </span><span class="nx">Install.ps1</span><span class="w"> </span><span class="c"># Marks that the installer is safe to run.</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="o">.</span><span class="nx">/Install.ps1</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Installing the <code class="language-plaintext highlighter-rouge">{quantumarticle}</code> document class proceeds similarly:</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">git</span><span class="w"> </span><span class="nx">clone</span><span class="w"> </span><span class="nx">https://github.com/cgogolin/quantum-journal.git</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">cd</span><span class="w"> </span><span class="nx">quantum-journal</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="c"># Only run the following on Windows, as Unblock-File isn't needed</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="c"># on Linux and macOS / OS X.</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">Unblock-File</span><span class="w"> </span><span class="nx">install.ps1</span><span class="w"> </span><span class="c"># NB: "install" is spelled with a lower-case i here!</span><span class="w">
+</span><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="o">.</span><span class="nx">/install.ps1</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note that in the above, we used HTTPS URLs instead of the typical SSH.
+This allows us to download from GitHub without having to set up our public keys first.
+Since at the moment, we’re only interested in downloading copies of <code class="language-plaintext highlighter-rouge">{revquantum}</code> and <code class="language-plaintext highlighter-rouge">{quantumarticle}</code>, rather than actively developing them, HTTPS URLs work fine.
+That said, for your own projects or for contributing changes to other projects, we recommend taking the time to set up SSH keys and using that instead.</p>
+
+<h3 id="aside-working-with-git-in-vs-code">Aside: Working with Git in VS Code</h3>
+
+<p>As another brief aside, it’s worth taking a moment to see how Git can help enable collaborative and reproducible work.
+The Scientific Computation Extension Pack for VS Code that we installed earlier includes the amazingly useful <a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.git-extension-pack">Git Extension Pack</a> maintained by Don Jayamanne, which in turn augments the already powerful Git tools built into Code.</p>
+
+<p>For instance, the <a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.githistory">Git History</a> extension provides us with a nice visualization of the history of a Git repository.
+Press <strong>Ctrl/⌘+Shift+P</strong>, then type “log” until you are offered “Git: View History (git log).”
+Using this on the <a href="http://qinfer.org/">QInfer</a> repository as an example, I am presented with a visual history of my local repository:</p>
+
+<p><img src="/assets/figures/qinfer-git-log-vscode.png" /></p>
+
+<p>Clicking on any entry in the history visualization presents me with a summary of the changes introduced by that commit, and allows us to quickly make comparisons.
+This is invaluable in answering that age old question, “what the heck did my collaborators change in the draft this time?”</p>
+
+<p>Somewhat related is the <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a> extension, which provides inline annotations about the history of a file while you edit it.
+By default, these annotations are only visible at the top of a section or other major division in a source file, keeping them unobtrusive during normal editing.
+If you temporarily want more information, however, press <strong>Alt+B</strong> to view “blame” information about a file.
+This will annotate each line with a short description of who edited it last, when they did so, and why.</p>
+
+<p><img src="/assets/figures/qinfer-git-blame-vscode.png" /></p>
+
+<p>The last VS Code extension we’ll consider for now is the <a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager">Project Manager</a> extension, which makes it easy to quickly switch between Git repositories and manage multiple research projects.
+To use it, we need to do a little bit of configuration first, and tell the extension where to find our projects.
+Add the following to your user settings, changing paths as appropriate to point to where you keep your research repositories:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nl">"projectManager.git.baseFolders"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"C:</span><span class="se">\\</span><span class="s2">users</span><span class="se">\\</span><span class="s2">cgranade</span><span class="se">\\</span><span class="s2">academics</span><span class="se">\\</span><span class="s2">research"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"C:</span><span class="se">\\</span><span class="s2">users</span><span class="se">\\</span><span class="s2">cgranade</span><span class="se">\\</span><span class="s2">software-projects"</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Note that on Windows, you need to use <code class="language-plaintext highlighter-rouge">\\</code> instead of <code class="language-plaintext highlighter-rouge">\</code>, since <code class="language-plaintext highlighter-rouge">\</code> is an <em>escape character</em>.
+That is, <code class="language-plaintext highlighter-rouge">\\</code> indicates that the next character is special, such that you need two backslashes to type the Windows path separator.</p>
+
+<p>Once configured, press <strong>Alt+Shift+P</strong> to bring up a list of projects.
+If you don’t see anything at first, that’s normal; it can take a few moments for Project Manager to discover all of your repositories.</p>
+
+<h3 id="aside-viewing-tex-differences-as-pdfs-linux-and-macos--os-x-only">Aside: Viewing TeX Differences as PDFs (Linux and macOS / OS X only)</h3>
+
+<p>One very nice advantage of using Git to manage TeX projects is that we can use Git together with the excellent <code class="language-plaintext highlighter-rouge">latexdiff</code> tool to make PDFs annotated with changes between different versions of a project.
+Sadly, though <code class="language-plaintext highlighter-rouge">latexdiff</code> does run on Windows, it’s quite finnicky to use with MiKTeX.
+(Personally, I tend to find it easier to use the Linux instructions on Windows Subsystem for Linux, then run <code class="language-plaintext highlighter-rouge">latexdiff</code> from within Bash on Ubuntu on Windows.)</p>
+
+<p>In any case, we will need two different programs to get up and running with PDF-rendered diffs.
+Sadly, both of these are somewhat more specialized than the other tools we’ve looked at, violating the goal that everything we install should also be of generic use.
+For that reason, and because of the Windows compatability issues noted above, we won’t depend on PDF-rendered diffs anywhere else in this post, and mention it here as a very nice aside.</p>
+
+<p>That said, we will need by <code class="language-plaintext highlighter-rouge">latexdiff</code> itself, which compares changes between two different TeX source versions, and <code class="language-plaintext highlighter-rouge">rcs-latexdiff</code>, which interfaces between <code class="language-plaintext highlighter-rouge">latexdiff</code> and Git. 
+To install <code class="language-plaintext highlighter-rouge">latexdiff</code> on Ubuntu, we can again rely on <code class="language-plaintext highlighter-rouge">apt</code>:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>apt <span class="nb">install </span>latexdiff
+</code></pre></div></div>
+<p>For macOS / OS X, the easiest way to install latexdiff is to use the package manager of MacTeX.
+Either use <code class="language-plaintext highlighter-rouge">Tex Live Utiliy</code>, a GUI program distributed with MacTeX or run the following command in a shell</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>tlmgr update <span class="nt">--self</span>
+<span class="nv">$ </span><span class="nb">sudo </span>tlmgr <span class="nb">install </span>latexdiff
+</code></pre></div></div>
+
+<p>For <code class="language-plaintext highlighter-rouge">rcs-latexdiff</code>, I recommend the <a href="https://github.com/ihincks/rcs-latexdiff/"><em>fork</em> maintained by Ian Hincks</a>.
+We can use the Python-specific package manager <code class="language-plaintext highlighter-rouge">pip</code> to automatically download Ian’s Git repository for <code class="language-plaintext highlighter-rouge">rcs-latexdiff</code> and run its installer:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>pip <span class="nb">install </span>git+https://github.com/ihincks/rcs-latexdiff.git
+</code></pre></div></div>
+
+<p>Once you have <code class="language-plaintext highlighter-rouge">latexdif</code> and <code class="language-plaintext highlighter-rouge">rcs-latexdiff</code> installed, we can make very professional PDF renderings by calling <code class="language-plaintext highlighter-rouge">rcs-latexdiff</code> on different Git commits.
+For instance, if you have a Git <a href="https://git-scm.com/book/en/v2/Git-Basics-Tagging"><em>tag</em></a> for version 1 of an arXiv submission, and want to prepare a PDF of differences to send to editors when resubmitting, the following command often works:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span>rcs-latexdiff project_name.tex arXiv_v1 HEAD
+</code></pre></div></div>
+<p>Sometimes, you may have to specify options such as <code class="language-plaintext highlighter-rouge">--exclude-section-titles</code> due to compatability with the <code class="language-plaintext highlighter-rouge">\section</code> command in <code class="language-plaintext highlighter-rouge">{revtex4-1}</code> and <code class="language-plaintext highlighter-rouge">{quantumarticle}</code>.</p>
+
+<h2 id="arxiv-build-management">arXiv Build Management</h2>
+
+<p>Ideally, you’ll upload your reproducible research paper to the arXiv once your project is at a point where you want to share it with the world.
+Doing so manually is, in a word, painful.
+In part, this pain originates from that arXiv uses a single automated process to prepare every manuscript submitted, such that arXiv must do something sensible for everyone.
+This translates in practice to that we need to ensure that our project folder matches the expectations encoded in their TeX processor, AutoTeX.
+These expectations work well for preparing manuscripts on arXiv, but are not quite what we want when we are writing a paper, so we have to contend with these conventions in uploading.</p>
+
+<p>For instance, arXiv expects a single TeX file at the root directory of the uploaded project, and expects that any ancillary material (source code, small data sets, videos, etc.) are in a subfolder called <code class="language-plaintext highlighter-rouge">anc/</code>.
+Perhaps most difficult to contend with, though, is that arXiv currently only supports subfolders in a project if that project is uploaded as a ZIP file.
+This implies that if we want to upload even once ancillary file, which we certiantly will want to do for a reproducible paper, then we <strong>must</strong> upload our project as a ZIP file.
+Preparing this ZIP file is in principle easy, but if we do so manually, it’s all too easy to make mistakes.</p>
+
+<p>To rectify this and to allow us to use our own project folder layouts, I’ve written a set of commands for PowerShell collectively called PoShTeX to manage building arXiv ZIP archives.
+From our perspective in writing a reproducible paper, we can rely on PowerShell’s built-in package management tools to automatically find and install PoShTeX if needed, such that our entire arXiv build process reduces to writing a single short <em>manifest file</em> then running it as a PowerShell command.</p>
+
+<p>Let’s look at an example manifest.
+This particular example comes from an ongoing research project with <a href="http://www.sckaiser.com">Sarah Kaiser</a> and <a href="https://csferrie.com/">Chris Ferrie</a>.</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#region Bootstrap PoShTeX</span><span class="w">
+</span><span class="nv">$modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Module</span><span class="w"> </span><span class="nt">-ListAvailable</span><span class="w"> </span><span class="nt">-Name</span><span class="w"> </span><span class="nx">posh-tex</span><span class="p">;</span><span class="w">
+</span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nv">$modules</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">Install-Module</span><span class="w"> </span><span class="nx">posh-tex</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">CurrentUser</span><span class="p">}</span><span class="w">
+</span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nv">$modules</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nf">?</span><span class="w"> </span><span class="p">{</span><span class="bp">$_</span><span class="o">.</span><span class="nf">Version</span><span class="w"> </span><span class="o">-ge</span><span class="w"> </span><span class="s2">"0.1.5"</span><span class="p">}))</span><span class="w"> </span><span class="p">{</span><span class="n">Update-Module</span><span class="w"> </span><span class="nx">posh-tex</span><span class="p">}</span><span class="w">
+</span><span class="n">Import-Module</span><span class="w"> </span><span class="nx">posh-tex</span><span class="w"> </span><span class="nt">-Version</span><span class="w"> </span><span class="s2">"0.1.5"</span><span class="w">
+</span><span class="c">#endregion</span><span class="w">
+
+</span><span class="n">Export-ArXivArchive</span><span class="w"> </span><span class="p">@{</span><span class="w">
+    </span><span class="nx">ProjectName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"sgqt_mixed"</span><span class="p">;</span><span class="w">
+    </span><span class="nx">TeXMain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"notes/sgqt_mixed.tex"</span><span class="p">;</span><span class="w">
+    </span><span class="nx">RenewCommands</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@{</span><span class="w">
+        </span><span class="s2">"figurefolder"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"."</span><span class="p">;</span><span class="w">
+    </span><span class="p">};</span><span class="w">
+    </span><span class="nx">AdditionalFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@{</span><span class="w">
+        </span><span class="c"># TeX Stuff #</span><span class="w">
+        </span><span class="s2">"notes/revquantum.sty"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"/"</span><span class="p">;</span><span class="w">
+        </span><span class="s2">"figures/*.pdf"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"figures/"</span><span class="p">;</span><span class="w">
+        </span><span class="c"># "notes/quantumarticle.cls" = $null</span><span class="w">
+
+        </span><span class="c"># Theory and Experiment Support #</span><span class="w">
+        </span><span class="s2">"README.md"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"anc/"</span><span class="p">;</span><span class="w">
+        </span><span class="s2">"src/*.py"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"anc/"</span><span class="p">;</span><span class="w">
+        </span><span class="s2">"src/*.yml"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"anc/"</span><span class="p">;</span><span class="w">
+
+        </span><span class="c"># Experimental Data #</span><span class="w">
+        </span><span class="s2">"data/*.hdf5"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"anc/"</span><span class="p">;</span><span class="w">
+
+        </span><span class="c"># Other Sources #</span><span class="w">
+        </span><span class="c"># We include this build script itself to provide an example</span><span class="w">
+        </span><span class="c"># of using PoShTeX in pactice.</span><span class="w">
+        </span><span class="s2">"Export-ArXiv.ps1"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">$null</span><span class="p">;</span><span class="w">
+    </span><span class="p">};</span><span class="w">
+    </span><span class="nx">Notebooks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@(</span><span class="w">
+        </span><span class="s2">"src/experiment.ipynb"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"src/theory.ipynb"</span><span class="w">
+    </span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>Breaking it down a bit, the section of the manifest between <code class="language-plaintext highlighter-rouge">#region</code> and <code class="language-plaintext highlighter-rouge">#endregion</code> is responsible for ensuring PoShTeX is available, and installing it if not.
+This is the only “boilerplate” to the manifest, and should be copied literally into new manifest files, with a possible change to the version number <code class="language-plaintext highlighter-rouge">"0.1.5"</code> that is marked as required in our example.</p>
+
+<p>The rest is a call to the PoShTeX command <code class="language-plaintext highlighter-rouge">Export-ArXivArchive</code>, which produces the actual ZIP given a description of the project.
+That description takes the form of a PowerShell <em>hashtable</em>, indicated by <code class="language-plaintext highlighter-rouge">@{}</code>.
+This is very similar to JavaScript or JSON objects, to Python <code class="language-plaintext highlighter-rouge">dict</code>s, etc.
+Key/value pairs in a PowerShell hashtable are separated by <code class="language-plaintext highlighter-rouge">;</code>, such that each line of the argument to <code class="language-plaintext highlighter-rouge">Export-ArXivArchive</code> specifies a key in the manifest.
+These keys are documented more throughly on the <a href="https://www.cgranade.com/posh-tex/">PoShTeX documentation site</a>, but let’s run through them a bit now.
+First is <code class="language-plaintext highlighter-rouge">ProjectName</code>, which is used to determine the name of the final ZIP file.
+Next is <code class="language-plaintext highlighter-rouge">TeXMain</code>, which specifies the path to the root of the TeX source that should be compiled to make the final arXiv-ready manuscript.</p>
+
+<p>After that is the optional key <code class="language-plaintext highlighter-rouge">RenewCommands</code>, which allows us to specify another hashtable whose keys are LaTeX commands that should be changed when uploading to arXiv.
+In our case, we use this functionality to change the definition of <code class="language-plaintext highlighter-rouge">\figurefolder</code> such that we can reference figures from a TeX file that is in the root of the arXiv-ready archive rather than in <code class="language-plaintext highlighter-rouge">tex/</code>, as is in our project layout.
+This provides us a great deal of freedom in laying out our project folder, as we need not follow the same conventions in as required by arXiv’s AutoTeX processing.</p>
+
+<p>The next key is <code class="language-plaintext highlighter-rouge">AdditionalFiles</code>, which specifies other files that should be included in the arXiv submission.
+This is useful for everything from figures and LaTeX class files through to providing ancillary material.
+Each key in <code class="language-plaintext highlighter-rouge">AdditionalFiles</code> specifies the name of a particular file, or a filename pattern which matches multiple files.
+The values associated with each such key specify where those files should be located in the final arXiv-ready archive.
+For instance, we’ve used <code class="language-plaintext highlighter-rouge">AdditionalFiles</code> to copy anything matching <code class="language-plaintext highlighter-rouge">figures/*.pdf</code> into the final archive.
+Since arXiv requires that all ancillary files be listed under the <code class="language-plaintext highlighter-rouge">anc/</code> directory, we move things like <code class="language-plaintext highlighter-rouge">README.md</code>, the instrument and environment descriptions <code class="language-plaintext highlighter-rouge">src/*.yml</code>, and the experimental data in to <code class="language-plaintext highlighter-rouge">anc/</code>.</p>
+
+<p>Finally, the <code class="language-plaintext highlighter-rouge">Notebooks</code> option specifies any Jupyter Notebooks which should be included with the submission.
+Though these notebooks could also be included with the <code class="language-plaintext highlighter-rouge">AdditionalFiles</code> key, PoShTeX separates them out to allow passing the optional <code class="language-plaintext highlighter-rouge">-RunNotebooks</code> switch.
+If this switch is present before the manifest hashtable, then PoShTeX will rerun all notebooks before producing the ZIP file in order to regenerate figures, etc. for consistency.</p>
+
+<p>Once the manifest file is written, it can be called by running it as a PowerShell command:</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="o">.</span><span class="nx">/Export-ArXiv.ps1</span><span class="w">
+</span></code></pre></div></div>
+<p>This will call LaTeX and friends, then produce the desired archive.
+Since we specified that the project was named <code class="language-plaintext highlighter-rouge">sgqt_mixed</code> with the <code class="language-plaintext highlighter-rouge">ProjectName</code> key, PoShTeX will save the archive to <code class="language-plaintext highlighter-rouge">sgqt_mixed.zip</code>.
+In doing so, PoShTeX will attach your bibliography as a <code class="language-plaintext highlighter-rouge">*.bbl</code> file rather than as a BibTeX database (<code class="language-plaintext highlighter-rouge">*.bib</code>), since arXiv does not support the <code class="language-plaintext highlighter-rouge">*.bib</code> → <code class="language-plaintext highlighter-rouge">*.bbl</code> conversion process.
+PoShTeX will then check that your manuscript compiles without the biblography database by copying to a temporary folder and running LaTeX there without the aid of BibTeX.</p>
+
+<p>Thus, it’s a good idea to check that the archive contains the files you expect it to by taking a quick look:</p>
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">PS</span><span class="err">&gt;</span><span class="w"> </span><span class="nx">ii</span><span class="w"> </span><span class="nx">sgqt_mixed.zip</span><span class="w">
+</span></code></pre></div></div>
+<p>Here, <code class="language-plaintext highlighter-rouge">ii</code> is an <em>alias</em> for <code class="language-plaintext highlighter-rouge">Invoke-Item</code>, which launches its argument in the default program for that file type.
+In this way, <code class="language-plaintext highlighter-rouge">ii</code> is similar to Ubuntu’s <code class="language-plaintext highlighter-rouge">xdg-open</code> or macOS / OS X’s <code class="language-plaintext highlighter-rouge">open</code> command.</p>
+
+<p>Once you’ve checked through that this is the archive you meant to produce, you can go on and upload it to arXiv to make your amazing and wonderful reproducible project available to the world.</p>
+
+<h2 id="conclusions-and-future-directions">Conclusions and Future Directions</h2>
+
+<p>In this post, we detailed a set of software tools for writing and publishing reproducible research papers.
+Though these tools make it much easier to write papers in a reproducible way, there’s always more that can be done.
+In that spirit, then, I’ll conclude by pointing to a few things that this stack <em>doesn’t</em> do yet, in the hopes of inspiring further efforts to improve the available tools for reproducible research.</p>
+
+<ul>
+  <li><strong>Template generation</strong>:
+It’s a bit of a manual pain to set up a new project folder.
+Tools like <a href="http://yeoman.io/">Yeoman</a> or <a href="https://github.com/audreyr/cookiecutter">Cookiecutter</a> help with this by allowing the development of interactive code generators.
+A “reproducible arXiv paper” generator could go a long way towards improving practicality.</li>
+  <li><strong>Automatic Inclusion of CTAN Dependencies</strong>:
+Currently, setting up a project directory includes the step of copying TeX dependencies into the project folder.
+Ideally, this could be done automatically by PoShTeX based on a specification of which dependencies need to be downloaded, <em>a la</em> pip’s use of <code class="language-plaintext highlighter-rouge">requirements.txt</code>.</li>
+  <li><strong>arXiv Compatability Checking</strong>:
+Since arXiv stores each submission internally as a <code class="language-plaintext highlighter-rouge">.tar.gz</code> archive, which is inefficient for archives that themselves contain archives, arXiv <em>recursively</em> unpacks submissions.
+This in turn means that files based on the ZIP format, such as NumPy’s <code class="language-plaintext highlighter-rouge">*.npz</code> data storage format, are not supported by arXiv and should not be uploaded.
+Adding functionality to PoShTeX to check for this condition could be useful in preventing common problems.</li>
+</ul>
+
+<p>In the meantime, even in lieu of these features, I hope that this description is a useful resource. ♥</p>
+
+<!--
+
+    NEXT POSTZES:
+
+    - responding to referee reports using Pandoc
+    - best practizes for gitzors
+    - using signal to communicate w/ collabs
+
+-->
+
+<h2 id="acknowledgements">Acknowledgements</h2>
+
+<ul>
+  <li>A huge thanks to <a href="https://www.qc.uni-freiburg.de/team/daniel_suess">Daniel Suess</a> for writing the install instructions on macOS / OS X! ★♥★</li>
+  <li>Thanks to <a href="https://twitter.com/o_guest">Olivia Guest</a> for <a href="https://twitter.com/o_guest/status/857641108729466883">suggestions on Git tutorials</a>.</li>
+  <li>Thanks to Ben Barigola, Sarah Kaiser, and Chris Ferrie for feedback on drafts and for help testing.</li>
+  <li>Thanks to Chris Ferrie for <a href="https://twitter.com/cgranade/status/857130965969358853">nerdsniping me</a> into writing this post.</li>
+</ul>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/06/15/questions.html">
+            A Few Questions About Myself
+            <small>15 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/05/08/gh-actions-test.html">
+            Testing GitHub Actions
+            <small>08 May 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/01/13/useful-skills-for-quantum.html">
+            Some useful skills for quantum computing
+            <small>13 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

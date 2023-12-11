@@ -1,0 +1,82 @@
+==================================================================
+https://keybase.io/cgranade
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://www.cgranade.com
+  * I am cgranade (https://keybase.io/cgranade) on keybase.
+  * I have a public key with fingerprint 7950 2540 D90E 791F A91F  6AFC 7B70 49DA 0677 5403
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.4.11"
+        },
+        "key": {
+            "fingerprint": "79502540d90e791fa91f6afc7b7049da06775403",
+            "host": "keybase.io",
+            "key_id": "7B7049DA06775403",
+            "uid": "823efa8938f9421515435c42964d6700",
+            "username": "cgranade"
+        },
+        "merkle_root": {
+            "ctime": 1406731428,
+            "hash": "b9e79b0dd903fca327e64b3b239d9272b4c3ada41cd1c73d3f09db4a126ca7f9ed7d32476bbdb83ec050a26d4b49f46f728b6c8b40b8617efd3200cbb1eec2ab",
+            "seqno": 31951
+        },
+        "service": {
+            "hostname": "www.cgranade.com",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1406731642,
+    "expire_in": 157680000,
+    "prev": "bc3cc459185ef83c3ade1b90ab04377bd97e3646916161fd24231a06a8b2abef",
+    "seqno": 3,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owFVUg1MVWUYvkBCEgmEBq4rssvakPByfr7zR2wCAWoIkQarmFzOd8534HAv91zO
+vVyEq6I52kpRM0YpgT9IEctSN1SugxuJLAJDMDOsppkDc1C2NuLHZucw3PA7+7bv
+7H3e532e930PPhtg8PfzODbeDKx8I8Bv4A9o2DK6pNpjgopYZUrymASbjOwu/WXn
+y5ApyWRFVZB3IrOsxNgVEZlLnTELmASTG6lOWbFrKMwMzDhu2pGg4/VsSbYXI9Wh
+yjqZieEojKAAJnIYYjhc4rVL85LAQAYDnMhjNMNoYVLjLFGcrifKmuY5LbKo86Tp
++PTURfiK+QBLkEjiWY5kJQ4QOIVTgKQEQHA0EGkGw3SgE6kLnoRilbfzItL1liHV
+akMWVVHmXQsuWYfgQCtB4oBgNUW8s0RLgpwmHWKi5oGUBJ4kGEQDSEKC5ESOYAgI
+BJIXeYALIi4wpEhKGCdCwOMELfCMxCGREUkCMDSEImRJJGAUxhO0CCDgJEBLDMFC
+WmAhwCBL4wySNDSGCRDiCAkEDzULTlRuV0xJJM5R+A79V3XLAtJl611bMFdZWWl+
+bNAsKGVankNVXIqg2LRoicvlSNJ9u6ocOvpMJYKWBSILlO2iNrfFk9XrPNkTGhAJ
+JrTNIavIIusIiqFZTDt6HeTWOyWQggAoDmcpJLGk3haEQw7jIQZIhoEixyCSBjSH
+09oniQQgSFzbAZ6Fmk8kLXKq6eSLNUqnXGznXRWqNrL3/I1PGfz8DYFL/PXVNQQv
+DXu8zyGnwgxtn8TXjGSkf7eiOsg3Fb68Md8YeD28NLzvo5msydArMUJb8qX+9313
+plvI3LW5t/q/r7fenZPkiiKv6ImKnGJf+q0nPMCSuTW1Y7bk/LKa4QMDKA+cpqe8
+j+5PfXDYVbY50fZl5jN9qSf6O2+zY03fpG/JfvGtPaYbG+smsmILDTs9xqpvI/89
+82ZZ/nBLenajNDi6fVX3FxW1B6dq6jpOnC4PTPl57QPvO7U/zNqt684dGQDJW4su
+Ndt6qZ57xXdqt8XxsZtKxwfZ1wqodc0vrEjIaBqwROUEqyW5/6WkHBfe9cYciWol
+4jJCcpvSNiTtnn6+faKh/CoP702Hfj37aXPH0sOGNbt/j2phrx+ynsx/4GnxHn20
+7+LnVy6vcR5r6Ql56Cv0z+hi4nPSI6/uL3UPdbZfflu8GZ1+YKDgaE95ufv1nJBr
+vvv7hv5sv512w+a/fWVsg29DXWJi99mulUbjXsdg9mdZY+edcScL4uurmYfrJ4Yj
+hqIyn/ONcrvyV6/u8/a3/z3jW3Y3ryfXzVxQvrqIje2cbbj2dGGoJ2K8oms4+pfU
++nG1sTHZaU3YXD8SPDlT5zb2Kq2NXrk4eFfex69Q5FBEb8ZPeFBrjPvCdOCvqYEv
+/7VnOvxctLdo7h9vW+fZVUH7A0a65149NLY8oOHWqb2OH8MmPzymHq+q65jjIzbN
+TlT9Dw==
+=c8B9
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/cgranade
+
+==================================================================

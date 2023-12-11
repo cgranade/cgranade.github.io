@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Using SSH Keys in Visual Studio Code on Windows &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item active" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Using SSH Keys in Visual Studio Code on Windows</h1>
+  <span class="post-date">06 Jun 2016</span>
+  <p><a href="https://code.visualstudio.com">Visual Studio Code</a> is
+Microsoft’s <a href="https://github.com/Microsoft/vscode/blob/master/LICENSE.txt">open-source</a>
+code editor for Windows, OS X and Linux. Nicely, VS Code has built-in support
+for Git and support for Python through
+<a href="https://marketplace.visualstudio.com/items?itemName=donjayamanne.python">an extension</a>,
+making it a useful for scientific development. Using VS Code on Windows is somewhat frustrated, however,
+if you want to work with a Git repository that was cloned using SSH. Thankfully, I found
+a workable solution using PuTTY and Git for Windows, such that VS Code transparently works
+with password-protected SSH keys. Below, I detailed how I got it working in as complete
+a detail as reasonable, but you may have already done some or even many of these steps.
+If so, the procedure is actually fairly simple, and consists of pointing Git (and hence
+VS Code) to use PuTTY and Pageant instead of the SSH version that ships with Git for Windows.</p>
+
+<p>First, though, a disclaimer. These steps worked on my Windows 10 installation, but may
+not work on yours. If you find that this is the case, let me know, and
+I’ll try and update accordingly.</p>
+
+<h2 id="step-0-install-required-software">Step 0. Install Required Software</h2>
+
+<p>Before we get into things, we’ll need a bit of software. In particular,
+we’ll need:</p>
+
+<ul>
+  <li><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/">PuTTY</a> as a native-Windows SSH client and agent,</li>
+  <li><a href="https://git-scm.com/download/win">Git for Windows</a> to use Git from PowerShell and VS Code, and</li>
+  <li><a href="https://github.com/PowerShell/Win32-OpenSSH">OpenSSH for Windows</a> to generate SSH keys in the first place.</li>
+</ul>
+
+<p><strong><em>WARNING</em></strong>: Do <strong><em>not</em></strong> install PuTTY from its official homepage,
+as this will download PuTTY over an insecure connection. This guide
+will cover how to download PuTTY securely.</p>
+
+<p>For much of this,
+we can use the <a href="https://chocolatey.org">Chocolatey package manager</a> for Windows to save some grief,
+so let’s start by installing that. If you already have Chocolatey, please skip this
+step. (If you aren’t sure, try running <code class="language-plaintext highlighter-rouge">choco</code> from PowerShell.)
+Run PowerShell as administrator, then run the following command to download and
+install Chocolatey:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS&gt; Set-ExecutionPolicy -Scope Process RemoteSigned
+PS&gt; iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex 
+</code></pre></div></div>
+
+<p>Once this is done, close and reopen PowerShell (again as administrator). This
+will make <code class="language-plaintext highlighter-rouge">choco</code> available as a command. Now we can use it to install Git and
+OpenSSH (as above, we will <em>not</em> install PuTTY using Chocolatey, as it will
+download PuTTY from its official homepage using an insecure connection). Run
+the following PowerShell commands to install Git and OpenSSH:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS&gt; choco install git
+PS&gt; choco install win32-openssh
+</code></pre></div></div>
+
+<p>We’ll finish up by downloading the version of PuTTY that ships with
+<a href="https://winscp.net/">WinSCP</a>, since that version is delivered via
+HTTPS and not insecure HTTP. In particular, use
+<a href="https://winscp.net/download/putty-0.67-installer.exe">this link</a>
+to download PuTTY, then run the installer once you’ve downloaded it.</p>
+
+<h2 id="step-1-setup-private-keys">Step 1. Setup Private Keys</h2>
+
+<p>Once everything is installed, we now need to make sure that you have
+an SSH private key and that this key is registered with your
+Git hosting service (for instance, GitHub or Bitbucket). If you already
+have keys and have registered them with your hosting provider, please skip
+on ahead.</p>
+
+<p>In any case, to generate keys, we’ll again use PowerShell:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh-keygen
+</code></pre></div></div>
+
+<p>Simply follow the prompts to make yourself a new public/private
+key pair, making sure to choose a long (~40 character) passphrase.
+This passphrase provides much of the entropy for your key, such that
+it should be much longer than a typical password. <strong>Never</strong> type your
+passphrase into a remote password prompt— the passphrase is used
+to unlock your key locally on your machine, and should <strong>never</strong> be sent over
+the network. If a website asks you for your SSH passphrase, you are probably
+being scammed.</p>
+
+<p>By default, the new keys will be located in <code class="language-plaintext highlighter-rouge">C:\Users\&lt;username&gt;\.ssh\id_rsa</code>
+and <code class="language-plaintext highlighter-rouge">C:\Users\&lt;username&gt;\.ssh\id_rsa.pub</code>. As the names suggest, the first of
+these is the <em>private</em> key and should not be shared with anyone. The other
+is the public key, and serves to identify yourself to others. Follow
+the instructions for <a href="https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/">GitHub</a>
+or <a href="https://confluence.atlassian.com/bitbucket/add-an-ssh-key-to-an-account-302811853.html">Bitbucket</a>
+(for Bitbucket, make sure to follow the Linux and OS X instructions, even
+from Windows) to upload your <em>public</em> key to your hosting provider.</p>
+
+<h2 id="step-2-set-up-ssh-agent">Step 2. Set up SSH Agent</h2>
+
+<p>Next, we’ll make sure that your private key is setup in an SSH agent.
+This will securely remember your passphrase within a given session,
+so that you don’t have to type it in every time you use it. In particular,
+we’ll configure Pageant, since this is installed with PuTTY, and works well
+with a variety of command-line and GUI tools for Windows— most notably,
+with VS Code.</p>
+
+<p>Pageant must be run at startup in order to be useful, so we’ll begin by
+adding it to the startup folder now. In Windows Explorer (Windows 8.1 and earlier)
+or in File Explorer (Windows 10 and later), go to the folder
+<code class="language-plaintext highlighter-rouge">C:\Users\&lt;username&gt;\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup</code>.
+Right-click inside this folder and select <code class="language-plaintext highlighter-rouge">New → Shortcut</code>. From there,
+browse to <code class="language-plaintext highlighter-rouge">C:\Program Files (x86)\PuTTY</code> and select <code class="language-plaintext highlighter-rouge">pageant.exe</code>.</p>
+
+<p>Next, we need to import your new key into PuTTY/Pageant. Run PuTTYgen
+from the Start Menu and select <code class="language-plaintext highlighter-rouge">File → Load Key...</code>. From there, navigate
+to <code class="language-plaintext highlighter-rouge">C:\Users\&lt;username&gt;\.ssh\</code> and select <code class="language-plaintext highlighter-rouge">id_rsa</code> (the private key). You
+may have to drop down the file types selector in the dialog box to see
+this, as PuTTYgen defaults to filtering out everything but files ending
+in <code class="language-plaintext highlighter-rouge">*.ppk</code>. Once selected, you’ll be prompted by PuTTY to unlock your key
+by typing in your passphrase. Do so, and PuTTYgen will show the corresponding
+public key. Select <code class="language-plaintext highlighter-rouge">File → Save private key</code> to export your private key
+in PuTTY, rather than OpenSSH, format. I suggest saving it as <code class="language-plaintext highlighter-rouge">id_rsa.ppk</code>
+in the same folder as <code class="language-plaintext highlighter-rouge">id_rsa</code>, but this is up to you. Just be sure that to
+save it in a folder that only you can read, and that is not synchronized using
+Dropbox, OneDrive, Google Drive or similar.</p>
+
+<p>Finally, run Pageant from the Start Menu (in the future, this will be handled
+automatically by the shortcut we created above). This will add a new
+icon to your system tray. It may be hidden by the arrow; if so, click the
+arrow to make all fo the system tray icons visible. Right-click on Pageant and
+select <code class="language-plaintext highlighter-rouge">Add Key</code>. Browse to where you saved <code class="language-plaintext highlighter-rouge">id_rsa.ppk</code> and select it.
+You’ll be prompted to unlock your key. Upon doing so, your unlocked key will then
+be made available in Pageant until you log out or quit Pageant.</p>
+
+<h2 id="step-3-add-ssh-server-fingerprints">Step 3. Add SSH Server Fingerprints</h2>
+
+<p>Despite the name, this is a short step. Whenever you log into an
+SSH server, PuTTY will check that the server’s <em>fingerprint</em> is correct.
+This is a short cryptographic string identifying that server, such that checking
+the fingerprint helps against man-in-the-middle attacks. If you haven’t logged
+into a server with PuTTY before, however, it has no idea how to check the fingerprint,
+and will fail to login. Since VS Code ignores these errors, Git support will silently
+fail unless you first attempt to log into the SSH server offered by your
+Git host. To do so, we’ll use PowerShell one last time. Run one of the following
+commands below, depending on which hosting provider you use.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS &gt; &amp; 'C:\Program Files (x86)\PuTTY\plink.exe' git@github.com
+PS &gt; &amp; 'C:\Program Files (x86)\PuTTY\plink.exe' git@bitbucket.org
+</code></pre></div></div>
+
+<p>In either case, you’ll be prompted to add the server’s fingerprint to the registry.
+If you are confident that your traffic is not being intercepted, select <code class="language-plaintext highlighter-rouge">y</code> at
+this prompt. Neither GitHub nor Bitbucket actually allows logins via SSH,
+so you’ll get an error, but this is OK: you’ve gotten far enough to see the server’s
+fingerprint, and that’s all we needed. To check, you can run the commands above
+again, and note that you are no longer prompted to add the fingerprint, but instead
+fail immediately.</p>
+
+<h2 id="step-4-configure-environment-variables">Step 4. Configure Environment Variables</h2>
+
+<p>We’re almost done. All that’s left is to point Git for Windows at PuTTY
+and Pageant, rather than its own built-in SSH client. Since VS Code uses
+Git for Windows, this will ensure that VS Code does what we want.</p>
+
+<p>Right-click on <code class="language-plaintext highlighter-rouge">My Computer</code> or <code class="language-plaintext highlighter-rouge">This PC</code> in Windows/File Explorer, and select
+<code class="language-plaintext highlighter-rouge">Properties</code>. From there, click <code class="language-plaintext highlighter-rouge">Advanced system settings</code> in the sidebar to
+the left. On the <code class="language-plaintext highlighter-rouge">Advanced</code> tab, press the <code class="language-plaintext highlighter-rouge">Environment Variables...</code> button
+at the bottom. Finally, click <code class="language-plaintext highlighter-rouge">New...</code> on the user variables pane (top), and
+add a new variable named <code class="language-plaintext highlighter-rouge">GIT_SSH</code> with value <code class="language-plaintext highlighter-rouge">C:\Program Files (x86)\PuTTY\plink.exe</code>.
+You may want to use <code class="language-plaintext highlighter-rouge">Browse File...</code> in this dialog box to make sure you get
+the path correct. Once done, press <code class="language-plaintext highlighter-rouge">OK</code> to add the variable, <code class="language-plaintext highlighter-rouge">OK</code> again to close the
+Environment Variables dialog, then <code class="language-plaintext highlighter-rouge">OK</code> a third time to close System Properties.
+Finally, close the System window.</p>
+
+<p>If you have VS Code open already, close it and reopen VS Code to make sure it
+sees the new environment variable.</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>Congratulations, you should now have a full Git + SSH client toolchain working on
+Windows, and made visible to VS Code. Have fun!</p>
+
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/06/15/questions.html">
+            A Few Questions About Myself
+            <small>15 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/05/08/gh-actions-test.html">
+            Testing GitHub Actions
+            <small>08 May 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/01/13/useful-skills-for-quantum.html">
+            Some useful skills for quantum computing
+            <small>13 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Characterization, Verification and Control for Large Quantum Systems &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Characterization, Verification and Control for Large Quantum Systems</h1>
+  <p><a href="/"><strong>Cassandra E. Granade</strong></a><sup><a href="#affil-iqc">1</a>, <a href="#affil-uw-phys">2</a></sup></p>
+
+<blockquote>
+  <p><a href="https://www.cgranade.com/downloads/cgranade-thesis.pdf">PDF</a></p>
+</blockquote>
+
+<p>PhD thesis, defended 26 February 2015.</p>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td><a href="slides/">Slides</a> (will follow presentation during defense)</td>
+        <td><a href="https://twitter.com/hashtag/GranadeDefense">Livetweets</a></td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>Quantum information processing offers potential improvements to a wide range
+of computing endevaors, including cryptography, chemistry simulations and
+machine learning. The development of practical quantum information processing
+devices is impeded, however, by challenges arising from the apparent exponential
+dimension of the space one must consider in characterizing quantum
+systems, verifying their correct operation, and in designing useful control
+sequences. In this work, we address each in turn by providing useful
+algorithms that can be readily applied in experimental practice.</p>
+
+<p>In order to characterize the dynamics of quantum systems, we apply statistical
+methods based on Bayes’ rule, thus enabling the use of strong prior
+information and parameter reduction. We first discuss an
+analytically-tractable special case, and then employ a numerical algorithm,
+sequential Monte Carlo, that uses simulation as a resource for characterization. We
+discuss several examples of SMC and show its application in nitrogen vacancy
+centers and neutron interferometry.
+We then discuss how characterization techniques such as SMC can be used to
+verify quantum systems by using credible region estimation, model selection,
+state-space modeling and hyperparameterization. Together, these techniques
+allow us to reason about the validity of assumptions used in analyzing quantum
+devices, and to bound the credible range of quantum dynamics.</p>
+
+<p>Next, we discuss the use of optimal control theory to design robust control
+for quantum systems. We show extensions to existing OCT algorithms that allow
+for including models of classical electronics as well as quantum dynamics,
+enabling higher-fidelity control to be designed for cutting-edge experimental
+devices. Moreover, we show how control can be implemented in parallel across
+node-based architectures, providing a valuable tool for implementing
+proposed fault-tolerant protocols.</p>
+
+<p>We close by showing how these algorithms can be augmented using quantum
+simulation resources to enable addressing characterization and control design
+challenges in even large quantum devices. In particular, we will introduce a
+novel memetic algorithm for quantum control design, MOQCA, that utilizes
+quantum coprocessors to design robust control sequences. We then extend
+sequential Monte Carlo with quantum simulation resources to enable
+characterizing and verifying the dynamics of large quantum devices. By using
+novel insights in epistemic information locality, we are able to learn
+dynamics using strictly smaller simulators, leading to an algorithm we call
+quantum bootstrapping. We demonstrate by using a numerical example of learning
+the dynamics of a 50-qubit device using an 8-qubit simulator.</p>
+
+<h2 id="software-resources">Software Resources</h2>
+
+<p><a id="software-resources"></a></p>
+
+<p>The following libraries for Python, MATLAB and Mathematica were used to implement the results in this work. Each library was developed by or in collaboration with the author, or includes contributions from the author. Full details are included in the thesis and in each respective project.</p>
+
+<ul>
+  <li><a href="https://github.com/csferrie/python-qinfer"><strong>QInfer</strong></a>: a Python-language implementation the classical and quantum characterization algorithms presented in this work.</li>
+  <li><a href="https://github.com/cgranade/python-quaec"><strong>QuaEC</strong></a>: a Python-language library implementing quantum error correcting primitives in the stabilizer formalism.</li>
+  <li><a href="http://qutip.org/"><strong>QuTiP</strong></a>: a Python-language library for manipulating and simulating the dynamics of quantum objects and systems.</li>
+  <li><a href="https://github.com/CoryGroup/quantum-utils-matlab"><strong>QuantumUtils for MATLAB</strong></a>: a MATLAB-language library used to implement portions of this work, including portions of the honest approximation section.</li>
+  <li><strong>QuantumUtils for Mathematica</strong>: coming soon.</li>
+</ul>
+
+<h2 id="bibliography">Bibliography</h2>
+
+<blockquote>
+  <p><a href="https://www.zotero.org/cgranade/items/collectionKey/SQBZIC3H">Bibliography hosted on Zotero</a></p>
+</blockquote>
+
+<h2 id="affiliations">Affiliations</h2>
+
+<ol>
+  <li><a id="affil-iqc"></a><a href="http://iqc.uwaterloo.ca">Institute for Quantum Computing, University of Waterloo</a>.</li>
+  <li><a id="affil-uw-phys"></a><a href="https://uwaterloo.ca/physics-astronomy/">Physics Department, University of Waterloo</a>.</li>
+</ol>
+
+</div>
+
+    </div>
+
+  </body>
+</html>

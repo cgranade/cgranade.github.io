@@ -1,0 +1,690 @@
+{
+  "version": 1,
+  "width": 84,
+  "height": 24,
+  "duration": 20.534421,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "xterm",
+    "SHELL": "bash"
+  },
+  "stdout": [
+    [
+      0.037037,
+      "cgranade@laptop:~$ "
+    ],
+    [
+      0.464486,
+      "c"
+    ],
+    [
+      0.28958,
+      "d"
+    ],
+    [
+      0.120378,
+      " "
+    ],
+    [
+      0.229558,
+      "t"
+    ],
+    [
+      0.180684,
+      "e"
+    ],
+    [
+      0.229825,
+      "x"
+    ],
+    [
+      0.151324,
+      "-"
+    ],
+    [
+      0.256231,
+      "e"
+    ],
+    [
+      0.243843,
+      "xample/"
+    ],
+    [
+      0.407698,
+      "\r\n"
+    ],
+    [
+      0.000323,
+      "cgranade@laptop:~/tex-example$ "
+    ],
+    [
+      1.347835,
+      "p"
+    ],
+    [
+      0.08136,
+      "d"
+    ],
+    [
+      0.188577,
+      "f"
+    ],
+    [
+      0.14268,
+      "l"
+    ],
+    [
+      0.112616,
+      "a"
+    ],
+    [
+      0.157033,
+      "t"
+    ],
+    [
+      0.18133,
+      "e"
+    ],
+    [
+      0.209163,
+      "x"
+    ],
+    [
+      0.419409,
+      " "
+    ],
+    [
+      0.263033,
+      "e"
+    ],
+    [
+      0.215381,
+      "x"
+    ],
+    [
+      0.282586,
+      "\u0007ample."
+    ],
+    [
+      0.712656,
+      "t"
+    ],
+    [
+      0.219522,
+      "ex "
+    ],
+    [
+      0.388088,
+      "\r\n"
+    ],
+    [
+      0.168111,
+      "This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex)\r\n restricted \\write18 enabled.\r\n"
+    ],
+    [
+      0.020098,
+      "entering extended mode\r\n"
+    ],
+    [
+      0.001384,
+      "(./example.tex"
+    ],
+    [
+      0.000552,
+      "\r\nLaTeX2e <2016/02/01>\r\nBabel <3.9q> and hyphenation patterns for 3 language(s) loaded.\r\n"
+    ],
+    [
+      0.002733,
+      "(/usr/share/texlive/texmf-dist/tex/latex/revtex/revtex4-1.cls"
+    ],
+    [
+      0.000403,
+      "\r\nDocument Class: revtex4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revt\r\n"
+    ],
+    [
+      0.00026,
+      "ex4/ for documentation)\r\n"
+    ],
+    [
+      0.00016,
+      "ltxutil[2010/07/25/20:33:00 4.1r utilities package (portions licensed from W. E\r\n. Baxter web at superscript.com)]\r\n"
+    ],
+    [
+      0.004423,
+      "ltxfront[2010/07/25/20:33:00 4.1r frontmatter package (AO,DPC)]\r\n"
+    ],
+    [
+      0.002267,
+      "ltxgrid[2010/07/25/20:33:00 4.1r page grid package (portions licensed from W. E\r\n. Baxter web at superscript.com)]\r\n"
+    ],
+    [
+      0.013255,
+      "(/usr/share/texlive/texmf-dist/tex/latex/revtex/aps4-1.rtx"
+    ],
+    [
+      0.001668,
+      ")"
+    ],
+    [
+      0.001909,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/revtex/aps11pt4-1.rtx"
+    ],
+    [
+      0.000646,
+      ")"
+    ],
+    [
+      0.001738,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/textcase/textcase.sty"
+    ],
+    [
+      0.00056,
+      ")"
+    ],
+    [
+      0.000822,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty"
+    ],
+    [
+      0.000998,
+      ")"
+    ],
+    [
+      0.000794,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty"
+    ],
+    [
+      0.005855,
+      ")"
+    ],
+    [
+      0.000854,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/revtex/revsymb4-1.sty"
+    ],
+    [
+      0.001167,
+      ")"
+    ],
+    [
+      0.00075,
+      ")"
+    ],
+    [
+      0.00067,
+      "\r\nNo file example.aux.\r\n"
+    ],
+    [
+      0.005834,
+      "\r\nPackage natbib Warning: Citation `example' undefined on input line 4.\r\n\r\n"
+    ],
+    [
+      0.000551,
+      "No file example.bbl.\r\n"
+    ],
+    [
+      0.000175,
+      "\r\nPackage natbib Warning: There were undefined citations.\r\n"
+    ],
+    [
+      0.000153,
+      "\r\n"
+    ],
+    [
+      0.001658,
+      "(./example.aux"
+    ],
+    [
+      0.000186,
+      ")\r\n"
+    ],
+    [
+      0.000204,
+      "\r\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right .\r\n\r\n"
+    ],
+    [
+      0.000107,
+      "\r\n"
+    ],
+    [
+      0.001843,
+      " )\r\n"
+    ],
+    [
+      0.004876,
+      "No pages of output.\r\nTranscript written on example.log.\r\n"
+    ],
+    [
+      0.002877,
+      "cgranade@laptop:~/tex-example$ "
+    ],
+    [
+      2.096739,
+      "b"
+    ],
+    [
+      0.143217,
+      "i"
+    ],
+    [
+      0.096746,
+      "b"
+    ],
+    [
+      0.282543,
+      "t"
+    ],
+    [
+      0.197855,
+      "e"
+    ],
+    [
+      0.243743,
+      "x"
+    ],
+    [
+      0.156621,
+      " "
+    ],
+    [
+      0.609321,
+      "e"
+    ],
+    [
+      0.272053,
+      "x"
+    ],
+    [
+      0.24052,
+      "a"
+    ],
+    [
+      0.160398,
+      "m"
+    ],
+    [
+      0.158271,
+      "p"
+    ],
+    [
+      0.138682,
+      "\u0007le"
+    ],
+    [
+      0.950797,
+      "\r\n"
+    ],
+    [
+      0.162608,
+      "This is BibTeX, Version 0.99d (TeX Live 2015/Debian)\r\nThe top-level auxiliary file: example.aux\r\n"
+    ],
+    [
+      0.001698,
+      "The style file: apsrev4-1.bst\r\n"
+    ],
+    [
+      0.019798,
+      "Database file #1: exampleNotes.bib\r\n"
+    ],
+    [
+      0.000163,
+      "Database file #2: example.bib.bib\r\n"
+    ],
+    [
+      0.000382,
+      "control{REVTEX41Control}, control.key{N/A}, control.author{N/A}, control.editor{N/A}, control.title{N/A}, control.pages{N/A}, control.year{N/A}, control.eprint{N/A}, \r\ncontrol{apsrev41Control}, control.key{N/A}, control.author{08}, control.editor{1}, control.title{}, control.pages{0}, control.year{1}, control.eprint{N/A}, \r\n"
+    ],
+    [
+      0.000361,
+      "Warning--jnrlst (dependency: not reversed) set 1\r\n"
+    ],
+    [
+      0.001191,
+      "merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked\r\nControl: key (0) \r\n"
+    ],
+    [
+      0.000175,
+      "Control: author (8) initials jnrlst\r\nControl: editor formatted (1) identically to author\r\nControl: production of article title (-1) disabled\r\n"
+    ],
+    [
+      0.000251,
+      "Control: page (0) single\r\nControl: year (1) truncated\r\nControl: production of eprint (0) enabled\r\n"
+    ],
+    [
+      0.001289,
+      "(There was 1 warning)\r\n"
+    ],
+    [
+      0.008742,
+      "cgranade@laptop:~/tex-example$ "
+    ],
+    [
+      1.404042,
+      "p"
+    ],
+    [
+      0.202615,
+      "d"
+    ],
+    [
+      0.250896,
+      "f"
+    ],
+    [
+      0.229036,
+      "l"
+    ],
+    [
+      0.105859,
+      "a"
+    ],
+    [
+      0.152271,
+      "t"
+    ],
+    [
+      0.20227,
+      "e"
+    ],
+    [
+      0.229135,
+      "x"
+    ],
+    [
+      0.139173,
+      " "
+    ],
+    [
+      0.150821,
+      "e"
+    ],
+    [
+      0.222314,
+      "x"
+    ],
+    [
+      0.320763,
+      "\u0007ample"
+    ],
+    [
+      0.781485,
+      "."
+    ],
+    [
+      0.105514,
+      "t"
+    ],
+    [
+      0.283937,
+      "ex "
+    ],
+    [
+      0.363259,
+      "\r\n"
+    ],
+    [
+      0.140823,
+      "This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex)\r\n restricted \\write18 enabled.\r\n"
+    ],
+    [
+      0.024779,
+      "entering extended mode\r\n"
+    ],
+    [
+      0.001513,
+      "(./example.tex\r\nLaTeX2e <2016/02/01>\r\nBabel <3.9q> and hyphenation patterns for 3 language(s) loaded.\r\n"
+    ],
+    [
+      0.002257,
+      "(/usr/share/texlive/texmf-dist/tex/latex/revtex/revtex4-1.cls\r\nDocument Class: revtex4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revt\r\n"
+    ],
+    [
+      0.000146,
+      "ex4/ for documentation)\r\n"
+    ],
+    [
+      0.000174,
+      "ltxutil[2010/07/25/20:33:00 4.1r utilities package (portions licensed from W. E\r\n. Baxter web at superscript.com)]\r\n"
+    ],
+    [
+      0.004714,
+      "ltxfront[2010/07/25/20:33:00 4.1r frontmatter package (AO,DPC)]\r\n"
+    ],
+    [
+      0.002194,
+      "ltxgrid[2010/07/25/20:33:00 4.1r page grid package (portions licensed from W. E\r\n. Baxter web at superscript.com)]"
+    ],
+    [
+      0.00015,
+      "\r\n"
+    ],
+    [
+      0.015171,
+      "(/usr/share/texlive/texmf-dist/tex/latex/revtex/aps4-1.rtx"
+    ],
+    [
+      0.001712,
+      ")"
+    ],
+    [
+      0.013277,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/revtex/aps11pt4-1.rtx)\r\n(/usr/share/texlive/texmf-dist/tex/latex/textcase/textcase.sty)\r\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)\r\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty"
+    ],
+    [
+      0.004971,
+      ")"
+    ],
+    [
+      0.002945,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/revtex/revsymb4-1.sty)"
+    ],
+    [
+      0.000744,
+      ")"
+    ],
+    [
+      0.015302,
+      " (./example.aux\r\n)\r\n\r\nPackage natbib Warning: Citation `example' undefined on input line 4.\r\n\r\n(./example.bbl"
+    ],
+    [
+      0.009426,
+      "\r\n\r\nLaTeX Warning: Reference `LastBibItem' on page 1 undefined on input line 9.\r\n\r\n)\r\n\r\nPackage natbib Warning: There were undefined citations.\r\n\r\n[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map"
+    ],
+    [
+      0.102636,
+      "}"
+    ],
+    [
+      0.000719,
+      "]"
+    ],
+    [
+      0.001468,
+      " (./example.aux"
+    ],
+    [
+      0.000165,
+      "\r\n\r\nPackage natbib Warning: Citation(s) may have changed.\r\n(natbib)                Rerun to get citations correct.\r\n"
+    ],
+    [
+      0.000164,
+      "\r\n)"
+    ],
+    [
+      0.000157,
+      "\r\n\r\nLaTeX Warning: There were undefined references.\r\n\r\n"
+    ],
+    [
+      0.000164,
+      "\r\nLaTeX Warning: Label(s) may have changed. Rerun to get cross-references right .\r\n\r\n\r\n"
+    ],
+    [
+      0.002094,
+      " )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb"
+    ],
+    [
+      0.002449,
+      ">"
+    ],
+    [
+      0.000931,
+      "\r\n"
+    ],
+    [
+      0.015826,
+      "Output written on example.pdf (1 page, 12224 bytes).\r\nTranscript written on example.log.\r\n"
+    ],
+    [
+      0.000668,
+      "cgranade@laptop:~/tex-example$ "
+    ],
+    [
+      0.54329,
+      "pdflatex example.tex "
+    ],
+    [
+      0.378984,
+      "\r\n"
+    ],
+    [
+      0.145889,
+      "This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex)\r\n restricted \\write18 enabled.\r\n"
+    ],
+    [
+      0.024406,
+      "entering extended mode\r\n(./example.tex\r\nLaTeX2e <2016/02/01>\r\nBabel <3.9q> and hyphenation patterns for 3 language(s) loaded.\r\n"
+    ],
+    [
+      0.001682,
+      "(/usr/share/texlive/texmf-dist/tex/latex/revtex/revtex4-1.cls"
+    ],
+    [
+      0.000378,
+      "\r\nDocument Class: revtex4-1 2010/07/25/20:33:00 4.1r (http://publish.aps.org/revt\r\nex4/ for documentation)\r\n"
+    ],
+    [
+      0.000187,
+      "ltxutil[2010/07/25/20:33:00 4.1r utilities package (portions licensed from W. E\r\n. Baxter web at superscript.com)]\r\n"
+    ],
+    [
+      0.004072,
+      "ltxfront[2010/07/25/20:33:00 4.1r frontmatter package (AO,DPC)]\r\n"
+    ],
+    [
+      0.002136,
+      "ltxgrid[2010/07/25/20:33:00 4.1r page grid package (portions licensed from W. E\r\n. Baxter web at superscript.com)]\r\n"
+    ],
+    [
+      0.019495,
+      "(/usr/share/texlive/texmf-dist/tex/latex/revtex/aps4-1.rtx"
+    ],
+    [
+      0.002035,
+      ")"
+    ],
+    [
+      0.002099,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/revtex/aps11pt4-1.rtx"
+    ],
+    [
+      0.001937,
+      ")"
+    ],
+    [
+      0.001352,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/textcase/textcase.sty"
+    ],
+    [
+      0.000471,
+      ")"
+    ],
+    [
+      0.002592,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)"
+    ],
+    [
+      0.000919,
+      "\r\n(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty"
+    ],
+    [
+      0.005193,
+      ")"
+    ],
+    [
+      0.00091,
+      "\r\n"
+    ],
+    [
+      0.00158,
+      "(/usr/share/texlive/texmf-dist/tex/latex/revtex/revsymb4-1.sty)"
+    ],
+    [
+      0.001055,
+      ")"
+    ],
+    [
+      0.00121,
+      " (./example.aux\r\n"
+    ],
+    [
+      0.000136,
+      ")"
+    ],
+    [
+      0.005033,
+      " (./example.bbl"
+    ],
+    [
+      0.001098,
+      ")"
+    ],
+    [
+      0.000748,
+      " [1"
+    ],
+    [
+      0.00115,
+      "{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map"
+    ],
+    [
+      0.09707,
+      "}"
+    ],
+    [
+      0.000484,
+      "]"
+    ],
+    [
+      0.001739,
+      "\r\n(./example.aux"
+    ],
+    [
+      0.000286,
+      ")"
+    ],
+    [
+      0.001543,
+      " )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/\r\n"
+    ],
+    [
+      0.000129,
+      "cmr10.pfb"
+    ],
+    [
+      0.002227,
+      ">"
+    ],
+    [
+      0.000782,
+      "\r\n"
+    ],
+    [
+      0.012311,
+      "Output written on example.pdf (1 page, 12223 bytes).\r\nTranscript written on example.log.\r\n"
+    ],
+    [
+      0.000724,
+      "cgranade@laptop:~/tex-example$ "
+    ]
+  ]
+}

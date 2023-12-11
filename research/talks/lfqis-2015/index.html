@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Assessing and Controlling Quantum Information Processing Devices</title>
+
+		<meta name="description" content="LFQIS 2015">
+		<meta name="author" content="Cassandra E. Granade">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<style type="text/css">
+			.reveal section img {
+				border: none;
+				box-shadow: none;
+				background: none;
+			}
+		</style>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1 style="font-size: 175%">Assessing and Controlling Quantum Information Processing Devices</h1>
+					<hr>
+					<p>
+						<a href="https://www.cgranade.com">Cassandra E. Granade</a> <br>
+						<a href="https://equs.org/">Centre for Engineered Quantum Systems</a>
+						$
+							\newcommand{\ee}{\mathrm{e}}
+							\newcommand{\ii}{\mathrm{i}}
+							\newcommand{\id}{&#x1d7d9;}
+							\newcommand{\TT}{\mathrm{T}}
+							\newcommand{\defeq}{\mathrel{:=}}
+							\newcommand{\Tr}{\operatorname{Tr}}
+							\newcommand{\expect}{\mathbb{E}}
+							\newcommand{\sbraket}[1]{\langle\!\langle#1\rangle\!\rangle}
+						$
+					</p>
+				</section>
+
+				<section>
+					<p>
+						This talk can be summarized in one slide.
+					</p>
+
+					<p>
+						\begin{equation}
+							\Pr(\text{model} | \text{data}) = \frac{\Pr(\text{data} | \text{model})}{\Pr(\text{data})} \Pr(\text{model})
+						\end{equation}
+					</p>
+				</section>
+
+				<section data-background-video="figures/multicos-distributions.mp4">
+					<h3>OK, Two Slides</h3>
+					<p>
+						Bayesian methods for experimental data processing <em>work</em>.
+					</p>
+				</section>
+
+				<section>
+					<h3>More Seriously</h3>
+					<p>
+						How do we assess if quantum computing is possible, given an experimental demonstration
+						of a prototype?
+					</p>
+				</section>
+
+				<section>
+					<h1>
+						We don't.
+					</h1>
+
+					<p>
+						(Classical computing is impossible.)
+					</p>
+				</section>
+
+				<section>
+					<h3>What Do We Mean Classically?</h3>
+					<p>
+						Colloquially, a classical computer is something that
+						acts in most ways and for most of the time like we would
+						expect a classical computer to act.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Classical computing models <em>preclude</em> some error
+						sources (comets, the NSA, etc.).
+					</p>
+
+					<p>
+						Take-away for quantum applications: we need to make
+						and state assumptions, and to qualify our conclusions.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						To a Bayesian, this means we need to be careful to record our
+						priors.
+					</p>
+					<p>
+						(Frequentism uses priors, too: they're called <em>models</em>.)
+					</p>
+				</section>
+
+				<section>
+					<p>
+						What models and priors should we use to evaluate QIPs?
+					</p>
+
+					<h3>
+						State Model, or a Little Thing Called Tomography
+					</h3>
+
+					<p>
+						Born's rule gives predictions in terms of a state $\rho$,
+						\[
+							\Pr(E | \rho) = \Tr[E \rho]
+						\]
+						for a measurement effect $E$.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						This is a likelihood, so use Bayes' rule to find the state $\rho$. [<a href="http://dx.doi.org/10.1016/0003-4916(91)90182-8">Jones 1991</a>, <a href="http://dx.doi.org/10.1088/1367-2630/12/4/043034">Blume-Kohout 2010</a>]
+					</p>
+
+					<p>
+						Numerical evaluation is a kind of <em>classical simulation</em>.
+					</p>
+				</section>
+
+				<section>
+					<h3>Numerical Algorithm</h3>
+					<p>
+						We use sequential Monte Carlo (SMC) to compute Bayes updates.
+					</p>
+
+					<p>
+						\begin{align}
+							\Pr(\rho) &amp; \approx \sum_{p\in\text{particles}} w_p \delta(\rho - \rho_p) \\
+							w_p &amp; \mapsto w_p \times \Pr(E | \rho_p)
+						\end{align}
+					</p>
+
+					<p>
+						Uses simulation as resource.
+					</p>
+				</section>
+
+				<section>
+					<p>Gives estimates of posterior over states $\rho$. Lots of advantages:</p>
+					<ul>
+						<li>Region estimation [<a href="http://dx.doi.org/10.1088/1367-2630/16/2/023006">Ferrie 2014</a>]</li>
+						<li>Model selection and averaging<br>[<a href="http://dx.doi.org/10.1103/PhysRevA.89.042314">Wiebe <em>et al</em> 2014</a>, <a href="http://dx.doi.org/10.1088/1367-2630/16/9/093035">Ferrie 2014</a>]</li>
+						<li>Hyperparameterization [<a href="http://dx.doi.org/10.1088/1367-2630/14/10/103013">Granade <em>et al</em> 2012</a>]</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>Easy to Implement</h3>
+					<pre><code data-trim class="python">
+import qinfer as qi
+basis = qi.tomography.gell_mann_basis(3)
+prior = qi.tomography.GinibreDistribution(basis)
+model = qi.BinomialModel(qi.tomography.TomographyModel(basis))
+updater = qi.smc.SMCUpdater(model, 2000, prior)
+heuristic = qi.tomography.rand_basis_heuristic(updater, other_fields={
+    'n_meas': 40
+})
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Informative Priors</h3>
+					<p>
+						How do we encode the assumption that the state $\rho$ is near
+						a state $\rho_\mu$?
+					</p>
+
+					<p>
+						We use amplitude damping to contract uniform prior $\pi(\rho)$
+						[Granade and Combes (upcoming)].
+					</p>
+				</section>
+
+				<section>
+						\begin{align}
+							\rho_{\text{sample}} &amp; = (1 - \epsilon) \rho + \epsilon \rho_* \\
+							\rho &amp; \sim \text{uniform over states} \\
+							\epsilon &amp; \sim \mathrm{Beta}(\alpha, \beta) 
+						\end{align}
+					</p>
+
+					<p>
+						Choose $\rho_*$, $\alpha$, $\beta$ such that $\expect[\rho_{\text{sample}}] = \rho_\mu$
+						and $\expect[\epsilon]$ is minimized.
+					</p>
+				</section>
+
+				<section>
+					<img data-src="figures/gadfli-rebit.png">
+				</section>
+
+				<section>
+					<figure>
+						<img data-src="figures/qutrit-risk.png" width="60%">
+					</figure>
+					<h3>Prior Information Really Helps</h3>
+				</section>
+
+				<section>
+					<p>
+						Posterior covariance characterizes uncertainty.
+					</p>
+
+					<figure>
+						<img data-src="figures/qpt-cov.png" width="55%">
+					</figure>
+				</section>
+
+				<section>
+					<p>
+						Example: depolarizing channel dominates uncertainty
+						in our QPT simulation.
+					</p>
+					<figure>
+						<img data-src="figures/qpt-cov-principal.png" width="80%">
+					</figure>
+				</section>
+
+				<section data-background-video="figures/gadfli-tracking.mp4">
+					<h3 class="fragment">State-Space State Tomography</h3>
+
+					<p class="fragment">
+						(Useful in space.)
+					</p>
+				</section>
+
+				<section>
+					<p>
+						We don't need to assume that the "true" state
+						follows a random walk.
+					</p>
+
+					<figure>
+						<img src="figures/diffusive-coin.png">
+					</figure>
+				</section>
+
+				<section>
+					<p>
+						Can also consider other models.
+					</p>
+
+					<h3>
+						Hamiltonian Evolution (<em>aka</em> Frequency Estimation)
+					</h3>
+
+					<p>
+						\[
+							U(t) = \ee^{-\ii H t}
+						\]
+					</p>
+
+					<p>
+						Does the device evolve under the correct $H$?
+						Does a simulator implement the correct $H$?
+					</p>
+				</section>
+
+				<section>
+					<p>
+						As before, we can answer this using simulation as a resource.
+					</p>
+
+					<ul>
+						<li>Classical resources (particle filters, rejection sampling).<br>[<a href="http://dx.doi.org/10.1088/1367-2630/14/10/103013">Granade <em>et al</em> 2012</a>]</li>
+						<li>Quantum resources (semiquantum particle filters).<br>[<a href="http://dx.doi.org/10.1103/PhysRevLett.112.190501">Wiebe <em>et al</em> 2014</a>]</li>
+						<li>Small quantum resources (quantum bootstrapping).<br>[<a href="10.1088/1367-2630/17/2/022005">Wiebe <em>et al</em> 2015</a>]</li> 
+					</ul>
+				</section>
+
+				<section>
+					<p>
+						The prior $\pi(H)$ again encodes the assumptions that we make about $H$.
+					</p>
+				</section>
+
+				<section>
+					<h3>Examples</h3>
+					<p>
+						\begin{align}
+							H(\vec{x}) &amp; = \sum_{\langle i, j \rangle} x_{i,j}\,\sigma_z^{(i)} \sigma_z^{(j)} \\
+							H(\vec{x}) &amp; = \sum_{i,j,\alpha,\beta} x_{i,j,\alpha,\beta}\,\sigma_{\alpha}^{(i)} \sigma_{\beta}^{(j)}
+						\end{align}
+						Can also include Hermitian generators as well as skew-Hermitian.
+						\begin{align}
+							L(\omega, T_2) &amp; = -\ii \omega (\id \otimes \sigma_z - \sigma_z^\TT \otimes \id) + \frac{1}{T_2} \left(
+								\sigma_z^\TT \otimes \sigma_z - \id \otimes \id
+							\right)
+						\end{align}
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Model selection provides a way to test assumptions by progressively
+						considering more general models.
+					</p>
+
+					<p>
+						AIC, ABIC, Bayes factor, model-averaged estimation, etc.
+					</p>
+
+					<p>
+						\begin{align}
+							\text{BF}(A : B) &amp; \defeq \frac{\Pr(A | \text{data})}{\Pr(B | \text{data})}
+							                 =      \frac{\Pr(\text{data} | A) \Pr(A)}{\Pr(\text{data} | B) \Pr(B)}
+						\end{align}
+					</p>
+				</section>
+
+				<section>
+					<h3>
+						Example: Detecting Drifting Parameters
+					</h3>
+
+					<p>
+						\[
+							\Pr(\text{O-beam} | A, b, \phi; \theta) = \frac{1 + b}{2} + \frac{A}{2} \cos(\phi + \theta)
+						\]
+					</p>
+
+					<p>
+						Compare models $\phi \ne \phi(t)$ and $\phi$ following a Markovian Gaussian process.
+					</p>
+				</section>
+
+
+				<section>
+					<figure>
+						<img data-src="figures/ni-phi-hist-transparent.png" width="80%">
+					</figure>
+
+					<p>
+						We analyze the same data with both models, recording the total likelihood
+						as we go.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/ni-bf.png" width="80%">
+					</p>
+
+					<p>
+						Using Bayes factor analysis, we can conclude that the drifting
+						model better explains the observed data.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Using Bayesian inference, Hamiltonian learning
+						can proceed <em>adaptively</em>.
+					</p>
+
+					<p>
+						Necessary [<a href="http://dx.doi.org/10.1103/PhysRevX.2.041006">Hall and Wiseman 2012</a>] and sufficient [<a href="http://dx.doi.org/10.1007/s11128-012-0407-6">Ferrie <em>et al</em> 2013</a>] for exponential improvement
+						in the number of experiments required to learn Hamiltonians.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						For building algorithms, more convenient to use circuits
+						than continuous-time evolution.
+					</p>
+
+					<h3>
+						Gate Model
+					</h3>
+
+					<figure>
+						<img data-src="figures/wait-circuit-figure.png">
+					</figure>
+				</section>
+
+				<section>
+					<p>
+						Can enforce the gate model to some degree with how we design our pulses.
+						We can use more general simulation methods (e.g.: cumulant [<a href="10.1063/1.2216702">Cappellaro <em>et al</em> 2006</a>]) to reason about
+						validity of the gate model.
+					</p>
+				</section>
+
+				<section>
+					<h3>Process Tomography</h3>
+
+					<p>
+						Same techniques as before apply to enable learning <em>snapshots</em> of dynamics.
+						Choi-Jamiołkowski isomorphism lets us rewrite process tomography as (ancilla-assisted)
+						state tomography.
+					</p>
+
+					<p>
+						\[
+							\Tr[E \Lambda(\rho)] = \Tr[(\id \otimes E) J(\Lambda) (\rho^\TT \otimes \id)] = \sbraket{\rho^\TT, E | J(\Lambda)}
+						\]
+					</p>
+				</section>
+
+				<section>
+					<p>
+						This is difficult: limited to sampling statistics, no exponential improvement from longer evolutions.
+					</p>
+
+					<p>
+						Want something more like Hamiltonian learning. Recent example: gate set tomography [<a href="http://arxiv.org/abs/1310.4492">Blume-Kohout <em>et al</em> 2013</a>].
+						GST is in turn difficult due to parameter count.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						What do we actually <em>want</em> out of our gate model?
+					</p>
+				</section>
+
+				<section>
+					<h3>
+						The Gate Model and Fidelity
+					</h3>
+
+					<p>
+						Common to describe gate models in terms of the <em>average gate fidelity</em>.
+						If errors are not strongly gate-dependent, also common to quote AGF averaged
+						over gates.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						For some models, AGF can describe error correcting thresholds. More generally,
+						unreasonably strong assumptions may be needed [<a href="http://arxiv.org/abs/1501.04932">Sanders <em>et al</em> 2015</a>].
+					</p>
+
+					<p class="fragment">
+						All the same, let's keep searching under the streetlight, keeping track of our assumptions.
+					</p>
+				</section>
+
+				<section>
+					<h3>Randomized Benchmarking for Fun and Profit</h3>
+
+					<p>
+						<img data-src="figures/rb-0order-deriv.png">
+					</p>
+
+					<p>
+						By choosing random sequences $\{U_1, U_2, \dots\}$,
+						can implement twirling superchannel $W[\cdot]$
+						with <em>imperfect</em> gates.
+					</p>
+				</section>
+
+				<section>
+					<h3>Marginalization and Simulation Costs</h3>
+					<p>
+						Marginalizing over sequence choice removes quantum simulation,
+						yielding simple (scalar!) algebraic models.
+					</p>
+
+					<p>
+						\begin{align}
+							\Pr(\text{survival} | A, B, p; m) &amp; = A p^m + B \\
+							A &amp; \defeq \Tr(E \Lambda[\rho - \id / d]) \\
+							B &amp; \defeq \Tr(E \Lambda[\id / d]) \\
+							p &amp; \defeq \frac{dF - 1}{d - 1}
+						\end{align}
+					</p>
+				</section>
+
+				<section>
+					<p>
+						We now have a <em>simulation-free</em> likelihood function
+						that assesses average gate fidelity.
+					</p>
+
+					<p>
+						This is ideal for <em>embedded</em> applications.
+					</p>
+				</section>
+
+				<section>
+					<h3>Embedded Bayesian Inference</h3>
+
+					<p>
+						Rejection sampling with Gaussian resampling allows for constant-memory embedded Bayesian
+						inference [Wiebe and Granade (upcoming)].
+					</p>
+
+					<p>
+						Less general than SMC, but significantly faster and more parallelizable. Ideal for
+						FPGA-based estimation of randomized benchmarking model.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Modern experiment control via FPGAs, so embed inference directly in control hardware
+						to make an online fidelity oracle.
+					</p>
+				</section>
+
+				<section>
+					<h3>Accelerated Randomized Benchmarking</h3>
+
+					<p>
+						We have lots of prior information: each pulse is
+						a pertubation of a pulse we've already characterized.
+					</p>
+
+					<p>
+						Since we're being honest frequentists (<em>aka</em> Bayesians),
+						let's use that to accelerate estimation.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/risk-tr-comparison.png" width="45%">
+						<img data-src="figures/risk-tr-comparison-vs-m-max.png" width="45%">
+					</p>
+
+					<p>
+						With lots of data, least-squares fitting works fine, but it
+						isn't stable with small amounts of data. Bayesian inference
+						is nearly optimal for the strong prior.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						Only remaining simulation cost: reduction of <em>pulses</em>
+						to <em>gates</em>.
+					</p>
+
+					<p>
+						...but nature does this for us.
+					</p>
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/qcp-overview.png">
+					</p>
+
+					<p>
+						Use array of quantum coprocessors to evaluate pulses in parallel,
+						for different hypotheses about the true evolution. [<a href="https://uwspace.uwaterloo.ca/handle/10012/9217">Granade 2015</a>]
+					</p>
+				</section>
+
+				<section>
+					<h3>Flip the Problem Around</h3>
+
+					<p>
+						How do we <em>make</em> a useful quantum device?
+					</p>
+
+					<p>
+						Treat characterization parameters as <em>fitness functions</em>.
+					</p>
+				</section>
+
+				<section>
+					<h3>Pulse Design</h3>
+
+					<p>
+						Optimal control using AGF $F$ as a fitness has been applied very
+						successfully to design pulses.
+					</p>
+
+					<p>
+						Khaneja derivative allows for using gradient-ascent methods
+						to optimize $F$.
+					</p>
+				</section>
+
+				<section>
+					<h3>Other Fitness Functions</h3>
+
+					<ul>
+						<li>Leakage</li>
+						<li>Unitarity</li>
+						<li>Haas-Puzzuoli decoupling fitness</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>
+						Several of these fitness functions can also be experimentally
+						measured using randomized benchmarking.
+					</p>
+
+					<ul>
+						<li>$F$: interleaved 2-design twirl</li>
+						<li>Leakage: 1-design twirl</li>
+						<li>Unitarity: 2-design twirl on two copies</li>
+					</ul>
+				</section>
+
+				<section>
+					<p>
+						Using the same techniques, then, we can embed fidelity, leakage and unitarity
+						estimation all into control hardware.
+					</p>
+
+					<p>
+						Immediately allows embedding RB-based pulse optimization.
+					</p>
+
+					<ul>
+						<li>Ad-HOC / ORBIT [<a href="http://dx.doi.org/10.1103/PhysRevLett.112.240503">Egger and Wilhelm <em>et al</em> 2014</a>, <a href="http://dx.doi.org/10.1103/PhysRevLett.112.240504">Kelly <em>et al</em> 2014</a>]</li>
+						<li>ACRONYM [<a href="http://dx.doi.org/10.1103/PhysRevA.91.052306">Ferrie and Moussa 2014</a>]</li>
+					</ul>
+				</section>
+
+				<section>
+					<h3>MOQCA</h3>
+
+					<p>
+						Multi-objective genetic algorithms can be used to design pulses
+						that work over a range of models.
+					</p>
+
+					<dl>
+						<dt>Memetic step</dt>
+						<dd>
+							ACRONYM / SPSA
+						</dd>
+
+						<dt>Evolutionary Strategies</dt>
+						<dd>
+							Mutation rate, memetic paramteters co-evolve
+						</dd>
+
+						<dt>Tournaments</dt>
+						<dd>
+							Randomly selected from ensemble of tournament fns.
+						</dd>
+					</dl>
+				</section>
+
+				<section>
+					<p>
+						MOQCA is <em>black-box</em> for its oracle. Robust against
+						noisy oracles.
+					</p>
+
+					<p class="fragment">
+						Not the most efficient, but could possibly work in much larger
+						systems and with other kinds of distortions.
+					</p>
+				</section>
+
+				<!-- <section>
+					<p>
+						These techniques can compose with other methods as well.
+					</p>
+
+					<iframe
+						src="http://arxiv.org/abs/1408.0101"
+						width="100%"
+						height="350px"
+					>
+					</iframe>
+				</section> -->
+
+				<section>
+					
+					<h3>Example: $\left.\frac{\pi}{2}\right)_x$</h3>
+
+					<p>
+						We consider controls up to $70$ MHz, but we want robustness to $\pm 100$ kHz
+						static field, ringdown distortion, imperfect measurement of distortion.
+					</p>
+
+				</section>
+
+				<section>
+					<p>
+						<img data-src="figures/example-ga-qcp-view.png" height="450">
+					</p>
+
+					<p>
+						Memetic optimization finds Pareto optimal pulses with fidelity $\ge 0.99$.
+					</p> 
+
+				</section>
+
+				<section>
+					<figure>
+						<img data-src="figures/example-ga-norm-infid-hist-pf.png" height="550">
+					</figure>
+					<p>
+						<small>200 generations, 140 individuals, 5 hypotheses ($\pm 100 \text{kHz}$), noisy evaluation of distortion (~20 dB SNR)</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Conclusions</h2>
+				</section>
+
+				<!-- <section data-markdown>
+					## Further Resources ##
+
+					Available at https://www.cgranade.com/research/thesis/.
+
+					[Bibliography](https://www.zotero.org/cgranade/items/collectionKey/SQBZIC3H) · [Software Libraries](https://www.cgranade.com/research/thesis/#software-resources)
+				</section> -->
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: false,
+				progress: true,
+				history: true,
+				center: true,
+				zoomKey: 'shift',
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/math/math.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Getting PoSh with Q# &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item active" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Getting PoSh with Q#</h1>
+  <span class="post-date">03 Dec 2018</span>
+  <p><em>This post is a part of the <a href="https://blogs.msdn.microsoft.com/visualstudio/2018/11/15/q-advent-calendar-2018/">Q# Advent Calendar</a>, and is made available under the <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0 license</a>. Full source code for this post is available <a href="https://gist.github.com/cgranade/ae96f866edae67c6550a93cf463a8f43">on GitHub</a>.</em></p>
+
+<p>When we program a quantum computer, at the end of the day, we are interested in asking classical questions about classical data.
+This is a large part of <a href="https://blogs.msdn.microsoft.com/visualstudio/2018/11/15/why-do-we-need-q/">why we designed the Q# language</a> to treat quantum computers as accelerators, similar to how one might use a graphics card or a field-programmable gate array (FPGA) to speed up the execution of classical algorithms.</p>
+
+<p>One implication of this way of thinking about quantum programming, though, is that we need for our quantum programs to be able to integrate into classical data processing workflows.
+Since the classical host programs for Q# are .NET programs, this means that we can use the power of the .NET Core platform to integrate with a wide range of different workflows.
+For instance, the <a href="https://docs.microsoft.com/quantum/libraries/chemistry/">quantum chemistry library</a> that is provided with the Quantum Development Kit includes a <a href="https://github.com/Microsoft/Quantum/tree/release/v0.3.1810/Chemistry/GetGateCount">sample</a> that uses <a href="https://github.com/PowerShell/PowerShell">PowerShell Core</a> together with Q# to process cost estimates for chemistry simulations.
+From there, cost estimation results can be exported to any of the formats supported by PowerShell Core, such as XML or JSON, or can be processed further using open-source PowerShell modules, such as <a href="https://github.com/dfinke/ImportExcel">ImportExcel</a>.</p>
+
+<p>In this post, I’ll detail how the PowerShell Core integration in the quantum chemistry sample works as an example of how to integrate Q# with other parts of the .NET ecosystem.</p>
+
+<h2 id="what-is-powershell-core">What is PowerShell Core?</h2>
+
+<p>First off, then, what is PowerShell anyway?
+Like bash, tcsh, xonsh, fish, and <a href="https://en.wikipedia.org/wiki/Category:Unix_shells">many other shells</a>, PowerShell provides a command-line interface for running programs on and managing your computer.
+Like many shells, PowerShell allows you to <em>pipe</em> the output from one command to the next, making it easy to quickly build up complicated data-processing workflows in a compact manner.
+Suppose, for instance, we want to find the number of lines of source code in all Q# files in a directory:</p>
+
+<pre><code class="language-PowerShell">PS&gt; cd Quantum/
+PS&gt; Get-ChildItem -Recurse *.qs | ForEach-Object { Get-Content $_ } | Measure-Object -Line
+
+Lines Words Characters Property
+----- ----- ---------- --------
+ 7823
+
+</code></pre>
+
+<p>Where PowerShell differs from most shells, however, is that the data sent between commands by piping isn’t text, but .NET objects.</p>
+
+<pre><code class="language-PowerShell">PS&gt; $measurement = Get-ChildItem -Recurse *.qs | ForEach-Object { Get-Content $_ } | Measure-Object -Line;
+PS&gt; $measurement.GetType()
+
+IsPublic IsSerial Name                                     BaseType
+-------- -------- ----                                     --------
+True     False    TextMeasureInfo                          Microsoft.PowerShell.Commands.MeasureInfo
+
+</code></pre>
+
+<p>This means that we can not only call methods on PowerShell variables, but can access strongly-typed properties of variables.</p>
+
+<pre><code class="language-PowerShell">PS&gt; $measurement.Lines.GetType()
+
+IsPublic IsSerial Name                                     BaseType
+-------- -------- ----                                     --------
+True     True     Int32                                    System.ValueType
+
+</code></pre>
+
+<p>This in turn makes it easy to convert between different representations of our data, such as exporting to JSON or XML.</p>
+
+<pre><code class="language-PowerShell">PS&gt; $measurement | ConvertTo-Json
+{
+  "Lines": 7823,
+  "Words": null,
+  "Characters": null,
+  "Property": null
+}
+PS&gt; $measurement | ConvertTo-Xml -As String
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;Objects&gt;
+  &lt;Object Type="Microsoft.PowerShell.Commands.TextMeasureInfo"&gt;
+    &lt;Property Name="Lines" Type="System.Int32"&gt;7823&lt;/Property&gt;
+    &lt;Property Name="Words" Type="System.Nullable`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]" /&gt;
+    &lt;Property Name="Characters" Type="System.Nullable`1[[System.Int32, System.Private.CoreLib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]" /&gt;
+    &lt;Property Name="Property" Type="System.String" /&gt;
+  &lt;/Object&gt;
+&lt;/Objects&gt;
+</code></pre>
+
+<p>Historically, PowerShell was released as <em>Windows PowerShell</em>, and was based on the .NET Framework.
+Two and a half years ago, PowerShell was ported to .NET Core and made available cross-platform as <em>PowerShell Core</em>.</p>
+
+<p>PowerShell Core is now openly developed and maintained on GitHub at the <a href="https://github.com/PowerShell/PowerShell">PowerShell/PowerShell</a> repository.
+If you haven’t installed PowerShell Core already, the PowerShell team provides <a href="https://github.com/PowerShell/PowerShell#get-powershell">installers for Windows, many Linux distributions, and macOS</a>.
+If you are currently using PowerShell on Windows, but aren’t sure if you’re using Windows PowerShell or PowerShell Core, you can check your current edition by looking at the <code class="language-plaintext highlighter-rouge">$PSVersionTable</code> automatic variable:</p>
+
+<pre><code class="language-PowerShell">PS&gt; $PSVersionTable.PSEdition
+</code></pre>
+
+<p>This will output <code class="language-plaintext highlighter-rouge">Desktop</code> for Windows PowerShell, and will output <code class="language-plaintext highlighter-rouge">Core</code> for PowerShell Core.</p>
+
+<h2 id="writing-powershell-commands-in-c">Writing PowerShell Commands in C#</h2>
+
+<p>We can add new functionality to PowerShell by writing small commands, called <em>cmdlets</em>, as .NET classes.
+Let’s see how this works by making a new C# class that rolls dice for us.
+To get started, we need to make a new C# library using the .NET Core SDK:</p>
+
+<pre><code class="language-PowerShell">PS&gt; dotnet new classlib -lang C# -o posh-die
+# The automatic variable $$ always resolves to the last argument of the previous command.
+# In this case, we can use it to quickly jump to the "posh-die" directory.
+PS&gt; cd $$
+</code></pre>
+
+<p>This will make a new directory with a C# project file and a single C# source file, <code class="language-plaintext highlighter-rouge">Class1.cs</code>, that we can edit:</p>
+
+<pre><code class="language-PowerShell"># gci is an alias for Get-ChildItem, which can be used in the same way as
+# ls or dir, both of which are also aliases for Get-ChildItem.
+PS&gt; gci
+
+    Directory: C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+d-----       11/27/2018   1:25 PM                obj
+-a----       11/27/2018   1:25 PM             85 Class1.cs
+-a----       11/27/2018   1:25 PM            145 posh-die.csproj
+
+</code></pre>
+
+<p>To make this a PowerShell-enabled library, we need to add the right NuGet package:</p>
+
+<pre><code class="language-PowerShell">PS&gt; dotnet add package PowerShellStandard.Library
+</code></pre>
+
+<p>This will make the <code class="language-plaintext highlighter-rouge">System.Management.Automation</code> namespace available, which has everything we need to write our own cmdlets.
+Go on and add the following to <code class="language-plaintext highlighter-rouge">Class1.cs</code>:</p>
+
+<pre><code class="language-C#">using System;
+using System.Linq;
+
+// This namespace provides the API that we need to implement
+// to interact with PowerShell.
+using System.Management.Automation;
+
+namespace Quantum.Advent.PoSh
+{
+    // Each cmdlet is a class that inherits from Cmdlet, and is given
+    // a name with the CmdletAttribute attribute.
+    // Here, for instance, we define a new class that is exposed to
+    // PowerShell as the Get-DieRoll cmdlet.
+    [Cmdlet(VerbsCommon.Get, "DieRoll")]
+    public class GetDieRoll : Cmdlet
+    {
+
+        // Our cmdlet class can have whatever private member variables,
+        // just as any other C# class.
+        private Random rng = new Random();
+
+        // We can expose properties as command-line parameters using
+        // ParameterAttribute. 
+        // For instance, this property is exposed as the -NSides command-
+        // line parameter, and allows the user to select what kind of die
+        // they want to roll.
+        [Parameter]
+        public int NSides { get; set; } = 6;
+
+        [Parameter]
+        public int NRolls { get; set; } = 1;
+
+        // The main logic to any cmdlet is implemented in the ProcessRecord
+        // method, which is called whenever the cmdlet receives new data from
+        // the pipeline.
+        protected override void ProcessRecord()
+        {
+            foreach (var idxRoll in Enumerable.Range(0, NRolls))
+            {
+                // The WriteObject method lets us send new data out to the
+                // pipeline. If there's no other commands to receive that data,
+                // then it is printed out to the console.
+                WriteObject(rng.Next(1, NSides + 1));
+            }
+        }
+
+    }
+}
+</code></pre>
+
+<p>We can then build our new cmdlet like any other .NET Core project:</p>
+
+<pre><code class="language-PowerShell">PS&gt; dotnet build
+Microsoft (R) Build Engine version 15.5.179.9764 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Restore completed in 15.79 ms for C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die\posh-die.csproj.
+  posh-die -&gt; C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die\bin\Debug\netstandard2.0\posh-die.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+</code></pre>
+
+<p>When we call <code class="language-plaintext highlighter-rouge">dotnet build</code>, the .NET Core SDK places a new assembly in <code class="language-plaintext highlighter-rouge">bin/Debug/netstandard2.0</code> that we can then import into PowerShell:</p>
+
+<pre><code class="language-PowerShell">PS&gt; Import-Module bin/Debug/netstandard2.0/posh-die.dll
+PS&gt; Get-DieRoll -NSides 4
+2
+</code></pre>
+
+<p>Since this is a PowerShell cmdlet, we can pipe its output to any other PowerShell cmdlet.
+For instance, we can check that the die is fair using <code class="language-plaintext highlighter-rouge">Measure-Object</code>:</p>
+
+<pre><code class="language-PowerShell">PS&gt; Get-DieRoll -NSides 6 -NRolls 1000 | Measure-Object -Average -Minimum -Maximum | ConvertTo-Json
+{
+  "Count": 1000,
+  "Average": 3.402,
+  "Sum": null,
+  "Maximum": 6.0,
+  "Minimum": 1.0,
+  "Property": null
+}
+</code></pre>
+
+<h2 id="calling-into-the-quantum-development-kit-from-powershell">Calling into the Quantum Development Kit from PowerShell</h2>
+
+<p>Quantum coins are clearly better than classical dice, so let’s add a new cmdlet that exposes a quantum random number generator (QRNG) instead.
+We can start by adding the Quantum Development Kit packages to our project:</p>
+
+<pre><code class="language-PowerShell">PS&gt; dotnet add package Microsoft.Quantum.Development.Kit --version 0.3.1811.1501-preview
+PS&gt; dotnet add package Microsoft.Quantum.Canon --version 0.3.1811.1501-preview
+</code></pre>
+
+<p>We can then add Q# sources to our project and use them from C#.
+Let’s go on and add a simple QRNG to the project by making a new source file called <code class="language-plaintext highlighter-rouge">Qrng.qs</code>:</p>
+
+<pre><code class="language-Q#">namespace Quantum.Advent.PoSh {
+    // The MResetX operation is provided by the canon, so we open that here.
+    open Microsoft.Quantum.Canon;
+
+    /// # Summary
+    /// Implements a quantum random number generator (QRNG) by preparing a qubit
+    /// in the |0⟩ state and then measuring it in the 𝑋 basis.
+    ///
+    /// # Output
+    /// Either `0` or `1` with equal probability.
+    operation NextRandomBit() : Int {
+        mutable result = 1;
+        using (qubit = Qubit()) {
+            // We use the ternary operator (?|) to turn the Result from
+            // MResetX into an Int to match how the C# RNG works.
+            set result = MResetX(qubit) == One ? 1 | 0;
+        }
+        return result;
+    }
+}
+</code></pre>
+
+<p>We can then call this operation from a new cmdlet.
+Add the following new class to <code class="language-plaintext highlighter-rouge">Class1.cs</code>, along with a new <code class="language-plaintext highlighter-rouge">using</code> declaration for <code class="language-plaintext highlighter-rouge">Microsoft.Quantum.Simulation.Simulators</code>:</p>
+
+<pre><code class="language-C#">[Cmdlet(VerbsCommon.Get, "CoinFlip")]
+public class GetCoinFlip : Cmdlet
+{
+
+    [Parameter]
+    public int NFlips { get; set; } = 1;
+
+    protected override void ProcessRecord()
+    {
+        // This time we make a new target machine that we can use to run the
+        // QRNG.
+        using (var sim = new QuantumSimulator())
+        {
+            // The foreach loop is the same as before, except that we call into
+            // Q# in each iteration instead of calling methods of a Random
+            // instance.
+            foreach (var idxFlip in Enumerable.Range(0, NFlips))
+            {
+                WriteObject(NextRandomBit.Run(sim).Result);
+            }
+        }
+    }
+}
+</code></pre>
+
+<p>Before proceeding, let’s make sure to unload the previous version of our <code class="language-plaintext highlighter-rouge">posh-die</code> assembly:</p>
+
+<pre><code class="language-PowerShell">PS&gt; Remove-Module posh-die
+</code></pre>
+
+<p>This will make sure that we can load the new version, and that your PowerShell session hasn’t locked the assembly file on disk.
+That frees us up to rebuild the C# project for our PowerShell module, along with the new Q# code that we added above:</p>
+
+<pre><code class="language-PowerShell">PS&gt; dotnet build
+Microsoft (R) Build Engine version 15.5.179.9764 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Restore completed in 22.01 ms for C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die\posh-die.csproj.
+  posh-die -&gt; C:\Users\cgranade\Source\Repos\QsharpBlog\2018\December\src\posh-die\bin\Debug\netstandard2.0\posh-die.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.20
+</code></pre>
+
+<p>When you try to import this module, however, you’ll get an error:</p>
+
+<pre><code class="language-PowerShell"># ipmo is an alias for Import-Module.
+PS&gt; ipmo .\bin\Debug\netstandard2.0\posh-die.dll
+ipmo : Could not load file or assembly 'Microsoft.Quantum.Simulation.Core, Version=0.3.1811.1501, Culture=neutral, PublicKeyToken=40866b40fd95c7f5'. The system cannot find the file specified.
+At line:1 char:1
++ ipmo .\bin\Debug\netstandard2.0\posh-die.dll
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++ CategoryInfo          : NotSpecified: (:) [Import-Module], FileNotFoundException
++ FullyQualifiedErrorId : System.IO.FileNotFoundException,Microsoft.PowerShell.Commands.ImportModuleCommand
+</code></pre>
+
+<p>What’s going on here?
+The problem is that PowerShell couldn’t find the DLLs that make up the Quantum Development Kit.
+Before, our project didn’t depend on anything else, but now we need to take one extra step of <em>publishing</em> after we build in order to put all the DLLs we need into the right place.
+The .NET Core SDK makes this easy with the <code class="language-plaintext highlighter-rouge">dotnet publish</code> command.
+Run the following, making sure to change <code class="language-plaintext highlighter-rouge">win10-x64</code> to <code class="language-plaintext highlighter-rouge">linux-x64</code> or <code class="language-plaintext highlighter-rouge">osx-x64</code> as appropriate (for a full list of runtime IDs, see the <a href="https://docs.microsoft.com/en-us/dotnet/core/rid-catalog">.NET Core documentation</a>):</p>
+
+<pre><code class="language-PowerShell">PS&gt; dotnet publish --self-contained -r win10-x64
+</code></pre>
+
+<p>We can then import the assembly as a PowerShell module the same way as before and run its cmdlets, just making sure to import the published assembly instead:</p>
+
+<pre><code class="language-PowerShell">PS&gt; ipmo .\bin\Debug\netstandard2.0\win10-x64\publish\posh-die.dll
+PS&gt; Get-CoinFlip -NFlips 10
+Zero
+One
+One
+Zero
+Zero
+One
+Zero
+Zero
+Zero
+One
+PS&gt; Get-CoinFlip -NFlips 1000 | Measure-Object -Maximum -Minimum -Average
+
+
+Count    : 1000
+Average  : 0.51
+Sum      :
+Maximum  : 1
+Minimum  : 0
+Property :
+
+</code></pre>
+
+<p>There you go, that’s everything you need to get up and running using the Quantum Development Kit as a part of your PowerShell-based data processing workflows!</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/06/15/questions.html">
+            A Few Questions About Myself
+            <small>15 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/05/08/gh-actions-test.html">
+            Testing GitHub Actions
+            <small>08 May 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/01/13/useful-skills-for-quantum.html">
+            Some useful skills for quantum computing
+            <small>13 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

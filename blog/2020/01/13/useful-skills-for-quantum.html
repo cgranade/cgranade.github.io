@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Some useful skills for quantum computing &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item active" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Some useful skills for quantum computing</h1>
+  <span class="post-date">13 Jan 2020</span>
+  <p>If you’re reading this, you’ve probably also read about some of the neat things you can do with Q# and quantum computing, and are eager to try out this whole quantum development thing. Like any other part of computing and development, there’s some skills that can really help you out on your way, so in this post I’ll talk about what some of those skills are and how you can practice the non-quantum stuff that will make your quantum journey a bit easier.</p>
+
+<p>Before that, though, it’s worth mentioning a small bit of a disclaimer. <strong>There’s  no one right skillset that you need for quantum computing.</strong> In my <a href="https://dev.to/cgranade/what-is-a-quantum-developer-anyway-38l">previous post</a>, I talked a bit about my path towards quantum computing, and about how rewarding it can be to work with people that come at things from a different perspective and background. As you go forward with quantum computing, you’ll find your own way to make a difference, your own way to leave both the technology <em>and</em> the community better than how you found it. Thus, my focus here isn’t on what skills you <em>need</em>, but what skills can be <em>useful</em>. You don’t need to be an expert in everything or even any one thing in particular in order to get going with quantum computing.</p>
+
+<p>With that caveat in mind, then, let’s get down to brass tacks and explore some things you may find helpful along your way.</p>
+
+<h2 id="math">Math</h2>
+
+<p>Even though it’s not required, being comfortable with math can be really quite helpful as a quantum developer. Most documentation in quantum programming languages involves at least a bit of math, so being familiar with a few mathematical concepts can help you make the most out of the resources that are already out there. The most fundamental descriptions of quantum computing are expressed using ideas from linear algebra and complex numbers, such that a familiarity with each can help you peel back the layers a bit and see how things work.</p>
+
+<p>That doesn’t mean you’re doing quantum computing on <a href="https://www.youtube.com/watch?v=bzw3pR6-bO8">hard mode</a> if you aren’t a PhD-level mathematician, though. Really, this is another way that quantum computing is a lot like other areas of computing. If you try to read about OpenGL, knowing some math will help you get the most out of documentation. Similarly, machine learning involves a <a href="https://www.manning.com/books/grokking-machine-learning?a_aid=learn-qc-granade">fair bit of math</a>, you can also get quite a ways by following along with <a href="https://www.tensorflow.org/tutorials/">examples</a> or using <a href="https://scikit-learn.org/stable/index.html">high-level libraries</a>.</p>
+
+<p>What’s really exciting, though, is that you can also practice your math skills as you go. In <a href="http://bit.ly/qsharp-book">our Q# book</a>, <a href="https://dev.to/crazy4pi314">Sarah Kaiser</a> and I write most of our the <a href="http://qutip.org/">QuTiP package for Python</a> to handle doing most of the math, so that you can jump right in and see how things work without having to do all of the math yourself.</p>
+
+<p>If you want to preload things a bit, though, refreshing your memory on linear algebra and complex numbers will give you a head start with quantum computing content.</p>
+
+<h2 id="classical-software-development">Classical Software Development</h2>
+
+<p>As I talked about in <a href="https://dev.to/cgranade/what-is-a-quantum-developer-anyway-38l">my previous post</a>, many of the skills that help me out the most as a quantum developer are classical software development skills. Brushing up on classical languages like Python or C#, <a href="https://docs.pytest.org/en/latest/">unit testing</a>, how to manage projects with <a href="https://help.github.com/en/github/getting-started-with-github/git-and-github-learning-resources">Git</a>, how to work with <a href="https://www.docker.com/resources/what-container">containers</a>, how to write and test code with an <a href="https://code.visualstudio.com/docs/python/python-tutorial">IDE</a>, or any number of other skills can help you <a href="http://docs.microsoft.com/quantum/contributing/">contribute</a> to <a href="https://www.qosf.org/project_list/">open source quantum projects</a>, and can help you to make progress with your own projects.</p>
+
+<p>Thankfully, there’s a lot of good resources to help you out here, <a href="https://dev.to/">dev.to itself</a> not the least of them! If you’re already a seasoned software developer, that will help you out as you go forward with quantum computing. On the other hand, if you’re new to software development, welcome! Your original way of looking at and learning about computing will help you make a difference with quantum computing.</p>
+
+<h2 id="writing">Writing</h2>
+
+<p>There’s no way to underestimate this one. Quantum computing is a <strong>big</strong> field, bringing together a lot of different ideas and ways of looking at the world. That means that as you progress through your quantum computing journey, you’ll write e-mails, tweets, blog posts, documentation, and many other kinds of things in order to communicate those ideas with your community.</p>
+
+<p>That’s not to say you need to be an <a href="https://www.monicabyrne.org/">amazing novelist</a>, of course (though if you are, awesome! 💖). Rather, my point is that math and prose go hand-in-hand for communicating quantum ideas. Being comfortable with writing isn’t necessary to get started in quantum computing, but it can help you ask questions on <a href="https://stackoverflow.com/questions/tagged/q%23">StackOverflow</a> that help others on their journey, to file <a href="https://github.com/microsoft/iqsharp/issues/42">informative and descriptive bug reports</a>, to improve <a href="https://en.wikipedia.org/wiki/Q_Sharp">Wikipedia articles</a> that others use to look up quantum concepts, and can help you explain ways of looking at quantum computing that you found useful. As you build your own quantum projects, your writing skills can help you make documentation that lowers barriers instead of raising them.</p>
+
+<p>In my experience, there’s two main parts to getting better at writing. The first? Reading. Spend time on <a href="https://dev.to/t/qsharp">dev.to</a>, <a href="https://twitter.com/search?q=qsharp">Twitter</a>, <a href="https://quantumcomputing.stackexchange.com/">StackExchange</a>, <a href="https://arxiv.org/list/quant-ph/recent">arXiv</a>, and whatever other platforms you find useful for talking about quantum computing. Pay attention to what things other writers do that help you, and what things make it harder for you to learn, so that you can use that in your own writing. The other part of brushing up on writing skills, of course, is to practice. Even if you think it’s crappy, writing a lot can help you find a voice that you can use to make the quantum computing community that much more wonderful.</p>
+
+<h2 id="empathy">Empathy</h2>
+
+<p>The last and absolute most important skill that I can suggest practicing is <strong>empathy</strong>; it may even be the only mandatory skill on this list. Quantum computing, just like every other kind of computing, is a thing that humans do. Listening to those humans — your peers! — can help you understand where they get stuck and might need a little help, where they need your help making the community the best it can be, and where they might be able to help you get unstuck.</p>
+
+<p>Your peers in the quantum community come from all walks of life, not just in terms of skills, but also in terms of who they are as people. The quantum computing community includes people of all genders, sexualities, races, nationalities, and kinds of disabilities. Listening to your peers can help you break down the barriers that they face in any number of small and large ways. By putting empathy into practice, you can ensure that you not only make a difference in the quantum community, but that you make a difference for the better.</p>
+
+<hr />
+
+<p><em>If you like this post, vote for it on <a href="https://dev.to/cgranade/some-useful-skills-for-quantum-computing-2hn2">dev.to</a>, or read</em> <a href="https://bit.ly/qsharp-book">Learn Quantum Computing with Python and Q#</a><em>, now available in early access from Manning Publications.</em></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/06/15/questions.html">
+            A Few Questions About Myself
+            <small>15 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/05/08/gh-actions-test.html">
+            Testing GitHub Actions
+            <small>08 May 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/01/05/what-is-a-quantum-developer.html">
+            What is a Quantum Developer, Anyway?
+            <small>05 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

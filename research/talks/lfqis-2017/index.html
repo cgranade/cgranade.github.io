@@ -1,0 +1,1372 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Humanitarian QIP</title>
+
+        <meta name="author" content="Cassandra E. Granade">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/asciinema-player.css">
+
+        <!-- Code syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+        <link rel="stylesheet" href="css/theme/cgranade-dark.css" id="theme">
+
+
+        <style type="text/css" media="screen">
+            .reveal cite.googl a {
+            font-family: "Source Sans Pro";
+            font-weight: 400; }
+            .reveal cite.googl a::before {
+            content: "goo.gl/";
+            /* font-variant: small-caps; */
+            font-size: 65%;
+            font-weight: 500; }
+
+            .hideable-foot {
+                display: block;
+                opacity: 0;
+                font-size: 90% !important;
+                position: absolute;
+                bottom: 0em;
+                right: 0.5em;
+                text-align: right;
+                transition: all 2s;
+                z-index: 1;
+            }
+
+            .show-foot-pbt #foot-pbt,
+            .show-foot-pbt-review #foot-pbt-review,
+            .show-foot-rb #foot-rb,
+            .show-foot-arb #foot-arb,
+            .show-foot-how #foot-how,
+            .show-foot-rohl #foot-rohl,
+            .show-foot-qhl #foot-qhl,
+            .show-foot-qhl-noise #foot-qhl-noise,
+            .show-foot-qbs #foot-qbs,
+            .show-foot-lfpe #foot-lfpe,
+            .show-foot-lw #foot-lw,
+            .show-foot-smc #foot-smc,
+            .show-foot-qrej #foot-qrej,
+            .show-foot-better #foot-better,
+            .show-foot-title-foot #foot-title-foot,
+            .show-foot-condensation #foot-condensation,
+            .show-foot-qinfer #foot-qinfer,
+            .show-foot-rfpe #foot-rfpe,
+            .show-foot-structf #foot-structf,
+            .show-foot-hh #foot-hh,
+            .show-foot-improved-hh #foot-improved-hh,
+            .show-foot-thanks-ian #foot-thanks-ian,
+            .show-foot-thanks-hpd #foot-thanks-hpd,
+            .show-foot-thanks-bayes-neon #foot-thanks-bayes-neon,
+            .show-foot-thanks-statistics-neon #foot-thanks-statistics-neon,
+            .show-foot-fast-pe #foot-fast-pe,
+            .show-foot-blameless #foot-blameless,
+            .show-foot-thesis #foot-thesis {
+                opacity: 1 !important;
+                transition: all 2s;
+                z-index: 2;
+            }
+
+
+            /** TODO: move these to cgranade-dark.scss. **/
+            .two-col-container {
+                width: 100%;
+            }
+
+            .left-col {
+                float: left;
+                width: 70%;
+            }
+
+            .right-col {
+                float: right;
+                width: 30%;
+            }
+
+            .wordmark {
+                display: inline-block;
+                font-family: "Source Sans Pro";
+                color: white;
+                font-weight: 300;
+            }
+
+            .wordmark:first-letter {
+                color: red;
+                font-weight: 600;
+            }
+
+
+            hr {
+                border-color: #888;
+            }
+
+            h6.bg-rule {
+                position: relative;
+                z-index: 1;
+                
+                color: #888;
+                font-variant: small-caps;
+            }
+
+            /* https://gist.github.com/ericrasch/2045198 */
+            .bg-rule:before {
+                border-top: 1.5px solid #888;
+                content: "";
+                margin: 0 auto; /* this centers the line to the full width specified */
+                position: absolute; /* positioning must be absolute here, and relative positioning must be applied to the parent */
+                top: 60%; left: 0; right: 0; bottom: 0;
+                width: 90%;
+                z-index: -2;
+            }
+
+            .bg-rule span { 
+                /* to hide the lines from behind the text, you have to set the background color the same as the container */ 
+                background: #000; 
+                padding: 0 15px; 
+            }
+
+            blockquote .MathJax {
+                font-style: normal;
+            }
+
+            span.cite-label {
+                font-variant: small-caps;
+                font-family: "Source Sans Pro";
+                color: white;
+                background-color: #888;
+                font-size: 70%;
+                padding: 3px;
+                padding-top: 0px;
+                line-height: 0.2em;
+                position: relative;
+                top: -0.1em;
+                margin-left: 1.5em;
+            }
+
+            .black-text, .black-text em, .black-text strong, .black-text h3 {
+                color: #000;
+            }
+        </style>
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!--
+                This is an awful hack. Don't use it if you can help it.
+                See https://www.raymondcamden.com/2014/04/01/Adding-an-Absolutely-Positioned-Header-to-Revealjs/ for why it "works".
+            -->
+            <p class="hideable-foot" id="foot-title-foot">
+                <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br>
+                <!-- <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>,
+                <cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>,
+                <cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>,
+                <cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite><br> -->
+                <a href="https://www.cgranade.com/research/talks/lfqis-2017">
+                    www.cgranade.com/research/talks/lfqis-2017
+                </a>
+            </p>
+
+            <p class="hideable-foot" id="foot-how">
+                Ferrie, Granade, Cory <cite class="doi"><a href="https://dx.doi.org/10/tfx">tfx</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-rohl">
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/s87">s87</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qinfer">
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b5x8">b5x8</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-hh">
+                Stenberg <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b59p">b59p</a></cite>,
+                Robertson and Granade (<em>in preparation</em>)
+            </p>
+            
+            <p class="hideable-foot" id="foot-improved-hh">
+                Robertson and Granade (<em>in preparation</em>)
+            </p>
+
+            <p class="hideable-foot" id="foot-arb">
+                Granade, Ferrie, Cory <cite class="doi"><a href="https://dx.doi.org/10/zmz">zmz</a></cite>
+            </p>
+            
+            <p class="hideable-foot" id="foot-rb">
+                Magesan, Gambetta, Emerson <cite class="doi"><a href="https://dx.doi.org/10/tfz">tfz</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qhl">
+                Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tf3">tf3</a></cite>
+            </p>
+            
+            <p class="hideable-foot" id="foot-qbs">
+                Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/7nx">7nx</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qhl-noise">
+                Wiebe <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tdk">tdk</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-pbt">
+                Huszár and Houlsby <cite class="doi"><a href="https://dx.doi.org/10/s86">s86</a></cite>;
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bhdw">bhdw</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-pbt-review">
+                <span class="cite-label">review</span>
+                Granade <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bhdw">bhdw</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-rfpe">
+                <span class="cite-label">theory</span>
+                Wiebe and Granade <cite class="doi"><a href="https://dx.doi.org/10/bk9d">bk9d</a></cite>
+                
+                <span class="cite-label">expr</span>
+                Paesani <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b59r">b59r</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-sgqt">
+                <span class="cite-label">theory</span>
+                Ferrie <cite class="doi"><a href="https://dx.doi.org/10/bchr">bchr</a></cite>
+                
+                <span class="cite-label">expr</span>
+                Chapman <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/b59v">b59v</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-paqt">
+                Granade <em>et al.</em> <cite class="arxiv"><a href="https://arxiv.org/abs/1605.05039">1605.05039</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-lw">
+                Liu and West <cite class="doi"><a href="https://dx.doi.org/10/8c2">8c2</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-smc">
+                Doucet <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/bmch">bmch</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-lfpe">
+                Ferrie and Granade <cite class="doi"><a href="https://dx.doi.org/10/tdj">tdj</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-thesis">
+                Granade
+                <cite class="hdl"><a href="https://dx.doi.org/10012/9217"><span>10012/</span>9217</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-thanks-hpd">
+                <em>figure</em>: Ferrie
+                <cite class="doi"><a href="https://dx.doi.org/10/tb4">tb4</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-blameless">
+                Kimmel <em>et al.</em>
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1608.00281">1608.00281</a></cite>,
+                joint work w/ Kimmel and Wiebe
+            </p>
+
+            <p class="hideable-foot" id="foot-fast-pe">
+                Svore <em>et al.</em>
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1304.0741">1304.0741</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-qrej">
+                Wiebe and Granade
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1512.03145">1512.03145</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-structf">
+                Granade and Wiebe
+                <cite class="arxiv"><a href="https://arxiv.org/abs/1612.00762">1612.00762</a></cite>
+            </p>
+
+            <p class="hideable-foot" id="foot-thanks-statistics-neon">
+                <!--
+                    A note about the word "neon": this is not technically correct in
+                    the chemical sense, but is the word that the artist chose to describe
+                    their work, and so I choose it here out of deference to that description.
+                -->
+                background: neon by
+                <a href="http://oresttataryn.com/">Orest Tataryn</a>
+            </p>
+
+            <p class="hideable-foot" id="foot-thanks-bayes-neon">
+                background: photo by <a href="https://commons.wikimedia.org/wiki/File:Bayes%27_Theorem_MMB_01.jpg">
+                    mattbuck
+                </a>,
+                h/t Wiebe
+            </p>
+
+<!-- 
+            <p class="hideable-foot" id="foot-thanks-ian">
+                Collaboration w/ Hincks, Wang, Mirkamali, and Moussa.
+            </p>
+ -->
+
+            <!-- <p class="hideable-foot" id="foot-better">
+                Sergeevich <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/c4vv95">c4vv95</a></cite>,
+                Ferrie <em>et al.</em> <cite class="doi"><a href="https://dx.doi.org/10/tfx">tfx</a></cite>, 
+                Hall and Wiseman <cite class="doi"><a href="https://dx.doi.org/10/bh6v">bh6v</a></cite>
+            </p> -->
+
+            <p class="hideable-foot" id="foot-condensation">
+                Isard and Blake <cite class="doi"><a href="https://dx.doi.org/10/cc76f6">cc76f6</a></cite>
+            </p>
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <!-- TITLE SLIDE ######################################### -->
+
+                <section id="title-slide" data-state="show-foot-title-foot">
+                    <h1 style="font-size: 175%">
+                        Humanitarian QIP
+                    </h1>
+                    <hr>
+                    <p>
+                        <a href="https://www.cgranade.com">Cassandra E. Granade</a> <br>
+                        <a href="https://equs.org/">Centre for Engineered Quantum Systems</a>
+                        $
+                            \newcommand{\ee}{\mathrm{e}}
+                            \newcommand{\ii}{\mathrm{i}}
+                            \newcommand{\dd}{\mathrm{d}}
+                            \newcommand{\id}{&#x1d7d9;}
+                            \newcommand{\TT}{\mathrm{T}}
+                            \newcommand{\defeq}{\mathrel{:=}}
+                            \newcommand{\Tr}{\operatorname{Tr}}
+                            \newcommand{\Var}{\operatorname{Var}}
+                            \newcommand{\Cov}{\operatorname{Cov}}
+                            \newcommand{\rank}{\operatorname{rank}}
+                            \newcommand{\expect}{\mathbb{E}}
+                            \newcommand{\sket}[1]{|#1\rangle\negthinspace\rangle}
+                            \newcommand{\sbraket}[1]{\langle\negthinspace\langle#1\rangle\negthinspace\rangle}
+                            \newcommand{\Gini}{\operatorname{Ginibre}}
+                            \newcommand{\supp}{\operatorname{supp}}
+                            \newcommand{\ket}[1]{\left|#1\right\rangle}
+                            \newcommand{\bra}[1]{\left\langle#1\right|}
+                            \newcommand{\braket}[1]{\left\langle#1\right\rangle}
+                        $
+                    </p>
+                </section>
+
+                <!-- INTRODUCTION ######################################## -->
+                
+                <section>
+                    <p>
+                        Building a quantum computer is <strong>hard</strong>.
+                    </p>
+
+                    <p>
+                        So why do we do it?
+                    </p>
+
+                    <div class="fragment">
+                        <hr>
+
+                        <ul>
+                            <li>We're paid to?</li>
+                            <li>It's fun?</li>
+                            <li>Because it's (<em>not</em>) there?</li>
+                        </ul>
+                    </div>
+                </section>
+
+                <section>
+                    <p>
+                        All good answers, but not the whole story either.
+                    </p>
+
+                    <h6 class="bg-rule"><span>proposal</span></h6>
+
+                    <p>
+                        Let's answer in the affirmative by building a quantum computer
+                        <em>for humans</em>.
+                    </p>
+
+                    <p>
+                        Esp. important for <em>publicly funded</em> research.
+                    </p>
+                </section>
+
+                <section>
+                    <h6 class="code-caption">
+                        Humanitarian:
+                    </h6>
+                    <blockquote>
+                        <span style="font-style: normal">
+                            adj;
+                        </span>
+                        Relating to or characteristic of people who work to improve the lives and living conditions of other people.
+                    </blockquote>
+                    <h6 class="code-caption" style="text-align: right; width: 90%; top: -0.5em;">
+                        &mdash;
+                        Merriam&ndash;Webster
+                    </h6>
+
+                    <hr>
+
+                    <p>
+                        What would a humanitarian paper look like?
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>Accessible</strong>    
+                        </li>
+                        <li>
+                            <strong>Practical</strong>
+                        </li>
+                        <li>
+                            <strong>Reproducible</strong> / <strong>Reusable</strong>:
+                            in public interest
+                        </li>
+                        <li>
+                            <strong>Honest</strong>
+                            (<em>e.g.:</em> not plagarized)
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        A paper isn't just a final output, though, but a <strong>process</strong>.
+                    </p>
+
+                    <p>
+                        If we're building a quantum computer <em>for humans</em>,
+                        that process must also be in public interest.
+                    </p>
+
+                    <ul>
+                        <li>No harassment or hatred.</li>
+                        <li>Not just the part of the public already privileged.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        This is <strong>difficult</strong>. What tools can help?
+                    </p>
+
+                    <p>
+                        In this talk, I will summarize a range of <em>technical</em>
+                        and <em>social</em> tools for helping ensure that research helps
+                        <em>people</em>.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Disclaimers</h3>
+
+                    <ul>
+                        <li>
+                            I'm going with what I know, hence focus on numerics/experiment vs “pure” theory.
+                        </li>
+                        <li>
+                            I'm also self-interested, so I'll highlight my own efforts.
+                        </li>
+                        <li>
+                            A lot of this represents research currently in development;
+                            it's not perfect.
+                        </li>
+                        <li>
+                            This talk is aspirational, not judgmental.
+                        </li>
+                        <li>
+                            Focus here is on form and process of results, not topics and applications.
+                            (<em>e.g.</em> is Shor's algorithm ethically sound?)
+                        </li>
+                    </ul>
+
+                    <div class="fragment">
+                        <hr>
+
+                        <p>
+                            With that in mind, let's forge ahead and try to do the best science we can.
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h1>Technical Tools for Humanitarian QIP</h1>
+                </section>
+
+                <section>
+                    <h3>Humanitarianism as Functional Requirements</h3>
+
+                    <p>
+                        We need technical tools which make it easier to:
+                    </p>
+
+                    <ul>
+                        <li>Collaborate without gatekeeping.</li>
+                        <li>Share and reuse experimental data, theoretical results, and numerical tools.</li>
+                        <li>Support and manage research resources.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Cognitive Load</h3>
+
+                    <blockquote>
+                        I only understand simple things.
+                    </blockquote>
+                    <h6 class="code-caption" style="text-align: right; width: 90%; top: -0.5em;">
+                        &mdash;
+                        Some random <abbr title="Me.">troll</abbr>.
+                    </h6>
+
+                    <p>
+                        Reusable and composable tools can help reduce cognative load.
+                    </p>
+
+                    <p>
+                        Complicated research management problems can be decomposed into
+                        easily-understood subtasks.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Command Line</h3>
+
+                    <p>
+                        Decomposition can be expressed using command line.
+                    </p>
+
+                    <p>
+                        If it can be automated, it can be <em>shared</em>.
+                        Automation is a resource for collaboration and reproducibility.
+                    </p>
+                </section>
+
+                <section>
+                    <asciinema-player
+                        src="tex.json"
+                        rows="24"
+                        font-size="medium"
+                        speed="1.5"
+                        >
+                    </script>
+                </section>
+
+                <section>
+                    <p>
+                        Can easily communicate the same process by providing a few commands:
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+                        $ cd tex-example
+                        $ pdflatex example.tex
+                        $ bibtex example
+                        $ pdflatex example.tex
+                        $ pdflatex example.tex
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>
+                        Commmand lines thus makes it easy to share <em>research processes</em>
+                        with collaborators, broad community.
+                    </p>
+
+                    <h3><strong>Example</strong></h3>
+
+                    <h6 class="code-caption">
+                        compile.sh / compile.ps1
+                    </h6>
+                    <pre><code class="bash" data-trim>
+                        pdflatex example.tex
+                        bibtex example
+                        pdflatex example.tex
+                        pdflatex example.tex
+                    </code></pre>
+
+                    <p>
+                        Scripts can then be used as commands in their own right.
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+                        $ cd tex-example
+                        $ ./compile.sh # Bash
+                        PS> ./compile.ps1 # PowerShell
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>
+                        Writing command-line interfaces easier than graphical tools;
+                        reduces barrier to tool creation.
+                    </p>
+
+                    <h3><strong>Example</strong>: Writing Commands in Python</h3>
+
+                    <h6 class="code-caption">
+                        hello.py
+                    </h6>
+                    <pre><code class="python" data-trim>
+                        import click
+                        @click.command()
+                        @click.option('--loud', is_flag=True)
+                        def main(loud):
+                            print("HELLO WORLD!" if loud else "Hello.")
+                        main()
+                    </code></pre>
+
+                    <pre><code class="bash" data-trim>
+                        $ python hello.py --loud
+                        HELLO WORLD!
+                    </code></pre>
+                </section>
+
+                <section
+                    data-background-color="#fff"
+                    data-background-image="https://imgs.xkcd.com/comics/standards.png"
+                    data-background-size="65%"
+                >
+                </section>
+
+                <section>
+                    <h3>Which Command-Line?</h3>
+
+                    <p>
+                        Lots of good options!
+                    </p>
+
+                    <dl>
+                        <dt>
+                            Bash
+                            <span class="right-note">
+                                Standard on Linux / macOS
+                            </span>
+                        </dt>
+
+                        <dt>
+                            Xonsh
+                            <span class="right-note">
+                                Based on Python
+                            </span>
+                        </dt>
+
+                        <dt>
+                            Zsh
+                            <span class="right-note">
+                                Very customizable / powerful
+                            </span>
+                        </dt>
+                    </dl>
+
+                    <p>
+                        Personally, I prefer <strong>PowerShell</strong>,
+                        owing to cross-platform compatability.
+                    </p>
+                </section>
+
+                <section>
+                    <h3><strong>Git:</strong> Formal Support for Collaboration</h3>
+
+                    <p>
+                        Models collaboration on a project as a <em>directed acyclic graph</em>.
+                    </p>
+
+                    <p>
+                        <img data-src="figures/qinfer-git-log.png" width="50%">
+                    </p>
+                </section>
+
+                <section>
+                    <h3><strong>Git</strong> as Formalism</h3>
+
+                    <ul>
+                        <li>
+                            <strong>Commits</strong>:
+                            Communication as unit of collaboration.
+                        </li>
+                        <li>
+                            <strong>Diff/Merge</strong>:
+                            Overwriting changes as intentional decision, not race condition.
+                        </li>
+                        <li>
+                            <strong>Branches</strong>:
+                            Independent or isolated work for later consolidation.
+                        </li>
+                        <li>
+                            <strong>Tags</strong>:
+                            Mark milestones (<em>e.g.:</em> arXiv posting, journal resubmission)
+                        </li>
+                    </ul>
+
+                    <p>
+                        Formalism supports explicit decisions about how and what to share,
+                        making collaboration easier and more robust.
+                    </p>
+                </section>
+
+                <section>
+                    <h3><strong>Git Annex and LFS:</strong> </h3>
+
+                    <p>
+                        (see Sarah's talk)
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Python, Julia, R, …</h3>
+
+                    <ul>
+                        <li>Open-source languages for scientific computation</li>
+                        <li>Interoperable w/ native code (C/C++, etc.)</li>
+                        <li>Robust toolchains for polyglot projects</li>
+                    </ul>
+
+                    <h6 class="bg-rule"><span>contrast with</span></h6>
+
+                    <h3>MATLAB, Mathematica, Igor, …</h3>
+
+                    <ul>
+                        <li>Closed/expensive: discourages reuse.</li>
+                        <li>Monolithic development environments: difficult to integrate.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3><strong>Jupyter:</strong> Literate Programming</h3>
+
+                    <p>
+                        Multi-lingual platform for mixing prose, equations, plots and code.
+                    </p>
+
+                    <img data-src="figures/jupyter-header.png">
+                </section>
+                
+                <section>
+                    <h3><strong>Jupyter</strong> as Community</h3>
+
+                    <p>
+                        Lots of additional tools for working with Jupyter:
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>nbviewer</strong>:
+                            View notebooks online w/ no installation required.
+                        </li>
+                        <li>
+                            <strong>binder</strong>:
+                            <em>Run</em> Python notebooks w/o installaton.
+                        </li>
+                        <li>
+                            <strong>nbconvert</strong>:
+                            Format as TeX, PDF, web pages, blog posts, etc.
+                        </li>
+                        <li>
+                            <strong>Additional languages</strong>:
+                            F#, JavaScript, Scala, PARI/GP, MATLAB (yes, really)
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3><strong>Package Management</strong></h3>
+
+                    <p>
+                        Makes it easier to:
+                    </p>
+
+                    <ul>
+                        <li>Distribute and reuse research outputs.</li>
+                        <li>Install/use third-party tools.</li>
+                        <li>Specify software environments for reproducible works.</li> 
+                    </ul>
+                </section>
+
+                <section>
+                    <h6 class="code-caption">System-Wide</h6>
+                    <pre><code class="bash" data-trim>
+# Ubuntu
+$ sudo apt install texlive
+# macOS / OS X
+$ brew cask install mactex
+# Windows
+PS> choco install miktex
+                    </code></pre>
+
+                    <h6 class="code-caption">Language-Specific</h6>
+                    <pre><code class="bash" data-trim>
+# Python
+$ pip install qinfer
+# Julia
+Julia> Pkg.add("PyCall")
+# R
+> install.packages("ggplot2")
+# PowerShell
+PS> Install-Module posh-git
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>
+                        Provides a valuable tool for specifying computing
+                        <em>environments</em>.
+                    </p>
+
+                    <h6 class="code-caption">environment.yml</h6>
+                    <pre><code class="yaml" data-trim>
+# Install:
+#     $ conda env create -f environment.yml
+name: sgqt
+channels:
+    - conda-forge
+dependencies:
+    - python=3.6
+    - notebook
+    - qutip
+    - matplotlib
+    - pip:
+        - InstrumentKit
+        - qinfer
+        - PyDAQmx
+                    </code></pre>
+                </section>
+
+                <section>
+                    <p>
+                        Reproducible research means a lot of files to manage (source code,
+                        TeX, package environments, READMEs).
+                        <br>
+                        Thus need tools to help manage sharing and redistributing.
+                    </p>
+
+                    <h3><strong>PoShTeX:</strong> Managed Builds for Reproducibility</h3>
+
+                    <p>
+                        Uses PowerShell package management to support lightweight
+                        <em>manifests</em> for arXiv submission.
+                    </p>
+                </section>
+
+                <section>
+                    <h6 class="code-caption">Export-ArXiv.ps1</h6>
+                    <pre><code class="yaml" data-trim>
+Export-ArXivArchive @{
+    ProjectName = "sgqt_mixed";
+    TeXMain = "notes/sgqt_mixed.tex";
+    AdditionalFiles = @{
+        "notes/revquantum.sty" = "/";
+        "figures/*.pdf" = "figures/";
+        "README.md" = "anc/";
+        "src/*.yml" = "anc/";
+        "data/*.hdf5" = "anc/";
+    };
+    Notebooks = @(
+        "src/do-experiment.ipynb"
+    )
+}
+                    </code></pre>
+
+                    <p data-markdown>
+                        Produces ``sgqt_mixed.zip``, including supplemental material in a form
+                        suitable for uploading to arXiv.
+                    </p>
+                </section>
+
+                <section>
+                    <h3><strong>Bayesian Inference:</strong> Objective Reasoning a/ Subjectivity</h3>
+
+                    <p>
+                        We are <em>subjective</em> agents.
+                        With enough caution
+                        (preregistration, bootstrapping, etc.), we can report <em>objective</em>
+                        results.
+                    </p>
+
+                    <h6 class="bg-rule"><span>alternative</span></h6>
+
+                    <p>
+                        Use Bayes' rule to formally and objectively reason <em>about</em>
+                        our subjective beliefs.
+                    </p>
+
+                    $$
+                        \Pr(\text{model} | \text{data}) =
+                            \frac{\Pr(\text{data} | \text{model})}{\Pr(\text{data})} \Pr(\text{model})
+                    $$
+                </section>
+
+                <section>
+                    <p>
+                        Practitioners with different <em>priors</em> $\Pr(\text{model})$ will disagree
+                        about the <em>posterior</em> $\Pr(\text{model} | \text{data})$, but will agree
+                        on the process.
+                    </p>
+
+                    <ul>
+                        <li>
+                            Isolates and documents points of disagreement, encouraging honest reporting
+                            of subjective bias.
+                        </li>
+                        <li>
+                            Reproducible research makes it easier to substitute different priors,
+                            repeat analysis.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Software Tools for Bayesian Inference</h3>
+
+                    <ul>
+                        <li>
+                            <strong class="wordmark">QInfer</strong>:
+                            Online Bayesian inference for QIP experiments and theory.
+                        </li>
+                        <li>
+                            <strong><a href="http://pymc-devs.github.io/pymc3/">PyMC3</a></strong>:
+                            Markov-Chain Monte Carlo implementation.
+                        </li>
+                        <li>
+                            <strong><a href="http://mc-stan.org/">Stan</a> / <a href="https://pystan.readthedocs.io/en/latest/">PyStan</a></strong>:
+                            Hamiltonian Monte Carlo implementation.
+                        </li>
+                        <li>
+                            <strong><a href="http://edwardlib.org/">Edward</a></strong>:
+                            Bayesian modeling and criticism.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3><strong>Example:</strong> <span class="wordmark">QInfer</span> is for People</h3>
+
+                    <div data-markdown>
+                    - **Accessible**: written in Python,
+                      usable from Python, Julia, MATLAB.
+                    - **Open source**: modifiable and reproducible.
+                    - **Portable**: Windows/Linux/OS X.
+                    - **Legible**: well-documented (guide &amp; examples).
+                    - **Expressive**: represents the scientific concepts.
+                    - **Extensible**: not limited to built-in applications.
+                    </div>
+                </section>
+
+                <section>
+                    <h1>Social Tools for Humanitarian QIP</h1>
+                </section>
+
+                <section data-background="#fff" class="black-text">
+                    <h3><strong>Git Hosting</strong>: GitHub, BitBucket, GitLab, …</h3>
+
+                    <ul>
+                        <li>Use of Git as a <em>protocol</em> reduces monopolization.</li>
+                        <li>
+                            Version control as social media: visibility for software outputs,
+                            research groups, institutions.
+                        </li>
+                    </ul>
+
+                    <img data-src="figures/github-social-profile.png">
+                </section>
+
+                <section data-background="#fff" class="black-text">
+                    <h3><strong>Example</strong>: Pull Requests</h3>
+
+                    <img data-src="figures/github-pull-requests-header.png">
+
+                    <p>
+                        Formalises internal or unsolicited collaboration.
+                    </p>
+
+                    <hr>
+                    
+                    <p>
+                        Esp. important for fighting bibliometrics, rewarding non-traditional research.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Transferrable Skills Development</h3>
+                    
+                    <p>
+                        Problematic / toxic environments exist, can be reinforced if students' skills are
+                        too specialized.
+                    </p>
+
+                    <p>
+                        Thus, focusing on <em>transferrable</em> skills can reduce institutionalization of toxic
+                        environments.
+                    </p>
+
+                    <h6 class="bg-rule"><span>examples</span></h6>
+
+                    <ul>
+                        <li>
+                            Python vs MATLAB: Widely-adopted platform and reliance on general
+                            CS theory promotes skill development.
+                        </li>
+                        <li>
+                            Industry best-practices: version control, continuous integration.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3><strong>Example</strong>: Functional Programming</h3>
+                    
+                    <p>
+                        Path to learn functional languages (e.g.: Haskell, F♯)
+                        from Python.
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+                        $ python
+                        >>> from functools import partial, reduce
+                        >>> from operator import mul
+                        >>> product = partial(reduce, mul)
+                        >>> product([1, 2, 3])
+                        6
+                        $ ghci # Haskell
+                        Prelude> let product = foldl (*) 1
+                        Prelude> product [1; 2; 3]
+                        6
+                        $ fsharpi # F♯
+                        > let inline product xs = Seq.reduce (*) xs;;
+                        > product [1; 2; 3];;
+                        val it : int = 6
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3><strong>Example</strong>: Functional Programming (con'd)</h3>
+
+                    <p>
+                        Similar benefits for Julia and R.
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+                        $ julia
+                        julia> partial(f, x) = ((xs...) -> f(x, xs...)
+                        julia> product = partial(reduce, *)
+                        julia> product([1, 2, 3])
+                        6
+
+                        $ R
+                        > install.packages('functional')
+                        > library(functional)
+                        > product <- Curry(Reduce, `*`)
+                        > product(list(1, 2, 3))
+                        [1] 6
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3><strong>Example</strong>: Object-Oriented Programming</h3>
+                    
+                    <p>
+                        Can also learn other general concepts as transferrable
+                        skills. 
+                    </p>
+
+                    <pre><code class="bash" data-trim>
+$ python
+>>> class Foo(object):
+...     def hello(self):
+...         print("Hello")
+>>> foo = Foo()
+>>> foo.hello()
+Hello
+$ csharp
+csharp> class Foo {
+>  public void Hello() {System.Console.WriteLine("Hello");}
+> }
+csharp> var foo = new Foo()
+csharp> foo.Hello()
+Hello
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3><strong>Example</strong>: Object-Oriented Programming (con'd)</h3>
+
+                    <pre><code class="bash" data-trim>
+$ jshell
+-> class Foo {
+>>   public void hello() {
+>>     System.out.println("Hello");
+>>   }
+>> }
+-> Foo foo = new Foo();
+-> foo.hello();
+Hello
+
+                    </code></pre>
+                </section>
+
+                <section>
+                    <h3>Better Journals</h3>
+
+                    <p>
+                        Focus on <em>bibliometrics</em> and <em>impact</em>: 
+                    </p>
+
+                    <ul>
+                        <li>Encourages hype, discourages incremental or practical results.</li>
+                        <li>Focus on "demonstrations" enables gatekeeping.</li>
+                        <li>Referee process discourages reusability and reproducibility.</li>
+                        <li>Hides institutional biases behind citation counts.</li>
+                    </ul>
+
+                    <p>
+                        Journals that encourage reproducible results, downplay impact
+                        can be a valuable tool to encourage our humanitarian goals.
+                    </p>
+                </section>
+
+                <section>
+                    <h3>Open Refereeing?</h3>
+
+                    <p>
+                        Can we go further in deanonymizing referee process?
+                    </p>
+
+                    <ul>
+                        <li>
+                            Makes it more difficult for referees to harass or abuse
+                            ECRs.
+                        </li>
+                        <li>
+                            Also makes it harder for ECRs to challenge established
+                            groups.
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h3>Statistics and Site Surveys</h3>
+
+                    <p>
+                        In applying technical or social tools, need good feedback
+                        to ensure that they work as intended.
+                    </p>
+
+                    <dl style="font-size: 65%">
+					    <dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
+							Cultural assessments
+						</h4></dd>
+						<dt>Citation disparity
+							<span class="right-note">
+                                Caplar <em>et al.</em>
+                                <cite class="doi"><a href="https://dx.doi.org/10/b8rn">b8rn</a></cite>
+							</span>
+						</dt>
+
+						<dt>Pull request assessments
+							<span class="right-note">
+                                Terrell <em>et al.</em>
+								<cite class="doi"><a href="https://dx.doi.org/10/b8rp">b8rp</a></cite>
+							</span>
+						</dt>
+
+					    <dd style="position: relative; left: -1.7em; top: 0.75em"><h4>
+							Site surveys
+						</h4></dd>
+						<dt>American Physical Society
+							<span class="right-note">
+								<cite class="googl"><a href="https://goo.gl/2kB6Ev">2kB6Ev</a></cite>
+							</span>
+						</dt>
+                        
+						<dt>Institute of Physics
+							<span class="right-note">
+                                <cite class="googl"><a href="https://goo.gl/j2b156">j2b156</a></cite>
+							</span>
+						</dt>
+					</dl>
+
+                    <p>
+                        Need to incentivize studies which <em>responsibly</em>
+                        assess impact of tools and policies on discrimination and hatred.
+                    </p>
+
+                </section>
+
+                <section>
+                    <h3>Codes of Conduct</h3>
+
+                    <p>
+                        Important as <em>dis</em>couragement against scientific misconduct.
+                    </p>
+
+                    <h6 class="code-caption">
+                        Examples of misconduct
+                    </h6>
+                    <blockquote><ul>
+                        <li>Harassment, abuse, violence</li>
+                        <li>Plagarism, misrepresentation of authorship</li>
+                        <li>Discriminatory conduct in general</li>
+                    </ul></blockquote>
+
+                    <ul>
+                        <li>Codes clarify community values, scientific integrity</li>
+                        <li>Formal warnings prevent escalation / institutionalization.</li>
+                        <li>Availability of severe penalties helps address endemic harassment.</li>
+                        <li>Matches industry best-practices.</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <p>
+                        Codes of conduct can come in a variety of forms:
+                    </p>
+
+                    <ul>
+                        <li>
+                            Contributor covenants
+                        </li>
+                        <li>
+                            Journal / professional society ethics
+                        </li>
+                        <li>
+                            Workplace conduct
+                        </li>
+                        <li>
+                            Conference / event conduct
+                        </li>
+                    </ul>
+
+                    <p>
+                        <em>e.g.:</em>
+                        Contributor Convenant, Geek Feminism Code of Conduct, ACM Code of Ethics
+                    </p>
+                </section>
+
+                <section
+                    data-background-color="#fff"
+                    data-background-iframe="https://lfqis.github.io/2017/code-of-conduct/"
+                >
+                </section>
+
+                <section>
+                    <h3>Reducing Barriers to Entry</h3>
+
+                    <p>
+                        None of this matters if it's too hard to use.
+                        How can we reduce barriers to humanitarian research methods?
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>cookiecutter</strong>:
+                            Template creation of new projects.
+                        </li>
+                        <li>
+                            <strong>Software Carpentry / EPQIS / etc</strong>:
+                            Better training in technical tools.
+                        </li>
+                        <li>
+                            <strong>Code of Conduct templates</strong>:
+                            Standard templates for common applications.
+                        </li>
+                    </ul>
+                </section>
+
+            </div>
+
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+        <script src="js/asciinema-player.js"></script>
+
+        <script type="text/x-mathjax-config">
+          MathJax.Hub.Config({
+            'HTML-CSS': {
+                preferredFont: null,
+                webFont: 'Gyre-Pagella'
+            },
+            TeX: {
+                Macros: {
+                    ee: "{\\mathrm{e}}",
+                    ii: "{\\mathrm{i}}",
+                    dd: "{\\mathrm{d}}",
+                    id: "{\u{1d7d9}}",
+                    TT: "{\\mathrm{T}}",
+                    defeq: "{\\mathrel{:=}}",
+                    Tr: "{\\operatorname{Tr}}",
+                    Var: "{\\operatorname{Var}}",
+                    Cov: "{\\operatorname{Cov}}",
+                    rank: "{\\operatorname{rank}}",
+                    expect: "{\\mathbb{E}}",
+                    sket: ["{|#1\\rangle\\negthinspace\\rangle}", 1],
+                    sbraket: ["{\\langle\\negthinspace\\langle#1\\rangle\\negthinspace\\rangle}", 1],
+                    Gini: "{\\operatorname{Ginibre}}",
+                    supp: "{\\operatorname{supp}}",
+                    ket: ["{\\left|#1\\right\\rangle}", 1],
+                    bra: ["{\\left\\langle#1\\right|}", 1],
+                    braket: ["{\\left\\langle#1\\right\\rangle}", 1]
+                }
+            }
+          });
+        </script>
+        <script>
+
+            // Full list of configuration options available at:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: false,
+                progress: true,
+                history: true,
+                center: true,
+                zoomKey: 'shift',
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+                // Optional reveal.js plugins
+                dependencies: [
+                    { src: '//cdnjs.cloudflare.com/ajax/libs/socket.io/0.9.16/socket.io.min.js', async: true },
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/math/math.js', async: true }
+                ]
+            });
+
+            Reveal.addEventListener( 'slidechanged', function( event ) {
+                for (element of event.currentSlide.getElementsByTagName("asciinema-player")) {
+                    element.play();
+                }
+                for (element of event.previousSlide.getElementsByTagName("asciinema-player")) {
+                    element.pause();
+                    element.currentTime = 0;
+                }
+            } );
+
+        </script>
+
+    </body>
+</html>

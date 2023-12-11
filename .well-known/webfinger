@@ -1,0 +1,23 @@
+{
+  "subject": "acct:cgranade@mathstodon.xyz",
+  "aliases": [
+    "https://mathstodon.xyz/@cgranade",
+    "https://mathstodon.xyz/users/cgranade"
+  ],
+  "links": [
+    {
+      "rel": "http://webfinger.net/rel/profile-page",
+      "type": "text/html",
+      "href": "https://mathstodon.xyz/@cgranade"
+    },
+    {
+      "rel": "self",
+      "type": "application/activity+json",
+      "href": "https://mathstodon.xyz/users/cgranade"
+    },
+    {
+      "rel": "http://ostatus.org/schema/1.0/subscribe",
+      "template": "https://mathstodon.xyz/authorize_interaction?uri={uri}"
+    }
+  ]
+}

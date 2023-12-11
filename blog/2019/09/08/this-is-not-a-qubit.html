@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      This is Not a Qubit &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item active" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">This is Not a Qubit</h1>
+  <span class="post-date">08 Sep 2019</span>
+  <h2 id="the-map-is-not-the-territory">The Map is Not The Territory</h2>
+
+<p>There’s a classic observation in philosophy that “the map is not the territory.”
+Though it sounds obvious enough to take entirely for granted, this observation reminds us that there is a difference between the world around us and how we choose to <em>represent</em> that world on a map.
+Depending on what we want to use the map for, we abstract away many different properties of the real world, such as reducing the amount of detail that we include (we clearly can’t include every object in the real world in our maps).
+We may even add things to our map that don’t actually exist in the world, but that we find useful at a social level, such as national borders.
+In all cases, we make these choices so that our model of the world (a map) lets us predict what will happen when walk around the world.
+We can use those predictions to trade off different possible routes, guess at what might be an interesting place to visit, and so forth.</p>
+
+<p><img src="/assets/figures/this-is-not-a-qubit.png" /></p>
+
+<p>The lesson learned from separating maps from the world becomes far less obvious, however, when we are working with realities and abstractions that are less familiar to us.
+It’s quite easy, for instance, for both newcomers and experienced quantum physicists to accidentally conflate a register of qubits with the model we use to predict what that register will do.
+In particular, if we want to simulate how a quantum program transforms data stored in a register of qubits, we can write down a <em>state vector</em> for that register, then use a simulator to propagate that state vector through the unitary matrices for each instruction in our program.</p>
+
+<p>As an example, we can use tools like Q# and the Quantum Development Kit to understand how a quantum program can cause two qubits in a quantum register to become entangled.
+Using IQ# with Jupyter Notebook, we might something like the following (<a href="https://mybinder.org/v2/gist/cgranade/df78c32014986d77b054abf33c45b9d6/master">run online</a>):</p>
+
+<pre><code class="language-Q#">In [1]: open Microsoft.Quantum.Diagnostics;
+...     open Microsoft.Quantum.Measurement;
+...     
+...     operation DemonstrateEntanglement() : (Result, Result) {
+...         using ((left, right) = (Qubit(), Qubit())) {
+...             H(left);
+...             CNOT(left, right);
+...             
+...             DumpMachine();
+...             
+...             return (MResetZ(left), MResetZ(right));
+...         }
+...     }
+Out[1]: DemonstrateEntanglement
+</code></pre>
+
+<p>Here, we’ve defined a new operation that asks for two qubits, then runs the <a href="https://docs.microsoft.com/qsharp/api/qsharp/microsoft.quantum.intrinsic.h"><code class="language-plaintext highlighter-rouge">H</code></a> and <a href="https://docs.microsoft.com/qsharp/api/qsharp/microsoft.quantum.intrinsic.cnot"><code class="language-plaintext highlighter-rouge">CNOT</code></a> instructions on those qubits.
+The call to <a href="https://docs.microsoft.com/qsharp/api/qsharp/microsoft.quantum.diagnostics.dumpmachine"><code class="language-plaintext highlighter-rouge">DumpMachine</code></a> asks the simulator to tell us what information it uses internally to predict what those instructions do, so that when we do the measurements at the end of the program, the simulator knows what it should return.
+Looking at the output of this dump, we see that the simulator represents <code class="language-plaintext highlighter-rouge">left</code> and <code class="language-plaintext highlighter-rouge">right</code> by the state $\left(\ket{00} + \ket{11}\right) / \sqrt{2}$:</p>
+
+<pre><code class="language-Q#">In [2]: %simulate DemonstrateEntanglement
+# wave function for qubits with ids (least to most significant): 0;1
+∣0❭:	 0.707107 +  0.000000 i	 == 	***********
+    [ 0.500000 ]     --- [  0.00000 rad ]
+∣1❭:	 0.000000 +  0.000000 i	 == 	           
+    [ 0.000000 ]                   
+∣2❭:	 0.000000 +  0.000000 i	 == 	           
+    [ 0.000000 ]                   
+∣3❭:	 0.707107 +  0.000000 i	 == 	***********
+    [ 0.500000 ]     --- [  0.00000 rad ]
+Out[2]: (One, One)
+</code></pre>
+
+<p>It might be then tempting to conclude that <code class="language-plaintext highlighter-rouge">left</code> and <code class="language-plaintext highlighter-rouge">right</code> <em>are</em> the state $\left(\ket{00} + \ket{11}\right) / \sqrt{2}$, but this runs counter to what we learned from the example of separating maps of the world from the world itself.
+To resolve this, it helps to think a bit more about what a quantum state is in the context of a quantum program.
+For starters, if I give you a copy of the state of a quantum register at any point in a quantum program, you can predict what the rest of that quantum program will do.
+Implicit in the word “copy,” however, is that the state of a quantum register is a <em>classical</em> description of that register.
+After all, you can’t copy a register of qubits, so the fact that we <strong>can</strong> copy the state is a dead giveaway that state vectors are a kind of classical model.
+That classical model is a pretty useful one, to be fair; it not only lets you simulate what a register of qubits will do, but also lets you prepare new qubits in the same way, using techniques like the Shende–Bullock–Markov algorithm (offered in Q# as the <a href="https://docs.microsoft.com/qsharp/api/qsharp/microsoft.quantum.preparation.preparearbitrarystate"><code class="language-plaintext highlighter-rouge">Microsoft.Quantum.Preparation.PrepareArbitraryState</code></a> operation).</p>
+
+<p>Put differently, while the No-Cloning Theorem tells us that we can’t copy the data encoded by a quantum register into a second register, we can definitely copy the set of steps we used to do that encoding, then use that recipe to prepare a second register.
+Perhaps instead of saying the map is not the territory, then, we should say that the cake is not the recipe!
+While I can use a recipe to prepare a new cake, and to understand what should happen if I follow a particular set of steps, it’s difficult to eat an abstract concept like a recipe and definitely not very tasty.
+It’s also pretty difficult to turn one cake into two, but not that hard to bake a second cake following the same recipe.</p>
+
+<h2 id="the-cake-is-not-a-lie">The Cake is Not a Lie</h2>
+
+<p>Thinking of a quantum state as a kind of recipe I can use to prepare qubits, then, what good is a quantum program?
+To answer that, let’s look at one more example in Q#:</p>
+
+<pre><code class="language-Q#">In [3]: open Microsoft.Quantum.Diagnostics;
+...     open Microsoft.Quantum.Measurement;
+...     open Microsoft.Quantum.Arrays;
+...     
+...     operation DemonstrateMultiqubitEntanglement() : Result[] {
+...         using (register = Qubit[10]) {
+...             H(Head(register));
+...             ApplyToEach(CNOT(Head(register), _), Rest(register));
+...             
+...             DumpMachine();
+...             
+...             return ForEach(MResetZ, register);
+...         }
+...     }
+</code></pre>
+
+<p>If we were to run this one, the simulator would dump out a state with $2^{10} = 1,024$ amplitudes, but it’s much easier to read and understand what that program does by looking at the Q# source itself.
+From that perspective, a quantum program can help us understand a computational task by compressing it down from a description purely in terms of state vectors, focusing back on what we actually want to achieve using a quantum device.
+The simplest and by far the most effective way to both achieve this compression is to simply write down the instructions we need to send to a quantum device to prepare our qubits in a particular state.
+Thus, instead of writing $\ket{+}$, for instance, we write down the program <code class="language-plaintext highlighter-rouge">H(q)</code>.
+Instead of writing down $\ket{++\cdots+}$, we write down <code class="language-plaintext highlighter-rouge">ApplyToEach(H, qs)</code>.
+Instead of writing down a state vector for each individual step in a phase estimation experiment, we write a program that calls <a href="https://docs.microsoft.com/qsharp/api/qsharp/microsoft.quantum.simulation.estimateenergy"><code class="language-plaintext highlighter-rouge">EstimateEnergy</code></a>.
+This has the massive added advantage that we can <em>optimize</em> our quantum programs; that is, we can write down a sequence of instructions that utilizes what we know about the task we’re trying to achieve to use as few quantum instructions as possible.</p>
+
+<p>Indeed, the cake–recipe distinction is especially important as we consider actual quantum devices.
+In order to solve interesting computational problems using quantum computers, we want to be able to measure actual qubits, and get useful answers back.
+At that scale, writing down and thinking only in terms of state vectors simply isn’t possible.
+We need instead to focus on what we actually want to do with our qubits.
+Once we do that, we’re in a much better spot to have our cake and eat it, too.</p>
+
+<hr />
+
+<p>If you liked this post, you’ll love <a href="https://www.manning.com/books/learn-quantum-computing-with-python-and-q-sharp?a_aid=learn-qc-granade&amp;a_bid=ee23f338"><em>Learn Quantum Computing with Python and Q#</em></a>, now in early access preview from Manning Publications.
+Check it out!</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/06/15/questions.html">
+            A Few Questions About Myself
+            <small>15 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/05/08/gh-actions-test.html">
+            Testing GitHub Actions
+            <small>08 May 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/01/13/useful-skills-for-quantum.html">
+            Some useful skills for quantum computing
+            <small>13 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

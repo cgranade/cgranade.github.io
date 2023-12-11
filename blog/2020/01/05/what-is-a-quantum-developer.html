@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      What is a Quantum Developer, Anyway? &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item active" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">What is a Quantum Developer, Anyway?</h1>
+  <span class="post-date">05 Jan 2020</span>
+  <p>Quantum computing has been, to put it mildly, in the news a bit as of late.
+With so many different announcements about and developments in quantum computing, it can feel a bit daunting to jump in and get started.
+Sometimes, quantum computing can even pick up an air of mystique about it, given popular analogies such as “two places at once,” “action at a distance,” and other pretty confusing explanations.</p>
+
+<p>While there’s thankfully quite a range of good content out there to help you get started, it can still be hard to get a feeling for what it’s like to actually <em>be</em> a quantum developer.
+As I talk to people at the bar, in carpools, on Twitter, at conferences, and the like, saying that I work on quantum computing can be a bit of a conversation killer; sure quantum computing is cool, but what do I <strong>do</strong>?
+With this post, I’d like help to demystify things a little bit by talking about what quantum development is like for me as I go about my day.</p>
+
+<h2 id="whoami">WHOAMI?</h2>
+
+<p>But first because everyone’s path to quantum development looks different, a little bit about myself can provide some helpful context.
+I’m Cassandra Granade, a research software development engineer in the Quantum System group at Microsoft.
+Before that, I did a triple-major at the University of Alaska Fairbanks, a Masters degree at the Perimeter Institute, a PhD at the Institute for Quantum Computing, and a postdoc at the University of Sydney.
+Needless to say, learning about quantum computing has been a bit of a thing for me throughout much of my life.
+In my spare time, I’m as liable to be shitposting surreal memes, planning a World of Darkness tabletop campaign, or taking our adorable puppy for a walk to one of Seattle’s surprisingly numerous dog-friendly breweries.</p>
+
+<h2 id="insert-pun-here">insert pun here</h2>
+
+<p>Given that, one might think I spend all day buried in obscure journal papers, nose-deep in a pen-and-paper calculation, or scrawling at a chalkboard.
+While those are all completely valid and useful ways of working on quantum computing, I’ve tried my hand at them and found that at least for myself, there are other ways I can contribute.</p>
+
+<p>Even before starting in undergrad, for example, I have always found a joy in solving problems using programming.
+I got my start back with QBASIC and GWBASIC (yes, I am officially an Old; I’m also a Millennial, somehow?), and loved that I could use programming to get answers to things I was curious about.
+When I wanted to understand population growth and how that affected ecology better, I borrowed my mom’s population dynamics textbook and started programming things up as VBA macros in Excel.</p>
+
+<p>As it turns out, that’s a great approach to working with quantum computing as well.
+Building a quantum computer is hard, and there’s lots of ways that classical computers help us out on our way there.
+We can use classical computers to model what we want quantum computers to do, using linear algebra packages to help us out, or we can use classical computers to run statistical inference algorithms on the data we get back from quantum devices to help us understand how to make better ones.
+Of course, we can go much further as well and use classical computers to write and test the actual programs we want to run on quantum computers; hence the emergence of quantum programming languages like Q#!</p>
+
+<h2 id="so-what-do-you-do">So, what do you <strong>do</strong>?</h2>
+
+<p>As soon as you start using classical computers to solve problems of any sort, you get back into the fun issues of building, testing, packaging, deploying, and designing classical software.
+Recently, as a part of the <a href="https://devblogs.microsoft.com/qsharp/q-advent-calendar-2019/">2019 Q# Advent Calendar</a>, <a href="https://devblogs.microsoft.com/qsharp/everything-you-should-know-about-the-quantum-development-kit-but-were-afraid-to-ask/">Andres Paz explained many of the pieces</a> that make up Q# and the Quantum Development Kit.
+Making Q# work involves writing classical compilers and simulators, integrating with existing languages like C# and Python, making editor integration extensions to help us write quantum programs in the first place, writing documentation for everything, and even making Docker containers to power <a href="https://github.com/cgranade/quantum-research-template">online-first experiences for Q#</a>.
+This is a team effort, as designing, building, and maintaining the Quantum Development Kit necessarily involves more kinds of expertise what any one member of the team brings with them.</p>
+
+<p>For myself, I tend to fit into that team effort by designing and maintaining the different <a href="https://docs.microsoft.com/quantum/libraries/">Q# libraries</a> that come with the QDK, and by working with domain experts to make those libraries as awesome as they can be.
+This means that a large part of my day is writing unit tests in Q#, fixing things when builds fail, reading through pull requests, and working on the best way to package things up so that other quantum developers can make use of the code that I help out with.
+If you’re curious to see more of what I do, <a href="https://github.com/cgranade/">follow me on GitHub</a>!
+Since the Quantum Development Kit is open source, you can follow along as we add new features, fix bugs, introduce new bugs, and otherwise do what you’d expect software developers to do.</p>
+
+<p>Put differently, a large part of the skills that help me as a quantum developer are the same skills that help out in any other software development engineering role.
+While I do use the skills that I’ve learned throughout my quantum computing training on a daily basis, it’s the traditional software development engineering practices that give me the basis I need to make use of those skills.</p>
+
+<h2 id="theres-a-point-to-all-this-right">There’s a point to all this, right?</h2>
+
+<p>As you get involved in quantum computing, you’ll bring your own skills, background, and experience to what you do.
+There’s no one way to be a quantum developer, or to contribute to the quantum computing community.
+My hope is that by showing my particular path, I can provide an example of the way I use my particular background to help the community.
+Your path will look different, and that’s not just OK but wonderful.
+The breath of different skills and backgrounds that come to bear on quantum computing is one of the most amazing things about this field.
+You’ll do amazing things here, and you’ll do them your way.</p>
+
+<hr />
+
+<p><em>If you like this post, vote for it on <a href="https://dev.to/cgranade/what-is-a-quantum-developer-anyway-38l">dev.to</a>, or read</em> <a href="https://bit.ly/qsharp-book">Learn Quantum Computing with Python and Q#</a><em>, now available in early access from Manning Publications.</em></p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/06/15/questions.html">
+            A Few Questions About Myself
+            <small>15 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/05/08/gh-actions-test.html">
+            Testing GitHub Actions
+            <small>08 May 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/01/13/useful-skills-for-quantum.html">
+            Some useful skills for quantum computing
+            <small>13 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

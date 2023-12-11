@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      What We Encourage &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item active" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">What We Encourage</h1>
+  <span class="post-date">31 Mar 2017</span>
+  <h3 id="tldr"><a href="https://github.com/tldr-pages/tldr-python-client" title="His tl;dr needs a tl;dr.">tl;dr</a></h3>
+
+<ul>
+  <li>What we encourage and incentivize has consequences, both direct and unseen.</li>
+  <li>Those incentives often preclude progress on things we claim to value in academic research.</li>
+  <li>Better tools and better institutional support can help.</li>
+  <li>Hey, I made some crappy tools to point to a couple examples of incentives against reproducible research.</li>
+</ul>
+
+<h2 id="incentives">Incentives</h2>
+
+<p>To a large extent, we do what we are encouraged to do. We are after all, more or less social agents, and respond the people and social systems around us as social agents. Examining what we are encouraged to do, and how we build incentive structures to reward some actions and people over others, is thus a matter of perpetual importance. To take one particularly stark example, <a href="https://www.cgranade.com/blog/2016/09/04/save-physics-from-physicists.html">I have argued here before</a> that sexual harassment and discrimination are at least as pervasive in physics as in many other fields of research. One way to combat this, then, is to develop incentive structures that do not further reinforce inequality but instead make it more difficult to use scientific institutions to harass and attack. Thus, we can use tools such as codes of conduct, effective reporting at institutions, and backchannel communication to build better systems of incentives that encourage positive behavior. As a side note, this is especially critical as science funding is under imminent and unprecedented attack in the United States— we’ve seen that public outcry can have magnificent effects for protecting institutions and funding, such that we must ensure that we earn the public support we now so existentially require.</p>
+
+<p>Having thus seen that systems of encouragement can be social, it’s also important to realize that encouragement can come as well in the form of technical constraints imposed by the systems that we build and interact with. To take one particular and relatively small example, the <a href="http://matlabsadness.tumblr.com/post/46228191810/one-function-per-m-file">one-function-per-file</a> design decision of MATLAB <em>encourages</em> users to write longer functions than they might otherwise in a different language. In turn, this makes it harder for MATLAB users to <a href="http://neuroplausible.com/matlab">transfer skills to software development in other languages</a>, <em>discouraging</em> diversity in software tools.</p>
+
+<p>Even though the design decisions made by MATLAB can be often be circumvented by users who disagree, they has a significant impact on what kind of software design decisions get made. For instance, using MATLAB affects how code is shared as well as how APIs are designed. These decisions can in turn also compound with social encouragements; consider the magnification of this example, given the near-exclusive focus on proprietary tools such as MATLAB found in many undergraduate physics programs. That is, our approach to physics education encourages certain software development methodologies over others as an immediate consequence of teaching particular tools rather than methods.</p>
+
+<p>The interaction between social and technical encouragements is widely recognized. In user interface and user experience design, for instance, the concept of an <a href="https://medium.com/@WebdesignerDepot/how-to-perfect-ux-with-design-affordances-79ce78792b08#.tfo7tvoif"><em>affordance</em></a> is used to encourage a user to some set of interactions with a technical system. This understanding can be leveraged as a powerful tool for <em>persuading</em> users both to benefitial and malicious ends, as has been <a href="https://www.amazon.com/Persuasive-Technology-Computers-Interactive-Technologies/dp/1558606432">prominently argued for at least fifteen years</a>. Critically reflecting on how social and technical encouragements combine to affect our behavior is accordingly a pressing issue across different disciplines.</p>
+
+<h2 id="state-of-the-art">State of the Art</h2>
+
+<p>Examining physics methodologies in detail from the perpsective of incentives, let’s then consider what kinds of encouragement we create with our design choices and with our research methodologies by examining a few relevant examples. Importantly, none of these examples represent criticism of individual users or research groups, but rather an examination of what incentives users and groups are under.</p>
+
+<ul>
+  <li>
+    <p><em>Experiment control and analysis</em>: Current expeirmental methodology in physics often concerns itself with <em>ad hoc</em> control systems developed internally by graduate and undergraduate students in a single group. This discourages collaboration between groups using different internal systems, and more critically, can discourage challenging assumptions built in to early stages of experimental control systems. Efforts such as <a href="https://github.com/Galvant/InstrumentKit">InstrumentKit</a>, <a href="https://github.com/Ulm-IQO/qudi">Qudi</a>, and <a href="http://qcodes.github.io/Qcodes/">QCoDeS</a>, <a href="https://github.com/mabuchilab/Instrumental">Instrumental</a>, <a href="https://github.com/0/SpanishAcquisition">SpanishAquisition</a>, and <a href="http://labscriptsuite.org/">Labscript</a> have attempted to change these incentives by instead providing high-quality open source libraries that can work <em>across</em> groups, and hence remove disincentives that can impede collaboration. Collecting common functionality in this way also encourages contributing safety and correctness features that would otherwise be undervalued in a single <em>ad hoc</em> application.</p>
+  </li>
+  <li>
+    <p><em>Statistical analysis</em>: Common software tools such as MATLAB, SciPy, and Mathematica all provide “curve fitting” functionality by default, and report frequentist metrics on the results produced by “curve fitting.” This ready availability encourages the use of “fitting” over other methodologies, even in cases where the theory behind “fitting” does not apply. Taken in conjunction with the reticence of reviewers to point out such methological problems, it isn’t a stretch to say that we directly encourage the publication of incorrect research results by failing to provide easy-to-use and principled statistical analysis tools that match experimental models.</p>
+  </li>
+  <li>
+    <p><em>Collaboration and version control</em>: At least ideally, collaboration forms a cornerstone of scientific research. Accordingly, the writing and editing of research manuscripts is also ideally a collaborative effort. To support that, we often employ software tools such as Dropbox to synchronize changes between collaborators. The technical restrictions imposed by Dropbox, however, present their own encouragements and discouragements. For example, that Dropbox will overwrite changes made concurrently by two users discourages authors from editing on disjoint sections. Often, this is mitigated by social agreements such as “tokens,” where authors agree only to edit a work if they hold the “token” for the TeX source. That Dropbox does not present version history in a consise and readable form also discourages focusing editing efforts on recent changes. The eagerness of Dropbox to share temporary and editor-specific files also discourages the use of modern text editors such as <a href="https://atom.io/">Atom</a>, <a href="https://www.sublimetext.com/">Sublime Text</a> and <a href="https://code.visualstudio.com/">VS Code</a>, each of which uses machine-specific metadata to store information such as undo history. Though these issues can somewhat be mitigated by using formal version control systems such as Git or Mercurial, that many students and postdocs have little to no opportunity to learn such tools presents a strong <em>social</em> discouragement against robust and efficient collaboration.</p>
+  </li>
+  <li>
+    <p><em>Plotting and accessibility</em>: Approximately 10% of the population is at least mildly color-blind such that the use of colors in scientific visualizations can prevent a significant barrier to accessibility. Default color schemes in widely-used tools such as MATLAB <em>discourage</em> accessible design by forcing users to specify that each plot individually should use an accessible palette. Up until recently, the Matplotlib plotting library for Python has similarly discouraged accessible design, though other positive encouragements such as declarative style sheets have somewhat mitigated this.</p>
+  </li>
+</ul>
+
+<h2 id="open-science">Open Science</h2>
+
+<p>One critical component common to each of these examples is that they use the concept of open source software development to change the incentives for researchers. If it becomes easier — if we encourage — contributing to existing efforts instead of reinventing well-understood wheels, then not only does it become less expensive to do cutting-edge research, but it also becomes more practical to do <em>reproducible</em> research. As we can see from reproducibility crises in other fields, physics research likely cannot survive its current model of closed-source closed-data closed-analysis papers hidden behind increasingly-expensive paywalls. Perhaps most critically, the lack of reproducibility in scientific papers can also play a role in <a href="http://www.factcheck.org/2017/02/no-data-manipulation-at-noaa/">exacerbating public mistrust of science</a>. I’ll return to the role that the arXiv plays in changing these incentives later, but suffice to say that open access is not sufficient to imply that a paper or other research output can be independently assessed for correctness. The gap between the openness we currently take as being standard in physics and the level of transparency that we need is thus not a trivial one.</p>
+
+<p>In this discussion, of course, we also cannot afford to elide that open science in general and open source in particular also helps to remove elements of gatekeeping that can be used to preclude participation. In current practice, the expense of performing physics research, be it theory or experiment, naturally concentrates decision-making power in a smaller number of individuals. Though the effects of this concentration can be mitigated to some degree, it is also important to reduce the areas in which cognative biases can hide from critical examination. Reducing barriers to entry can provide a way to do so.</p>
+
+<p><abbr title="Not only does he have a point, he actually got to it eventually!">I posit</abbr> that these self-same barriers to entry are, perhaps ironically, one of the largest impediments to the adoption of open science methodologies in physics. Take, for instance, <a href="http://academia.stackexchange.com/a/86538/70648">the advice offered to me</a> in response to a question about how to adopt better open science methods when posting to the arXiv:</p>
+
+<blockquote>
+  <p>For the sake of persistent archiving you should put all ancillary material at a sustainably archived website specifically designed to preserve scholarly communications material e.g. Zenodo https://zenodo.org/ or Dryad http://datadryad.org/ or Figshare https://figshare.com/</p>
+</blockquote>
+
+<p>I agree with this advice entirely, and have in fact advocated this exact approach with both <a href="http://qinfer.org/">open-source efforts</a> and <a href="https://arxiv.org/abs/1605.05039">reproducible papers</a>. That said, let’s consider the incentive structure imposed by this approach. A student or postdoc taking responsibility for posting a reproducible work to the arXiv must then not only know how to do so directly, including how to write <a href="https://en.wikipedia.org/wiki/Literate_programming">literate source code</a>, but also about the existence of services such as Figshare. Moreover, a researcher must then manage their work’s presence on arXiv as well as additional services, increasing the complexity of maintaining an accessible research output.</p>
+
+<p>Happily, however, arXiv itself <a href="https://arxiv.org/help/ancillary_files">supports including ancillary material</a> such as source code and data along with a paper. Even here, though, the workflow for providing such ancillary material is more complicated than the comparable closed-science workflow. In particular, arXiv identifies ancillary material as being those files included in the <code class="language-plaintext highlighter-rouge">anc/</code> subfolder of a submission package, but subfolders are only supported by uploading a ZIP archive of the entire submission. To make such a ZIP file with most existing tools, the original file must itself be in a folder called <code class="language-plaintext highlighter-rouge">anc/</code>, imposing a nontrivial technical restriction on project folder structures.</p>
+
+<p>To some degree, encouragements of this kind that run counter to open science goals are inevitable. Indeed, there is a bit of a contradiction in that the very goal of reproducible research is to make it more difficult to publish in a way that is disporportionate between papers that are likely correct and those that cannot be as easily assessed for correctness. The natural tendency, then, is for reproducibility advocates <a href="https://twitter.com/csferrie/status/841607819224743936">to yell into the void or into the echo chamber</a> about the existential importance of open science, and for the rest of the community to go forth with their business in the best way that they can given very limited resources.</p>
+
+<p>In the same way as in dealing with discrimination by providing better tools that change incentive structures, we can break this circularity by providing better tools for writing reproducible papers. For instance, one very impressive tool to do precisely this is <a href="https://www.reprozip.org/">ReproZip</a>, which works by leveraging modern software and hardware engineering technologies such as virtual machines. Indeed, ReproZip works great at making it easier to provide compact descriptions of reproducible research projects. This approach works especially well in combination with tools such as <a href="http://jupyter.org/">Jupyter Notebook</a>, which allow for producing standardized and well-understood literate source code for a variety of different languages. Though Jupyter is perhaps most famous for its Python support, having grown out of the IPython project, it also supports <a href="https://github.com/JuliaLang/IJulia.jl">Julia</a>, <a href="https://github.com/IRkernel/IRkernel">R</a>, <a href="https://github.com/fsprojects/IfSharp">F#</a>, and even <a href="https://github.com/Calysto/matlab_kernel">MATLAB</a> when augmented with simple-to-install extensions.</p>
+
+<p>Recently, I have started to experiment with other software tools for changing incentive structures, in the hopes of building on the backs of these efforts. My goals are of course more modest, in keeping with the resources available, but at the least I would like to propose ways of making tools such as Jupyter Notebook more accessible to arXiv users. In the rest of this post, I will detail two such (experimental!) efforts and how they are each motivated by reducing barriers to entry for reproducible physics research.</p>
+
+<h2 id="revquantum"><code class="language-plaintext highlighter-rouge">{revquantum}</code></h2>
+
+<p>The first such effort is the <code class="language-plaintext highlighter-rouge">{revquantum}</code> style file for LaTeX, intended to make it easier to write reproducible and accessible papers in the <code class="language-plaintext highlighter-rouge">{revtex4-1}</code> and <a href="https://github.com/cgogolin/quantum-journal"><code class="language-plaintext highlighter-rouge">{quantumarticle}</code></a> document classes. The <code class="language-plaintext highlighter-rouge">{revquantum}</code> package supports accessiblility in a number of different ways:</p>
+
+<ul>
+  <li>
+    <p><em>Semantic notation</em>: <code class="language-plaintext highlighter-rouge">{revquantum}</code> provides commands such as <code class="language-plaintext highlighter-rouge">\newoperator</code>, which allow users to write in a more semantic fashion than worrying about implementation details. In that example, <code class="language-plaintext highlighter-rouge">\newoperator{Tr}</code> defines <code class="language-plaintext highlighter-rouge">\Tr</code> as <code class="language-plaintext highlighter-rouge">\newcommand{\Tr}{\operatorname{Tr}}</code>, resulting in more readable code than what might be produced directly, such as <code class="language-plaintext highlighter-rouge">\mathrm{Tr}(\rho)</code>.</p>
+  </li>
+  <li>
+    <p><em>Accessible color palettes</em>: <code class="language-plaintext highlighter-rouge">{revquantum}</code> also provides definitions for the <a href="jfly.iam.u-tokyo.ac.jp/color/">Color Universal Design</a> palette, such that users can quickly set colors for TikZ diagrams and other features in an accessible manner.</p>
+  </li>
+  <li>
+    <p><em><code class="language-plaintext highlighter-rouge">{listings}</code> integration</em>: The <code class="language-plaintext highlighter-rouge">{listings}</code> package provides invaluable tools for including source code along with research manuscripts. There are some subtle issues in integrating <code class="language-plaintext highlighter-rouge">{listings}</code> with <code class="language-plaintext highlighter-rouge">{revtex4-1}</code> and other such classes, however, such that <code class="language-plaintext highlighter-rouge">{revquantum}</code> provides a reasonable set of defaults that for use with <code class="language-plaintext highlighter-rouge">{revtex4-1}</code>.</p>
+  </li>
+  <li>
+    <p><em>Package compatibility warnings</em>: There are a few commonly-used packages which are known to be incompatible with <code class="language-plaintext highlighter-rouge">{revtex4-1}</code>. These incompatibilities can cause difficult-to-diagnose errors, however, instead of immediately raising errors that identify the problem. To address this and prevent users from being discouraged against modular TeX design, <code class="language-plaintext highlighter-rouge">{revquantum}</code> will raise warnings or errors when incompatible packages are loaded so that users are immediately informed as to the issue.</p>
+  </li>
+  <li>
+    <p><em>Bibliography improvements</em>: The default BibTeX style file provided with <code class="language-plaintext highlighter-rouge">{revtex4-1}</code> suppresses the titles of cited papers in order to match the formatting that might appear in PRL and similar journals. For deployment to the arXiv, though, where space constraints are much less of an issue, this design decision removes context from the reader and encourages more of a focus on where something is published than the content that is being cited. To address this and encourage a stronger focus on research content, <code class="language-plaintext highlighter-rouge">{revquantum}</code> sets a default configuration that provides more context in generated bibliographies. Moreover, <code class="language-plaintext highlighter-rouge">{revquantum}</code> changes citation URLs to default to HTTPS, encouraging better security practices.</p>
+  </li>
+  <li>
+    <p><em>Annotations for collaborative writing</em>: Finally, <code class="language-plaintext highlighter-rouge">{revquantum}</code> provides new lightweight commands such as <code class="language-plaintext highlighter-rouge">\todo</code> and <code class="language-plaintext highlighter-rouge">\citeneed</code> for annotating remaining tasks in a collaborative document. These commands leave warnings in the log file, making them easy to identify in modern text editors that annotate warnings in the TeX source. Moreover, the <code class="language-plaintext highlighter-rouge">[final]</code> option ot <code class="language-plaintext highlighter-rouge">{revquantum}</code> promotes these warnings to errors, providing a safety check against leaving outstanding tasks.</p>
+  </li>
+</ul>
+
+<h2 id="poshtex">PoShTeX</h2>
+
+<p>The other effort I would like to detail a bit here is <a href="https://www.cgranade.com/posh-tex/">PoShTeX</a>, a set of PowerShell tools for working with TeX-based research projects. In particular, PoShTeX provides the <code class="language-plaintext highlighter-rouge">Export-ArXivArchive</code> command, which makes a ZIP archive suitable for uploading to arXiv. In doing so, PoShTeX will rebuild the current TeX file, and will optionally re-run any nominated Jupyter Notebooks to ensure consistency with the figures and descriptions provided in the project’s main text. For example, a project might include a short <code class="language-plaintext highlighter-rouge">Export-ArXiv.ps1</code> script to produce an arXiv-compatible archive:</p>
+
+<div class="language-powershell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#region Bootstrap PoShTeX</span><span class="w">
+</span><span class="nv">$modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Get-Module</span><span class="w"> </span><span class="nt">-ListAvailable</span><span class="w"> </span><span class="nt">-Name</span><span class="w"> </span><span class="nx">posh-tex</span><span class="p">;</span><span class="w">
+</span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nv">$modules</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="n">Install-Module</span><span class="w"> </span><span class="nx">posh-tex</span><span class="w"> </span><span class="nt">-Scope</span><span class="w"> </span><span class="nx">CurrentUser</span><span class="p">}</span><span class="w">
+</span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="nv">$modules</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nf">?</span><span class="w"> </span><span class="p">{</span><span class="bp">$_</span><span class="o">.</span><span class="nf">Version</span><span class="w"> </span><span class="o">-ge</span><span class="w"> </span><span class="s2">"0.1.4"</span><span class="p">}))</span><span class="w"> </span><span class="p">{</span><span class="n">Update-Module</span><span class="w"> </span><span class="nx">posh-tex</span><span class="p">}</span><span class="w">
+</span><span class="n">Import-Module</span><span class="w"> </span><span class="nx">posh-tex</span><span class="w"> </span><span class="nt">-Version</span><span class="w"> </span><span class="s2">"0.1.4"</span><span class="w">
+</span><span class="c">#endregion</span><span class="w">
+
+</span><span class="n">Export-ArXivArchive</span><span class="w"> </span><span class="nt">-RunNotebooks</span><span class="w"> </span><span class="p">@{</span><span class="w">
+    </span><span class="nx">ProjectName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-little-pauli"</span><span class="p">;</span><span class="w">
+    </span><span class="nx">TeXMain</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"my-little-pauli.tex"</span><span class="p">;</span><span class="w">
+    </span><span class="nx">AdditionalFiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@{</span><span class="w">
+        </span><span class="s2">"fig/*.pdf"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">"fig/"</span><span class="p">;</span><span class="w">
+        </span><span class="s2">"data/tomography-data.hdf5"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">$null</span><span class="p">;</span><span class="w">
+        </span><span class="s2">"revquantum.sty"</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="bp">$null</span><span class="p">;</span><span class="w">
+    </span><span class="p">};</span><span class="w">
+    </span><span class="nx">Notebooks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">@(</span><span class="w">
+        </span><span class="s2">"src/fidelity_is_magic.ipynb"</span><span class="w">
+    </span><span class="p">)</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>This script will then install PoShTeX if it is not already available, and will then rerun the listed notebooks, compile the TeX output, and produce the final build file <code class="language-plaintext highlighter-rouge">my-little-pauli.zip</code> for uploading to arXiv. In this way, PoShTeX makes it very straightforward to include reproducible material.</p>
+
+<p>The second major functionality provided by PoShTeX is that it makes it much easier to write reusable LaTeX resources such as style files by making it easy to write installers and produce CTAN-compatible archives. This is, for example, how <code class="language-plaintext highlighter-rouge">{revquantum}</code> is packaged and uploaded to CTAN. Thus, PoShTeX hopefully also encourages not only sharing the research code itself but also the LaTeX code used to produce legible and readable research documents.</p>
+
+<p>By the way, why PowerShell? It may seem like an odd choice for encouraging open scientific research, but consider that a very significant majority of Windows users already have PowerShell, given its status as a built-in tool since Windows 7. Though bash enjoys even wider deployment on macOS / OS X and on Linux, the [recent availability of PowerShell as an open source tool] on non-Windows platforms changes this calculus dramatically. In particular, given the ease of installing PowerShell modules with the <code class="language-plaintext highlighter-rouge">Install-Module</code> command, PowerShell may offer a way forward to distribute cross-platform shell libraries in an easy-to-use way.</p>
+
+<h2 id="concluding-remarks">Concluding Remarks</h2>
+
+<p><abbr title="Long post is long…">In this post</abbr>, I’ve described a few ways that what we encourage can have dramatic negative or hopefully positive effects on research culture and practice. These examples all speak to how thinking not only critically but also systematically can provide a path forward for doing the best science that we can.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/06/15/questions.html">
+            A Few Questions About Myself
+            <small>15 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/05/08/gh-actions-test.html">
+            Testing GitHub Actions
+            <small>08 May 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/01/13/useful-skills-for-quantum.html">
+            Some useful skills for quantum computing
+            <small>13 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

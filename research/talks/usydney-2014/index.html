@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Quantum Bootstrapping &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Quantum Bootstrapping</h1>
+  <p><strong><a href="/">Cassandra Granade</a><sup><a href="#affil-iqc">1</a>, <a href="#affil-uwphys">2</a></sup></strong>,
+joint work with
+<strong><a href="http://research.microsoft.com/en-us/people/nawiebe/">Nathan Wiebe</a><sup><a href="#affil-msr">3</a></sup>,
+<a href="http://csferrie.com/">Christopher Ferrie</a><sup><a href="#affil-cquic">4</a></sup>, and
+<a href="http://iqc.uwaterloo.ca/iqc-directory/dcory/">D. G. Cory</a><sup><a href="#affil-iqc">1</a>,<a href="#affil-uwchem">5</a>,<a href="#affil-pi">6</a>,<a href="#affil-cifar">7</a></sup></strong></p>
+
+<blockquote>
+  <p>Primarily based on <a href="https://scirate.com/arxiv/1409.1524">arXiv:1409.1524</a>, with a review of <a href="https://scirate.com/arxiv/1207.1655">arXiv:1207.1655</a> and <a href="../../arb/">arXiv:1404.5275</a>.</p>
+</blockquote>
+
+<p>To be presented in the week of 7 September, as a seminar at the University of Sydney.</p>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td>Slides: <a href="slides.pdf">PDF</a></td>
+        <td><a href="slides.tex">LaTeX</a></td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>Recent work in quantum Hamiltonian learning (QHL) has shown that quantum simulation is a valuable tool for learning empirical models for quantum systems.<br />
+In this talk, we review the classical and quantum Hamiltonian learning formalisms, then show an extension of QHL that uses small quantum simulators to characterize and learn control models for larger devices with wide classes of physically realistic Hamiltonians.
+This leads to a new application for small quantum computers: characterizing and controlling larger quantum computers.
+Our protocol achieves this by using Bayesian inference in concert with Lieb-Robinson bounds and interactive quantum learning methods to achieve compressed simulations for characterization.
+We illustrate the efficiency of our bootstrapping protocol by showing numerically that an 8-qubit Ising model simulator can be used to calibrate and control a 50 qubit Ising simulator while using only about 750 kilobits of experimental data.</p>
+
+<h2 id="bibliography">Bibliography</h2>
+
+<blockquote>
+  <p><a href="https://www.zotero.org/cgranade/items/collectionKey/8Q8XCFST">View on Zotero</a></p>
+</blockquote>
+
+<h2 id="affiliations">Affiliations</h2>
+
+<ol>
+  <li><a id="affil-iqc"></a><a href="http://iqc.uwaterloo.ca">Institute for Quantum Computing, University of Waterloo</a>.</li>
+  <li><a id="affil-uwphys"></a><a href="https://uwaterloo.ca/physics-astronomy/">Department of Physics, University of Waterloo</a>.</li>
+  <li><a id="affil-msr"></a><a href="http://research.microsoft.com/en-us/">Microsoft Research</a>.</li>
+  <li><a id="affil-cquic"></a><a href="http://physics.unm.edu/CQuIC/">Center for Quantum Information and Control, University of New Mexico</a>.</li>
+  <li><a id="affil-uwchem"></a><a href="https://uwaterloo.ca/chemistry/">Department of Chemistry, University of Waterloo</a>.</li>
+  <li><a id="affil-pi"></a><a href="http://www.perimeterinstitute.ca/">Perimeter Institute for Theoretical Physics</a>.</li>
+  <li><a id="affil-cifar"></a><a href="http://www.cifar.ca/">Canadian Institute for Advanced Research</a>.</li>
+</ol>
+
+</div>
+
+    </div>
+
+  </body>
+</html>

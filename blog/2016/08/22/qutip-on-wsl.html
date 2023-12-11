@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      QuTiP on Anaconda on Bash on Ubuntu on Windows &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item active" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">QuTiP on Anaconda on Bash on Ubuntu on Windows</h1>
+  <span class="post-date">22 Aug 2016</span>
+  <p>This post covers:</p>
+
+<ul>
+  <li>Installing Ubuntu on Windows.</li>
+  <li>Installing Ubuntu packages.</li>
+  <li>Installing Anaconda Python for Linux in Ubuntu on Windows.</li>
+  <li>Installing QuTiP in Ubuntu on Windows.</li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Recently, Microsoft introduced Bash on Ubuntu on Windows, a full Ubuntu stack running on the Windows kernel instead of the Linux kernel. This opens an opportunity for scientific computing, as it allows for Windows users to run the same version of powerful tools such as Python as Linux users. While at first blush, installing Ubuntu on Windows seems like massive overkill, it goes a long way towards improving interoperability and accessibility for scientific computing on Windows. Moreover, Ubuntu on Windows is much lighter-weight than running a full virtual machine, and can easily interoperate with native Windows software by sharing common file systems.
+Using Ubuntu on Windows can also help lower the barrier to entry for a full Ubuntu Linux stack by making it much easier to learn and experiment with Linux software.</p>
+
+<p>That said, Bash on Ubuntu on Windows is still a very new tool, and has a few limitations that can cause problems. In particular, Bash on Ubuntu on Windows only works on Windows 10 Anniversary Update (launched August 2016).
+In this post, I’ll detail how to get up and running with Bash on Ubuntu on Windows, using the example of the QuTiP library for quantum information.</p>
+
+<p>In particular, this post proceeds in four parts, each concerning how to install a different part of the full stack, along with some background on what each different layer provides. As a result, this post runs a bit long. That said, the actual steps are fairly straightforward.</p>
+
+<h2 id="what-is-ubuntu-on-windows">What is Ubuntu on Windows?</h2>
+
+<p>First, however, it helps to delve a little bit into what exactly Bash on Ubuntu on Windows <em>is</em>. Largely, Bash on Ubuntu on Windows is a complete installation of the Ubuntu Linux distribution, but running on the new Windows Subsystem for Linux (WSL) instead of Linux itself. WSL works by translating Linux operating system features into their equivalents under Windows, such that software designed for Linux can be run on WSL without modification. In particular, the Bash command-line that ships with Ubuntu works wonderfully on WSL, and forms the basis for Bash on Ubuntu on Windows.</p>
+
+<p>For more detail, Microsoft’s WSL blog has a <a href="https://blogs.msdn.microsoft.com/wsl/2016/04/22/windows-subsystem-for-linux-overview/">very nice introduction</a> to the architecture underlying Ubuntu on Windows.</p>
+
+<h2 id="installing-windows-subsystem-for-linux">Installing Windows Subsystem for Linux</h2>
+
+<p>Since the Windows Subsystem for Linux is still in beta, we have to jump through a few hoops to enable WSL. Thankfully, these steps only need to be done once, and then we’ll have a working Ubuntu install that we can use for whatever additional software packages we like. Microsoft has provided a <a href="https://msdn.microsoft.com/commandline/wsl/install_guide?f=255&amp;MSPPError=-2147217396">very complete guide</a> to installing WSL; here, we’ll briefly summarize those instructions.</p>
+
+<p>First, it is critical that your Windows 10 installation is fully up to date, and is running Anniversary Update. To check, go to <em>Settings → System → About</em>, and check that the build number is at least 14393. If you are running an earlier version of Windows 10, you can normally update to Anniversary Update by using <em>Settings → Update and security → Windows Update</em> to check for updates. Alternatively, you can manually upgrade to Anniversary Update by using the <a href="https://support.microsoft.com/en-us/help/12387/windows-10-update-history?ocid=update_setting_client">installer provided by Microsoft</a>.</p>
+
+<p>Once that’s done, we can enable beta features in Windows. This requires turning on Developer Mode under <em>Settings → Update and Security → For developers</em>. Ensure that the Developer Mode option is checked here; this may require rebooting. Next, if you aren’t already a member of the <a href="http://insider.windows.com/">Windows Insider Program</a>, you’ll need to join with your Microsoft account.</p>
+
+<p>Now that we have access to beta features, we can enable Windows Subsystem for Linux. Press the Start button, and search for “Turn Windows features on or off.” From that dialog, check the box next to <em>Windows Subsystem for Linux (Beta)</em> and press <strong>OK</strong>. This will reboot your computer and install WSL.</p>
+
+<p><img src="/assets/figures/startmenu-windows-features.png" width="400px" /></p>
+
+<p>Finally, we can install Ubuntu on Windows by running one last command. From the Start menu, run PowerShell, then type and run the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PS&gt; bash
+</code></pre></div></div>
+
+<p>You will be prompted to install Ubuntu on Windows, and to create a new user account for Ubuntu. This need not match your Windows account, as it exists only within your Ubuntu installation.</p>
+
+<h2 id="installing-ubuntu-packages">Installing Ubuntu Packages</h2>
+
+<p>Once we have WSL and Ubuntu on Windows installed, we can easily use Ubuntu’s built-in package manager to quickly add additional tools. In particular, QuTiP compiles code on the fly to help improve performance, such that we’ll need to install a compiler toolchain. Ubuntu uses the powerful <em>apt</em> program to manage software installations.</p>
+
+<p>To install packages, first run Bash on Ubuntu on Windows from the Start Menu to bring up the Bash command line.</p>
+
+<p><img src="/assets/figures/bash-for-windows-blank.png" /></p>
+
+<p>We will need GCC and GFortran, the C and Fortran compilers that come with Ubuntu. We’ll also install Git, as this will make it easy to later install pre-release versions of QuTiP. Finally, we also install the <code class="language-plaintext highlighter-rouge">lsb</code> package, which provides the Linux Standards Base expected by many common Linux software packages. We can install all four packages with the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ sudo apt-get install gcc gfortran git lsb
+</code></pre></div></div>
+
+<p>Breaking this down a bit, <code class="language-plaintext highlighter-rouge">sudo</code> causes the rest of the command to be run as the <em>root user</em>. In Ubuntu on Windows, this is the root user for your Ubuntu installation. Since WSL installs a separate copy of Ubuntu on Windows for each Windows user, the root Ubuntu user only has access to the resource your Windows account can access.</p>
+
+<p>The rest of the command tells <code class="language-plaintext highlighter-rouge">apt</code> to install the aforementioned four packages, along with any other packages that they require. It should take just a few minutes to download and install everything.</p>
+
+<h2 id="installing-anaconda">Installing Anaconda</h2>
+
+<p>The next step is to install the Anaconda distribution of Python, as Anaconda provides a wide range of cutting-edge Python packages for scientific computing. This is not strictly required, as Ubuntu on Windows does ship with a perfectly fine Python installation.</p>
+
+<p>That said, here I’ll focus on installing Anaconda 4.1.1 for Python 3.5; later versions can be found from <a href="https://www.continuum.io/downloads">Continuum Analytics</a> as they are released. Importantly, we will be using the 64-bit Linux version of Anaconda. The Windows Subsystem for Linux allows us to run the Linux version from within Bash on Ubuntu on Windows.</p>
+
+<p>We’ll use the <code class="language-plaintext highlighter-rouge">wget</code> command that comes with Ubuntu to download Anaconda. From Bash on Ubuntu on Windows, run the following command:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ wget http://repo.continuum.io/archive/Anaconda3-4.1.1-Linux-x86_64.sh
+</code></pre></div></div>
+
+<p>Once this is done, we can run the Anaconda installer:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ bash Anaconda3-4.1.1-Linux-x86_64.sh
+</code></pre></div></div>
+
+<p>The Anaconda installer will ask a sequence of questions. We’ll want the default answer (press ENTER) on each question but the last one:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Do you wish the installer to prepend the Anaconda3 install location
+to PATH in your /home/cgranade/.bashrc ? [yes|no]
+[no] &gt;&gt;&gt;
+</code></pre></div></div>
+
+<p>Type <code class="language-plaintext highlighter-rouge">yes</code> and press ENTER. Anaconda is now installed into Ubuntu on Windows. Quit and relaunch Bash for the changes to take effect. To confirm, run <code class="language-plaintext highlighter-rouge">which python</code> to see which version of Python will be run by Bash. You should see something like <code class="language-plaintext highlighter-rouge">/home/cgranade/anaconda3/bin/python</code>.</p>
+
+<p>By default, Anaconda will use the Intel Math Kernel Library (MKL) to accelerate numeric computation in Python. Unfortunately, MKL is not yet fully compatible with WSL, so we’ll need to disable some MKL features. As reported by <a href="https://github.com/Microsoft/BashOnWindows/issues/785">Evfro</a>, MKL for WSL is incompatable with a feature known as <em>kernel thread affinity</em>, so we’ll disable that feature now.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ printf "set KMP_AFFINITY=disabled\nexport KMP_AFFINITY" &gt;&gt; ~/.bashrc
+$ source ~/.bashrc
+</code></pre></div></div>
+
+<p>Now that Anaconda is installed, we can use Python, IPython, and other powerful tools from within Ubuntu on Windows. In particular, we can use Jupyter Notebook by using the command</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ jupyter notebook --no-browser
+</code></pre></div></div>
+
+<p>This will start a server at <code class="language-plaintext highlighter-rouge">http://localhost:8888</code> that can be used from your favorite browser on Windows. When you’re done, press Ctrl-C from within Bash on Ubuntu on Windows to stop the Notebook server.</p>
+
+<h2 id="installing-qutip">Installing QuTiP</h2>
+
+<p>We’re almost there, as we now have installed Ubuntu on Windows, a compiler toolchain, and the Anaconda distribution. We’ll finish up by installing QuTiP itself. With everything else in place, this is quite straightforward. Anaconda ships with <em>pip</em>, an installer for Python packages.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pip install qutip
+</code></pre></div></div>
+
+<p>If you would prefer to install the latest development version, you can specify the QuTiP Git repository instead:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ pip install git+https://github.com/qutip/qutip.git
+</code></pre></div></div>
+
+<p>In either case, QuTiP ships with a wide variety of tests that can be used to ensure that the install worked properly. We can run these using the <code class="language-plaintext highlighter-rouge">qutip.testing.run()</code> function:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ ipython
+Python 3.5.2 |Anaconda custom (64-bit)| (default, Jul  2 2016, 17:53:06)
+Type "copyright", "credits" or "license" for more information.
+
+IPython 4.2.0 -- An enhanced Interactive Python.
+?         -&gt; Introduction and overview of IPython's features.
+%quickref -&gt; Quick reference.
+help      -&gt; Python's own help system.
+object?   -&gt; Details about 'object', use 'object??' for extra details.
+
+In [1]: import qutip.testing
+
+In [2]: qutip.testing.run()
+</code></pre></div></div>
+
+<p>Depending on your system, these tests should take from ten to forty minutes to run. If all goes well, they should complete without any errors (some warnings and debug messages are normal, though), indicating that the install was successful and that you’re up and running with QuTiP. Enjoy!</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/06/15/questions.html">
+            A Few Questions About Myself
+            <small>15 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/05/08/gh-actions-test.html">
+            Testing GitHub Actions
+            <small>08 May 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/01/13/useful-skills-for-quantum.html">
+            Some useful skills for quantum computing
+            <small>13 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>

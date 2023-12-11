@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Robust Online Hamiltonian Learning &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Robust Online Hamiltonian Learning</h1>
+  <p><strong><a href="/">Cassandra Granade</a><sup><a href="#affil1">1</a>,<a href="#affil2">2</a></sup>, <a href="http://csferrie.com/">Chris Ferrie</a><sup><a href="#affil1">1</a>,<a href="#affil3">3</a></sup>, <a href="https://services.iqc.uwaterloo.ca/people/profile/nwiebe/">Nathan Wiebe</a><sup><a href="#affil1">1</a>,<a href="#affil4">4</a></sup> and <a href="http://iqc.uwaterloo.ca/iqc-directory/dcory/">D. G. Cory</a><sup><a href="#affil1">1</a>,<a href="#affil5">5</a>,<a href="#affil6">6</a></sup></strong></p>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td>2012 New Journal of Physics <strong>14</strong> 103013</td>
+        <td> </td>
+      </tr>
+      <tr>
+        <td><a href="http://arxiv.org/abs/1207.1655">arXiv:1207.1655</a></td>
+        <td><a href="http://dx.doi.org/10.1088/1367-2630/14/10/103013">doi:10.1088/1367-2630/14/10/103013</a></td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<p>Presented as a poster at <a href="http://www.uoguelph.ca/quigs/tqc2013/">TQC 2013</a> (<a href="rohl/tqc-poster.pdf">Poster PDF</a>, <a href="http://drops.dagstuhl.de/opus/frontdoor.php?source_opus=4318">Proceedings</a>).
+Presented as a contributed talk at <a href="http://www.aps.org/units/damop/meetings/annual/">DAMOP 2013</a> (<a href="rohl/damop-slides.pdf">Slides PDF</a>).</p>
+
+<h2 id="abstract">Abstract</h2>
+
+<p>In this work we combine two distinct machine learning methodologies, sequential Monte Carlo and Bayesian experimental design, and apply them to the problem of inferring the dynamical parameters of a quantum system. We design the algorithm with practicality in mind by including parameters that control trade-offs between the requirements on computational and experimental resources. The algorithm can be implemented online (during experimental data collection), avoiding the need for storage and post-processing. Most importantly, our algorithm is capable of learning Hamiltonian parameters even when the parameters change from experiment-to-experiment, and also when additional noise processes are present and unknown. The algorithm also numerically estimates the Cramer-Rao lower bound, certifying its own performance.</p>
+
+<h2 id="software-resources-and-demonstrations">Software Resources and Demonstrations</h2>
+
+<p><a href="https://github.com/csferrie/python-qinfer"><strong>QInfer</strong></a>, a Python-language
+implementation of the algorithm presented in this work, is
+<a href="https://github.com/csferrie/python-qinfer">available from GitHub</a>.</p>
+
+<iframe width="960" height="720" src="https://www.youtube-nocookie.com/embed/4EiD8JcCSlQ?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen=""></iframe>
+
+<p>[<a href="http://nbviewer.ipython.org/url/www.cgranade.com/research/rohl/demos/animated_multicos.ipynb">source code for above demo</a>]</p>
+
+<h2 id="bibliography">Bibliography</h2>
+
+<blockquote>
+  <table>
+    <tbody>
+      <tr>
+        <td>View on <a href="https://www.zotero.org/cgranade/items/collectionKey/T8KG53T9">Zotero</a></td>
+        <td><a href="http://www.citeulike.org/user/cgranade/tag/publication-rohl">citeulike</a></td>
+      </tr>
+    </tbody>
+  </table>
+</blockquote>
+
+<ol>
+  <li>M. Paris and J. Rehacek, eds., <a href="http://www.springer.com/physics/quantum+physics/book/978-3-540-22329-0">Quantum State Estimation</a>, vol. 649 of Lecture Notes in Physics (Springer, 2004), ISBN 978-3-540-22329-0.</li>
+  <li>B. P. Lanyon et al., <a href="http://www.sciencemag.org/content/334/6052/57.abstract">Universal Digital Quantum Simulation with Trapped Ions</a>, Science 334, 57 (2011).</li>
+  <li>R. Gerritsma et al., <a href="http://link.aps.org/doi/10.1103/PhysRevLett.106.060503">Quantum Simulation of the Klein Paradox with Trapped Ions</a>, Phys. Rev. Lett. 106, 060503 (2011).</li>
+  <li>K. Kim et al., <a href="http://www.sciencemag.org/content/334/6052/57">Universal Digital Quantum Simulation with Trapped Ions</a>, Nature (London) 465, 590 (2010).</li>
+  <li>A. Bendersky, F. Pastawski, and J. P. Paz, <a href="http://prl.aps.org/abstract/PRL/v100/i19/e190403">Selective and Efficient Estimation of Parameters for Quantum Process Tomography</a>, Phys. Rev. Lett. 100, 190403 (2008).</li>
+  <li>A. Bendersky, F. Pastawski, and J. P. Paz, <a href="http://link.aps.org/doi/10.1103/PhysRevA.80.032116">Selective and efficient quantum process tomography</a>, Phys. Rev. A 80, 032116 (2009).</li>
+  <li>M. Mohseni and A. T. Rezakhani, <a href="http://link.aps.org/doi/10.1103/PhysRevA.80.010101">Equation of motion for the process matrix: Hamiltonian identification and dynamical control of open quantum systems</a>, Phys. Rev. A 80, 010101 (2009).</li>
+  <li>M. P. A. Branderhorst et al., <a href="http://stacks.iop.org/1367-2630/11/i=11/a=115010">Simplified quantum process tomography</a>, New Journal of Physics 11, 115010 (2009).</li>
+  <li>S. T. Flammia and Y. K. Liu, <a href="http://dx.doi.org/10.1103/PhysRevLett.106.230501">Direct Fidelity Estimation from Few Pauli Measurements</a>, Physical Review Letters 106, 230501+ (2011).</li>
+  <li>M. P. da Silva, O. L. Cardinal, and D. Poulin, <a href="http://dx.doi.org/10.1103/PhysRevLett.107.210404">Practical Characterization of Quantum Devices without Tomography</a>, Physical Review Letters 107, 210404+ (2011).</li>
+  <li>D. Oi and S. Schirmer, <a href="http://arxiv.org/abs/1202.5779">Quantum system characterization with limited resources</a> (2012), 1202.5779.</li>
+  <li>A. Doucet and A. M. Johansen, <a href="http://www.cs.ubc.ca/~arnaud/doucet_johansen_tutorialPF.pdf">A Tutorial on Particle Filtering and Smoothing: Fifteen Years Later</a> (Oxford University Press, 2009).</li>
+  <li>T. J. Loredo, <a href="http://dx.doi.org/10.1063/1.1751377">Bayesian Adaptive Exploration</a>, AIP Conference Proceedings 707, 330 (2004).</li>
+  <li>H. Kuck, N. de Freitas, and A. Doucet, <a href="http://dx.doi.org/10.1109/NSSPW.2006.4378829">SMC Samplers for Bayesian Optimal Nonlinear Design</a>, in Nonlinear Statistical Signal Processing Workshop, 2006 IEEE (IEEE, 2006), pp. 99-102, ISBN 978-1-4244-0581-7.</li>
+  <li>B. Scarpa and D. B. Dunson, <a href="http://dx.doi.org/10.1002/sim.2846">Bayesian methods for searching for optimal rules for timing intercourse to achieve pregnancy</a>, Statist. Med. 26, 1920 (2007).</li>
+  <li>D. R. Cavagnaro, M. A. Pitt, and J. I. Myung, <a href="oks.nips.cc/nips22.html">Adaptive Design Optimization in Experiments with People</a>, Advances in Neural Information Processing Systems 22, 234-242 (2010).</li>
+  <li>N. Kantas, A. Lecchini-Visintini, and J. M. Maciejowski, <a href="http://dx.doi.org/10.1002/acs.1204">Simulation-based Bayesian optimal design of aircraft trajectories for air traffic management</a>, Int. J. Adapt. Control Signal Process. 24, 882 (2010).</li>
+  <li>X. Huan and Y. M. Marzouk, <a href="http://arxiv.org/abs/1108.4146">Simulation-based optimal Bayesian experimental design for nonlinear systems</a> (2011), 1108.4146.</li>
+  <li>F. Huszár and N. M. T. Houlsby, <a href="http://dx.doi.org/10.1103/PhysRevA.85.052120">Adaptive Bayesian quantum tomography</a>, Physical Review A 85 052120 (2012), ISSN 1094-1622, 1107.0895.</li>
+  <li>E. Bagan, M. A. Ballester, R. D. Gill, M. noz Tapia, and O. R. Isart, <a href="http://dx.doi.org/10.1103/PhysRevLett.97.130501">Separable Measurement Estimation of Density Matrices and its Fidelity Gap with Collective Protocols</a>, Physical Review Letters 97, 130501+ (2006).</li>
+  <li>R. A. Servedio and S. J. Gortler, <a href="http://dx.doi.org/10.1137/S0097539704412910">Equivalences and Separations Between Quantum and Classical Learnability</a>, SIAM Journal on Computing 33, 1067 (2004), ISSN 0097-5397.</li>
+  <li>E. Aïmeur, G. Brassard, and S. Gambs, <a href="http://dx.doi.org/10.1007/11766247_37">Machine Learning in a Quantum World</a>, (Springer Berlin / Heidelberg, Berlin, Heidelberg, 2006), vol. 4013 of Lecture Notes in Computer Science, chap. 37, pp. 431-442, ISBN 978-3-540-34628-9.</li>
+  <li>S. Aaronson, <a href="http://dx.doi.org/10.1098/rspa.2007.0113">The learnability of quantum states</a>, Proceedings of the Royal Society A: Mathematical, Physical and Engineering Science 463, 3089-3114 (2007), ISSN 1471-2946.</li>
+  <li>A. Hentschel and B. C. Sanders, <a href="http://dx.doi.org/10.1103/PhysRevLett.104.063603">Machine Learning for Precise Quantum Measurement</a>, Physical Review Letters 104, 063603+ (2010).</li>
+  <li>K. L. Pudenz and D. A. Lidar, <a href="http://arxiv.org/abs/1109.0325">Quantum adiabatic machine learning</a>, (2011), 1109.0325.</li>
+  <li>A. Hentschel and B. C. Sanders, <a href="http://dx.doi.org/10.1103/PhysRevLett.107.233601">Efficient Algorithm for Optimizing Adaptive Quantum Metrology Processes</a>, Physical Review Letters 107, 233601 (2011).</li>
+  <li>A. Sergeevich and S. D. Bartlett, <a href="http://arxiv.org/abs/1206.3830">Optimizing qubit Hamiltonian parameter estimation algorithms using PSO</a>, (2012), 1206.3830.</li>
+  <li>C. M. Caves, <a href="http://link.aps.org/doi/10.1103/PhysRevD.33.1643">Quantum mechanics of measurements distributed in time. A path-integral formulation</a>, Physical Review D 33, 1643 (1986).</li>
+  <li>M. Tsang, <a href="http://dx.doi.org/10.1103/PhysRevLett.102.250403">Time-Symmetric Quantum Theory of Smoothing</a>, Physical Review Letters 102, 250403+ (2009).</li>
+  <li>T. A. Wheatley, et al., <a href="http://dx.doi.org/10.1103/PhysRevLett.104.093601">Adaptive Optical Phase Estimation Using Time-Symmetric Quantum Smoothing</a> Physical Review Letters 104, 093601+ (2010).</li>
+  <li>D. V. Lindley, <a href="http://dx.doi.org/10.1214/aoms/1177728069">On a Measure of the Information Provided by an Experiment</a>, The Annals of Mathematical Statistics 27, 986 (1956), ISSN 0003-4851.</li>
+  <li>R. S. Said, D. W. Berry, and J. Twamley, <a href="http://link.aps.org/doi/10.1103/PhysRevB.83.125410">Nanoscale magnetometry using a single-spin system in diamond</a>, Phys. Rev. B 83, 125410 (2011).</li>
+  <li>E. L. Lehmann and G. Casella, <a href="http://www.amazon.com/exec/obidos/redirect?tag=citeulike07-20&amp;path=ASIN/0387985026">Theory of Point Estimation</a> (Springer, 1998), 2nd ed., ISBN 0387985026.</li>
+  <li>J. O. Berger, <a href="http://www.amazon.com/exec/obidos/redirect?tag=citeulike07-20&amp;path=ASIN/0387960988">Statistical Decision Theory and Bayesian Analysis</a> (Springer, 1985), 2nd ed., ISBN 0387960988.</li>
+  <li>R. Blume-Kohout and P. Hayden, <a href="http://arxiv.org/abs/quant-ph/0603116">Accurate quantum state estimation via “Keeping the experimentalist honest”</a>, (2006), quant-ph/0603116.</li>
+  <li>R. D. Gill and B. Y. Levit, <a href="http://dx.doi.org/10.2307/3318681">Applications of the van Trees inequality: a Bayesian Cramér-Rao bound</a>, Bernoulli 1 59 (1995), ISSN 13507265.</li>
+  <li>P. Tichavsky, C. H. Muravchik, and A. Nehorai, <a href="http://dx.doi.org/10.1109/78.668800">Posterior Cramer-Rao bounds for discrete-time nonlinear filtering</a>, Signal Processing, IEEE Transactions on 46, 1386 (1998), ISSN 1053-587X.</li>
+  <li>N. J. Gordon, D. J. Salmond, and A. F. M. Smith, <a href="http://dx.doi.org/10.1049/ip-f-2.1993.0015">Novel approach to nonlinear/non-Gaussian Bayesian state estimation</a>, Radar and Signal Processing, IEE Proceedings F 140, 107-113 (1993),ISSN 0956-375X.</li>
+  <li>J. Liu and M. West, <a href="http://ftp.stat.duke.edu/WorkingPapers/99-14.html">Combined parameter and state estimation in simulation-based filtering</a> (Springer-Verlag, 2000).</li>
+  <li>W. Edwards, H. Lindman, and L. J. Savage, <a href="http://psycnet.apa.org/journals/rev/70/3/193/">Bayesian statistical inference for psychological research</a>, Psychological Review 70, 193 (1963), ISSN 1939-1471(Electronic);0033-295X(Print).</li>
+  <li>J. Bernardo, <a href="http://www.springerlink.com/content/u823757117165122/abstract/">Intrinsic credible regions: An objective Bayesian approach to interval estimation</a>, TEST 14, 317 (2005), ISSN 1133-0686.</li>
+  <li>D. Wackerly, W. Mendenhall, and R. L. Scheaffer, Mathematical Statistics with Applications (Duxbury Press, 2001), 6th ed., ISBN 0534377416.</li>
+  <li>E. M. L. Beale, <a href="http://www.jstor.org/stable/2983877">Confidence Regions in Non-Linear Estimation</a>, Journal of the Royal Statistical Society. Series B (Methodological) 22, 41 (1960), ISSN 0035-9246.</li>
+  <li>R. Blume-Kohout, <a href="http://arxiv.org/abs/1202.5270">Robust error bars for quantum tomography</a> (2012), 1202.5270.</li>
+  <li>M. Christandl and R. Renner, <a href="http://arxiv.org/abs/1108.5329">Reliable Quantum State Tomography</a>, (2011), 1108.5329.</li>
+  <li>M. J. Todd and E. A. Yldrm, <a href="http://www.sciencedirect.com/science/article/pii/S0166218X07000716">On Khachiyan’s algorithm for the computation of minimum-volume enclosing ellipsoids</a>, Discrete Applied Mathematics 155, 1731 (2007), ISSN 0166-218X.</li>
+  <li>C. B. Barber, D. P. Dobkin, and H. Huhdanpaa, <a href="http://doi.acm.org/10.1145/235815.235821">The quickhull algorithm for convex hulls</a>, ACM Trans. Math. Softw. 22, 469483 (1996), ISSN 0098-3500.</li>
+  <li>A. Sergeevich, A. Chandran, J. Combes, S. Bartlett, and H. Wiseman, <a href="http://dx.doi.org/10.1103/PhysRevA.84.052315">Characterization of a qubit Hamiltonian using adaptive measurements in a fixed basis</a>, Physical Review A 84 052315 (2011), ISSN 1094-1622, 1102.3700.</li>
+  <li>C. Ferrie, C. E. Granade, and D. G. Cory, <a href="http://proceedings.aip.org/resource/2/apcpcs/1443/1/165_1">Adaptive Hamiltonian estimation using Bayesian experimental design</a>, AIP Conference Proceedings 1443, 165 (2012), ISSN 0094243X.</li>
+  <li>C. Ferrie, C. Granade, and D. Cory, <a href="http://www.springerlink.com/content/130hm02564t34j84/abstract/">How to best sample a periodic probability distribution, or on the accuracy of Hamiltonian finding strategies</a>, Quantum Information Processing Online First pp. 1-13 (2012), ISSN 1570-0755.</li>
+  <li>G. Lindblad, <a href="http://projecteuclid.org/euclid.cmp/1103899849">On the generators of quantum dynamical semigroups</a>, Communications in Mathematical Physics (1965-1997) 48, 119 (1976), ISSN 0010-3616, 1432-0916.</li>
+  <li>N. Boulant, T. F. Havel, M. A. Pravia, and D. G. Cory, <a href="http://dx.doi.org/10.1103/PhysRevA.67.042322">Robust method for estimating the Lindblad operators of a dissipative quantum process from measurements of the density operator at multiple time points</a>, Physical Review A 67, 042322+ (2003).</li>
+  <li>Y. S. Weinstein, T. F. Havel, J. Emerson, N. Boulant, M. Saraceno, S. Lloyd, and D. G. Cory, <a href="http://dx.doi.org/10.1063/1.1785151">Quantum process tomography of the quantum Fourier transform</a>, The Journal of Chemical Physics 121, 6117 (2004).</li>
+  <li>N. Boulant, J. Emerson, T. Havel, D. Cory, and S. Furuta, <a href="http://dx.doi.org/10.1063/1.1773161">Incoherent noise and quantum information processing</a>, The Journal of Chemical Physics 121, 2955 (2004).</li>
+  <li>E. Gutierrez, S. Romero, M. Trenas, and E. Zapata, <a href="http://dx.doi.org/10.1007/978-3-540-69384-0_75">Parallel Quantum Computer Simulation on the CUDA Architecture</a>, in Computational Science ICCS 2008, edited by M. Bubak, G. van Albada, J. Dongarra, and P. Sloot (Springer Berlin / Heidelberg, 2008), vol. 5101 of Lecture Notes in Computer Science, pp. 700-709, ISBN 978-3-540-69383-3.</li>
+  <li>A. Khalid, Z. Zilic, and K. Radecka, <a href="http://dx.doi.org/10.1109/ICCD.2004.1347938">FPGA emulation of quantum circuits</a>, in Computer Design: VLSI in Computers and Processors, 2004. ICCD 2004. Proceedings. IEEE International Conference on (2004), pp. 310-315.</li>
+  <li>E. Jones, T. Oliphant, P. Peterson, et al., <a href="http://www.scipy.org/">SciPy: Open source scientific tools for Python</a> (2001).</li>
+</ol>
+
+<h2 id="affiliations">Affiliations</h2>
+
+<ol>
+  <li><a id="affil1"></a><a href="http://iqc.uwaterloo.ca">Institute for Quantum Computing, University of Waterloo</a>.</li>
+  <li><a id="affil2"></a><a href="https://uwaterloo.ca/physics-astronomy/">Department of Physics, University of Waterloo</a>.</li>
+  <li><a id="affil3"></a><a href="http://math.uwaterloo.ca/applied-mathematics/">Department of Applied Mathematics, University of Waterloo</a>.</li>
+  <li><a id="affil4"></a><a href="http://math.uwaterloo.ca/combinatorics-and-optimization/">Department of Combinatorics and Optimization, University of Waterloo</a>.</li>
+  <li><a id="affil5"></a><a href="https://uwaterloo.ca/chemistry/">Department of Chemistry, University of Waterloo</a>.</li>
+  <li><a id="affil6"></a><a href="http://www.perimeterinstitute.ca/">Perimeter Institute for Theoretical Physics</a>.</li>
+</ol>
+
+</div>
+
+    </div>
+
+  </body>
+</html>

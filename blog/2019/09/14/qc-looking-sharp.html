@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Quantum Computing: Looking Sharp &middot; cgranade::space
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.1/dist/katex.min.css" integrity="sha384-zB1R0rpPzHqg7Kpt0Aljp8JPLqbXI3bhnPWROx27a9N0Ll6ZP/+DiW/UqRcLbRjq" crossorigin="anonymous">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+
+  <!-- JavaScript -->
+  <script type="text/javascript" async
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+      TeX: {
+        Macros: {
+          ket: ["\\left| #1\\right\\rangle", 1]
+        }
+      }
+    });
+  </script>
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>
+        <a href="/">
+          cgranade::<br>space
+        </a>
+      </h1>
+      <p class="lead"></p>
+      <p class="lead">Quantum information • Statistical inference • Scientific programming</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+
+      <a class="sidebar-nav-item" href="/cv.html">CV</a>
+      <a class="sidebar-nav-item" href="/research/">Research</a>
+      <a class="sidebar-nav-item" href="/projects.html">Projects</a>
+      <a class="sidebar-nav-item active" href="/blog/">Blog</a>
+      <a class="sidebar-nav-item" href="/faq.html">FAQ</a>
+      <a class="sidebar-nav-item" href="/contact.html">Contact</a>
+
+
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/cgranade/cgranade.github.io">GitHub project</a>
+    </nav>
+
+    <p>&copy; 2023. Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>
+       except where otherwise noted.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Quantum Computing: Looking Sharp</h1>
+  <span class="post-date">14 Sep 2019</span>
+  <p>Last week, I took a look at what a quantum state is in the context of quantum development, using Q# to get a handle on things.
+Today, though, I’d like to take a little step back and look at what Q# is in the first place, as well as some things that Q# is <strong>not</strong>.</p>
+
+<h2 id="q-is-a-programming-langauge">Q# is a Programming Langauge</h2>
+
+<p>When you get right down to it, quantum programs are classical programs that tell a quantum computer what to do.
+After all, we want to be able to work with classical data, and to get classical data back out from our quantum computers.</p>
+
+<p>From that perspective, then, it’s really important that Q# is a programming language.
+For instance, a traditional “hello, world” application looks pretty much how you might expect a “hello, world” application to look:</p>
+
+<pre><code class="language-Q#">namespace HelloWorld {
+    open Microsoft.Quantum.Intrinsic;
+
+    /// # Summary
+    /// Says hello to the world.
+    function Hello() : Unit {
+        Message("Hello, world!");
+    }
+}
+</code></pre>
+
+<p>As a programming language, Q# builds on the long history of classical programming languages to make it as easy as possible to write quantum programs as well.
+For example, throughout the history of classical programming, we’ve learned that features like namespaces and API documentation comments help us organizing and understanding our code; we can already see both features on display here in our “Hello, world” Q# program.</p>
+
+<h2 id="q-is-a-domain-specific-language">Q# is a Domain-Specific Language</h2>
+
+<p>Given that Q# is “just” a programming language, one might then ask why it exists at all.
+We could in principle write our quantum programs in existing classical languages like Python, C#, Java, JavaScript, and so forth.
+That said, each language we work with in software development is engineered to be good at different tasks, and to focus on different domains.</p>
+
+<p>Q# is distinct from other programming languages in that it is designed from the first step to be great at writing quantum programs.
+This means that Q# makes some choices as to what features to include and which features to leave out that are unusual for general-purpose classical languages, but that make it really easy to write rich quantum programs.</p>
+
+<p>For example, since quantum mechanics is reversible, one common pattern in quantum programming is to run a subroutine <em>backwards</em>.
+We may want to write a program that converts some quantum data into a representation where it’s easier to do a particular calculation, do that calculation, then undo our first transformation.
+In Q#, this is supported by the <code class="language-plaintext highlighter-rouge">Adjoint</code> keyword, which represents the inverse of an operation.
+Just as we can run <a href="https://docs.microsoft.com/qsharp/api/qsharp/microsoft.quantum.preparation.prepareentangledstate"><code class="language-plaintext highlighter-rouge">PrepareEntangledState</code></a> to entangle the state of some qubits, we can run <code class="language-plaintext highlighter-rouge">Adjoint PrepareEntangledState</code> to measure out that entanglement.</p>
+
+<p>In order to support the <code class="language-plaintext highlighter-rouge">Adjoint</code> keyword, we need a few things to be true about our quantum programs:</p>
+
+<ul>
+  <li>Loops can’t exit early, otherwise we couldn’t reverse the direction of a loop.</li>
+  <li>Classical calculations used in a reversible operation need to be deterministic.</li>
+  <li>Classical computations used in a reversible operation can’t have side effects.</li>
+</ul>
+
+<p>To ensure these are all true, <code class="language-plaintext highlighter-rouge">for</code> loops work a bit differently in Q#, and there’s a difference between functions (which are always deterministic), and operations (which may have side effects, including sending instructions to a quantum device).
+These choices made with the design of Q# help make it a perfect fit for what we need a quantum programming language to do.</p>
+
+<p>If you’re interested in learning more about why we need Q#, check out <a href="https://devblogs.microsoft.com/qsharp/why-do-we-need-q/">Alan Geller’s post on the Q# dev blog</a>.</p>
+
+<h2 id="q-includes-classical-logic">Q# Includes Classical Logic</h2>
+
+<p>All the above being said, many quantum programs also include a lot of traditional, classical computation that has to work in close tandem with a quantum device.
+From finding the right rotation angles to describe a quantum simulation task, through to using measurement data from a quantum device to decide the next measurement that you should do, quantum programming is rife with classical computational tasks.</p>
+
+<p>This means that Q# has to not only be great at sending instructions to a quantum computer, but also at the kind of classical computations that need to run alongside a quantum device.
+As a result, Q# includes a lot of features like <a href="https://docs.microsoft.com/quantum/language/type-model#user-defined-types">user-defined types</a> and <a href="https://docs.microsoft.com/qsharp/api/qsharp/microsoft.quantum.canon">functional programming libraries</a> to help you write <em>classical</em> logic in your quantum programs.</p>
+
+<h2 id="q-is-not-a-circuit-language">Q# is <strong>Not</strong> a Circuit Language</h2>
+
+<p>It’s pretty common when talking about quantum programming to focus on a particular kind of quantum program called a <em>circuit</em>.
+By analogy to a classical logic circuit, which describes how a bunch of different classical logic gates are connected to each other, a quantum circuit expresses a quantum program as a sequence of quantum gates.</p>
+
+<p>This view has been really useful in quantum computing research for many years, but it has some problems that make it hard to use for developing quantum programs.
+The most critical problem with thinking in terms of quantum circuits is that it’s really difficult to incorporate classical logic into a circuit diagram.
+Classical logic circuits and quantum circuits are at best rough analogies to each other, and don’t really mix together.
+By contrast, classical logic is really easy to write out.</p>
+
+<p>For example, in quantum teleportation (a fancy and whimsical name for a neat way to move quantum data around), we need to apply quantum instructions based on the result of some measurements.
+This is <a href="https://github.com/microsoft/Quantum/blob/master/Samples/src/Teleportation/TeleportationSample.qs">really easy to write in Q#</a>:</p>
+
+<pre><code class="language-Q#">if (MResetZ(msg) == One)      { Z(target); }
+if (MResetZ(register) == One) { X(target); }
+</code></pre>
+
+<p>This works because Q# isn’t a circuit description language, but something much more powerful: a language for expressing quantum algorithms in terms of quantum programs.</p>
+
+<h2 id="you-dont-need-to-know-c-to-use-q">You <strong>Don’t</strong> Need to Know C# to Use Q#</h2>
+
+<p>Taking a turn for a moment, you might guess from the fact that “sharp” is right there in the name “Q#” that you need to know C# and .NET development to use Q#.
+After all, over the 17 years that .NET has been around, “sharp” has become a pretty traditional indicator that something is a part of the .NET ecosystem: F#, SharpDevelop, Resharper, Gtk#, even A#, J#, P#, and X#!</p>
+
+<p>In the case of Q#, though, what that “sharp” tells you is that Q# is built from and plays well with the .NET ecosystem.
+Just as Q# has learned from the history of classical programming languages, Q# reuses a lot of .NET infrastructure like the NuGet package manager to make it easy easy as possible to write powerful quantum applications.
+That doesn’t mean, however, you have to use C# or other .NET languages to write Q#.</p>
+
+<p>Indeed, Q# <a href="https://docs.microsoft.com/quantum/install-guide/python">provides interoperability with Python</a>, making it easy to include Q# programs as a part of your data science or research workflow.
+Q# can even be used entirely on its own from within Jupyter Notebook, thanks to the <a href="https://docs.microsoft.com/quantum/install-guide/jupyter">IQ# kernel for Jupyter</a>.</p>
+
+<p>Even if you <em>want</em> to use Q# with the cross-platform open-source .NET Core SDK, that doesn’t mean you need to be a C# expert.
+It’s easy to use <a href="https://github.com/microsoft/Quantum/tree/master/Samples/src/FSharpWithQSharp">Q# from F#</a>, <a href="https://github.com/tcNickolas/MiscQSharp/blob/master/Quantum_VBNet/README.md#using-q-with-visual-basic-net">Visual Basic .NET</a>, and even <a href="https://www.cgranade.com/blog/2018/12/03/getting-posh-with-qsharp.html">PowerShell</a> as well.
+If you’re new to .NET entirely, the project templates, <a href="https://marketplace.visualstudio.com/items?itemName=quantum.quantum-devkit-vscode">Visual Studio Code</a> and <a href="https://marketplace.visualstudio.com/items?itemName=quantum.DevKit">Visual Studio 2019</a> extensions, and the Quantum Development Kit samples all make it really easy to use Q# with .NET.</p>
+
+<p>When it comes down to it, Q# is meant to write quantum programs that work well with existing classical platforms.
+Whether you’re a seasoned C# developer, or a die-hard Pythonista, whether you’re new to programming, or have been at this for a while, I encourage you to give Q# a try.</p>
+
+<h2 id="you-dont-need-to-know-quantum-computing-to-get-started-with-q">You <strong>Don’t</strong> Need to Know Quantum Computing to Get Started with Q#</h2>
+
+<p>OK, so you don’t have to be a .NET developer to start writing quantum programs, but surely you have to at least be pretty good at this quantum stuff, right?
+Not really, as it turns out!</p>
+
+<p>One of the most amazing things that has happened to quantum computing in the past few years is that it has gotten much easier to jump in, and to learn by doing.
+Five or ten years ago, your best bet for getting involved with quantum computing probably would have started by reading a textbook and  writing down a bunch of matrices, and probably even taking some graduate-level classes.
+That’s still a great way to learn, but there’s a lot of other really good paths to learning quantum computing as well thanks to how much easier it has gotten to write and run quantum programs on your laptop or on the web.
+Using tools like Q# and the Quantum Development Kit, you can try out your understanding by writing a quantum program, then you can <em>run</em> that program to see if it matched with your understanding.</p>
+
+<p>The ability to quickly get feedback like this has really broadened the set of skills that can help you understand quantum computing.
+The quantum computing community is bigger now than it ever has been, not just in terms of the number of people, but also in terms of the kinds of backgrounds that people bring with them to the community, the diversity of people in the community, and the ways of thinking about quantum computing.</p>
+
+<p>Given that, if you’re looking to use Q# to learn quantum computing, where should you start?
+I’m definitely partial to <a href="http://bit.ly/qsharp-book">my own book</a>, of course (new chapters coming soon!), but there’s a lot more out there as well.
+Check out <a href="https://qsharp.community">qsharp.community</a> for a great list!</p>
+
+<p>However you decide to learn about quantum computing, though, welcome to the community! 💕
+I’m really excited for what you bring to quantum computing.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/06/15/questions.html">
+            A Few Questions About Myself
+            <small>15 Jun 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/05/08/gh-actions-test.html">
+            Testing GitHub Actions
+            <small>08 May 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/blog/2020/01/13/useful-skills-for-quantum.html">
+            Some useful skills for quantum computing
+            <small>13 Jan 2020</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
