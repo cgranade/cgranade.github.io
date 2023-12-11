@@ -60,7 +60,7 @@
 
 #### 2019 ####
 
-- *Q# and NWChem: tools for scalable quantum chemistry on quantum computers*, Low, G.H., Bauman, N.P., **Cassandra E. Granade**, Peng, B., Wiebe, N., Bylaska, E.J., Wecker, D., Krishnamoorthy, S., Roetteler, M., Kowalski, K. and Troyer, M.
+- *Q# and NWChem: Tools for scalable quantum chemistry on quantum computers*, Low, G.H., Bauman, N.P., **Cassandra E. Granade**, Peng, B., Wiebe, N., Bylaska, E.J., Wecker, D., Krishnamoorthy, S., Roetteler, M., Kowalski, K. and Troyer, M.
   > [arXiv:1904.01131](https://doi.org/10.48550/arXiv.1904.01131)
 
 - *Bayesian ACRONYM Tuning*, Gamble, J., **Cassandra E. Granade** and Wiebe, N.
