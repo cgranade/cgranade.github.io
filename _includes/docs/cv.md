@@ -74,7 +74,7 @@
 - *Statistical inference with quantum measurements: methodologies for nitrogen vacancy centers in diamond*, Hincks, I., **Cassandra E. Granade** and Cory, D.G. New Journal of Physics, 20(1), p.013022.
   > [https://doi.org/10.1103/PhysRevApplied.8.064004](https://doi.org/10.1103/PhysRevApplied.8.064004)
 
-- *Q# enabling scalable quantum computing and development with a high-level dsl*, Svore, K., Geller, A., Troyer, M., Azariah, J.,**Cassandra E. Granade**, Heim, B., Kliuchnikov, V., Mykhailova, M., Paz, A. and Roetteler, M., 2018, February. In Proceedings of the real world domain specific languages workshop 2018 (pp. 1-10).
+- *Q#: Enabling scalable quantum computing and development with a high-level dsl*, Svore, K., Geller, A., Troyer, M., Azariah, J.,**Cassandra E. Granade**, Heim, B., Kliuchnikov, V., Mykhailova, M., Paz, A. and Roetteler, M., 2018, February. In Proceedings of the real world domain specific languages workshop 2018 (pp. 1-10).
   > [https://doi.org/10.1145/3183895.3183901](https://doi.org/10.1145/3183895.3183901)
 
 - *Bayesian inference for randomized benchmarking protocols*, Hincks, I., Wallman, J.J., Ferrie, C., **Cassandra E. Granade** and Cory, D.G.
