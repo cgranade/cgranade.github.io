@@ -16,7 +16,7 @@
   
 ## Recent Work History ##
 
-- Owner and Principle at Dual Space Solutions LLC. May 2023 to present. 
+- Owner and Principal, Dual Space Solutions LLC. May 2023 to present. 
 - Senior Research Developer, Microsoft. July 2017 to October 2022.
 - Research Associate, University of Sydney. March 2015 to July 2017.
 - Research Assistant, Institute for Quantum Computing. May 2010 to February 2015.
